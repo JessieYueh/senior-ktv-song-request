@@ -41,7 +41,7 @@ function watchSongs() {
     const songs = snapshot.docs.map(d => ({ ...d.data(), _cloudId: d.id }))
       .filter(s => typeof s.title === 'string' && typeof s.artist === 'string')
       .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title, 'zh-Hant'));
-    latestSongs=songs;state.packCount=(window.KTV_SOURCE_SONGS||[]).filter(p=>songs.some(s=>s._cloudId===p._cloudId)).length;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
+    latestSongs=songs;state.packCount=(window.KTV_SOURCE_SONGS||[]).filter(p=>songs.some(s=>s._cloudId===p._cloudId&&s.videoId!=='21f7PU0eQgk')).length;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
     state.readReady = true; state.count = songs.length; state.error = '';
     window.KTV_APP.setCloudSongs(songs); emit();
   }, error => { state.readReady = false; state.error = explain(error); emit(); });
@@ -131,13 +131,31 @@ async function importSourcePack(){
   requireAdmin();
   if(state.busy)throw new Error('正在儲存歌曲，請稍候。');
   sourceImportAttempted=true;
-  const pending=(window.KTV_SOURCE_SONGS||[]).filter(p=>!latestSongs.some(s=>s._cloudId===p._cloudId));
-  if(!pending.length)return 0;
-  state.packSync='正在匯入豪聲合輯曲目…';
-  try{const count=await upsertMany(pending,true);state.packSync='豪聲合輯已匯入雲端：新增 '+count+' 首。';return count;}
-  catch(error){state.packSync='合輯尚未寫入雲端：'+explain(error);throw error;}
-  finally{emit();}
+  const pack=window.KTV_SOURCE_SONGS||[];
+  state.busy=true;state.packSync='正在更新 14 首獨立伴唱影片…';emit();
+  try{
+    const uid=auth.currentUser.uid;
+    const count=await runTransaction(db,async tx=>{
+      const refs=pack.map(s=>doc(db,'songs',s._cloudId));
+      const snapshots=await Promise.all(refs.map(ref=>tx.get(ref)));
+      let count=0;
+      snapshots.forEach((snapshot,i)=>{
+        if(!snapshot.exists()){
+          tx.set(refs[i],{...clean(pack[i]),order:Date.now()+i,createdAt:serverTimestamp(),createdBy:uid,updatedAt:serverTimestamp(),updatedBy:uid});count++;return;
+        }
+        const song={...snapshot.data(),_cloudId:pack[i]._cloudId};
+        const next=window.KTVSourceReplacement?.(song);
+        if(!next)return;
+        const patch={videoId:next.videoId,updatedAt:serverTimestamp(),updatedBy:uid};
+        if(song.artist==='豪聲唱片合輯')patch.artist=next.artist;
+        tx.update(refs[i],patch);count++;
+      });return count;
+    });
+    state.packSync='獨立伴唱影片已更新到雲端：'+count+' 首。';return count;
+  }catch(error){state.packSync='獨立影片尚未寫入雲端：'+explain(error);throw error;}
+  finally{state.busy=false;emit();}
 }
+
 async function maybeImportSourcePack(){
   if(sourceImportAttempted||!state.admin||!state.readReady||state.busy)return;
   try{await importSourcePack();}catch{ /* The retry button remains available. */ }
