@@ -1,31 +1,30 @@
-# 豪聲唱片懷念老歌合輯
+# 14 首懷念老歌：獨立伴唱影片
 
-來源：https://www.youtube.com/watch?v=21f7PU0eQgk
+原始曲目清單：https://www.youtube.com/watch?v=21f7PU0eQgk
 
-以發行者說明欄的 14 個曲目時間為準，片長 44:51。各曲沿用同一支影片的歌詞版，使用 YouTube IFrame API 的 startSeconds / endSeconds 各自播放，沒有下載、剪輯或重新上傳影音。原影片沒有逐曲標示歌手，因此歌手欄暫以「豪聲唱片合輯」標示來源。
+2026-10-27 改為每首獨立影片，全長播放，不再使用合輯章節切歌。下表依影片標題標示版本；未標示歌手的版本使用「經典老歌伴唱」，不將上傳者誤當成歌手。
 
-| 歌曲 | 起點 | 終點 |
-|---|---|---|
-| 再會吧！心上人 | 0:00 | 3:29 |
-| 一縷相思情 | 3:29 | 6:48 |
-| 梨花淚 | 6:48 | 10:06 |
-| 我在你左右 | 10:06 | 13:02 |
-| 含淚的分手 | 13:02 | 15:56 |
-| 遙遠寄相思 | 15:56 | 19:15 |
-| 寒雨曲 | 19:15 | 22:21 |
-| 相逢夕陽下 | 22:21 | 25:42 |
-| 萍水相逢的人 | 25:42 | 28:27 |
-| 意難忘 | 28:27 | 32:23 |
-| 秋詞 | 32:23 | 35:23 |
-| 不了情 | 35:23 | 38:13 |
-| 愛在夕陽下 | 38:13 | 41:46 |
-| 除了你 | 41:46 | 44:51 |
+| 歌曲 | 版本 | 獨立影片 | 發布頻道 | 長度 |
+|---|---|---|---|---|
+| 再會吧！心上人 | 經典老歌伴唱 | https://www.youtube.com/watch?v=Vxy_5Rc6hw0 | 自得其樂戀歌 | 3:23 |
+| 一縷相思情 | 高勝美 | https://www.youtube.com/watch?v=xiNKN7jx1D4 | jckaraok | 3:24 |
+| 梨花淚 | 于櫻櫻 | https://www.youtube.com/watch?v=Cz--B-m6Qq4 | KaraOK4Ever | 3:15 |
+| 我在你左右 | 經典老歌伴唱 | https://www.youtube.com/watch?v=xU6Td7WqQa8 | 曲韻會知音 songs for appreciative listeners - Grace 邱素蓉 | 2:57 |
+| 含淚的分手 | 于櫻櫻 | https://www.youtube.com/watch?v=Oo0x6ddu1Ls | 陸伯 Louis Tang | 3:14 |
+| 遙遠寄相思 | 潘秀瓊 | https://www.youtube.com/watch?v=ON2INsQ-jvQ | jckaraok | 3:49 |
+| 寒雨曲 | 尤雅 | https://www.youtube.com/watch?v=WURewUV2BBg | KaraOK4Ever | 2:49 |
+| 相逢夕陽下 | 經典老歌伴唱 | https://www.youtube.com/watch?v=td4a9yaOtHs | 影音娛樂台Fujit Music | 3:35 |
+| 萍水相逢的人 | 高勝美 | https://www.youtube.com/watch?v=eci0V6m6JtE | 蔡亞蘭 | 3:14 |
+| 意難忘 | 經典老歌伴唱 | https://www.youtube.com/watch?v=SZXsMxfcUHg | TC Karaoke | 4:07 |
+| 秋詞 | 高勝美 | https://www.youtube.com/watch?v=s7rH5sL7YyI | 樂庭聲視 L&T Music & Video | 3:08 |
+| 不了情 | 蔡琴 | https://www.youtube.com/watch?v=PoNphIxQTcU | li li | 3:16 |
+| 愛在夕陽下 | 高勝美 | https://www.youtube.com/watch?v=YnhV3CvFE2s | KaraOK4Ever | 3:15 |
+| 除了你 | 韓寶儀 | https://www.youtube.com/watch?v=1RPYlsQpty8 | Des Chai | 3:17 |
 
-## 雲端儲存與維護
+## 驗證與維護
 
-- 每個章節使用 `chapter_21f7PU0eQgk_起始秒數` 的固定歌曲文件 ID。14 首歌共用影片 ID，但擁有獨立的歌本與待唱身分。
-- Firestore 仍儲存原有歌曲欄位；分段起訖放在版本化的 `source-song-pack.js`。不需要更改既有安全規則。
-- 網站在未登入時也可讀取這份已發布的歌單。管理帳號登入後，會將雲端缺少的歌曲自動匯入；重複匯入不覆蓋已有資料。
-- 管理者更改歌名或補上歌手後，只要保留原文件 ID 與來源影片 ID，仍會使用正確的章節；若換成另一支獨立影片，則播放該影片全長。
-- 原唱若另設為獨立影片，不會套用這份合輯的分段起訖。
-- 此來源未標示個別原唱影片，因此不自動將合輯當成原唱填入 vocalId。
+- 14 個不同影片 ID，均經公開 YouTube 播放頁 metadata 確認狀態 OK、允許內嵌；這不是各裝置完整實播或無廣告保證。YouTube 仍可能依其設定插入廣告。
+- 沿用舊有 `chapter_21f7PU0eQgk_起始秒數` 文件 ID，只作為穩定歌曲 ID，已無章節播放意義。
+- 未登入的觀眾也會立即將舊合輯連結解析成獨立影片。管理者登入後，自動以交易更新既有文件或新增缺少的文件；重試不重複新增。
+- 只替換仍指向舊合輯的影片；保留已手動更換的獨立連結、歌名、原唱、排序、建立人及時間。歌手欄只有舊值為「豪聲唱片合輯」時才會改成版本標示。
+- Firestore 欄位及安全規則不變；原唱若尚未設定仍留空。
