@@ -1,154 +1,131 @@
-/* Source: https://www.youtube.com/watch?v=21f7PU0eQgk
-   Boundaries follow the publisher's chapter list; performer names were not listed. */
+/* Fourteen standalone karaoke videos. Keep legacy document IDs for in-place migration. */
 (function(root){
   const songs = [
   {
     "title": "再會吧！心上人",
-    "startSeconds": 0,
-    "artist": "豪聲唱片合輯",
+    "artist": "經典老歌伴唱",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "Vxy_5Rc6hw0",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_0",
-    "endSeconds": 209
+    "_cloudId": "chapter_21f7PU0eQgk_0"
   },
   {
     "title": "一縷相思情",
-    "startSeconds": 209,
-    "artist": "豪聲唱片合輯",
+    "artist": "高勝美",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "xiNKN7jx1D4",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_209",
-    "endSeconds": 408
+    "_cloudId": "chapter_21f7PU0eQgk_209"
   },
   {
     "title": "梨花淚",
-    "startSeconds": 408,
-    "artist": "豪聲唱片合輯",
+    "artist": "于櫻櫻",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "Cz--B-m6Qq4",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_408",
-    "endSeconds": 606
+    "_cloudId": "chapter_21f7PU0eQgk_408"
   },
   {
     "title": "我在你左右",
-    "startSeconds": 606,
-    "artist": "豪聲唱片合輯",
+    "artist": "經典老歌伴唱",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "xU6Td7WqQa8",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_606",
-    "endSeconds": 782
+    "_cloudId": "chapter_21f7PU0eQgk_606"
   },
   {
     "title": "含淚的分手",
-    "startSeconds": 782,
-    "artist": "豪聲唱片合輯",
+    "artist": "于櫻櫻",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "Oo0x6ddu1Ls",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_782",
-    "endSeconds": 956
+    "_cloudId": "chapter_21f7PU0eQgk_782"
   },
   {
     "title": "遙遠寄相思",
-    "startSeconds": 956,
-    "artist": "豪聲唱片合輯",
+    "artist": "潘秀瓊",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "ON2INsQ-jvQ",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_956",
-    "endSeconds": 1155
+    "_cloudId": "chapter_21f7PU0eQgk_956"
   },
   {
     "title": "寒雨曲",
-    "startSeconds": 1155,
-    "artist": "豪聲唱片合輯",
+    "artist": "尤雅",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "WURewUV2BBg",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_1155",
-    "endSeconds": 1341
+    "_cloudId": "chapter_21f7PU0eQgk_1155"
   },
   {
     "title": "相逢夕陽下",
-    "startSeconds": 1341,
-    "artist": "豪聲唱片合輯",
+    "artist": "經典老歌伴唱",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "td4a9yaOtHs",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_1341",
-    "endSeconds": 1542
+    "_cloudId": "chapter_21f7PU0eQgk_1341"
   },
   {
     "title": "萍水相逢的人",
-    "startSeconds": 1542,
-    "artist": "豪聲唱片合輯",
+    "artist": "高勝美",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "eci0V6m6JtE",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_1542",
-    "endSeconds": 1707
+    "_cloudId": "chapter_21f7PU0eQgk_1542"
   },
   {
     "title": "意難忘",
-    "startSeconds": 1707,
-    "artist": "豪聲唱片合輯",
+    "artist": "經典老歌伴唱",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "SZXsMxfcUHg",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_1707",
-    "endSeconds": 1943
+    "_cloudId": "chapter_21f7PU0eQgk_1707"
   },
   {
     "title": "秋詞",
-    "startSeconds": 1943,
-    "artist": "豪聲唱片合輯",
+    "artist": "高勝美",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "s7rH5sL7YyI",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_1943",
-    "endSeconds": 2123
+    "_cloudId": "chapter_21f7PU0eQgk_1943"
   },
   {
     "title": "不了情",
-    "startSeconds": 2123,
-    "artist": "豪聲唱片合輯",
+    "artist": "蔡琴",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "PoNphIxQTcU",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_2123",
-    "endSeconds": 2293
+    "_cloudId": "chapter_21f7PU0eQgk_2123"
   },
   {
     "title": "愛在夕陽下",
-    "startSeconds": 2293,
-    "artist": "豪聲唱片合輯",
+    "artist": "高勝美",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "YnhV3CvFE2s",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_2293",
-    "endSeconds": 2506
+    "_cloudId": "chapter_21f7PU0eQgk_2293"
   },
   {
     "title": "除了你",
-    "startSeconds": 2506,
-    "artist": "豪聲唱片合輯",
+    "artist": "韓寶儀",
     "lang": "國語",
-    "videoId": "21f7PU0eQgk",
+    "videoId": "1RPYlsQpty8",
     "vocalId": "",
-    "_cloudId": "chapter_21f7PU0eQgk_2506",
-    "endSeconds": 2691
+    "_cloudId": "chapter_21f7PU0eQgk_2506"
   }
 ];
-  const key=value=>String(value||'').normalize('NFKC').replace(/\s+/g,'');
-  function segment(song,videoId=song.videoId){
-    const entry=songs.find(s=>s.videoId===videoId&&(s._cloudId===song._cloudId||(key(s.title)===key(song.title)&&key(s.artist)===key(song.artist))));
-    return entry?{startSeconds:entry.startSeconds,endSeconds:entry.endSeconds}:null;
+
+  const legacyVideoId='21f7PU0eQgk';
+  const key=value=>String(value||'').normalize('NFKC').replace(/[\s！!]/g,'');
+  function replacement(song){
+    if(song.videoId!==legacyVideoId)return null;
+    return songs.find(s=>(song._cloudId&&s._cloudId===song._cloudId)||(song.artist==='豪聲唱片合輯'&&key(s.title)===key(song.title)))||null;
   }
-  function identity(song){const range=segment(song);return range?song.videoId+':'+range.startSeconds+'-'+range.endSeconds:song.videoId||(song.title+'|'+song.artist);}
+  function resolve(song){const next=replacement(song);return next?{...song,videoId:next.videoId,artist:song.artist==='豪聲唱片合輯'?next.artist:song.artist}:song;}
+  // Each entry now plays its own complete video. No chapter boundaries remain.
+  function segment(){return null;}
+  function identity(song){song=resolve(song);return song.videoId||(song.title+'|'+song.artist);}
   root.KTV_SOURCE_SONGS=songs;root.KTVGetSegment=segment;root.KTVSongIdentity=identity;
-  if(typeof module!=='undefined')module.exports={songs,segment,identity};
+  root.KTVSourceReplacement=replacement;root.KTVResolveSourceSong=resolve;
+  if(typeof module!=='undefined')module.exports={songs,segment,identity,replacement,resolve};
 })(typeof window!=='undefined'?window:globalThis);
