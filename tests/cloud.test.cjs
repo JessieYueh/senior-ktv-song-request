@@ -6,11 +6,11 @@ const vm = require('node:vm');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'cloud.js'), 'utf8').replace(/^import .*;\n/gm, '').replace('export function explain', 'function explain');
-function fixture({signedIn=true, admin=true, failCommit=false, initialSongs=[], lookup, beforeTransaction, pack}={}) {
+function fixture({signedIn=true, admin=true, failCommit=false, initialSongs=[], lookup, beforeTransaction, pack, replacement}={}) {
   const data = new Map(initialSongs.map(s=>[s._cloudId,{...s}])), states = [], auth = {currentUser: signedIn ? {uid:'manager',email:'manager@example.test'} : null};
   const snapshot = (id, value) => ({id, exists:()=>!!value, data:()=>value});
   const sandbox = {
-    window:{KTV_SOURCE_SONGS:pack,KTVGetVocal:lookup,KTV_APP:{setCloudState:s=>states.push(s),setCloudSongs:()=>{}},addEventListener:()=>{}},
+    window:{KTV_SOURCE_SONGS:pack,KTVSourceReplacement:replacement,KTVGetVocal:lookup,KTV_APP:{setCloudState:s=>states.push(s),setCloudSongs:()=>{}},addEventListener:()=>{}},
     navigator:{onLine:true},setTimeout:()=>0,console,
     initializeApp:()=>({}),getAuth:()=>auth,getFirestore:()=>({}),
     collection:(_,name)=>({name}),doc:(_,name,id)=>({name,id}),
@@ -69,13 +69,25 @@ test('backfill transaction preserves an original entered concurrently by another
 });
 
 const {songs:sourcePack}=require('../source-song-pack.js');
-test('source compilation imports 14 distinct records even though all share one video ID',async()=>{
+test('standalone song pack imports 14 distinct records and rerun skips them',async()=>{
   const f=fixture({pack:sourcePack});await new Promise(setImmediate);assert.equal(f.data.size,14);
-  for(const s of sourcePack){const stored=f.data.get(s._cloudId);assert.equal(stored.title,s.title);assert.equal(stored.videoId,'21f7PU0eQgk');assert.equal(Object.hasOwn(stored,'startSeconds'),false,'chapter metadata stays in versioned source pack; existing Firestore schema unchanged');}
+  for(const s of sourcePack){const stored=f.data.get(s._cloudId);assert.equal(stored.title,s.title);assert.equal(stored.videoId,s.videoId);assert.equal(Object.hasOwn(stored,'startSeconds'),false,'chapter metadata stays in versioned source pack; existing Firestore schema unchanged');}
   assert.equal(await f.api.importSourcePack(),0);assert.equal(f.data.size,14);
 });
 test('pack import preserves existing cloud edits and does not write for anonymous viewers',async()=>{
   const existing={...sourcePack[0],title:'管理者調整過的歌名'};
   const f=fixture({pack:sourcePack,initialSongs:[existing]});await new Promise(setImmediate);assert.equal(f.data.size,14);assert.equal(f.data.get(existing._cloudId).title,existing.title);
   const viewer=fixture({pack:sourcePack,signedIn:false});await new Promise(setImmediate);assert.equal(viewer.data.size,0);
+});
+
+const {replacement:sourceReplacement}=require('../source-song-pack.js');
+test('legacy compilation migrates in place; preserves names, originals, ownership and concurrent custom links',async()=>{
+  const legacy=sourcePack.map((s,i)=>({...s,videoId:'21f7PU0eQgk',artist:'豪聲唱片合輯',vocalId:'custom00001',order:i,createdAt:'then',createdBy:'owner'}));
+  const f=fixture({pack:sourcePack,replacement:sourceReplacement,initialSongs:legacy,beforeTransaction(data){data.get(sourcePack[0]._cloudId).title='管理者歌名';data.get(sourcePack[1]._cloudId).videoId='custom00002';}});
+  await new Promise(setImmediate);assert.equal(f.data.size,14);
+  for(let i=0;i<14;i++){const s=f.data.get(sourcePack[i]._cloudId);assert.equal(s.videoId,i===1?'custom00002':sourcePack[i].videoId);assert.equal(s.vocalId,'custom00001');assert.equal(s.createdBy,'owner');assert.equal(s.createdAt,'then');assert.equal(s.order,i);}
+  assert.equal(f.data.get(sourcePack[0]._cloudId).title,'管理者歌名');assert.equal(await f.api.importSourcePack(),0);
+});
+test('signed-out viewers cannot migrate legacy compilation records',async()=>{
+  const old={...sourcePack[0],videoId:'21f7PU0eQgk'};const f=fixture({signedIn:false,pack:sourcePack,replacement:sourceReplacement,initialSongs:[old]});await new Promise(setImmediate);assert.equal(f.data.size,1);assert.equal(f.data.get(old._cloudId).videoId,old.videoId);await assert.rejects(f.api.importSourcePack(),/管理帳號/);
 });
