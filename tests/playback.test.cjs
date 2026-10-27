@@ -11,7 +11,7 @@ function fixture(){
   class Player {
     constructor(host,options){this.options=options;this.id=options.videoId;this.state=-1;this.loads=[];this.destroyed=false;this.iframe={setAttribute(){}};instances.push(this);}
     ready(){this.options.events.onReady({target:this});}
-    loadVideoById(id){this.id=id;this.loads.push(id);this.state=-1;}
+    loadVideoById(value){this.id=typeof value==='string'?value:value.videoId;this.loads.push(value);this.state=-1;}
     getVideoUrl(){return 'https://www.youtube.com/watch?v='+this.id;}
     getIframe(){return this.iframe;}
     getPlayerState(){return this.state;}
@@ -52,4 +52,13 @@ test('selection during initialization uses latest song; stopping cancels pending
 test('pause button follows actual player state, and blocked autoplay offers resume',async()=>{
   const f=fixture();let blocked=0,playing=0;const playback=new f.Playback(f.container,{onBlocked:()=>blocked++,onPlaying:()=>playing++});await playback.play('video000001','one');const p=f.instances[0];p.ready();p.emit(1);playback.toggle();assert.equal(p.state,2);playback.toggle();assert.equal(p.state,1);
   p.options.events.onAutoplayBlocked();assert.equal(blocked,1);p.state=2;playback.resume();assert.equal(p.state,1);p.emit(1);assert.equal(playing,2);
+});
+
+test('chapters of one compilation keep separate start and end boundaries when advancing',async()=>{
+  const f=fixture();const segments=[{startSeconds:209,endSeconds:408},{startSeconds:408,endSeconds:606}];let next=0;
+  const playback=new f.Playback(f.container,{onEnded(){next++;if(segments.length)playback.play('21f7PU0eQgk','next',segments.shift());else playback.stop();}});
+  await playback.play('21f7PU0eQgk','first',{startSeconds:0,endSeconds:209});const p=f.instances[0];p.ready();
+  assert.deepEqual({...p.loads.at(-1)},{videoId:'21f7PU0eQgk',startSeconds:0,endSeconds:209});p.emit(1);p.emit(0);
+  assert.deepEqual({...p.loads.at(-1)},{videoId:'21f7PU0eQgk',startSeconds:209,endSeconds:408});p.emit(0);assert.equal(next,1);
+  p.emit(1);p.emit(0);assert.deepEqual({...p.loads.at(-1)},{videoId:'21f7PU0eQgk',startSeconds:408,endSeconds:606});p.emit(1);p.emit(0);assert.equal(p.destroyed,true);
 });
