@@ -25,17 +25,17 @@
     constructor(container, callbacks = {}) {
       this.container = container; this.callbacks = callbacks;
       this.player = null; this.ready = false; this.version = 0; this.mount = 0;
-      this.videoId = ''; this.title = ''; this.hasPlayed = false; this.finished = false;
+      this.videoId = ''; this.title = ''; this.range = null; this.hasPlayed = false; this.finished = false;
     }
     matches(player) {
       try { return player === this.player && new URL(player.getVideoUrl()).searchParams.get('v') === this.videoId; }
       catch { return false; }
     }
-    async play(videoId, title) {
+    async play(videoId, title, range = null) {
       const version = ++this.version;
-      this.videoId = videoId; this.title = title; this.hasPlayed = false; this.finished = false;
+      this.videoId = videoId; this.title = title; this.range = range; this.hasPlayed = false; this.finished = false;
       if (this.ready && this.player) {
-        this.setTitle(); this.player.loadVideoById(videoId); return;
+        this.setTitle(); this.loadCurrent(); return;
       }
       if (this.player) return; // onReady will load the latest requested song.
       this.container.textContent = '正在準備播放器…';
@@ -47,12 +47,12 @@
         this.player = new YT.Player(host, {
           host: 'https://www.youtube-nocookie.com', width: '100%', height: '100%',
           videoId: this.videoId,
-          playerVars: { autoplay: 1, playsinline: 1, origin: location.origin, rel: 0 },
+          playerVars: { autoplay: 1, playsinline: 1, origin: location.origin, rel: 0, ...(this.range?{start:this.range.startSeconds,end:this.range.endSeconds}:{}) },
           events: {
             onReady: event => {
               if (mount !== this.mount) return;
               this.player = event.target; this.ready = true; this.setTitle();
-              event.target.loadVideoById(this.videoId);
+              this.loadCurrent();
             },
             onStateChange: event => {
               if (mount !== this.mount || !this.matches(event.target)) return;
@@ -76,6 +76,10 @@
         if (version === this.version) this.callbacks.onError?.(error.message);
       }
     }
+    loadCurrent() {
+      if(this.range)this.player.loadVideoById({videoId:this.videoId,startSeconds:this.range.startSeconds,endSeconds:this.range.endSeconds});
+      else this.player.loadVideoById(this.videoId);
+    }
     setTitle() {
       const iframe = this.player?.getIframe?.();
       if (iframe) {
@@ -93,7 +97,7 @@
     stop() {
       ++this.version; ++this.mount;
       const old = this.player;
-      this.player = null; this.ready = false; this.videoId = ''; this.hasPlayed = false; this.finished = true;
+      this.player = null; this.ready = false; this.videoId = ''; this.range = null; this.hasPlayed = false; this.finished = true;
       old?.destroy();
     }
   }
