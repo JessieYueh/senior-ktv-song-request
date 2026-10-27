@@ -6,11 +6,11 @@ const vm = require('node:vm');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'cloud.js'), 'utf8').replace(/^import .*;\n/gm, '').replace('export function explain', 'function explain');
-function fixture({signedIn=true, admin=true, failCommit=false, initialSongs=[], lookup, beforeTransaction}={}) {
+function fixture({signedIn=true, admin=true, failCommit=false, initialSongs=[], lookup, beforeTransaction, pack}={}) {
   const data = new Map(initialSongs.map(s=>[s._cloudId,{...s}])), states = [], auth = {currentUser: signedIn ? {uid:'manager',email:'manager@example.test'} : null};
   const snapshot = (id, value) => ({id, exists:()=>!!value, data:()=>value});
   const sandbox = {
-    window:{KTVGetVocal:lookup,KTV_APP:{setCloudState:s=>states.push(s),setCloudSongs:()=>{}},addEventListener:()=>{}},
+    window:{KTV_SOURCE_SONGS:pack,KTVGetVocal:lookup,KTV_APP:{setCloudState:s=>states.push(s),setCloudSongs:()=>{}},addEventListener:()=>{}},
     navigator:{onLine:true},setTimeout:()=>0,console,
     initializeApp:()=>({}),getAuth:()=>auth,getFirestore:()=>({}),
     collection:(_,name)=>({name}),doc:(_,name,id)=>({name,id}),
@@ -66,4 +66,16 @@ test('viewers receive vocal presets without an automatic database write',async()
 test('backfill transaction preserves an original entered concurrently by another admin',async()=>{
   const original=seeded();const f=fixture({initialSongs:original,lookup:vocalLookup,beforeTransaction(data){data.get('song0').vocalId='custom00001';data.get('song0').title='管理者更新的歌名';}});await new Promise(setImmediate);
   assert.equal(f.data.get('song0').vocalId,'custom00001');assert.equal(f.data.get('song0').title,'管理者更新的歌名');assert.equal(f.data.get('song1').vocalId,vocalLookup(original[1]));
+});
+
+const {songs:sourcePack}=require('../source-song-pack.js');
+test('source compilation imports 14 distinct records even though all share one video ID',async()=>{
+  const f=fixture({pack:sourcePack});await new Promise(setImmediate);assert.equal(f.data.size,14);
+  for(const s of sourcePack){const stored=f.data.get(s._cloudId);assert.equal(stored.title,s.title);assert.equal(stored.videoId,'21f7PU0eQgk');assert.equal(Object.hasOwn(stored,'startSeconds'),false,'chapter metadata stays in versioned source pack; existing Firestore schema unchanged');}
+  assert.equal(await f.api.importSourcePack(),0);assert.equal(f.data.size,14);
+});
+test('pack import preserves existing cloud edits and does not write for anonymous viewers',async()=>{
+  const existing={...sourcePack[0],title:'管理者調整過的歌名'};
+  const f=fixture({pack:sourcePack,initialSongs:[existing]});await new Promise(setImmediate);assert.equal(f.data.size,14);assert.equal(f.data.get(existing._cloudId).title,existing.title);
+  const viewer=fixture({pack:sourcePack,signedIn:false});await new Promise(setImmediate);assert.equal(viewer.data.size,0);
 });
