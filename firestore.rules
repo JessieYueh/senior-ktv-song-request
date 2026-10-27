@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.enabled == true;
+    }
+    function validSong() {
+      let s = request.resource.data;
+      return s.keys().hasAll(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
+        && s.keys().hasOnly(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
+        && s.title is string && s.title.size() > 0 && s.title.size() <= 100
+        && s.artist is string && s.artist.size() > 0 && s.artist.size() <= 100
+        && s.lang in ['台語', '國語', '其他']
+        && s.videoId is string && s.videoId.matches('^([A-Za-z0-9_-]{11})?$')
+        && s.vocalId is string && s.vocalId.matches('^([A-Za-z0-9_-]{11})?$')
+        && s.order is number && s.order >= 0
+        && s.createdAt is timestamp && s.createdBy is string
+        && s.updatedAt == request.time && s.updatedBy == request.auth.uid;
+    }
+    match /songs/{songId} {
+      allow read: if true;
+      allow create: if isAdmin() && validSong()
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update: if isAdmin() && validSong()
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.createdBy == resource.data.createdBy;
+      allow delete: if isAdmin();
+    }
+    match /admins/{userId} {
+      allow get: if request.auth != null && request.auth.uid == userId;
+      allow list, write: if false;
+    }
+  }
+}
