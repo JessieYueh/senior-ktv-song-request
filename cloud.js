@@ -11,9 +11,9 @@ const app = initializeApp({
   appId: '1:305621061136:web:ca0ace5ad6f12c9c0d0495'
 });
 const auth = getAuth(app), db = getFirestore(app);
-const state = { user: null, admin: false, readReady: false, error: '', authError: '', count: 0, busy: false, vocalCount: 0, vocalMissing: 0, vocalSync: '' };
-let stopAdmin = null, stopSongs = null, latestSongs = [], vocalBackfillAttempted = false;
-const emit = () => {window.KTV_APP.setCloudState({ ...state });if(window.KTVGetVocal)Promise.resolve().then(maybeFillVocals);};
+const state = { user: null, admin: false, readReady: false, error: '', authError: '', count: 0, busy: false, vocalCount: 0, vocalMissing: 0, vocalSync: '', packCount: 0, packSync: '' };
+let stopAdmin = null, stopSongs = null, latestSongs = [], vocalBackfillAttempted = false, sourceImportAttempted = false;
+const emit = () => {window.KTV_APP.setCloudState({ ...state });if(window.KTVGetVocal)Promise.resolve().then(maybeFillVocals);if(window.KTV_SOURCE_SONGS)Promise.resolve().then(maybeImportSourcePack);};
 export function explain(error) {
   const code = error?.code || '';
   if (code.includes('permission-denied')) return '尚未取得雲端權限，請確認 Firestore 規則與管理者名單。';
@@ -41,14 +41,14 @@ function watchSongs() {
     const songs = snapshot.docs.map(d => ({ ...d.data(), _cloudId: d.id }))
       .filter(s => typeof s.title === 'string' && typeof s.artist === 'string')
       .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title, 'zh-Hant'));
-    latestSongs=songs;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
+    latestSongs=songs;state.packCount=(window.KTV_SOURCE_SONGS||[]).filter(p=>songs.some(s=>s._cloudId===p._cloudId)).length;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
     state.readReady = true; state.count = songs.length; state.error = '';
     window.KTV_APP.setCloudSongs(songs); emit();
   }, error => { state.readReady = false; state.error = explain(error); emit(); });
 }
 onAuthStateChanged(auth, user => {
   state.user = user ? { uid: user.uid, email: user.email || '', name: user.displayName || '' } : null;
-  state.admin = false; state.authError = ''; vocalBackfillAttempted=false; emit();
+  state.admin = false; state.authError = ''; vocalBackfillAttempted=false;sourceImportAttempted=false; emit();
   watchAdmin(user);
   // Permission-denied listeners are terminal; reattach after a new sign-in.
   watchSongs();
@@ -127,6 +127,21 @@ async function maybeFillVocals(){
   vocalBackfillAttempted=true;
   if(state.vocalMissing)try{await fillVocals();}catch{ /* Status is shown in the cloud songbook; retry remains available. */ }
 }
+async function importSourcePack(){
+  requireAdmin();
+  if(state.busy)throw new Error('正在儲存歌曲，請稍候。');
+  sourceImportAttempted=true;
+  const pending=(window.KTV_SOURCE_SONGS||[]).filter(p=>!latestSongs.some(s=>s._cloudId===p._cloudId));
+  if(!pending.length)return 0;
+  state.packSync='正在匯入豪聲合輯曲目…';
+  try{const count=await upsertMany(pending,true);state.packSync='豪聲合輯已匯入雲端：新增 '+count+' 首。';return count;}
+  catch(error){state.packSync='合輯尚未寫入雲端：'+explain(error);throw error;}
+  finally{emit();}
+}
+async function maybeImportSourcePack(){
+  if(sourceImportAttempted||!state.admin||!state.readReady||state.busy)return;
+  try{await importSourcePack();}catch{ /* The retry button remains available. */ }
+}
 window.KTV_CLOUD = {
   login: () => signInWithPopup(auth, new GoogleAuthProvider()),
   logout: () => signOut(auth),
@@ -135,6 +150,7 @@ window.KTV_CLOUD = {
   importSongs: songs => upsertMany(songs, true),
   saveBatch: songs => upsertMany(songs),
   fillVocals,
+  importSourcePack,
   explain
 };
 emit();
