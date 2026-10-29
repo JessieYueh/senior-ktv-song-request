@@ -6,6 +6,7 @@ test('OST import uses existing admin API; only server snapshot populates catalog
   const imports=[];const window={};
   const ctx={window,console,document:{getElementById:get,createElement:element,querySelectorAll:()=>[],body:element()},location:{search:''},localStorage:{getItem:()=>null},navigator:{onLine:true},URL,URLSearchParams,setTimeout:()=>1,clearTimeout(){},KTVPlayback:class{stop(){}},KTVSortSongs:s=>s,KTVStrokeCount:()=>0};
   const root=path.join(__dirname,'..');vm.createContext(ctx);vm.runInContext(fs.readFileSync(path.join(root,'ost-2026.js'),'utf8'),ctx);ctx.KTVOST2026=window.KTVOST2026;
+  vm.runInContext(fs.readFileSync(path.join(root,'mandarin-song-pack.js'),'utf8'),ctx);ctx.KTV_MANDARIN_PACK=window.KTV_MANDARIN_PACK;
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   vm.runInContext([...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1],ctx);
   const state={admin:true,access:true,readReady:true,authReady:true,user:{uid:'manager'},devices:[],busy:false,count:0};
@@ -19,6 +20,11 @@ test('OST import uses existing admin API; only server snapshot populates catalog
   assert.equal(get('songList').children.filter(e=>e.className==='song').length,1);assert.equal(get('importOST').hidden,false);
   window.KTV_APP.setCloudSongs(imports[0].map(s=>({...s,_cloudId:'yt_'+s.videoId})));
   assert.equal(get('songList').children.filter(e=>e.className==='song').length,8);assert.equal(get('importOST').hidden,true);
+  get('filters').children.find(e=>e.textContent==='國語').click();
+  assert.equal(get('importMandarin').hidden,false);await get('importMandarin').onclick();
+  assert.equal(imports[1].length,3);assert.equal(imports[1][2].title,'嘉賓');
+  window.KTV_APP.setCloudSongs([...imports[0],...imports[1]].map(s=>({...s,_cloudId:'yt_'+s.videoId})));
+  assert.equal(get('importMandarin').hidden,true);
   window.KTV_APP.setCloudSongs([]);window.KTV_APP.setCloudState({...state,admin:false,access:false,user:null});
   assert.equal(get('ktvMain').hidden,true);assert.equal(get('importOST').hidden,true);
 });
