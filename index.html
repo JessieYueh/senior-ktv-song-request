@@ -24,11 +24,13 @@
     #strokeJump{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}#strokeJump .chip{padding:8px 14px}
     #confirmNext:focus{outline:4px solid #1768db;outline-offset:4px}
     @media(max-width:950px){.layout{grid-template-columns:1fr}.playerPanel{order:0}.catalogPanel{order:1}.catalogPanel .list{max-height:35vh}#catalogDialog .list{max-height:42dvh}}
+    .accessCard{max-width:650px;margin:8vh auto;padding:28px}.accessCard input{display:block;width:100%;font-size:22px;padding:14px;border:2px solid #cbd5e1;border-radius:12px;margin:8px 0 16px}.accessCard p{font-size:18px;line-height:1.6}.deviceCode{font-size:26px!important;font-weight:800;background:#e8f1ff;padding:14px;border-radius:12px}.top{flex-wrap:wrap}#deviceList .song p{margin:6px 0;font-size:16px}
   </style>
 </head>
 <body>
-<main class="shell">
-  <header class="top"><div class="brand">🎤 快樂點歌<small>找歌、點歌、開唱，三步就好</small></div><div class="pill" id="queueBadge">待唱 0 首</div></header>
+<section class="shell" id="accessGate"><div class="panel accessCard"><h1>🎤 快樂點歌</h1><h2 id="accessTitle">正在確認使用權限…</h2><p id="accessMessage">請稍候。</p><p id="deviceCode" class="deviceCode" hidden></p><div id="deviceRequest"><label for="deviceLabel">裝置暱稱（請勿填真實姓名）</label><input id="deviceLabel" maxlength="40" placeholder="例如：客廳平板"><button class="btn green" id="requestDeviceBtn" disabled>申請此裝置使用</button></div><p id="accessError" role="status"></p><div class="quickActions"><button class="btn primary" id="gateLogin" disabled>Google 管理登入</button><button class="btn" id="gateRetry" disabled>重新確認</button><button class="btn" id="gateLogout" hidden>登出此帳號</button></div><p class="helper">家人不用 Google 帳號。首次申請後，請管理者核對裝置代碼並核准。清除瀏覽器資料或使用無痕模式可能需要重新申請。</p></div></section>
+<main class="shell" id="ktvMain" hidden>
+  <header class="top"><div class="brand">🎤 快樂點歌<small>找歌、點歌、開唱，三步就好</small></div><button class="btn" id="accountBtn">☁ 帳號與裝置</button><div class="pill" id="queueBadge">待唱 0 首</div></header>
   <div class="layout">
     <section class="panel playerPanel" aria-label="播放區">
       <div class="eyebrow">現在播放</div><div class="current" id="currentTitle">尚未點歌</div><div class="sub" id="currentArtist">按「點歌本」選一首喜歡的歌</div>
@@ -49,11 +51,8 @@
 <dialog id="batchDialog"><h2>批次加入歌曲</h2><p>每行一首，依序填「歌名、歌手、語言、伴奏網址、原唱網址」，用 Tab 分隔。後兩欄可以留空。</p><textarea id="batchText" placeholder="月亮代表我的心&#9;鄧麗君&#9;國語&#9;https://youtu.be/影片ID"></textarea><menu><button class="btn" id="cancelBatch">取消</button><button class="btn primary" id="saveBatch">加入歌本</button></menu></dialog>
 <dialog id="categoryDialog"><h2 id="categoryDialogTitle">全部點歌</h2><p id="categoryMessage"></p><p id="categorySkipped" class="helper"></p><menu><button class="btn" id="cancelCategory">取消</button><button class="btn green" id="confirmCategory">確定加入</button></menu></dialog>
 <dialog id="nextDialog"><h2>要播放下一首嗎？</h2><p id="nextMessage"></p><menu><button class="btn" id="cancelNext">繼續唱</button><button class="btn orange" id="confirmNext" autofocus>確定切歌</button></menu></dialog>
-<dialog id="cloudDialog"><h2>☁ 雲端歌本</h2><p id="cloudDetail">正在連接 Firebase…</p><div class="cloudAdmin"><p id="cloudUser">尚未登入管理帳號</p><div class="quickActions"><button class="btn primary" id="cloudLoginBtn">Google 管理登入</button><button class="btn" id="cloudLogoutBtn" hidden>登出</button><button class="btn" id="retryCloudBtn">重新連線</button></div></div><p id="cloudPackSummary">正在檢查獨立伴唱影片…</p><p id="packSyncStatus" role="status"></p><button class="btn" id="importPackBtn" disabled>更新 14 首獨立影片</button><p id="cloudVocalSummary">正在檢查原唱設定…</p><p id="vocalSyncStatus" role="status"></p><button class="btn" id="fillVocalsBtn" disabled>補寫原唱到雲端</button><p id="adminHint">長輩點歌不用登入；新增或修改共用歌本需登入授權的管理帳號。</p><div class="quickActions"><button class="btn green" id="seedBtn" disabled>匯入原有 12 首歌</button><button class="btn" id="migrateLocalBtn" disabled>匯入此裝置新增的歌</button></div><p class="helper" id="migrationStatus">匯入只補入雲端尚未有的歌曲；保留此裝置原有資料。</p><menu><button class="btn" id="closeCloudBtn">關閉</button></menu></dialog>
+<dialog id="cloudDialog"><h2>☁ 帳號與裝置</h2><p id="cloudDetail"></p><p id="cloudUser"></p><div class="quickActions"><button class="btn primary" id="cloudLoginBtn">Google 管理登入</button><button class="btn" id="cloudLogoutBtn" hidden>登出</button><button class="btn" id="retryCloudBtn">重新連線</button></div><p id="adminHint"></p><section id="deviceManager" hidden><h3>家人裝置授權</h3><p>先與家人核對裝置代碼再核准；請使用「客廳平板」等暱稱，不填姓名或 Email。</p><p id="deviceManagerError" role="status"></p><div id="deviceList"></div><p><a href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank" rel="noopener">開啟 Google 帳號兩步驟驗證設定 ↗</a></p><p class="helper">須由你本人完成設定；本網站不能替你開啟或確認 Google 帳號是否已啟用兩步驟驗證。</p></section><menu><button class="btn" id="closeCloudBtn">關閉</button></menu></dialog>
 <div id="toast" role="status" hidden></div>
-<script src="source-song-pack.js?v=2"></script>
-<script src="vocal-presets.js?v=1"></script>
-<script src="songs.js"></script>
 <script src="catalog-sort.js?v=1"></script>
 <script src="stroke-sort.js?v=1"></script>
 <script src="playback.js?v=2"></script>
@@ -64,16 +63,9 @@
   $('closeBook').onclick=()=>$('catalogDialog').close();
   $('catalogDialog').addEventListener('click',e=>{if(e.target===$('catalogDialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 
-  const KEY = 'happy_ktv_custom_songs_v1';
-  let custom = []; try { custom = JSON.parse(localStorage.getItem(KEY) || '[]'); if (!Array.isArray(custom)) custom=[]; } catch { custom=[]; }
-  const songKey = s => s.title+'|'+s.artist;
-  const sourceSongs=window.KTV_SOURCE_SONGS||[];
-  const sameSong=(a,b)=>(a._cloudId&&a._cloudId===b._cloudId)||KTVSongIdentity(a)===KTVSongIdentity(b)||songKey(a)===songKey(b);
-  function mergeSongLists(base,local=[]){const resolved=base.map(KTVResolveSourceSong);const shared=[...resolved,...sourceSongs.filter(s=>!resolved.some(b=>sameSong(s,b)))];return [...shared,...local.filter(c=>!shared.some(s=>sameSong(c,s))).map(c=>({...c,_localOnly:true}))].map(withVocal);}
-  const withVocal=s=>({...s,vocalId:window.KTVGetVocal(s)});
-  const defaults = (window.KTV_SONGS || []).map(withVocal);
-  custom.forEach(c=>{const original=defaults.find(s=>songKey(s)===songKey(c));if(original&&!c.videoId)c.videoId=original.videoId;});
-  let catalog = mergeSongLists([...defaults.filter(s=>!custom.some(c=>songKey(c)===songKey(s))), ...custom]);
+  const KTVGetSegment=()=>null;
+  const KTVSongIdentity=s=>s.videoId||(s.title+'|'+s.artist);
+  let catalog=[];
   let queue=[], current=null, category='全部', vocal=false, editor=null;
   const SORT_KEY='happy_ktv_sort_v1';
   try{const sort=JSON.parse(localStorage.getItem(SORT_KEY)||'{}');$('sortField').value=['artist','strokes'].includes(sort.field)?sort.field:'title';$('sortDirection').value=sort.direction==='desc'?'desc':'asc';}catch{}
@@ -84,13 +76,40 @@
   $('resumePlayback').onclick=()=>playback.resume();
   const validId = value => { const s=(value||'').trim(); if (/^[\w-]{11}$/.test(s)) return s; try { const u=new URL(s); if (u.hostname==='youtu.be') return /^[\w-]{11}$/.test(u.pathname.slice(1))?u.pathname.slice(1):''; if (['youtube.com','www.youtube.com','m.youtube.com','www.youtube-nocookie.com'].includes(u.hostname)) { const id=u.searchParams.get('v') || u.pathname.match(/\/(?:embed|shorts|live)\/([\w-]{11})/)?.[1]; return /^[\w-]{11}$/.test(id||'')?id:''; } } catch {} return ''; };
   function toast(message){const dialogs=[...document.querySelectorAll('dialog[open]')];const active=dialogs.at(-1);if(active){let feedback=active.querySelector('.dialogFeedback');if(!feedback){feedback=document.createElement('p');feedback.className='dialogFeedback';feedback.setAttribute('role','status');active.append(feedback);}feedback.textContent=message;}$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').hidden=true,3000);}
-  let cloudState={user:null,admin:false,readReady:false,busy:false,error:'',authError:'',count:0}, remoteSongs=null;
+  let cloudState={user:null,admin:false,access:false,authReady:false,readReady:false,busy:false,error:'',authError:'',count:0}, remoteSongs=null;
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){$('cloudDialog').showModal();throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
-  function rebuildCatalog(songs){remoteSongs=songs;catalog=mergeSongLists(songs.length?songs:defaults,custom);renderCatalog();}
-  function updateCloudUI(){const c=cloudState;let status=c.error?'☁ 尚未同步：'+c.error:c.readReady?(c.count?'☁ 雲端歌本已同步 · '+c.count+' 首':'☁ 雲端歌本尚無歌曲，目前顯示預設歌本'):'☁ 正在連接雲端歌本；目前顯示預設或上次載入的歌曲';if(!navigator.onLine)status='☁ 網路已中斷；新增歌曲需連線';if(c.busy)status='☁ 歌曲儲存中，請保持網路連線…';$('cloudStatus').textContent=status;$('cloudDetail').textContent=status;$('cloudPackSummary').textContent=c.readReady?'獨立伴唱影片已儲存到雲端：'+(c.packCount||0)+' / '+sourceSongs.length+' 首。':'獨立影片已備妥，登入管理帳號後自動更新雲端。';$('packSyncStatus').textContent=c.packSync||'';$('importPackBtn').disabled=!c.admin||!c.readReady||c.busy||(c.packCount||0)>=sourceSongs.length;$('cloudVocalSummary').textContent=c.readReady?'雲端已儲存原唱：'+(c.vocalCount||0)+' / '+c.count+' 首；這 14 首的原唱可另行設定。':'雲端連線後會顯示原唱儲存狀態。';$('vocalSyncStatus').textContent=c.vocalSync||'';$('fillVocalsBtn').disabled=!c.admin||!c.readReady||c.busy||!c.vocalMissing;$('cloudUser').textContent=c.user?'已登入：'+(c.user.email||c.user.name):'尚未登入管理帳號';$('cloudLoginBtn').hidden=!!c.user;$('cloudLogoutBtn').hidden=!c.user;$('adminHint').textContent=c.admin?'已取得管理權限，可以匯入、新增與修改共用歌本。':c.user?'此帳號沒有管理權限，請使用原先授權的管理帳號登入。'+(c.authError?' '+c.authError:''):'長輩點歌不用登入；新增或修改共用歌本需登入授權的管理帳號。';$('seedBtn').disabled=!c.admin||!c.readReady||c.busy;$('migrateLocalBtn').disabled=!c.admin||!c.readReady||c.busy||!custom.length;$('migrateLocalBtn').textContent='匯入此裝置新增的歌（'+custom.length+' 首）';document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy);}
-  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();},setCloudSongs:rebuildCatalog,failed(){cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
+  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];renderCatalog();}
+  let previousAccess=false;
+  function updateCloudUI(){
+    const c=cloudState,allowed=c.access===true;
+    $('ktvMain').hidden=!allowed;$('accessGate').hidden=allowed;
+    if(previousAccess&&!allowed){queue=[];current=null;playback.stop();playerNotice('');$('openYouTubeBtn').hidden=true;$('currentTitle').textContent='尚未點歌';$('currentArtist').textContent='請先授權此裝置';document.querySelectorAll('dialog[open]').forEach(d=>d.close());renderQueue();}
+    previousAccess=allowed;
+    const status=!allowed?'尚未取得歌本使用權限':c.error?'☁ 雲端尚未同步：'+c.error:c.readReady?'☁ 雲端歌本已同步 · '+c.count+' 首':'☁ 正在載入雲端歌本…';
+    $('cloudStatus').textContent=status;$('cloudDetail').textContent=status;
+    $('cloudUser').textContent=c.admin?'已登入管理帳號':c.user?.anonymous?'此裝置已使用匿名身分登入':c.user?'此 Google 帳號未取得管理權限':'尚未登入';
+    $('cloudLoginBtn').hidden=!!c.user&&!c.user.anonymous;$('cloudLogoutBtn').hidden=!c.user||c.user.anonymous;
+    $('adminHint').textContent=c.admin?'你可以管理雲端歌本，並核准或停用家人裝置。':'此裝置僅能讀取歌本及點歌，不能修改共用歌本。';
+    $('manageBtn').hidden=!c.admin;if(!c.admin)document.body.classList.remove('manageOpen');
+    $('accessTitle').textContent=!c.authReady?'正在確認使用權限…':c.user?.anonymous?(c.device?'等待管理者核准':'申請家人裝置授權'):c.user?'請使用原先授權的管理帳號':'首次使用，請先授權此裝置';
+    $('accessMessage').textContent=c.device?'請將下方代碼告知管理者，核准後將自動開啟歌本。若曾被停用，需由管理者重新啟用。':'家人只需申請一次，不用 Google 帳號；管理者請使用 Google 管理登入。';
+    $('deviceCode').hidden=!c.user?.anonymous;$('deviceCode').textContent=c.user?.anonymous?'裝置代碼：'+c.user.uid.slice(-8):'';
+    $('deviceRequest').hidden=!!c.device||!!(c.user&&!c.user.anonymous);
+    $('requestDeviceBtn').disabled=!c.authReady||!window.KTV_CLOUD||!navigator.onLine;
+    $('gateLogin').disabled=!window.KTV_CLOUD;$('gateRetry').disabled=!window.KTV_CLOUD;
+    $('gateLogout').hidden=!c.user||c.user.anonymous;
+    $('accessError').textContent=c.deviceError||c.authError||c.error||'';
+    $('deviceManager').hidden=!c.admin;$('deviceManagerError').textContent=c.deviceError||'';
+    $('deviceList').replaceChildren();
+    if(c.admin){
+      if(!c.devices?.length){const p=document.createElement('p');p.textContent='尚無裝置申請。';$('deviceList').append(p);}
+      for(const d of c.devices||[]){const el=document.createElement('div');el.className='song';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=d.label;const detail=document.createElement('p');detail.textContent='代碼 '+d._id.slice(-8)+' · '+(d.enabled?'已授權':'待核准／已停用');info.append(name,detail);el.append(info,button(d.enabled?'停用此裝置':'核准此裝置',d.enabled?'red':'green',async()=>{if(!confirm((d.enabled?'停用':'核准')+'「'+d.label+'」？請確認代碼 '+d._id.slice(-8)))return;try{await window.KTV_CLOUD.setDeviceEnabled(d._id,!d.enabled);toast('裝置授權已更新');}catch(error){toast(cloudError(error));}}));$('deviceList').append(el);}
+    }
+    document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
+  }
+  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
   function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
@@ -111,7 +130,7 @@
   function searchVideo(song){window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(song.title+' '+song.artist+' KTV 伴奏'),'_blank','noopener');}
   function showVideo(){const id=validId(vocal?(current?.vocalId||current?.videoId):current?.videoId);$('openYouTubeBtn').hidden=!id;playerNotice('');if(!current){playback.stop();return;}if(!id){playback.stop();const box=document.createElement('div');box.className='emptyVideo';box.innerHTML='<strong>這首歌還沒有設定影片</strong><span>可以搜尋伴奏，找到後貼回歌本</span><br><br>';box.append(button('🔎 搜尋伴奏','primary',()=>searchVideo(current)),' ',button('貼上影片網址','',()=>openEditor(current)));$('video').replaceChildren(box);return;}playback.play(id,current.title,KTVGetSegment(current,id));}
   function start(song){current=song;vocal=false;$('currentTitle').textContent=song.title;$('currentArtist').textContent=song.artist;$('modeBtn').textContent='🎙 切換原唱';showVideo();toast('現在播放：'+song.title);}
-  function addSong(song){if(!current)start(song);else{queue.push(song);toast('已加入待唱：'+song.title);}renderQueue();}
+  function addSong(song){if(!cloudState.access)return toast('請先取得裝置授權');if(!current)start(song);else{queue.push(song);toast('已加入待唱：'+song.title);}renderQueue();}
   function next(){if($('nextDialog').open)$('nextDialog').close();if(queue.length)start(queue.shift());else{playback.stop();current=null;$('currentTitle').textContent='尚未點歌';$('currentArtist').textContent='待唱歌曲已唱完';$('openYouTubeBtn').hidden=true;playerNotice('');$('video').innerHTML='<div class="emptyVideo"><strong>唱完囉！</strong>再點一首喜歡的歌</div>';toast('待唱歌曲已唱完');}renderQueue();}
   function openEditor(song=null){editor=song;$('songDialogTitle').textContent=song?'編輯歌曲':'新增歌曲';$('titleInput').value=song?.title||'';$('artistInput').value=song?.artist||'';$('langInput').value=song?.lang||'台語';$('videoInput').value=song?.videoId||'';$('vocalInput').value=song?.vocalId||'';$('songDialog').showModal();}
   $('songForm').addEventListener('submit',async e=>{e.preventDefault();const video=$('videoInput').value.trim(),voice=$('vocalInput').value.trim();if((video&&!validId(video))||(voice&&!validId(voice))){toast('請確認 YouTube 網址或影片 ID');return;}const item={title:$('titleInput').value.trim(),artist:$('artistInput').value.trim(),lang:$('langInput').value,videoId:validId(video),vocalId:validId(voice),...(editor?{_cloudId:editor._cloudId}:{})};if(!item.title||!item.artist)return;try{await saveCloud(item);if(editor)Object.assign(editor,item);renderQueue();if(current===editor)showVideo();$('songDialog').close();toast('歌曲已儲存到雲端歌本');}catch(error){toast(cloudError(error));}});
@@ -121,17 +140,17 @@
   $('saveBatch').addEventListener('click',async()=>{const items=[];let invalid=0;$('batchText').value.split(/\r?\n/).forEach(line=>{if(!line.trim())return;const [title,artist,lang,video,vocal]=line.split('\t').map(v=>v?.trim()||'');if(!title||!artist||(video&&!validId(video))||(vocal&&!validId(vocal))){invalid++;return;}items.push({title,artist,lang:lang||'其他',videoId:validId(video),vocalId:validId(vocal)});});if(invalid)return toast(invalid+' 行格式有誤，請修正後再加入');if(!items.length)return toast('請先貼上歌曲資料');try{const count=await requireCloud().saveBatch(items);$('batchDialog').close();$('batchText').value='';toast('已儲存 '+count+' 首到雲端歌本');}catch(error){toast(cloudError(error));}});
   $('catalogTab').onclick=()=>switchTab('catalog');$('queueTab').onclick=()=>switchTab('queue');$('search').oninput=renderCatalog;$('clearBtn').onclick=()=>{$('search').value='';renderCatalog();$('search').focus();};$('manageBtn').onclick=()=>{const open=document.body.classList.toggle('manageOpen');$('manageBtn').setAttribute('aria-expanded',open);};$('addBtn').onclick=()=>openEditor();$('batchBtn').onclick=()=>$('batchDialog').showModal();$('cancelSong').onclick=()=>$('songDialog').close();$('cancelBatch').onclick=()=>$('batchDialog').close();$('openYouTubeBtn').onclick=()=>{const id=validId(vocal?(current?.vocalId||current?.videoId):current?.videoId);if(id){const range=KTVGetSegment(current,id);window.open('https://www.youtube.com/watch?v='+id+(range?'&t='+range.startSeconds+'s':''),'_blank','noopener');}};
   $('playBtn').onclick=()=>{if(!current){toast('請先點歌');return;}if(!playback.toggle())showVideo();};$('replayBtn').onclick=()=>{if(!current)return toast('請先點歌');showVideo();toast('重新播放 '+current.title);};$('modeBtn').onclick=()=>{if(!current)return toast('請先點歌');if(!current.vocalId)return toast('這首歌尚未設定原唱影片');vocal=!vocal;$('modeBtn').textContent=vocal?'🎵 切回伴奏':'🎙 切換原唱';showVideo();};$('nextBtn').onclick=()=>{if(!current&&!queue.length)return toast('請先點歌');$('nextMessage').textContent=queue.length?'下一首：'+queue[0].title:'目前沒有下一首，切歌後會停止播放。';$('nextDialog').showModal();$('confirmNext').focus();};$('cancelNext').onclick=()=>$('nextDialog').close();$('confirmNext').onclick=()=>{$('nextDialog').close();next();};
-  $('cloudBtn').onclick=()=>$('cloudDialog').showModal();$('closeCloudBtn').onclick=()=>$('cloudDialog').close();
+  $('accountBtn').onclick=()=>$('cloudDialog').showModal();$('cloudBtn').onclick=()=>$('cloudDialog').showModal();$('closeCloudBtn').onclick=()=>$('cloudDialog').close();
   $('cloudLoginBtn').onclick=async()=>{try{if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請重新整理。');await window.KTV_CLOUD.login();}catch(error){toast(cloudError(error));}};
-  $('importPackBtn').onclick=async()=>{try{const count=await requireCloud().importSourcePack();toast('獨立影片已更新到雲端 '+count+' 首');}catch(error){toast(cloudError(error));}};
-  $('fillVocalsBtn').onclick=async()=>{try{const count=await requireCloud().fillVocals();toast('已補寫 '+count+' 首原唱到雲端');}catch(error){toast(cloudError(error));}};
   $('cloudLogoutBtn').onclick=async()=>{try{await window.KTV_CLOUD?.logout();}catch(error){toast(cloudError(error));}};
   $('retryCloudBtn').onclick=()=>{window.KTV_CLOUD?.retry();};
-  async function migrateSongs(items){try{const count=await requireCloud().importSongs(items);$('migrationStatus').textContent='匯入完成：新增 '+count+' 首，已存在的歌曲已略過。';toast('已匯入雲端 '+count+' 首');}catch(error){$('migrationStatus').textContent='尚未匯入：'+cloudError(error);toast(cloudError(error));}}
-  $('seedBtn').onclick=()=>migrateSongs(defaults);$('migrateLocalBtn').onclick=()=>migrateSongs(custom);
+  $('gateLogin').onclick=()=>$('cloudLoginBtn').click();
+  $('gateLogout').onclick=()=>$('cloudLogoutBtn').click();
+  $('gateRetry').onclick=()=>$('retryCloudBtn').click();
+  $('requestDeviceBtn').onclick=async()=>{const b=$('requestDeviceBtn');b.disabled=true;try{if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入。');await window.KTV_CLOUD.requestDevice($('deviceLabel').value);$('accessError').textContent='申請已送出，請管理者核准。';}catch(error){$('accessError').textContent=cloudError(error);}finally{b.disabled=false;}};
   renderFilters();renderCatalog();renderQueue();updateCloudUI();
   if(new URLSearchParams(location.search).get('setup')==='1')$('cloudDialog').showModal();
 </script>
-<script type="module">import('./cloud.js?v=20261027standalone2').catch(error=>{console.error('Cloud module failed',error);window.KTV_APP.failed();});</script>
+<script type="module">import('./cloud.js?v=20261029devices1').catch(error=>{console.error('Cloud module failed',error);window.KTV_APP.failed();});</script>
 </body>
 </html>
