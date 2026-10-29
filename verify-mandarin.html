@@ -6,7 +6,7 @@
 <p><a href="./">回家庭 KTV</a></p><div id="cards"></div>
 <h2>回報測試結果</h2><p class="helper">播放器會自動記錄播放成功、長度與錯誤。請另外選擇是否完整、是否有歌詞，然後複製下方結果貼回聊天。這個頁面不會寫入雲端歌本。</p>
 <button id="report">整理結果</button><textarea id="result" aria-label="測試結果" readonly></textarea>
-<script src="mandarin-candidates.js?v=1"></script><script>
+<script src="mandarin-candidates.js?v=2"></script><script>
 const records=KTV_OST_CANDIDATES.map(s=>({...s,playback:'未測試',duration:0,complete:'未確認',lyrics:'未確認'}));
 const players=[];
 function renderCards(){records.forEach((s,i)=>{

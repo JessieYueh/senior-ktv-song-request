@@ -20,6 +20,12 @@ window.KTV_OST_CANDIDATES = [
     "contentVerified": false
   },
   {
+    "title": "嘉賓",
+    "artist": "張遠",
+    "videoId": "Uv_p43UAdBY",
+    "type": "官方歌詞版 MV（國語）"
+  },
+  {
     "title": "看著我的眼睛說（官方音源備選）",
     "artist": "張遠",
     "videoId": "8H1I9VT6lYQ",

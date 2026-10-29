@@ -21,6 +21,7 @@
     "contentVerified": false
   }
 ];
+ entries.push({title:'嘉賓',artist:'張遠',lang:'國語',videoId:'Uv_p43UAdBY',vocalId:'',type:'官方歌詞版 MV（國語）',embedding:'pending',contentVerified:false});
  const verified=()=>entries.filter(s=>s.embedding==='passed'&&s.contentVerified===true);
  const importable=()=>verified().map(({title,artist,lang,videoId,vocalId})=>({title,artist,lang,videoId,vocalId}));
  const missing=songs=>importable().filter(e=>!songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(s.title===e.title&&s.artist===e.artist)));
