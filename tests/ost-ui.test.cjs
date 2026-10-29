@@ -16,7 +16,9 @@ test('OST import uses existing admin API; only server snapshot populates catalog
   await get('importOST').onclick();assert.equal(imports[0][0].videoId,'PJQGy005Ylg');
   assert.equal(get('songList').children.some(e=>e.className==='song'),false,'no optimistic cloud catalog');
   window.KTV_APP.setCloudSongs([{...imports[0][0],_cloudId:'yt_PJQGy005Ylg'}]);
-  assert.equal(get('songList').children.filter(e=>e.className==='song').length,1);assert.equal(get('importOST').hidden,true);
+  assert.equal(get('songList').children.filter(e=>e.className==='song').length,1);assert.equal(get('importOST').hidden,false);
+  window.KTV_APP.setCloudSongs(imports[0].map(s=>({...s,_cloudId:'yt_'+s.videoId})));
+  assert.equal(get('songList').children.filter(e=>e.className==='song').length,8);assert.equal(get('importOST').hidden,true);
   window.KTV_APP.setCloudSongs([]);window.KTV_APP.setCloudState({...state,admin:false,access:false,user:null});
   assert.equal(get('ktvMain').hidden,true);assert.equal(get('importOST').hidden,true);
 });
