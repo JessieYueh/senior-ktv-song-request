@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, signInAnonymously } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
 import { getFirestore, collection, doc, onSnapshot, runTransaction, serverTimestamp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
 
 const app = initializeApp({
@@ -11,8 +11,8 @@ const app = initializeApp({
   appId: '1:305621061136:web:ca0ace5ad6f12c9c0d0495'
 });
 const auth = getAuth(app), db = getFirestore(app);
-const state = { user: null, admin: false, readReady: false, error: '', authError: '', count: 0, busy: false, vocalCount: 0, vocalMissing: 0, vocalSync: '', packCount: 0, packSync: '' };
-let stopAdmin = null, stopSongs = null, latestSongs = [], vocalBackfillAttempted = false, sourceImportAttempted = false;
+const state = { user: null, admin: false, readReady: false, error: '', authError: '', count: 0, busy: false, vocalCount: 0, vocalMissing: 0, vocalSync: '', packCount: 0, packSync: '', access: false, device: null, devices: [], deviceError: '', authReady: false };
+let stopAdmin = null, stopSongs = null, stopDevice = null, stopDeviceList = null, authEpoch = 0, songsEpoch = 0, latestSongs = [], vocalBackfillAttempted = false, sourceImportAttempted = false;
 const emit = () => {window.KTV_APP.setCloudState({ ...state });if(window.KTVGetVocal)Promise.resolve().then(maybeFillVocals);if(window.KTV_SOURCE_SONGS)Promise.resolve().then(maybeImportSourcePack);};
 export function explain(error) {
   const code = error?.code || '';
@@ -25,34 +25,74 @@ export function explain(error) {
   if (code.includes('unavailable') || code.includes('network-request-failed')) return '目前無法連線，請確認網路後重試。';
   return error?.message || '雲端操作失敗，請稍後重試。';
 }
-function watchAdmin(user) {
-  stopAdmin?.(); stopAdmin = null;
-  state.admin = false; state.authError = '';
-  if (user) stopAdmin = onSnapshot(doc(db, 'admins', user.uid), snapshot => {
-    state.admin = snapshot.exists() && snapshot.data().enabled === true; state.authError = ''; emit();
-  }, error => { state.admin = false; state.authError = explain(error); emit(); });
+function clearSongs(){
+  ++songsEpoch;stopSongs?.();stopSongs=null;latestSongs=[];state.count=0;state.readReady=false;
+  window.KTV_APP.setCloudSongs([]);
+}
+function reconcileAccess(){
+  const allowed=state.admin||state.device?.enabled===true;
+  if(allowed!==state.access){state.access=allowed;if(allowed)watchSongs();else clearSongs();}
+  emit();
+}
+function watchIdentity(user){
+  stopAdmin?.();stopDevice?.();stopDeviceList?.();stopAdmin=stopDevice=stopDeviceList=null;
+  const epoch=++authEpoch;
+  state.admin=false;state.device=null;state.devices=[];state.access=false;state.deviceError='';clearSongs();
+  if(!user){emit();return;}
+  if(!user.isAnonymous)stopAdmin=onSnapshot(doc(db,'admins',user.uid),snapshot=>{
+    if(epoch!==authEpoch)return;
+    state.admin=snapshot.exists()&&snapshot.data().enabled===true;
+    state.authError='';
+    stopDeviceList?.();stopDeviceList=null;state.devices=[];
+    if(state.admin)stopDeviceList=onSnapshot(collection(db,'devices'),{includeMetadataChanges:true},snapshot=>{
+      if(epoch!==authEpoch||!state.admin||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
+      state.devices=snapshot.docs.map(d=>({_id:d.id,label:d.data().label,enabled:d.data().enabled}));state.deviceError='';emit();
+    },error=>{if(epoch!==authEpoch)return;state.devices=[];state.deviceError='裝置名單尚未啟用：'+explain(error);emit();});
+    reconcileAccess();
+  },error=>{if(epoch!==authEpoch)return;state.admin=false;state.authError=explain(error);reconcileAccess();});
+  if(user.isAnonymous)stopDevice=onSnapshot(doc(db,'devices',user.uid),{includeMetadataChanges:true},snapshot=>{
+    if(epoch!==authEpoch||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
+    state.device=snapshot.exists()?{label:snapshot.data().label,enabled:snapshot.data().enabled}:null;
+    state.deviceError='';reconcileAccess();
+  },error=>{if(epoch!==authEpoch)return;state.device=null;state.deviceError=explain(error);reconcileAccess();});
+  emit();
 }
 function watchSongs() {
+  if(!state.access)return;
+  const epoch=++songsEpoch;
   stopSongs?.();
   state.error = ''; state.readReady = false; emit();
   stopSongs = onSnapshot(collection(db, 'songs'), { includeMetadataChanges: true }, snapshot => {
     // Only show confirmed server data; pending writes are not reported as a completed sync.
-    if (snapshot.metadata.fromCache || snapshot.metadata.hasPendingWrites) return;
+    if (epoch!==songsEpoch||!state.access||snapshot.metadata.fromCache || snapshot.metadata.hasPendingWrites) return;
     const songs = snapshot.docs.map(d => ({ ...d.data(), _cloudId: d.id }))
       .filter(s => typeof s.title === 'string' && typeof s.artist === 'string')
       .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title, 'zh-Hant'));
     latestSongs=songs;state.packCount=(window.KTV_SOURCE_SONGS||[]).filter(p=>songs.some(s=>s._cloudId===p._cloudId&&s.videoId!=='21f7PU0eQgk')).length;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
     state.readReady = true; state.count = songs.length; state.error = '';
     window.KTV_APP.setCloudSongs(songs); emit();
-  }, error => { state.readReady = false; state.error = explain(error); emit(); });
+  }, error => { if(epoch!==songsEpoch)return;state.access=false;clearSongs();state.error=explain(error);emit(); });
 }
-onAuthStateChanged(auth, user => {
-  state.user = user ? { uid: user.uid, email: user.email || '', name: user.displayName || '' } : null;
-  state.admin = false; state.authError = ''; vocalBackfillAttempted=false;sourceImportAttempted=false; emit();
-  watchAdmin(user);
-  // Permission-denied listeners are terminal; reattach after a new sign-in.
-  watchSongs();
-}, error => { state.authError = explain(error); emit(); });
+onAuthStateChanged(auth,user=>{
+  // Never copy Google email, name or photo into song or device documents.
+  state.user=user?{uid:user.uid,anonymous:user.isAnonymous===true}:null;
+  state.authReady=true;state.authError='';state.error='';vocalBackfillAttempted=false;sourceImportAttempted=false;
+  watchIdentity(user);
+},error=>{state.authReady=true;state.authError=explain(error);emit();});
+async function requestDevice(label){
+  label=String(label||'').trim();
+  if(!label||label.length>40)throw new Error('請填寫 1 到 40 字的裝置暱稱，例如客廳平板。');
+  if(auth.currentUser&&!auth.currentUser.isAnonymous)throw new Error('管理者請使用自己的裝置；家人裝置請先登出 Google，再申請授權。');
+  try{
+    const user=auth.currentUser||(await signInAnonymously(auth)).user;
+    await runTransaction(db,async tx=>{const ref=doc(db,'devices',user.uid);const snap=await tx.get(ref);if(!snap.exists())tx.set(ref,{label,enabled:false,createdAt:serverTimestamp(),approvedAt:null});});
+  }catch(error){if(error.code?.includes('operation-not-allowed'))throw new Error('裝置授權尚未啟用，請管理者先在 Firebase 啟用匿名登入。');throw error;}
+}
+async function setDeviceEnabled(uid,enabled){
+  requireAdmin();
+  if(typeof uid!=='string'||typeof enabled!=='boolean')throw new Error('裝置資料不正確。');
+  await runTransaction(db,async tx=>{const ref=doc(db,'devices',uid);const snap=await tx.get(ref);if(!snap.exists())throw new Error('此裝置不存在。');tx.update(ref,{enabled,approvedAt:enabled?serverTimestamp():snap.data().approvedAt});});
+}
 function requireAdmin() {
   if (!auth.currentUser || !state.admin) throw new Error('請先登入已授權的管理帳號。');
   if (!navigator.onLine || !state.readReady) throw new Error('雲端歌本尚未連線，請稍後重試。');
@@ -163,7 +203,9 @@ async function maybeImportSourcePack(){
 window.KTV_CLOUD = {
   login: () => signInWithPopup(auth, new GoogleAuthProvider()),
   logout: () => signOut(auth),
-  retry: () => { watchAdmin(auth.currentUser); watchSongs(); },
+  retry: () => { watchIdentity(auth.currentUser); },
+  requestDevice,
+  setDeviceEnabled,
   upsert: song => upsertMany([song]),
   importSongs: songs => upsertMany(songs, true),
   saveBatch: songs => upsertMany(songs),
@@ -175,4 +217,4 @@ emit();
 window.addEventListener('online', () => { watchSongs(); });
 window.addEventListener('offline', emit);
 
-setTimeout(() => { if (!state.readReady && !state.error) { state.error = '雲端尚未回應，請確認已建立 Firestore 資料庫及發布安全規則，再按重新連線。'; emit(); } }, 15000);
+setTimeout(() => { if (state.access && !state.readReady && !state.error) { state.error = '雲端尚未回應，請確認已建立 Firestore 資料庫及發布安全規則，再按重新連線。'; emit(); } }, 15000);
