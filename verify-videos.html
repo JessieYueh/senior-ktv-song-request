@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>OST 影片驗證</title>
+<h1>OST 完整影片嵌入驗證</h1>
+<p>正式收錄前需確認影片能播放、完整長度及歌詞字幕。</p>
+<script>
+for(const [title,id] of [['我對緣分小心翼翼','j8yO0LkqA7s'],['初醒','PJQGy005Ylg'],['清清如我','u1vOwz4AxWw']]){
+ const h=document.createElement('h2');h.textContent=title;document.body.append(h);
+ const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id;f.width=720;f.height=405;f.allow='autoplay; encrypted-media; fullscreen';f.title=title;document.body.append(f);
+}
+</script>

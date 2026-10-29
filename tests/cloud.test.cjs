@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(root, 'cloud.js'), 'utf8').replace(/^import .*;\n/gm, '').replace('export function explain', 'function explain');
+const source = fs.readFileSync(path.join(root, 'cloud.js'), 'utf8').replace(/^import .*;\r?\n/gm, '').replace('export function explain', 'function explain');
 function fixture({signedIn=true, admin=true, failCommit=false, initialSongs=[], lookup, beforeTransaction, pack, replacement}={}) {
   const data = new Map(initialSongs.map(s=>[s._cloudId,{...s}])), states = [], auth = {currentUser: signedIn ? {uid:'manager',email:'manager@example.test'} : null};
   const snapshot = (id, value) => ({id, exists:()=>!!value, data:()=>value});
