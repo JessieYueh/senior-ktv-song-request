@@ -1,10 +1,46 @@
+// Prototype access rules. devices/{Firebase anonymous UID}:
+// label: non-personal alias, 1..40 chars; enabled: bool; createdAt: immutable timestamp;
+// approvedAt: null or timestamp. No email, Google profile, hardware ID or IP fields.
+// admins/{UID}: provisioned in console only; enabled == true and Google sign-in required.
+// songs/{id}: original validated song schema and ownership timestamps preserved.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
       return request.auth != null
+        && request.auth.token.firebase.sign_in_provider == 'google.com'
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
         && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.enabled == true;
+    }
+    function isOwner(uid){return request.auth != null && request.auth.uid == uid;}
+    function isDeviceUser(){return request.auth != null && request.auth.token.firebase.sign_in_provider == 'anonymous';}
+    function canReadSongs(){
+      return isAdmin() || (isDeviceUser()
+        && exists(/databases/$(database)/documents/devices/$(request.auth.uid))
+        && get(/databases/$(database)/documents/devices/$(request.auth.uid)).data.enabled == true);
+    }
+    function validDevice(){
+      let d=request.resource.data;
+      return d.keys().hasAll(['label','enabled','createdAt','approvedAt'])
+        && d.keys().hasOnly(['label','enabled','createdAt','approvedAt'])
+        && d.label is string && d.label.size()>0 && d.label.size()<=40
+        && d.enabled is bool && d.createdAt is timestamp
+        && (d.approvedAt == null || d.approvedAt is timestamp);
+    }
+    match /devices/{uid}{
+      allow get: if isOwner(uid) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if isDeviceUser() && isOwner(uid) && validDevice()
+        && request.resource.data.enabled == false
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.approvedAt == null;
+      allow update: if isAdmin() && validDevice()
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['label','enabled','approvedAt'])
+        && (request.resource.data.enabled == true
+          ? request.resource.data.approvedAt == request.time
+          : request.resource.data.approvedAt == resource.data.approvedAt);
+      allow delete: if false;
     }
     function validSong() {
       let s = request.resource.data;
@@ -20,7 +56,7 @@ service cloud.firestore {
         && s.updatedAt == request.time && s.updatedBy == request.auth.uid;
     }
     match /songs/{songId} {
-      allow read: if true;
+      allow read: if canReadSongs();
       allow create: if isAdmin() && validSong()
         && request.resource.data.createdAt == request.time
         && request.resource.data.createdBy == request.auth.uid;
