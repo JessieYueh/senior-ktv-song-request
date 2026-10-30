@@ -42,6 +42,98 @@ service cloud.firestore {
           : request.resource.data.approvedAt == resource.data.approvedAt);
       allow delete: if false;
     }
+    // Family room schema: root owns the TV lease and current entry/version.
+    // Queue/commands store catalog references and anonymous/admin UIDs, no profiles.
+    match /rooms/{roomId} {
+      function validCode(){return roomId.matches('^[a-f0-9]{8}$');}
+      function roomExists(){return exists(/databases/$(database)/documents/rooms/$(roomId));}
+      function member(){return canReadSongs() && roomExists();}
+      function host(){
+        let r=get(/databases/$(database)/documents/rooms/$(roomId)).data;
+        return r.hostUid == request.auth.uid && r.leaseUntil > request.time;
+      }
+      function validRoom(){
+        let r=request.resource.data;
+        return r.keys().hasAll(['hostUid','hostTab','leaseUntil','createdAt','version','currentEntry','paused','vocal'])
+          && r.keys().hasOnly(['hostUid','hostTab','leaseUntil','createdAt','version','currentEntry','paused','vocal'])
+          && r.hostUid is string && r.hostUid.size()>0 && r.hostUid.size()<=128
+          && r.hostTab is string && r.hostTab.matches('^[a-f0-9]{32}$')
+          && r.leaseUntil is timestamp && r.leaseUntil>=request.time
+          && r.leaseUntil<=request.time+duration.value(60,'s')
+          && r.createdAt is timestamp && r.version is int && r.version>=0 && r.version<=1000000000
+          && r.currentEntry is string && r.currentEntry.matches('^([A-Za-z0-9_-]{1,64})?$')
+          && r.paused is bool && r.vocal is bool;
+      }
+      function validPointer(){
+        let id=request.resource.data.currentEntry;
+        return id=='' || (existsAfter(/databases/$(database)/documents/rooms/$(roomId)/queue/$(id))
+          && getAfter(/databases/$(database)/documents/rooms/$(roomId)/queue/$(id)).data.status=='playing');
+      }
+      allow get: if validCode() && canReadSongs();
+      allow list, delete: if false;
+      allow create: if validCode() && canReadSongs() && validRoom()
+        && request.resource.data.hostUid==request.auth.uid && request.resource.data.createdAt==request.time
+        && request.resource.data.version==0 && request.resource.data.currentEntry==''
+        && request.resource.data.paused==false && request.resource.data.vocal==false;
+      allow update: if canReadSongs() && validRoom() && validPointer()
+        && request.resource.data.createdAt==resource.data.createdAt
+        && request.resource.data.hostUid==request.auth.uid
+        && (resource.data.leaseUntil<=request.time || (resource.data.hostUid==request.auth.uid && request.resource.data.hostTab==resource.data.hostTab))
+        && (request.resource.data.version==resource.data.version || request.resource.data.version==resource.data.version+1)
+        && (request.resource.data.currentEntry==resource.data.currentEntry || request.resource.data.version==resource.data.version+1);
+      match /queue/{entryId} {
+        function validEntry(){
+          let e=request.resource.data;
+          return e.keys().hasAll(['songId','addedBy','addedAt','index','status','priority'])
+            && e.keys().hasOnly(['songId','addedBy','addedAt','index','status','priority'])
+            && e.songId is string && e.songId.matches('^[^/]{1,512}$')
+            && e.addedBy is string && e.addedBy.size()>0 && e.addedBy.size()<=128
+            && e.addedAt is timestamp && e.index is int && e.index>=0 && e.index<100
+            && e.status in ['waiting','playing','done','removed'] && e.priority is bool;
+        }
+        function sameEntry(){
+          return request.resource.data.songId==resource.data.songId
+            && request.resource.data.addedBy==resource.data.addedBy
+            && request.resource.data.addedAt==resource.data.addedAt
+            && request.resource.data.index==resource.data.index;
+        }
+        allow read: if member();
+        allow create: if member() && validEntry() && request.resource.data.addedBy==request.auth.uid
+          && request.resource.data.addedAt==request.time && request.resource.data.status=='waiting'
+          && request.resource.data.priority==false
+          && exists(/databases/$(database)/documents/songs/$(request.resource.data.songId))
+          && get(/databases/$(database)/documents/songs/$(request.resource.data.songId)).data.videoId.size()==11;
+        allow update: if member() && validEntry() && sameEntry()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['priority','status'])
+          && ((resource.data.status=='waiting' && request.resource.data.status in ['waiting','removed'])
+            || (resource.data.status=='waiting' && host() && request.resource.data.status=='playing'
+              && getAfter(/databases/$(database)/documents/rooms/$(roomId)).data.currentEntry==entryId)
+            || (resource.data.status=='playing' && host() && request.resource.data.status=='done'
+              && getAfter(/databases/$(database)/documents/rooms/$(roomId)).data.currentEntry!=entryId)
+            || (host() && request.resource.data==resource.data));
+        allow delete: if false;
+      }
+      match /commands/{commandId} {
+        function validCommand(){
+          let c=request.resource.data;
+          return c.keys().hasAll(['kind','targetVersion','createdAt','createdBy','processed'])
+            && c.keys().hasOnly(['kind','targetVersion','createdAt','createdBy','processed'])
+            && c.kind in ['next','pause','resume','replay','vocal']
+            && c.targetVersion is int && c.targetVersion>=0 && c.targetVersion<=1000000000
+            && c.createdAt is timestamp && c.createdBy is string && c.createdBy.size()>0 && c.createdBy.size()<=128
+            && c.processed is bool;
+        }
+        allow read: if member();
+        allow create: if member() && validCommand() && request.resource.data.processed==false
+          && request.resource.data.createdAt==request.time && request.resource.data.createdBy==request.auth.uid
+          && request.resource.data.targetVersion<=get(/databases/$(database)/documents/rooms/$(roomId)).data.version;
+        allow update: if member() && host() && validCommand()
+          && (resource.data.processed==false || request.resource.data==resource.data)
+          && request.resource.data.processed==true
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['processed']);
+        allow delete: if false;
+      }
+    }
     function validSong() {
       let s = request.resource.data;
       return s.keys().hasAll(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
