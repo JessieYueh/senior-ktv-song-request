@@ -60,6 +60,7 @@
  const entries=[
   {
     "title": "不想讓你知道",
+    "expectedDurationSeconds": 266,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -79,6 +80,7 @@
   },
   {
     "title": "約定",
+    "expectedDurationSeconds": 260,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -98,6 +100,7 @@
   },
   {
     "title": "風鈴",
+    "expectedDurationSeconds": 275,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -117,6 +120,7 @@
   },
   {
     "title": "我喜歡",
+    "expectedDurationSeconds": 275,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -136,6 +140,7 @@
   },
   {
     "title": "空白",
+    "expectedDurationSeconds": 210,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -153,6 +158,7 @@
   },
   {
     "title": "FOREVER",
+    "expectedDurationSeconds": 280,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -170,6 +176,7 @@
   },
   {
     "title": "預言",
+    "expectedDurationSeconds": 319,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -189,6 +196,7 @@
   },
   {
     "title": "討厭自己",
+    "expectedDurationSeconds": 284,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -206,6 +214,7 @@
   },
   {
     "title": "思念的翅膀",
+    "expectedDurationSeconds": 316,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -223,6 +232,7 @@
   },
   {
     "title": "我看",
+    "expectedDurationSeconds": 298,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -240,6 +250,7 @@
   },
   {
     "title": "了了",
+    "expectedDurationSeconds": 328,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選",
@@ -257,6 +268,7 @@
   },
   {
     "title": "好想好好愛你",
+    "expectedDurationSeconds": 259,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -276,6 +288,7 @@
   },
   {
     "title": "ANGEL FACE",
+    "expectedDurationSeconds": 255,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -293,6 +306,7 @@
   },
   {
     "title": "替身",
+    "expectedDurationSeconds": 346,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -312,6 +326,7 @@
   },
   {
     "title": "太茫",
+    "expectedDurationSeconds": 203,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -329,6 +344,7 @@
   },
   {
     "title": "事到如今",
+    "expectedDurationSeconds": 271,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -346,6 +362,7 @@
   },
   {
     "title": "話題",
+    "expectedDurationSeconds": 290,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -365,6 +382,7 @@
   },
   {
     "title": "愛過不傷心",
+    "expectedDurationSeconds": 265,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -382,6 +400,7 @@
   },
   {
     "title": "不哭",
+    "expectedDurationSeconds": 281,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -399,6 +418,7 @@
   },
   {
     "title": "換季",
+    "expectedDurationSeconds": 212,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -416,6 +436,7 @@
   },
   {
     "title": "沒有你",
+    "expectedDurationSeconds": 276,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -433,6 +454,7 @@
   },
   {
     "title": "相遇太早",
+    "expectedDurationSeconds": 283,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -450,6 +472,7 @@
   },
   {
     "title": "溫度",
+    "expectedDurationSeconds": 298,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選2－好想好好愛你",
@@ -467,6 +490,7 @@
   },
   {
     "title": "體溫",
+    "expectedDurationSeconds": 280,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -486,6 +510,7 @@
   },
   {
     "title": "寂寞城市",
+    "expectedDurationSeconds": 296,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -505,6 +530,7 @@
   },
   {
     "title": "只能做朋友",
+    "expectedDurationSeconds": 265,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -524,6 +550,7 @@
   },
   {
     "title": "我很快樂",
+    "expectedDurationSeconds": 218,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -541,6 +568,7 @@
   },
   {
     "title": "Hold Me Tight",
+    "expectedDurationSeconds": 284,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -558,6 +586,7 @@
   },
   {
     "title": "別對我太好",
+    "expectedDurationSeconds": 273,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -575,6 +604,7 @@
   },
   {
     "title": "瞬間",
+    "expectedDurationSeconds": 260,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -592,6 +622,7 @@
   },
   {
     "title": "不管",
+    "expectedDurationSeconds": 193,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -609,6 +640,7 @@
   },
   {
     "title": "隱形",
+    "expectedDurationSeconds": 266,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
@@ -626,6 +658,7 @@
   },
   {
     "title": "終點",
+    "expectedDurationSeconds": 258,
     "artist": "周蕙",
     "lang": "國語",
     "album": "周蕙精選3－寂寞城市",
