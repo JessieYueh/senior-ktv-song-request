@@ -201,6 +201,7 @@ async function maybeImportSourcePack(){
   try{await importSourcePack();}catch{ /* The retry button remains available. */ }
 }
 window.KTV_CLOUD = {
+  roomContext:()=>({db,auth,allowed:()=>state.access}),
   login: () => signInWithPopup(auth, new GoogleAuthProvider()),
   logout: () => signOut(auth),
   retry: () => { watchIdentity(auth.currentUser); },
