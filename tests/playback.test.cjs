@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
-function fixture(){
+function fixture(clock={setTimeout,clearTimeout}){
   const instances=[],nodes=[];
   const container={textContent:'',replaceChildren(node){nodes.push(node);}};
   const document={createElement:()=>({setAttribute(){}})};
@@ -21,7 +21,7 @@ function fixture(){
     emit(state){this.state=state;this.options.events.onStateChange({target:this,data:state});}
   }
   root.YT.Player=Player;
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../playback.js'),'utf8'),{window:root,document,URL,location:{origin:'https://example.test'},setTimeout,clearTimeout});
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../playback.js'),'utf8'),{window:root,document,URL,location:{origin:'https://example.test'},setTimeout:clock.setTimeout,clearTimeout:clock.clearTimeout});
   return {Playback:root.KTVPlayback,instances,container};
 }
 test('natural end advances the queue once, reuses player and final end stops',async()=>{
@@ -65,4 +65,17 @@ test('chapters of one compilation keep separate start and end boundaries when ad
 
 test('remote pause survives delayed player initialization and resume restores playback',async()=>{
  const f=fixture();let playing=0;const p=new f.Playback(f.container,{onPlaying:()=>playing++});const pending=p.play('video000001','one');p.setPaused(true);await pending;const player=f.instances[0];player.ready();player.emit(1);assert.equal(player.state,2);assert.equal(playing,0);p.resume();player.emit(1);assert.equal(player.state,1);assert.equal(playing,1);p.stop();assert.equal(p.desiredPaused,false);
+});
+
+test('initial embed errors remain visible even before YouTube reports a video URL',async()=>{
+ const f=fixture(),errors=[];const playback=new f.Playback(f.container,{onError:e=>errors.push(e)});await playback.play('video000001','one');const player=f.instances[0];player.getVideoUrl=()=>'';
+ player.options.events.onError({target:player,data:153});assert.equal(errors.length,1);assert.match(errors[0],/153/);
+ playback.stop();player.options.events.onError({target:player,data:100});assert.equal(errors.length,1,'destroyed player errors ignored');
+});
+
+
+test('a silent iframe handshake retries another official host once and then reports failure',async()=>{
+ const timers=new Map();let n=0;const f=fixture({setTimeout(fn){timers.set(++n,fn);return n;},clearTimeout(id){timers.delete(id);}});const errors=[];let reconnects=0;const playback=new f.Playback(f.container,{onError:e=>errors.push(e),onConnecting:()=>reconnects++});
+ await playback.play('video000001','one');let fn=[...timers.values()][0];fn();await Promise.resolve();await Promise.resolve();assert.equal(reconnects,1);assert.equal(f.instances.length,2);assert.equal(f.instances[0].destroyed,true);assert.notEqual(f.instances[0].options.host,f.instances[1].options.host);
+ fn=[...timers.values()].at(-1);fn();assert.equal(errors.length,1);assert.equal(f.instances.length,2,'no endless reload loop');playback.stop();
 });
