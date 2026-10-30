@@ -43,7 +43,7 @@
     </section>
     <section class="panel catalogPanel" aria-label="點歌區">
       <nav class="tabs" aria-label="歌單頁籤"><button class="tab active" id="catalogTab" aria-selected="true">📖 點歌本</button><button class="tab" id="queueTab" aria-selected="false">🎵 已點歌曲 <span id="queueCount">0</span></button></nav>
-      <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="歌曲分類"></div><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint">依目前排序，一次加入此分類的全部歌曲。</p></div><section id="mandarinImport" class="cloudAdmin" hidden><strong>國語新加入 · 張遠</strong><p id="mandarinStatus" role="status"></p><button class="btn green" id="importMandarin" hidden>＋ 將張遠歌曲加入雲端</button></section><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><section id="chouHuiInfo" class="cloudAdmin" hidden><strong>🎤 周蕙・歷年專輯歌曲</strong><p id="chouHuiStatus" role="status"></p><button class="btn green" id="importChouHui" hidden>＋ 將已驗證周蕙歌曲加入雲端</button><details><summary>查看已找到的官方 MV（尚未通過嵌入測試）</summary><div id="chouHuiCandidates"></div></details><p class="helper">候選影片不等於已匯入歌本；必須先完成嵌入播放及完整長度驗證。匯入需要 Google 管理帳號。</p></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
+      <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="歌曲分類"></div><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint">依目前排序，一次加入此分類的全部歌曲。</p></div><section id="mandarinImport" class="cloudAdmin" hidden><strong>國語新加入 · 張遠</strong><p id="mandarinStatus" role="status"></p><button class="btn green" id="importMandarin" hidden>＋ 將張遠歌曲加入雲端</button></section><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><section id="chouHuiInfo" class="cloudAdmin" hidden><strong>🎤 周蕙・歷年專輯歌曲</strong><p id="chouHuiStatus" role="status"></p><button class="btn primary" id="verifyChouHui" hidden>▶ 驗證官方 MV 並加入雲端</button><button class="btn green" id="importChouHui" hidden>＋ 將已驗證周蕙歌曲加入雲端</button><div id="chouHuiVerifyStage" hidden><p id="chouHuiVerifyProgress" role="status"></p><div id="chouHuiVerifyPlayer" style="width:100%;aspect-ratio:16/9;background:#16213b;border-radius:12px;overflow:hidden"></div></div><details><summary>查看已找到的官方 MV（尚未通過嵌入測試）</summary><div id="chouHuiCandidates"></div></details><p class="helper">候選影片不等於已匯入歌本；必須先完成嵌入播放及完整長度驗證。匯入需要 Google 管理帳號。</p></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
       <div class="cloudLine"><div id="cloudStatus" role="status" aria-live="polite">☁ 正在連接雲端歌本；目前顯示預設歌曲</div></div><div id="queuePane" hidden><div class="content"><div class="list" id="queueList"></div></div></div>
     </section>
   </div>
@@ -63,7 +63,8 @@
 <script src="qrcode.js?v=1"></script>
 <script src="ost-2026.js?v=2"></script>
 <script src="mandarin-song-pack.js?v=2"></script>
-<script src="chou-hui-song-pack.js?v=20261031a"></script>
+<script src="chou-hui-song-pack.js?v=20261031b"></script>
+<script src="chou-hui-verify.js?v=20261031a"></script>
 <script>
   const $ = id => document.getElementById(id);
   $('catalogDialog').append($('catalogPane'));
@@ -144,6 +145,9 @@
     if(!pack)return;
     const missing=pack.missing(catalog),cloudCount=catalog.filter(s=>String(s.artist||'').includes('周蕙')).length;
     $('chouHuiStatus').textContent='已核對 '+pack.albums.length+' 張專輯、'+pack.entries.length+' 首不同曲目；找到 '+pack.entries.filter(e=>e.videoId).length+' 部官方 MV 候選。通過嵌入驗證 '+pack.verified().length+' 首；雲端已有 '+cloudCount+' 首。'+(missing.length?'有 '+missing.length+' 首可由管理者匯入。':'尚無新增歌曲符合安全匯入條件。');
+    const untested=pack.entries.filter(e=>e.videoId&&e.sourceEvidence==='official_channel'&&e.embedding!=='passed'&&!catalog.some(s=>s.title===e.title&&s.artist===e.artist));
+    $('verifyChouHui').hidden=!cloudState.admin||!untested.length;
+    $('verifyChouHui').disabled=cloudState.busy||!cloudState.readReady;
     $('importChouHui').hidden=!cloudState.admin||!missing.length;
     $('importChouHui').disabled=cloudState.busy||!cloudState.readReady;
     const el=$('chouHuiCandidates');el.replaceChildren();
@@ -151,6 +155,28 @@
       const p=document.createElement('p'),a=document.createElement('a');a.href=entry.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent='↗ '+entry.title+'（'+entry.album+'）';p.append(a,document.createTextNode(entry.embedding==='passed'?' · 已驗證':' · 待測試嵌入'));el.append(p);
     }
   }
+  $('verifyChouHui').onclick=async()=>{
+    const pack=window.KTV_CHOU_HUI;
+    const entries=pack.entries.filter(e=>e.videoId&&e.sourceEvidence==='official_channel'&&e.embedding!=='passed'&&!catalog.some(s=>s.title===e.title&&s.artist===e.artist));
+    if(!entries.length)return toast('目前沒有待驗證的官方 MV');
+    try{requireCloud();}catch(error){return toast(cloudError(error));}
+    const btn=$('verifyChouHui'),stage=$('chouHuiVerifyStage'),progress=$('chouHuiVerifyProgress');
+    btn.disabled=true;stage.hidden=false;progress.textContent='準備播放驗證…';
+    try{
+      const results=await window.KTV_VERIFY_CHOU_HUI.run(entries,$('chouHuiVerifyPlayer'),message=>{progress.textContent=message;});
+      for(const r of results.filter(r=>r.ok)){
+        const entry=entries.find(e=>e.videoId===r.videoId);
+        if(entry){entry.embedding='passed';entry.contentVerified=true;entry.durationSeconds=r.seconds;entry.checkedAt=new Date().toISOString().slice(0,10);entry.evidence='本次由管理者裝置在正式網站以 YouTube IFrame API 確認 PLAYING、影片 ID 與曲目長度；字幕仍待人工核對。';}
+      }
+      const missing=pack.missing(catalog);
+      const passed=results.filter(r=>r.ok).length;
+      const failed=results.filter(r=>!r.ok);
+      if(missing.length){const count=await requireCloud().importSongs(missing);progress.textContent='已送出 '+count+' 首周蕙歌曲到雲端，等待 Firestore 同步。'+(failed.length?' 另有 '+failed.length+' 首未通過驗證。':'');toast('已送出 '+count+' 首周蕙歌曲，請等雲端同步。');}
+      else{progress.textContent='完成檢查：'+passed+' 首通過、'+failed.length+' 首未通過；沒有需要新增的歌曲。';}
+      if(failed.length){const p=document.createElement('p');p.textContent='未通過：'+failed.map(r=>r.title+'（'+r.reason+'）').join('、');stage.append(p);}
+    }catch(error){progress.textContent='驗證或匯入未完成：'+cloudError(error);toast(cloudError(error));}
+    finally{btn.disabled=false;renderChouHui();}
+  };
   $('importChouHui').onclick=async()=>{
     const items=window.KTV_CHOU_HUI.missing(catalog);if(!items.length)return;
     try{const count=await requireCloud().importSongs(items);toast('周蕙歌曲已送出 '+count+' 首；等待雲端確認同步。');}catch(error){toast(cloudError(error));}
