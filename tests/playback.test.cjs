@@ -62,3 +62,7 @@ test('chapters of one compilation keep separate start and end boundaries when ad
   assert.deepEqual({...p.loads.at(-1)},{videoId:'21f7PU0eQgk',startSeconds:209,endSeconds:408});p.emit(0);assert.equal(next,1);
   p.emit(1);p.emit(0);assert.deepEqual({...p.loads.at(-1)},{videoId:'21f7PU0eQgk',startSeconds:408,endSeconds:606});p.emit(1);p.emit(0);assert.equal(p.destroyed,true);
 });
+
+test('remote pause survives delayed player initialization and resume restores playback',async()=>{
+ const f=fixture();let playing=0;const p=new f.Playback(f.container,{onPlaying:()=>playing++});const pending=p.play('video000001','one');p.setPaused(true);await pending;const player=f.instances[0];player.ready();player.emit(1);assert.equal(player.state,2);assert.equal(playing,0);p.resume();player.emit(1);assert.equal(player.state,1);assert.equal(playing,1);p.stop();assert.equal(p.desiredPaused,false);
+});
