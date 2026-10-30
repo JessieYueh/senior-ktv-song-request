@@ -25,7 +25,7 @@
     constructor(container, callbacks = {}) {
       this.container = container; this.callbacks = callbacks;
       this.player = null; this.ready = false; this.version = 0; this.mount = 0;
-      this.videoId = ''; this.title = ''; this.range = null; this.hasPlayed = false; this.finished = false;
+      this.desiredPaused=false;this.videoId = ''; this.title = ''; this.range = null; this.hasPlayed = false; this.finished = false;
     }
     matches(player) {
       try { return player === this.player && new URL(player.getVideoUrl()).searchParams.get('v') === this.videoId; }
@@ -57,6 +57,7 @@
             onStateChange: event => {
               if (mount !== this.mount || !this.matches(event.target)) return;
               if (event.data === YT.PlayerState.PLAYING) {
+                if(this.desiredPaused){event.target.pauseVideo();return;}
                 this.hasPlayed = true; this.callbacks.onPlaying?.();
               }
               if (event.data === YT.PlayerState.ENDED && this.hasPlayed && !this.finished) {
@@ -93,9 +94,10 @@
       else this.player.playVideo();
       return true;
     }
-    resume() { if (this.ready) this.player?.playVideo(); }
+    setPaused(value){this.desiredPaused=!!value;if(this.ready){if(value)this.player?.pauseVideo();else this.player?.playVideo();}}
+    resume() { this.setPaused(false); }
     stop() {
-      ++this.version; ++this.mount;
+      this.desiredPaused=false;++this.version; ++this.mount;
       const old = this.player;
       this.player = null; this.ready = false; this.videoId = ''; this.range = null; this.hasPlayed = false; this.finished = true;
       old?.destroy();
