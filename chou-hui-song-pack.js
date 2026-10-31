@@ -90,20 +90,24 @@
   {
     "title": "不被遺忘的時光",
     "year": 2018,
-    "partial": true,
     "source": "https://music-tw.line.me/album/1487471",
     "tracks": [
       "偶然",
       "夢不到你",
       "再看我一眼",
+      "愛的路上我和你",
+      "海誓山盟",
+      "千言萬語",
+      "今天不回家",
       "愛你在心口難開",
-      "心痛的感覺"
+      "心痛的感覺",
+      "被遺忘的時光"
     ]
   },
   {
     "title": "不被遺忘的時光2",
     "year": 2022,
-    "source": "https://music-tw.line.me/album/6350789",
+    "source": "https://www.youtube.com/watch?v=VbDPfN-_U-8",
     "tracks": [
       "天天想你",
       "拒絕再玩",
@@ -114,6 +118,7 @@
       "心理遊戲",
       "明天我要嫁給你",
       "Don't break my heart",
+      "你快回來",
       "釀月光"
     ]
   },
@@ -891,7 +896,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=g_VjS-iOcAU",
-    "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "trackNumber": 10
   },
   {
     "title": "感性生物",
@@ -1241,7 +1247,7 @@
     "lang": "國語",
     "album": "不被遺忘的時光",
     "year": 2018,
-    "trackNumber": 4,
+    "trackNumber": 8,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -1258,7 +1264,7 @@
     "lang": "國語",
     "album": "不被遺忘的時光",
     "year": 2018,
-    "trackNumber": 5,
+    "trackNumber": 9,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -1340,7 +1346,7 @@
   {
     "title": "喜歡你",
     "artist": "周蕙",
-    "lang": "國語",
+    "lang": "其他",
     "album": "不被遺忘的時光2",
     "year": 2022,
     "trackNumber": 5,
@@ -1428,7 +1434,7 @@
     "lang": "國語",
     "album": "不被遺忘的時光2",
     "year": 2022,
-    "trackNumber": 10,
+    "trackNumber": 11,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2428,6 +2434,96 @@
     "checkedAt": "2026-10-31",
     "source": "",
     "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "愛的路上我和你",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "不被遺忘的時光",
+    "year": 2018,
+    "trackNumber": 4,
+    "expectedDurationSeconds": null,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "海誓山盟",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "不被遺忘的時光",
+    "year": 2018,
+    "trackNumber": 5,
+    "expectedDurationSeconds": null,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "千言萬語",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "不被遺忘的時光",
+    "year": 2018,
+    "trackNumber": 6,
+    "expectedDurationSeconds": null,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "今天不回家",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "不被遺忘的時光",
+    "year": 2018,
+    "trackNumber": 7,
+    "expectedDurationSeconds": null,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "你快回來",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "不被遺忘的時光2",
+    "year": 2022,
+    "trackNumber": 10,
+    "expectedDurationSeconds": null,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
   }
 ];
  const verified=()=>entries.filter(e=>e.embedding==='passed'&&e.contentVerified===true&&e.videoId&&e.durationSeconds>0);
