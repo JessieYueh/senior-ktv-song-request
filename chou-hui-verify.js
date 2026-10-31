@@ -43,7 +43,8 @@
        seconds=Number(player.getDuration?.()||0);
        if(player.getPlayerState()===yt.PlayerState.PLAYING){
         const expected=Number(entry.expectedDurationSeconds||0);
-        if(seconds>=120&&(!expected||(seconds>=expected-45&&seconds<=expected+180)))done(true,'已在本網站播放，影片長度 '+seconds+' 秒');
+        if(!expected)done(false,'缺少可靠的歌曲長度基準，不能標記已驗證');
+        else if(seconds>=120&&seconds>=expected-45&&seconds<=expected+90)done(true,'已在本網站播放，影片長度 '+seconds+' 秒');
         else if(seconds>0)done(false,'影片長度 '+seconds+' 秒與專輯曲目不符');
        }
       }catch(error){done(false,String(error.message||error));}
