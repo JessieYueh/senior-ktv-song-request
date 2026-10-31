@@ -95,6 +95,7 @@
 <script src="ost-2026.js?v=2"></script>
 <script src="mandarin-song-pack.js?v=2"></script>
 <script src="valen-hsu-song-pack.js?v=20261031a"></script>
+<script src="fan-fan-song-pack.js?v=20261101a"></script>
 <script src="hou-hsiang-ting-song-pack.js?v=20261101b"></script>
 <script src="chou-hui-song-pack.js?v=20261031f"></script>
 <script src="chou-hui-verify.js?v=20261031b"></script>
@@ -135,7 +136,7 @@
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){$('cloudDialog').showModal();throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
-  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();}
+  function rebuildCatalog(songs){remoteSongs=songs;catalog=window.KTV_FAN_FAN?.merge(songs)||[...songs];renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
   let previousAccess=false;
   function updateCloudUI(){
     const c=cloudState,allowed=c.access===true;
@@ -167,11 +168,11 @@
     renderOST();
     document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
   }
-  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
+  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
-  function matchesCategory(song,name){return name==='侯湘婷'?String(song.artist||'').includes('侯湘婷'):name==='許茹芸'?String(song.artist||'').includes('許茹芸'):name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
-  function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙','許茹芸','侯湘婷'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
+  function matchesCategory(song,name){return name==='范瑋琪'?String(song.artist||'').includes('范瑋琪'):name==='侯湘婷'?String(song.artist||'').includes('侯湘婷'):name==='許茹芸'?String(song.artist||'').includes('許茹芸'):name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
+  function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙','許茹芸','侯湘婷','范瑋琪'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
 
   let valenAutoAttempted=false,houAutoRunning=false,houRetryTimer=null,houRetryCount=0;
   async function maybeImportValen(){
@@ -182,6 +183,23 @@
       const items=pack.missing(remoteSongs);
       if(items.length)await requireCloud().importSongs(items);
     }catch(error){console.error('許茹芸歌本匯入未完成',error);}
+  }
+
+  let fanImportTimer=null,fanImportRunning=false,fanImportAttempts=0;
+  function scheduleFanImport(){
+    clearTimeout(fanImportTimer);
+    if(!cloudState.admin||!cloudState.access||!cloudState.readReady||fanImportRunning||fanImportAttempts>=3)return;
+    fanImportTimer=setTimeout(maybeImportFan,1500);
+  }
+  async function maybeImportFan(){
+    if(!window.KTV_FAN_FAN||fanImportRunning||!cloudState.admin||!cloudState.access||!cloudState.readReady||cloudState.busy||!window.KTV_CLOUD)return;
+    const items=window.KTV_FAN_FAN.missing(remoteSongs);
+    if(!items.length)return;
+    fanImportRunning=true;fanImportAttempts++;
+    try{
+      await requireCloud().importSongs(items);
+    }catch(error){console.error('范瑋琪歌本匯入未完成',error);}
+    finally{fanImportRunning=false;scheduleFanImport();}
   }
 
   function scheduleHouImport(){
