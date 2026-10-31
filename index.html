@@ -73,7 +73,7 @@
     </section>
     <section class="panel catalogPanel" aria-label="點歌區">
       <nav class="tabs" aria-label="歌單頁籤"><button class="tab active" id="catalogTab" aria-selected="true">📖 點歌本</button><button class="tab" id="queueTab" aria-selected="false">🎵 已點歌曲 <span id="queueCount">0</span></button></nav>
-      <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="歌曲分類"></div><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint">依目前排序，一次加入此分類的全部歌曲。</p></div><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><section id="chouHuiInfo" class="cloudAdmin" hidden><strong>🎤 周蕙・歷年專輯歌曲</strong><p id="chouHuiStatus" role="status"></p><button class="btn primary" id="verifyChouHui" hidden>▶ 驗證官方 MV 並加入雲端</button><button class="btn green" id="importChouHui" hidden>＋ 將已驗證周蕙歌曲加入雲端</button><div id="chouHuiVerifyStage" hidden><p id="chouHuiVerifyProgress" role="status"></p><div id="chouHuiVerifyPlayer" style="width:100%;aspect-ratio:16/9;background:#16213b;border-radius:12px;overflow:hidden"></div></div><details><summary>查看已找到的官方 MV（尚未通過嵌入測試）</summary><div id="chouHuiCandidates"></div></details><p class="helper">候選影片不等於已匯入歌本；必須先完成嵌入播放及完整長度驗證。匯入需要 Google 管理帳號。</p></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
+      <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="歌曲分類"></div><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint">依目前排序，一次加入此分類的全部歌曲。</p></div><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><section id="valenInfo" class="cloudAdmin" hidden><strong>🎤 許茹芸・KTV 熱門與近年作品</strong><p id="valenStatus" role="status"></p><button class="btn green" id="importValen" hidden>＋ 一次加入許茹芸歌曲到雲端</button><p class="helper">歷年榜單／熱門點唱 13 首；近年作品另列，未證實點播上榜。影片連結已核對；遠端測試持續緩衝，實播與字幕尚待確認。</p></section><section id="chouHuiInfo" class="cloudAdmin" hidden><strong>🎤 周蕙・歷年專輯歌曲</strong><p id="chouHuiStatus" role="status"></p><button class="btn primary" id="verifyChouHui" hidden>▶ 驗證官方 MV 並加入雲端</button><button class="btn green" id="importChouHui" hidden>＋ 將已驗證周蕙歌曲加入雲端</button><div id="chouHuiVerifyStage" hidden><p id="chouHuiVerifyProgress" role="status"></p><div id="chouHuiVerifyPlayer" style="width:100%;aspect-ratio:16/9;background:#16213b;border-radius:12px;overflow:hidden"></div></div><details><summary>查看已找到的官方 MV（尚未通過嵌入測試）</summary><div id="chouHuiCandidates"></div></details><p class="helper">候選影片不等於已匯入歌本；必須先完成嵌入播放及完整長度驗證。匯入需要 Google 管理帳號。</p></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
       <div class="cloudLine"><div id="cloudStatus" role="status" aria-live="polite">☁ 正在連接雲端歌本；目前顯示預設歌曲</div></div><div class="queueTools"><span>上下滑動查看待唱</span><button class="btn" id="expandQueue">⛶ 放大清單</button></div><div id="queuePane" hidden><div class="content"><div class="list" id="queueList"></div></div></div>
     </section>
   </div>
@@ -94,6 +94,7 @@
 <script src="qrcode.js?v=1"></script>
 <script src="ost-2026.js?v=2"></script>
 <script src="mandarin-song-pack.js?v=2"></script>
+<script src="valen-hsu-song-pack.js?v=20261031a"></script>
 <script src="chou-hui-song-pack.js?v=20261031f"></script>
 <script src="chou-hui-verify.js?v=20261031b"></script>
 <script>
@@ -165,11 +166,39 @@
     renderOST();
     document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
   }
-  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
+  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();renderValen();maybeImportValen();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
-  function matchesCategory(song,name){return name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
-  function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
+  function matchesCategory(song,name){return name==='許茹芸'?String(song.artist||'').includes('許茹芸'):name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
+  function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙','許茹芸'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
+
+  let valenImportMessage='',valenAutoAttempted=false;
+  function maybeImportValen(){
+    if(valenAutoAttempted||!cloudState.admin||!cloudState.readReady||cloudState.busy||!Array.isArray(remoteSongs)||!window.KTV_CLOUD||!window.KTV_VALEN_HSU)return;
+    valenAutoAttempted=true;
+    if(window.KTV_VALEN_HSU.missing(remoteSongs).length)Promise.resolve().then(()=>$('importValen').onclick());
+  }
+  function renderValen(){
+    const pack=window.KTV_VALEN_HSU;
+    $('valenInfo').hidden=category!=='許茹芸';
+    if(!pack)return;
+    const missing=pack.missing(catalog),count=catalog.filter(s=>String(s.artist||'').includes('許茹芸')).length;
+    $('valenStatus').textContent='已整理 '+pack.entries.length+' 首歌曲連結（實播待確認）；雲端已有 '+count+' 首許茹芸歌曲。'+(missing.length?'還有 '+missing.length+' 首可一次匯入。':'本批歌曲均已在歌本。')+(cloudState.admin?'':'管理者登入後將自動補入，失敗可按下方按鈕重試。')+valenImportMessage;
+    $('importValen').hidden=!cloudState.admin||!missing.length;
+    $('importValen').disabled=cloudState.busy||!cloudState.readReady;
+  }
+  $('importValen').onclick=async()=>{
+    const pack=window.KTV_VALEN_HSU;
+    if(!pack)return;
+    const items=pack.missing(catalog);
+    if(!items.length)return;
+    try{requireCloud();$('importValen').disabled=true;valenImportMessage=' 正在寫入雲端…';renderValen();
+      const count=await requireCloud().importSongs(items);
+      valenImportMessage=' 已送出 '+count+' 首，等待雲端確認同步。';toast('許茹芸歌曲已送出 '+count+' 首，等待雲端同步。');
+    }catch(error){valenImportMessage=' '+cloudError(error);toast(valenImportMessage);}
+    finally{renderValen();}
+  };
+
   function renderChouHui(){
     const pack=window.KTV_CHOU_HUI,visible=category==='周蕙';$('chouHuiInfo').hidden=!visible;
     if(!pack)return;
@@ -223,7 +252,7 @@
     const items=KTVOST2026.missing(catalog);if(!items.length)return;
     try{const count=await requireCloud().importSongs(items);toast('已加入 '+count+' 首；等待雲端確認同步。');}catch(error){toast(cloudError(error));}
   };
-  function row(song,actions){const el=document.createElement('div');el.className='song';const info=document.createElement('div');const title=document.createElement('div');title.className='songTitle';title.textContent=song.title;const meta=document.createElement('div');meta.className='songMeta';meta.textContent=(song.artist||'未知歌手')+' · '+(song.lang||'其他')+(KTVOST2026.metadata(song)?' · '+KTVOST2026.metadata(song).drama:'')+(KTVGetSegment(song)?' · 合輯分段':'')+(song._localOnly?' · 此裝置尚未匯入':'');info.append(title,meta);const buttons=document.createElement('div');buttons.className='songActions';actions.forEach(a=>buttons.append(button(...a)));el.append(info,buttons);return el;}
+  function row(song,actions){const el=document.createElement('div');el.className='song';const info=document.createElement('div');const title=document.createElement('div');title.className='songTitle';title.textContent=song.title;const meta=document.createElement('div');meta.className='songMeta';meta.textContent=(song.artist||'未知歌手')+' · '+(song.lang||'其他')+(KTVOST2026.metadata(song)?' · '+KTVOST2026.metadata(song).drama:'')+(KTVGetSegment(song)?' · 合輯分段':'')+(window.KTV_VALEN_HSU?.metadata(song)?' · '+window.KTV_VALEN_HSU.metadata(song).selection+' · 實播待確認':'')+(song._localOnly?' · 此裝置尚未匯入':'');info.append(title,meta);const buttons=document.createElement('div');buttons.className='songActions';actions.forEach(a=>buttons.append(button(...a)));el.append(info,buttons);return el;}
   function categorySongs(){return KTVSortSongs(catalog.filter(s=>matchesCategory(s,category)),$('sortField').value,$('sortDirection').value);}
   const queueKey=s=>KTVSongIdentity(s);
   function prepareCategory(songs){const seen=new Set([...(current?[current]:[]),...queue].map(queueKey));const additions=[];let duplicate=0,unavailable=0;for(const song of songs){if(!validId(song.videoId)){unavailable++;continue;}const key=queueKey(song);if(seen.has(key)){duplicate++;continue;}seen.add(key);additions.push(song);}return {additions,duplicate,unavailable};}
@@ -232,7 +261,7 @@
   $('addCategoryBtn').onclick=()=>{const plan=prepareCategory(categorySongs());if(!plan.additions.length)return;pendingCategory=plan.additions;$('categoryDialogTitle').textContent=category==='全部'?'點唱全部歌曲？':'點唱全部'+category+'歌曲？';$('categoryMessage').textContent='將點唱 '+pendingCategory.length+' 首，依目前的「'+($('sortField').value==='artist'?'歌手':'歌名')+'・'+($('sortDirection').value==='desc'?'遞減':'遞增')+'」順序加入。'+(current?'目前的歌曲會繼續播放。':'第一首會開始播放，其餘加入待唱。');$('categorySkipped').textContent=(plan.duplicate?'已點過的 '+plan.duplicate+' 首會略過。':'')+(plan.unavailable?'未設定影片的 '+plan.unavailable+' 首會略過。':'');$('categoryDialog').showModal();};
   $('cancelCategory').onclick=()=>{$('categoryDialog').close();pendingCategory=[];};
   $('confirmCategory').onclick=async()=>{const additions=prepareCategory(pendingCategory).additions;pendingCategory=[];$('categoryDialog').close();if(!additions.length){renderCategoryAdd();return toast('這些歌曲已在待唱中');}const count=additions.length;if(sharedMode()){try{const added=await roomClient.enqueue(additions);toast('已加入包廂待唱 '+added+' 首');}catch(error){toast(cloudError(error));}return;}if(!current)start(additions.shift());queue.push(...additions);renderQueue();renderCategoryAdd();toast('已點唱 '+count+' 首歌曲');};
-  function renderCatalog(){renderCategoryAdd();const q=$('search').value.trim().toLocaleLowerCase();const songs=KTVSortSongs(catalog.filter(s=>(matchesCategory(s,category))&&(!q||(s.title+' '+s.artist).toLocaleLowerCase().includes(q))),$('sortField').value,$('sortDirection').value);$('songList').replaceChildren();if(!songs.length){const n=document.createElement('div');n.className='notice';const elsewhere=q&&category!=='全部'&&catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q));n.textContent=elsewhere?'其他分類有找到歌曲。請選「全部」。':q?'歌本裡沒有這首歌。可以到 YouTube 找。':'這個分類還沒有歌曲。';$('songList').append(n);if(elsewhere)n.append(document.createElement('br'),button('查看全部歌曲','primary',()=>{category='全部';renderFilters();renderCatalog();}));}const grouped=$('sortField').value==='strokes';$('strokeJump').hidden=!grouped;$('strokeJump').replaceChildren();let last=null;
+  function renderCatalog(){renderValen();renderCategoryAdd();const q=$('search').value.trim().toLocaleLowerCase();const songs=KTVSortSongs(catalog.filter(s=>(matchesCategory(s,category))&&(!q||(s.title+' '+s.artist).toLocaleLowerCase().includes(q))),$('sortField').value,$('sortDirection').value);$('songList').replaceChildren();if(!songs.length){const n=document.createElement('div');n.className='notice';const elsewhere=q&&category!=='全部'&&catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q));n.textContent=elsewhere?'其他分類有找到歌曲。請選「全部」。':q?'歌本裡沒有這首歌。可以到 YouTube 找。':'這個分類還沒有歌曲。';$('songList').append(n);if(elsewhere)n.append(document.createElement('br'),button('查看全部歌曲','primary',()=>{category='全部';renderFilters();renderCatalog();}));}const grouped=$('sortField').value==='strokes';$('strokeJump').hidden=!grouped;$('strokeJump').replaceChildren();let last=null;
     songs.forEach(song=>{const n=KTVStrokeCount(song.title);if(grouped&&n!==last){last=n;const h=document.createElement('h3');h.className='strokeHeading';h.id='stroke-'+n;h.textContent=n?n+' 畫':'英文、數字及其他';$('songList').append(h);$('strokeJump').append(button(n?n+' 畫':'其他','chip',()=>{ $('songList').scrollTop+=h.getBoundingClientRect().top-$('songList').getBoundingClientRect().top; }));}$('songList').append(row(song,[['＋ 點歌','green',()=>addSong(song)],['⋯','adminOnly',()=>openEditor(song)]]));});if(q&&!songs.length&&!catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q))){const box=document.createElement('div');box.className='findOnline';box.append(button('🔎 到 YouTube 找「'+$('search').value.trim()+'」','primary',openQuickAdd));$('songList').append(box);}}
   function openQuickAdd(){const query=$('search').value.trim();$('quickTitle').value=query;$('quickArtist').value='';$('quickVideo').value='';$('quickDialog').showModal();}
   function openYouTubeSearch(){const term=($('quickTitle').value.trim()||$('search').value.trim())+' 官方 MV 歌詞';window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(term),'_blank','noopener');}
