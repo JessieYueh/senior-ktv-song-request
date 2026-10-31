@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f5f7fb">
+  <meta name="theme-color" content="#1768db">
+  <link rel="icon" type="image/svg+xml" href="microphone.svg?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png?v=1">
+  <link rel="manifest" href="manifest.webmanifest?v=1">
+  <meta name="apple-mobile-web-app-title" content="快樂點歌">
   <title>快樂點歌｜長輩卡拉 OK</title>
   <style>
     :root{font-family:system-ui,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#18243b;background:#f5f7fb}
@@ -27,13 +31,39 @@
     .accessCard{max-width:650px;margin:8vh auto;padding:28px}.accessCard input{display:block;width:100%;font-size:22px;padding:14px;border:2px solid #cbd5e1;border-radius:12px;margin:8px 0 16px}.accessCard p{font-size:18px;line-height:1.6}.deviceCode{font-size:26px!important;font-weight:800;background:#e8f1ff;padding:14px;border-radius:12px}.top{flex-wrap:wrap}#deviceList .song p{margin:6px 0;font-size:16px}
     .roomPanel{padding:14px 20px;margin-bottom:20px}.roomPanel p{line-height:1.6}.roomPanel .quickActions{margin-top:0}.roomPanel .quickActions .btn{flex:initial}#roomShare{display:flex;align-items:center;gap:14px;flex-wrap:wrap}#roomCode{font-size:25px}#roomQR svg{width:170px;height:170px;display:block}#roomLink{overflow-wrap:anywhere;font-size:14px}.remoteMode .video,.remoteMode #videoHelp{display:none}.remoteMode .playerPanel{background:#eef5ff}#roomError{color:#ae3028;font-weight:700}
     .playerPanel:fullscreen{border-radius:0;padding:18px;background:white;display:flex;flex-direction:column}.playerPanel:fullscreen .video{flex:1;min-height:0;aspect-ratio:auto}.playerPanel:fullscreen .controls{grid-template-columns:repeat(4,1fr)}
+
+    /* Keep every panel within the browser viewport, including TV browser zoom. */
+    html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{max-width:100%;overflow-x:hidden}
+    .shell{width:100%;min-width:0}.layout,.panel,.content,.song>div{min-width:0}.layout{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}
+    .songTitle,.songMeta{overflow-wrap:anywhere}.quickActions .btn{white-space:normal;min-width:0}.top{gap:8px}
+    .catalogPanel{display:flex;flex-direction:column}.tabs{flex-wrap:wrap}.tab{min-width:0;font-size:20px;padding:10px}
+    #queuePane{min-height:0}#queuePane .content{padding:4px 12px}
+    #queueList{min-height:0;max-height:65vh;max-height:65dvh;overflow-y:auto;overscroll-behavior-y:contain;touch-action:pan-y;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch}
+    #queueList .song{flex-direction:row;align-items:center;gap:8px;padding:9px 0;min-height:68px}
+    #queueList .song>div:first-child{flex:1}#queueList .songTitle{font-size:20px;line-height:1.3}#queueList .songMeta{font-size:15px;margin-top:2px}
+    #queueList .songActions{gap:5px}#queueList .songActions .btn{font-size:17px;min-height:44px;padding:8px}
+    .queueTools{padding:8px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}.queueTools .btn{min-height:44px;font-size:17px;padding:8px 12px}
+    #queueDialog{width:min(1000px,calc(100% - 20px));height:92vh;height:92dvh;max-height:92dvh;padding:0;overflow:hidden}
+    #queueDialog[open]{display:flex;flex-direction:column}#queueDialog #queuePane,#queueDialog .content{display:flex;flex:1;flex-direction:column;min-height:0}#queueDialog #queueList{flex:1;max-height:none}
+    #roomPairingToggle{min-height:44px;font-size:17px;padding:8px 12px}.roomRunning:not(.showPairing) #roomQR,.roomRunning:not(.showPairing) #roomShare>p{display:none}
+    .remoteMode #ktvMain{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:10px}
+    .remoteMode .top{margin-bottom:8px}.remoteMode .brand{font-size:23px}.remoteMode .brand small{display:none}.remoteMode .top .btn{min-height:44px;font-size:16px;padding:8px}
+    .remoteMode .roomPanel{flex-shrink:0;padding:8px 12px;margin-bottom:8px}.remoteMode .roomPanel p{margin:4px 0;font-size:14px}.remoteMode #roomShare{display:none}
+    .remoteMode .roomPanel .btn{font-size:15px;min-height:44px;padding:8px}.remoteMode .layout{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
+    .remoteMode .playerPanel{padding:10px;flex-shrink:0}.remoteMode .current{font-size:22px;margin:2px 0}.remoteMode .sub{font-size:15px}.remoteMode .eyebrow{font-size:14px}
+    .remoteMode .controls{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:6px}.remoteMode .controls .btn{font-size:15px;padding:7px 3px;min-height:44px}
+    .remoteMode .catalogPanel{flex:1;min-height:0}.remoteMode .cloudLine{display:none}.remoteMode #queuePane,.remoteMode #queuePane .content{display:flex;flex:1;min-height:0;flex-direction:column}.remoteMode #queueList{flex:1;max-height:none}
+    .remoteMode .queueTools{display:none}.remoteMode .tabs{padding:5px}.remoteMode .tab{font-size:18px;padding:8px}
+    @media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr)}.catalogPanel .list{max-height:60dvh}}
+    @media(min-width:1001px){.tvMode .shell{max-width:100%;padding:16px}.tvMode .layout{grid-template-columns:minmax(0,1.8fr) minmax(0,1fr)}}
+    @media(max-width:420px){#queueList .songTitle{font-size:18px}#queueList .songActions .btn{font-size:16px;padding:6px;min-width:42px}.remoteMode .roomPanel .btn{font-size:14px}}
   </style>
 </head>
 <body>
 <section class="shell" id="accessGate"><div class="panel accessCard"><h1>🎤 快樂點歌</h1><h2 id="accessTitle">正在確認使用權限…</h2><p id="accessMessage">請稍候。</p><p id="deviceCode" class="deviceCode" hidden></p><div id="deviceRequest"><label for="deviceLabel">裝置暱稱（請勿填真實姓名）</label><input id="deviceLabel" maxlength="40" placeholder="例如：客廳平板"><button class="btn green" id="requestDeviceBtn" disabled>申請此裝置使用</button></div><p id="accessError" role="status"></p><div class="quickActions"><button class="btn primary" id="gateLogin" disabled>Google 管理登入</button><button class="btn" id="gateRetry" disabled>重新確認</button><button class="btn" id="gateLogout" hidden>登出此帳號</button></div><p class="helper">家人不用 Google 帳號。首次申請後，請管理者核對裝置代碼並核准。清除瀏覽器資料或使用無痕模式可能需要重新申請。</p></div></section>
 <main class="shell" id="ktvMain" hidden>
   <header class="top"><div class="brand">🎤 快樂點歌<small>找歌、點歌、開唱，三步就好</small></div><button class="btn" id="accountBtn">☁ 帳號與裝置</button><div class="pill" id="queueBadge">待唱 0 首</div></header>
-  <section class="panel roomPanel" aria-label="播放模式"><div class="quickActions"><button class="btn primary" id="roomLocalBtn">📱 這台點歌・這台播放</button><button class="btn" id="roomCreateBtn" disabled>📺 建立電視包廂</button><button class="btn" id="roomJoinBtn" disabled>🔗 加入包廂</button></div><p id="roomStatus" role="status">目前為單機模式：保留原本的瀏覽器點歌功能。</p><p id="roomError" role="status"></p><div id="roomShare" hidden><strong id="roomCode"></strong><p><a id="roomLink" target="_blank" rel="noopener"></a></p><div id="roomQR" aria-label="手機加入包廂 QR Code"></div><button class="btn green" id="roomArm" hidden>▶ 開始電視播放</button><button class="btn" id="roomFullScreen" hidden>⛶ 電視全螢幕</button><p class="helper">手機及電視都須先取得裝置授權。手機鎖屏不影響電視；電視請保持網頁開啟。若有聲播放被阻擋，請在電視按「繼續播放」。</p></div></section>
+  <section class="panel roomPanel" aria-label="播放模式"><div class="quickActions"><button class="btn primary" id="roomLocalBtn">📱 這台點歌・這台播放</button><button class="btn" id="roomCreateBtn" disabled>📺 建立電視包廂</button><button class="btn" id="roomJoinBtn" disabled>🔗 加入包廂</button></div><p id="roomStatus" role="status">目前為單機模式：保留原本的瀏覽器點歌功能。</p><p id="roomError" role="status"></p><div id="roomShare" hidden><strong id="roomCode"></strong><p><a id="roomLink" target="_blank" rel="noopener"></a></p><div id="roomQR" aria-label="手機加入包廂 QR Code"></div><button class="btn green" id="roomArm" hidden>▶ 開始電視播放</button><button class="btn" id="roomPairingToggle" hidden>顯示配對 QR Code</button><button class="btn" id="roomFullScreen" hidden>⛶ 電視全螢幕</button><p class="helper">手機及電視都須先取得裝置授權。手機鎖屏不影響電視；電視請保持網頁開啟。若有聲播放被阻擋，請在電視按「繼續播放」。</p></div></section>
   <div class="layout">
     <section class="panel playerPanel" aria-label="播放區">
       <div class="eyebrow">現在播放</div><div class="current" id="currentTitle">尚未點歌</div><div class="sub" id="currentArtist">按「點歌本」選一首喜歡的歌</div>
@@ -44,10 +74,11 @@
     <section class="panel catalogPanel" aria-label="點歌區">
       <nav class="tabs" aria-label="歌單頁籤"><button class="tab active" id="catalogTab" aria-selected="true">📖 點歌本</button><button class="tab" id="queueTab" aria-selected="false">🎵 已點歌曲 <span id="queueCount">0</span></button></nav>
       <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="歌曲分類"></div><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint">依目前排序，一次加入此分類的全部歌曲。</p></div><section id="mandarinImport" class="cloudAdmin" hidden><strong>國語新加入 · 張遠</strong><p id="mandarinStatus" role="status"></p><button class="btn green" id="importMandarin" hidden>＋ 將張遠歌曲加入雲端</button></section><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><section id="chouHuiInfo" class="cloudAdmin" hidden><strong>🎤 周蕙・歷年專輯歌曲</strong><p id="chouHuiStatus" role="status"></p><button class="btn primary" id="verifyChouHui" hidden>▶ 驗證官方 MV 並加入雲端</button><button class="btn green" id="importChouHui" hidden>＋ 將已驗證周蕙歌曲加入雲端</button><div id="chouHuiVerifyStage" hidden><p id="chouHuiVerifyProgress" role="status"></p><div id="chouHuiVerifyPlayer" style="width:100%;aspect-ratio:16/9;background:#16213b;border-radius:12px;overflow:hidden"></div></div><details><summary>查看已找到的官方 MV（尚未通過嵌入測試）</summary><div id="chouHuiCandidates"></div></details><p class="helper">候選影片不等於已匯入歌本；必須先完成嵌入播放及完整長度驗證。匯入需要 Google 管理帳號。</p></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
-      <div class="cloudLine"><div id="cloudStatus" role="status" aria-live="polite">☁ 正在連接雲端歌本；目前顯示預設歌曲</div></div><div id="queuePane" hidden><div class="content"><div class="list" id="queueList"></div></div></div>
+      <div class="cloudLine"><div id="cloudStatus" role="status" aria-live="polite">☁ 正在連接雲端歌本；目前顯示預設歌曲</div></div><div class="queueTools"><span>上下滑動查看待唱</span><button class="btn" id="expandQueue">⛶ 放大清單</button></div><div id="queuePane" hidden><div class="content"><div class="list" id="queueList"></div></div></div>
     </section>
   </div>
 </main>
+<dialog id="queueDialog" aria-labelledby="queueDialogTitle"><header class="bookHeader"><h2 id="queueDialogTitle">🎵 已點歌曲</h2><button class="btn primary" id="closeQueue">返回</button></header></dialog>
 <dialog id="roomJoinDialog"><h2>加入家庭包廂</h2><p>輸入電視顯示的 8 碼包廂代碼。</p><label>包廂代碼<input id="roomInput" maxlength="8" autocomplete="off" autocapitalize="none" placeholder="例如：a1b2c3d4"></label><p>手機請選「手機點歌」。只有電視裝置才選「接手電視播放」；已有電視連線時不會搶走播放權。</p><menu><button class="btn" id="roomJoinCancel">取消</button><button class="btn green" id="roomJoinPhone">手機點歌</button><button class="btn" id="roomJoinTV">接手電視播放</button></menu></dialog>
 <dialog id="catalogDialog" aria-labelledby="bookTitle"><header class="bookHeader"><h2 id="bookTitle">📖 點歌本</h2><button class="btn primary" id="closeBook">完成點歌・關閉</button></header></dialog>
 <dialog id="songDialog"><form method="dialog" id="songForm"><h2 id="songDialogTitle">新增歌曲</h2><p>貼上可播放的 YouTube 影片網址；也可以先留空，之後再補。</p><label>歌名<input id="titleInput" required maxlength="100"></label><label>歌手<input id="artistInput" required maxlength="100"></label><label>語言<select id="langInput"><option>台語</option><option>國語</option><option>其他</option></select></label><label>主要影片網址（原唱 MV／歌詞影片／伴奏）<input id="videoInput" type="text" placeholder="YouTube 網址或 11 碼 ID"></label><label>其他版本網址（原唱／備用，選填）<input id="vocalInput" type="text" placeholder="YouTube 網址或 11 碼 ID"></label><menu><button type="button" class="btn" id="cancelSong">取消</button><button type="submit" class="btn primary">儲存</button></menu></form></dialog>
@@ -70,6 +101,16 @@
   $('catalogDialog').append($('catalogPane'));
   $('queuePane').hidden=false;
   $('closeBook').onclick=()=>$('catalogDialog').close();
+  const queueHome=$('queuePane').parentElement;
+  $('expandQueue').onclick=()=>{$('queueDialog').append($('queuePane'));$('queueDialog').showModal();};
+  $('closeQueue').onclick=()=>$('queueDialog').close();
+  $('queueDialog').addEventListener('close',()=>queueHome.append($('queuePane')));
+  $('queueList').tabIndex=0;$('queueList').setAttribute('aria-label','待唱清單，可上下捲動');
+  $('queueList').addEventListener('wheel',e=>{const el=e.currentTarget;if((e.deltaY<0&&el.scrollTop<=0)||(e.deltaY>0&&el.scrollTop+el.clientHeight>=el.scrollHeight-1))e.preventDefault();},{passive:false});
+  let queueTouchY=0;
+  $('queueList').addEventListener('touchstart',e=>{queueTouchY=e.touches[0].clientY;},{passive:true});
+  $('queueList').addEventListener('touchmove',e=>{const el=e.currentTarget,y=e.touches[0].clientY,dy=queueTouchY-y;queueTouchY=y;if((dy<0&&el.scrollTop<=0)||(dy>0&&el.scrollTop+el.clientHeight>=el.scrollHeight-1))e.preventDefault();},{passive:false});
+  $('roomPairingToggle').onclick=()=>{const show=document.body.classList.toggle('showPairing');$('roomPairingToggle').textContent=show?'收起配對資訊':'顯示配對 QR Code';};
   $('catalogDialog').addEventListener('click',e=>{if(e.target===$('catalogDialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 
   const KTVGetSegment=()=>null;
@@ -235,7 +276,7 @@
     $('roomLocalBtn').classList.toggle('primary',!active);
     document.body.classList.toggle('remoteMode',r.mode==='remote');document.body.classList.toggle('tvMode',r.mode==='tv');
     $('roomShare').hidden=!r.id;$('roomArm').hidden=r.mode!=='tv'||r.armed;$('roomArm').disabled=!r.host;
-    $('roomFullScreen').hidden=r.mode!=='tv';
+    $('roomFullScreen').hidden=r.mode!=='tv';document.body.classList.toggle('roomRunning',r.mode==='tv'&&r.armed);$('roomPairingToggle').hidden=r.mode!=='tv'||!r.armed;
     $('retryVideoBtn').hidden=!current||(active&&(r.mode!=='tv'||!r.host||!r.armed));
     $('roomStatus').textContent=!active?'目前為單機模式：這台裝置點歌、這台播放。':r.mode==='tv'?(r.armed?'電視播放端：等待或播放共用待唱歌曲。':'電視包廂已建立，請按「開始電視播放」。'):'手機點歌端：歌曲及控制指令會送到電視，手機不播放。';
     if(r.id){$('roomCode').textContent='包廂代碼：'+r.id;const url=new URL(location.pathname,location.origin);url.searchParams.set('room',r.id);url.searchParams.set('mode','remote');const link=url.href;if($('roomLink').href!==link){$('roomLink').href=link;$('roomLink').textContent=link;if(window.qrcode){const qr=qrcode(0,'M');qr.addData(link);qr.make();$('roomQR').innerHTML=qr.createSvgTag({cellSize:4,margin:4,scalable:true});}}if(r.room&&r.room.leaseUntil.toMillis()<=Date.now())$('roomStatus').textContent+=' 電視已離線或播放權到期，請在電視重新接手。';}
