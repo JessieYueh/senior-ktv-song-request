@@ -7,7 +7,7 @@ test('chart selections deduplicate existing videos, normalized names and duets w
  {title:duet.title,artist:'張韶涵 & 范瑋琪',videoId:'12345678901'},
  {title:'custom name',artist:'custom singer',videoId:pack.entries[0].videoId}];
  assert.equal(pack.missing(existing).length,14);
- assert.deepEqual(pack.merge(existing).slice(0,3),existing);
+ assert.equal(pack.missing(existing).some(e=>e.title===duet.title),false);
  assert.equal(pack.missing(pack.importable()).length,0);
  for(const e of pack.entries){assert.match(e.videoId,/^[\w-]{11}$/);assert.ok(e.chartSource&&e.chartEvidence&&e.metadataVerified);assert.equal(e.contentVerified,false);assert.equal(e.embedding,'unconfirmed');}
 });

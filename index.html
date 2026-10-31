@@ -136,7 +136,7 @@
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){$('cloudDialog').showModal();throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
-  function rebuildCatalog(songs){remoteSongs=songs;catalog=window.KTV_FAN_FAN?.merge(songs)||[...songs];renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
+  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
   let previousAccess=false;
   function updateCloudUI(){
     const c=cloudState,allowed=c.access===true;

@@ -316,10 +316,7 @@ const matches=(a,b)=>a.videoId===b.videoId||a.vocalId===b.videoId||
   (key(a.title)===key(b.title)&&String(a.artist||'').includes('范瑋琪'));
 const importable=()=>entries.filter(e=>e.metadataVerified).map(({title,artist,lang,videoId,vocalId})=>({title,artist,lang,videoId,vocalId}));
 const missing=songs=>importable().filter(e=>!(songs||[]).some(s=>matches(s,e)));
-// Authorized family devices can use the published song pack before an admin
-// opens the page to persist it. Existing cloud choices always take precedence.
-const merge=songs=>[...songs,...missing(songs)];
 const metadata=song=>entries.find(e=>matches(song,e));
-root.KTV_FAN_FAN={entries,importable,missing,merge,metadata};
+root.KTV_FAN_FAN={entries,importable,missing,metadata};
 if(typeof module!=='undefined')module.exports=root.KTV_FAN_FAN;
 })(typeof window!=='undefined'?window:globalThis);
