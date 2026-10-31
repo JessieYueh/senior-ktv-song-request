@@ -96,6 +96,7 @@
 <script src="mandarin-song-pack.js?v=2"></script>
 <script src="valen-hsu-song-pack.js?v=20261031a"></script>
 <script src="fan-fan-song-pack.js?v=20261101a"></script>
+<script src="xiao-a-qi-song-pack.js?v=20261101a"></script>
 <script src="hou-hsiang-ting-song-pack.js?v=20261101b"></script>
 <script src="chou-hui-song-pack.js?v=20261031f"></script>
 <script src="chou-hui-verify.js?v=20261031b"></script>
@@ -168,11 +169,11 @@
     renderOST();
     document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
   }
-  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
+  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();scheduleAqiImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
-  function matchesCategory(song,name){return name==='范瑋琪'?String(song.artist||'').includes('范瑋琪'):name==='侯湘婷'?String(song.artist||'').includes('侯湘婷'):name==='許茹芸'?String(song.artist||'').includes('許茹芸'):name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
-  function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙','許茹芸','侯湘婷','范瑋琪'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
+  function matchesCategory(song,name){return name==='小阿七'?String(song.artist||'').includes('小阿七'):name==='范瑋琪'?String(song.artist||'').includes('范瑋琪'):name==='侯湘婷'?String(song.artist||'').includes('侯湘婷'):name==='許茹芸'?String(song.artist||'').includes('許茹芸'):name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
+  function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙','許茹芸','侯湘婷','范瑋琪','小阿七'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
 
   let valenAutoAttempted=false,houAutoRunning=false,houRetryTimer=null,houRetryCount=0;
   async function maybeImportValen(){
@@ -200,6 +201,23 @@
       await requireCloud().importSongs(items);
     }catch(error){console.error('范瑋琪歌本匯入未完成',error);}
     finally{fanImportRunning=false;scheduleFanImport();}
+  }
+
+  let aqiImportTimer=null,aqiImportRunning=false,aqiImportAttempts=0;
+  function scheduleAqiImport(){
+    clearTimeout(aqiImportTimer);
+    if(!cloudState.admin||!cloudState.access||!cloudState.readReady||aqiImportRunning||aqiImportAttempts>=3)return;
+    aqiImportTimer=setTimeout(maybeImportAqi,1500);
+  }
+  async function maybeImportAqi(){
+    if(!window.KTV_XIAO_A_QI||aqiImportRunning||!cloudState.admin||!cloudState.access||!cloudState.readReady||cloudState.busy||!window.KTV_CLOUD)return;
+    const items=window.KTV_XIAO_A_QI.missing(remoteSongs);
+    if(!items.length)return;
+    aqiImportRunning=true;aqiImportAttempts++;
+    try{
+      await requireCloud().importSongs(items);
+    }catch(error){console.error('小阿七歌本匯入未完成',error);}
+    finally{aqiImportRunning=false;scheduleAqiImport();}
   }
 
   function scheduleHouImport(){
@@ -386,4 +404,5 @@
 <script type="module">import('./cloud.js?v=20261030rooms1').then(()=>import('./room-sync.js?v=1')).then(()=>window.KTV_ROOM_READY()).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
 </body>
 </html>
+
 
