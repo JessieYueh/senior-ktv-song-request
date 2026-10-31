@@ -95,7 +95,7 @@
 <script src="ost-2026.js?v=2"></script>
 <script src="mandarin-song-pack.js?v=2"></script>
 <script src="valen-hsu-song-pack.js?v=20261031a"></script>
-<script src="hou-hsiang-ting-song-pack.js?v=20261101a"></script>
+<script src="hou-hsiang-ting-song-pack.js?v=20261101b"></script>
 <script src="chou-hui-song-pack.js?v=20261031f"></script>
 <script src="chou-hui-verify.js?v=20261031b"></script>
 <script>
@@ -135,7 +135,7 @@
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){$('cloudDialog').showModal();throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
-  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();}
+  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();}
   let previousAccess=false;
   function updateCloudUI(){
     const c=cloudState,allowed=c.access===true;
@@ -167,13 +167,13 @@
     renderOST();
     document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
   }
-  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();maybeImportHou();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
+  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
   function matchesCategory(song,name){return name==='侯湘婷'?String(song.artist||'').includes('侯湘婷'):name==='許茹芸'?String(song.artist||'').includes('許茹芸'):name==='周蕙'?String(song.artist||'').includes('周蕙'):KTVOST2026.matches(song,name);}
   function renderFilters(){const el=$('filters');el.replaceChildren();['全部','台語','國語','其他',KTVOST2026.category,'周蕙','許茹芸','侯湘婷'].forEach(name=>{const b=document.createElement('button');b.className='chip'+(category===name?' active':'');b.textContent=name;b.addEventListener('click',()=>{category=name;renderFilters();renderCatalog();});el.append(b);});}
 
-  let valenAutoAttempted=false,houAutoRunning=false,houAutoAttempted=false;
+  let valenAutoAttempted=false,houAutoRunning=false,houRetryTimer=null,houRetryCount=0;
   async function maybeImportValen(){
     const pack=window.KTV_VALEN_HSU;
     if(valenAutoAttempted||!cloudState.admin||!cloudState.readReady||cloudState.busy||!pack||!window.KTV_CLOUD)return;
@@ -183,32 +183,53 @@
       if(items.length)await requireCloud().importSongs(items);
     }catch(error){console.error('許茹芸歌本匯入未完成',error);}
   }
+
+  function scheduleHouImport(){
+    clearTimeout(houRetryTimer);
+    if(!cloudState.admin||!cloudState.access||!cloudState.readReady)return;
+    houRetryTimer=setTimeout(maybeImportHou,1000);
+  }
   async function maybeImportHou(){
     const pack=window.KTV_HOU_HSIANG_TING;
-    if(houAutoRunning||houAutoAttempted||!pack||!window.KTV_CLOUD||!cloudState.admin||!cloudState.readReady||cloudState.busy||current||sharedMode())return;
-    const entries=pack.pending(remoteSongs);
-    if(!entries.length){houAutoAttempted=true;return;}
+    if(houAutoRunning||!pack||!window.KTV_CLOUD||!cloudState.admin||!cloudState.access||!cloudState.readReady||cloudState.busy||current||sharedMode())return;
+    const entries=pack.pending(remoteSongs).filter(e=>e.embedding!=='passed');
+    const ready=pack.missing(remoteSongs);
+    if(!entries.length&&!ready.length)return;
     houAutoRunning=true;
-    const host=document.createElement('div');
-    host.setAttribute('aria-hidden','true');
-    Object.assign(host.style,{position:'fixed',left:'-10000px',top:'0',width:'320px',height:'180px',pointerEvents:'none'});
-    document.body.append(host);
+    const video=$('video'),host=document.createElement('div'),original=[...video.childNodes];
+    Object.assign(host.style,{width:'100%',height:'100%'});
     const allowed=()=>cloudState.admin&&cloudState.access&&cloudState.readReady&&!current&&!sharedMode();
+    let report=[];
     try{
-      const report=await pack.verify(entries,host,allowed);
+      if(entries.length){
+        // The normal, visible idle player avoids offscreen autoplay throttling.
+        video.replaceChildren(host);
+        report=await pack.verify(entries,host,allowed,async result=>{
+          if(!result.ok||!cloudState.admin||!cloudState.access||!cloudState.readReady||cloudState.busy)return;
+          const passed=pack.missing(remoteSongs).filter(song=>song.videoId===result.videoId);
+          if(passed.length)await requireCloud().importSongs(passed);
+        });
+      }
       pack.lastReport={results:report,imported:0,synced:false};
-      if(!allowed())return;
-      houAutoAttempted=true;
-      // Keep this addition atomic: failed checks never become cloud songs.
-      if(report.length!==entries.length||report.some(r=>!r.ok))return;
+      // Each passed song is independent. A timeout never discards other passes.
+      if(!cloudState.admin||!cloudState.access||!cloudState.readReady)return;
       const items=pack.missing(remoteSongs);
       if(items.length){
-        if(cloudState.busy){houAutoAttempted=false;return;}
+        if(cloudState.busy){scheduleHouImport();return;}
         pack.lastReport.imported=await requireCloud().importSongs(items);
       }
       pack.lastReport.synced=pack.pending(remoteSongs).length===0;
-    }catch(error){console.error('侯湘婷歌本驗證或匯入未完成',error);pack.lastReport={error:String(error.message||error),synced:false};}
-    finally{host.remove();houAutoRunning=false;}
+    }catch(error){console.error('侯湘婷歌本驗證或匯入未完成',error);pack.lastReport={results:report,error:String(error.message||error),synced:false};}
+    finally{
+      if(host.parentNode===video&&!current)video.replaceChildren(...original);
+      else host.remove();
+      houAutoRunning=false;
+      if(allowed()&&pack.pending(remoteSongs).length&&houRetryCount<2){
+        houRetryCount++;
+        clearTimeout(houRetryTimer);
+        houRetryTimer=setTimeout(maybeImportHou,10000*houRetryCount);
+      }
+    }
   }
 
   function renderChouHui(){
@@ -282,7 +303,7 @@
   function showVideo(){playbackStarted=false;if(sharedMode()&&(roomState.mode!=='tv'||!roomState.host||!roomState.armed)){playback.stop();return;}const id=validId(vocal?(current?.vocalId||current?.videoId):current?.videoId);$('openYouTubeBtn').hidden=!id;$('retryVideoBtn').hidden=!id;playerNotice('');if(!current){playback.stop();return;}if(!id){playback.stop();const box=document.createElement('div');box.className='emptyVideo';box.innerHTML='<strong>這首歌還沒有設定影片</strong><span>可以搜尋 MV／歌詞，找到後貼回歌本</span><br><br>';box.append(button('🔎 搜尋 MV／歌詞','primary',()=>searchVideo(current)),' ',button('貼上影片網址','',()=>openEditor(current)));$('video').replaceChildren(box);return;}playerNotice('影片準備中，請稍候…',true);playback.play(id,current.title,KTVGetSegment(current,id));}
   function start(song){current=song;vocal=false;$('currentTitle').textContent=song.title;$('currentArtist').textContent=song.artist;$('modeBtn').textContent='🎬 切換版本';showVideo();toast('現在播放：'+song.title);}
   async function addSong(song){if(sharedMode()){try{await roomClient.enqueue([song]);toast('已加入包廂待唱：'+song.title);}catch(error){toast(cloudError(error));}return;}if(!cloudState.access)return toast('請先取得裝置授權');if(!current)start(song);else{queue.push(song);toast('已加入待唱：'+song.title);}renderQueue();}
-  function next(){if(sharedMode()){if(roomState.mode==='tv'&&roomState.host&&roomState.armed)roomAction(()=>roomClient.advance(roomAppliedVersion));return;}if($('nextDialog').open)$('nextDialog').close();if(queue.length)start(queue.shift());else{playback.stop();current=null;$('currentTitle').textContent='尚未點歌';$('currentArtist').textContent='待唱歌曲已唱完';$('openYouTubeBtn').hidden=true;playerNotice('');$('video').innerHTML='<div class="emptyVideo"><strong>唱完囉！</strong>再點一首喜歡的歌</div>';toast('待唱歌曲已唱完');}renderQueue();}
+  function next(){if(sharedMode()){if(roomState.mode==='tv'&&roomState.host&&roomState.armed)roomAction(()=>roomClient.advance(roomAppliedVersion));return;}if($('nextDialog').open)$('nextDialog').close();if(queue.length)start(queue.shift());else{playback.stop();current=null;$('currentTitle').textContent='尚未點歌';$('currentArtist').textContent='待唱歌曲已唱完';$('openYouTubeBtn').hidden=true;playerNotice('');$('video').innerHTML='<div class="emptyVideo"><strong>唱完囉！</strong>再點一首喜歡的歌</div>';toast('待唱歌曲已唱完');}renderQueue();scheduleHouImport();}
   function openEditor(song=null){editor=song;$('songDialogTitle').textContent=song?'編輯歌曲':'新增歌曲';$('titleInput').value=song?.title||'';$('artistInput').value=song?.artist||'';$('langInput').value=song?.lang||'台語';$('videoInput').value=song?.videoId||'';$('vocalInput').value=song?.vocalId||'';$('songDialog').showModal();}
   $('songForm').addEventListener('submit',async e=>{e.preventDefault();const video=$('videoInput').value.trim(),voice=$('vocalInput').value.trim();if((video&&!validId(video))||(voice&&!validId(voice))){toast('請確認 YouTube 網址或影片 ID');return;}const item={title:$('titleInput').value.trim(),artist:$('artistInput').value.trim(),lang:$('langInput').value,videoId:validId(video),vocalId:validId(voice),...(editor?{_cloudId:editor._cloudId}:{})};if(!item.title||!item.artist)return;try{await saveCloud(item);if(editor)Object.assign(editor,item);renderQueue();if(current===editor)showVideo();$('songDialog').close();toast('歌曲已儲存到雲端歌本');}catch(error){toast(cloudError(error));}});
   $('quickForm').addEventListener('submit',async e=>{e.preventDefault();const title=$('quickTitle').value.trim(),artist=$('quickArtist').value.trim()||'未知歌手',videoId=validId($('quickVideo').value);if(!videoId){$('quickVideo').setCustomValidity('請貼上 YouTube 影片連結');$('quickVideo').reportValidity();return;}$('quickVideo').setCustomValidity('');const existing=catalog.find(s=>s.videoId===videoId&&!KTVGetSegment(s));if(existing&&!existing._localOnly){$('quickDialog').close();addSong(existing);toast('這首歌已在歌本，已為您點歌');return;}const item={title,artist,lang:'其他',videoId,vocalId:''};try{await saveCloud(item);$('quickDialog').close();$('search').value='';category='全部';renderFilters();renderCatalog();addSong(catalog.find(s=>s.videoId===videoId)||item);toast('已加入雲端歌本並點歌：'+title);}catch(error){toast(cloudError(error));}});
@@ -338,7 +359,7 @@
   $('roomArm').onclick=()=>roomAction(async()=>{roomClient.arm();if(roomState.room?.paused)await roomClient.command('resume');else playback.resume();});
   $('roomFullScreen').onclick=()=>roomAction(async()=>{if(!document.documentElement.requestFullscreen)throw new Error('此瀏覽器不支援全螢幕，請使用電視瀏覽器的全螢幕選項。');await document.querySelector('.playerPanel').requestFullscreen();});
   function maybeJoinRoomLink(){const code=new URLSearchParams(location.search).get('room');if(!roomClient||!cloudState.access||!cloudState.readReady||roomLinkAttempted||!code)return;roomLinkAttempted=true;roomAction(()=>roomClient.join(code,'remote'));}
-  window.KTV_ROOM_READY=()=>{roomClient=new KTVRoomClient(window.KTV_CLOUD.roomContext(),{onState(state){const old=roomState.mode;roomState=state;if(state.mode==='local'&&old!=='local')resetLocalPlayer();if(state.mode!=='local'&&old==='local')resetLocalPlayer();updateRoomUI();applyRoomState();},onError(error){$('roomError').textContent='包廂同步未完成：'+cloudError(error)+' 若尚未啟用包廂，請管理者發布新版 Firestore 規則。';},onHostLost(){playback.stop();playerNotice('');$('roomError').textContent='電視播放權已失效，已停止此裝置播放。請重新接手電視播放。';}});updateRoomUI();maybeJoinRoomLink();};
+  window.KTV_ROOM_READY=()=>{roomClient=new KTVRoomClient(window.KTV_CLOUD.roomContext(),{onState(state){const old=roomState.mode;roomState=state;if(state.mode==='local'&&old!=='local')resetLocalPlayer();if(state.mode!=='local'&&old==='local')resetLocalPlayer();updateRoomUI();applyRoomState();scheduleHouImport();},onError(error){$('roomError').textContent='包廂同步未完成：'+cloudError(error)+' 若尚未啟用包廂，請管理者發布新版 Firestore 規則。';},onHostLost(){playback.stop();playerNotice('');$('roomError').textContent='電視播放權已失效，已停止此裝置播放。請重新接手電視播放。';}});updateRoomUI();maybeJoinRoomLink();scheduleHouImport();};
   window.KTV_ROOM_FAILED=()=>{$('roomError').textContent='包廂程式未能載入，請重新整理。原本單機點歌仍可使用。';};
 
   renderFilters();renderCatalog();renderQueue();updateCloudUI();

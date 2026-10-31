@@ -165,7 +165,7 @@ const exists=(song,entry)=>song.videoId===entry.videoId||song.vocalId===entry.vi
 const pending=songs=>entries.filter(entry=>!songs.some(song=>exists(song,entry)));
 const verified=()=>entries.filter(entry=>entry.embedding==='passed'&&entry.contentVerified===true);
 const missing=songs=>verified().filter(entry=>!songs.some(song=>exists(song,entry))).map(({title,artist,lang,videoId,vocalId})=>({title,artist,lang,videoId,vocalId}));
-async function verify(list,host,allowed){
+async function verify(list,host,allowed,onResult=async()=>{}){
  const results=[];
  for(const entry of list){
   if(!allowed())break;
@@ -200,6 +200,7 @@ async function verify(list,host,allowed){
    Promise.resolve(adapter.play(entry.videoId,entry.title)).catch(error=>done(false,String(error.message||error)));
   });
   results.push(result);
+  await onResult(result);
  }
  return results;
 }
