@@ -63,7 +63,7 @@
 <script src="qrcode.js?v=1"></script>
 <script src="ost-2026.js?v=2"></script>
 <script src="mandarin-song-pack.js?v=2"></script>
-<script src="chou-hui-song-pack.js?v=20261031c"></script>
+<script src="chou-hui-song-pack.js?v=20261031d"></script>
 <script src="chou-hui-verify.js?v=20261031a"></script>
 <script>
   const $ = id => document.getElementById(id);
@@ -145,7 +145,7 @@
     if(!pack)return;
     const missing=pack.missing(catalog),cloudCount=catalog.filter(s=>String(s.artist||'').includes('周蕙')).length;
     $('chouHuiStatus').textContent='已核對 '+pack.albums.length+' 張專輯、'+pack.entries.length+' 首不同曲目；找到 '+pack.entries.filter(e=>e.videoId).length+' 部官方 MV 候選。通過嵌入驗證 '+pack.verified().length+' 首；雲端已有 '+cloudCount+' 首。'+(missing.length?'有 '+missing.length+' 首可由管理者匯入。':'尚無新增歌曲符合安全匯入條件。');
-    const untested=pack.entries.filter(e=>e.videoId&&e.sourceEvidence==='official_channel'&&e.embedding!=='passed'&&!catalog.some(s=>s.title===e.title&&s.artist===e.artist));
+    const untested=pack.entries.filter(e=>e.videoId&&['official_channel','official_title'].includes(e.sourceEvidence)&&Number(e.expectedDurationSeconds)>0&&e.embedding!=='passed'&&!catalog.some(s=>s.title===e.title&&s.artist===e.artist));
     $('verifyChouHui').hidden=!cloudState.admin||!untested.length;
     $('verifyChouHui').disabled=cloudState.busy||!cloudState.readReady;
     $('importChouHui').hidden=!cloudState.admin||!missing.length;
@@ -157,7 +157,7 @@
   }
   $('verifyChouHui').onclick=async()=>{
     const pack=window.KTV_CHOU_HUI;
-    const entries=pack.entries.filter(e=>e.videoId&&e.sourceEvidence==='official_channel'&&e.embedding!=='passed'&&!catalog.some(s=>s.title===e.title&&s.artist===e.artist));
+    const entries=pack.entries.filter(e=>e.videoId&&['official_channel','official_title'].includes(e.sourceEvidence)&&Number(e.expectedDurationSeconds)>0&&e.embedding!=='passed'&&!catalog.some(s=>s.title===e.title&&s.artist===e.artist));
     if(!entries.length)return toast('目前沒有待驗證的官方 MV');
     try{requireCloud();}catch(error){return toast(cloudError(error));}
     const btn=$('verifyChouHui'),stage=$('chouHuiVerifyStage'),progress=$('chouHuiVerifyProgress');
