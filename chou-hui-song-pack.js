@@ -75,7 +75,7 @@
   {
     "title": "我看見的世界",
     "year": 2013,
-    "source": "https://music-tw.line.me/album/1170271",
+    "source": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW",
     "tracks": [
       "我看見的世界",
       "美好生活",
@@ -84,7 +84,9 @@
       "食物戀",
       "誰稀罕愛上你",
       "謝謝你騙我",
-      "多餘的寂寞"
+      "多餘的寂寞",
+      "人間",
+      "給從前"
     ]
   },
   {
@@ -878,7 +880,8 @@
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=uSF8M1jZ-Zk",
     "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
-    "trackNumber": 1
+    "trackNumber": 1,
+    "expectedDurationSeconds": 298
   },
   {
     "title": "被遺忘的時光",
@@ -897,7 +900,8 @@
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=g_VjS-iOcAU",
     "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
-    "trackNumber": 10
+    "trackNumber": 10,
+    "expectedDurationSeconds": 253
   },
   {
     "title": "感性生物",
@@ -916,7 +920,8 @@
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=ypzsoJeZDzg",
     "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
-    "trackNumber": 6
+    "trackNumber": 6,
+    "expectedDurationSeconds": 233
   },
   {
     "title": "咖啡季節",
@@ -2524,6 +2529,42 @@
     "checkedAt": "2026-10-31",
     "source": "",
     "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "人間",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "我看見的世界",
+    "year": 2013,
+    "trackNumber": 9,
+    "expectedDurationSeconds": 284,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對串流平台專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+  },
+  {
+    "title": "給從前",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "我看見的世界",
+    "year": 2013,
+    "trackNumber": 10,
+    "expectedDurationSeconds": 254,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對串流平台專輯曲目；尚未找到且驗證可嵌入的完整影片。"
   }
 ];
  const verified=()=>entries.filter(e=>e.embedding==='passed'&&e.contentVerified===true&&e.videoId&&e.durationSeconds>0);
