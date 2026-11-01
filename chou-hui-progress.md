@@ -2,6 +2,23 @@
 
 最後更新：2026-11-01（Asia/Taipei）。此處統計 **GitHub 歌曲資料及候選影片**，不代表 Firestore 已匯入，也不代表 YouTube 影片已通過 KTV 內嵌播放。
 
+## 2026-11-01 晚間增補（3 部官方 MV）
+
+- 已重新讀取最新 `index.html`、`chou-hui-song-pack.js`、`cloud.js`、`chou-hui-verify.js` 及本進度紀錄，確認管理者匯入仍透過 Firestore 交易、只新增缺少的歌曲。
+- 透過 YouTube 的唱片公司官方頻道影片頁核對**3 部官方 MV**（非翻唱／串燒／音源）：〈咖啡季節〉、〈千千萬萬個你〉（漫步月光版）、〈彎彎的月光〉。官方說明含歌詞的影片不等於已確認 YouTube 字幕軌，故 `subtitles` 仍為「待查」。
+- 本次提交只新增 `videoId`、官方頻道、來源與待驗證說明，**未**改為 `embedding: passed` 或 `contentVerified: true`；未在正式 KTV 網頁實測影片完整長度、字幕或嵌入播放，也**未**寫入 Firestore。
+- 更新前端 `chou-hui-song-pack.js` 快取版本，讓管理者重新整理後可看到新增候選。檢查 JSON 歌曲資料為 **133 首、46 個不同影片 ID、87 首尚無獨立官方候選**；已知曲長基準仍為 132 首，故目前 45 部候選具備進入 IFrame 驗證的曲長基準。
+- **需注意版本差異**：〈千千萬萬個你〉為「漫步月光版」，正式試播時應核對與專輯版本的時長是否相容；不符合長度不得通過。〈當歸〉曲長仍待可靠來源，不進入自動驗證。
+- 雲端已有周蕙歌曲的實際數量**未知**，未取得 Google 管理者登入工作階段，不宣稱匯入完成。下一輪繼續搜尋 87 首缺少官方影片的曲目，並逐首查字幕與播放。
+
+### 新增來源（全部待正式網站驗證）
+
+- 〈咖啡季節〉— 群石國際官方 MV，2011-10-22：https://www.youtube.com/watch?v=rx6NlWQWEeg
+- 〈千千萬萬個你〉— 華研國際官方 MV「漫步月光版」，2020-12-15：https://www.youtube.com/watch?v=cajofxl-YfA
+- 〈彎彎的月光〉— 華研國際官方 MV，2020-08-19：https://www.youtube.com/watch?v=YjMaq_Ms7FE
+
+---
+
 ## 2026-11-01 下午增補（官方影片候選查證）
 
 - 重新讀取最新 `index.html`、`chou-hui-song-pack.js`、`chou-hui-verify.js`、`cloud.js` 與本進度檔；確認 Firestore 仍採 Google 管理者身分才可寫入，且匯入僅新增缺少的文件。本次**未取得管理者工作階段，沒有寫入 Firestore**。
