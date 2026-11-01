@@ -2,7 +2,7 @@
 (function(root){
  'use strict';
  let apiPromise;
- function normalize(value){return String(value||'').normalize('NFKC').toLowerCase().replace(/[\\s\\-_.,!?()[\\]{}「」『』【】《》〈〉：:]/g,'');}
+ function normalize(value){return String(value||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]/gu,'');}
  function sourceMatches(actual,expected){const a=normalize(actual),b=normalize(expected);return a.length>=4&&b.length>=4&&(a.includes(b)||(a.length>=5&&b.includes(a)));}
  function loadAPI(){
   if(root.YT?.Player)return Promise.resolve(root.YT);
