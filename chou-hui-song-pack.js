@@ -2862,7 +2862,8 @@
 ];
   const verified=()=>entries.filter(e=>e.embedding==='passed'&&e.contentVerified===true&&e.videoId&&e.durationSeconds>0);
  const importable=()=>verified().map(({title,artist,lang,videoId,vocalId})=>({title,artist,lang,videoId,vocalId}));
- const missing=songs=>importable().filter(e=>!songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(s.title===e.title&&s.artist===e.artist)));
+ const norm=value=>String(value||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]/gu,'');
+ const missing=songs=>importable().filter(e=>!songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(norm(s.title)===norm(e.title)&&norm(s.artist).includes('周蕙'))));
  root.KTV_CHOU_HUI={albums,entries,verified,importable,missing};
  if(typeof module!=='undefined')module.exports=root.KTV_CHOU_HUI;
 })(typeof window!=='undefined'?window:globalThis);
