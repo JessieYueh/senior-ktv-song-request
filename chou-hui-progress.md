@@ -2,6 +2,33 @@
 
 最後更新：2026-11-01（Asia/Taipei）。此處統計 **GitHub 歌曲資料及候選影片**，不代表 Firestore 已匯入，也不代表 YouTube 影片已通過 KTV 內嵌播放。
 
+## 2026-11-01 下午增補（官方影片候選查證）
+
+- 重新讀取最新 `index.html`、`chou-hui-song-pack.js`、`chou-hui-verify.js`、`cloud.js` 與本進度檔；確認 Firestore 仍採 Google 管理者身分才可寫入，且匯入僅新增缺少的文件。本次**未取得管理者工作階段，沒有寫入 Firestore**。
+- 透過 YouTube 官方藝人頻道、華研國際唱片頻道與官方影片說明，新增 **10 部獨立歌曲候選**：**3 部官方 MV、7 部官方音源**。官方音源不等於附字幕 MV；全部仍是 `embedding: pending`、`contentVerified: false`，不會自動匯入。
+- 其中〈天天想你〉選用官方 MV（非音源），〈拒絕再玩〉亦選用官方 MV；〈冬季到台北來看雨〉為周蕙與楊永聰（James）的官方對唱 MV。
+- 再次解析 JavaScript 並檢查資料：**133 首不重複歌曲、43 個不同影片 ID、132 首具曲長基準、42 部候選可進入 IFrame 驗證**；剩下 **90 首**尚無官方獨立影片候選。未取得正式網站的 IFrame 播放與字幕結果，因此 **0 首新增 verified、0 首由本輪匯入 Firestore**。
+
+### 本輪新增官方 MV（仍待嵌入／完整長度／字幕驗證）
+
+- 〈天天想你〉— 周蕙官方藝人頻道（2022-03-22）：https://www.youtube.com/watch?v=gIEjW2in5r4
+- 〈拒絕再玩〉— 周蕙官方藝人頻道（2022-09-14）：https://www.youtube.com/watch?v=l95xuA66nVU
+- 〈冬季到台北來看雨〉— 華研國際官方頻道、周蕙 feat. 楊永聰（2013-10-20）：https://www.youtube.com/watch?v=-AJH6bDAamc
+
+### 本輪新增官方完整音源（非 MV，字幕待查）
+
+- 〈不愛了也是一種愛〉— 周蕙官方藝人頻道／群石國際：https://www.youtube.com/watch?v=RW7o-TX1wnk
+- 〈一路上有你〉— 周蕙官方藝人頻道／HIMservice：https://www.youtube.com/watch?v=jnnHeh_EBfE
+- 〈不讓我的眼淚陪我過夜〉— 周蕙官方藝人頻道／HIMservice：https://www.youtube.com/watch?v=nTB5cGo78MY
+- 〈明天我要嫁給你〉— 周蕙官方藝人頻道／HIMservice：https://www.youtube.com/watch?v=tyP8KCuXXDY
+- 〈Don't break my heart〉— 周蕙官方藝人頻道／HIMservice：https://www.youtube.com/watch?v=TGOnxdBQiLo
+- 〈你快回來〉— 周蕙官方藝人頻道／HIMservice：https://www.youtube.com/watch?v=qJzFLsr-0EU
+- 〈我們還會相遇〉— 周蕙官方藝人頻道／HIMservice：https://www.youtube.com/watch?v=yM-GIKvdwB0
+
+**限制與後續**：YouTube 官方頁可查到上傳者及曲目資訊，但無法在此執行管理者瀏覽器的 YouTube IFrame 播放與字幕實測，不能宣稱任何影片已可唱。後續優先尋找剩餘 90 首官方 MV／歌詞影片，並核對〈當歸〉精確時長；只有實播通過且無重複的歌曲才能由已授權管理者匯入 Firestore。
+
+---
+
 ## 2026-11-01 本輪完成
 
 - 讀取最新 `index.html`、`chou-hui-song-pack.js`、`chou-hui-verify.js`、`cloud.js` 和本進度檔；保留 Firestore 雲端歌單、其他歌手與 OST 原有邏輯。
@@ -58,14 +85,14 @@
 | 已整理專輯／EP／精選 | **15** |
 | 已整理不重複歌曲 | **133** |
 | 具曲長基準 | **132** |
-| YouTube 官方候選 | **33** |
-| 具曲長可進入 IFrame 驗證 | **32** |
-| 尚無獨立官方影片候選 | **100** |
+| YouTube 官方候選 | **43** |
+| 具曲長可進入 IFrame 驗證 | **42** |
+| 尚無獨立官方影片候選 | **90** |
 | 本輪通過正式網站 IFrame 驗證 | **0** |
 | 本輪由此任務直接匯入 Firestore | **0** |
 | Firestore 現有周蕙歌曲數量 | **未知**；不能用 GitHub 程式檔推定 |
 
-下一輪：優先尋找剩餘 100 首的官方完整 MV／卡拉 OK／歌詞影片，音源僅作備案；優先補齊〈當歸〉的精確曲長及所有候選的字幕查核。正式網站的內嵌播放必須由瀏覽器 YouTube IFrame API 實測；即使網頁可在 YouTube 觀看，也不等於可嵌入 KTV。Firestore 寫入需要使用者 Google 管理者身分；若無管理者工作階段，不得聲稱已同步或覆蓋雲端。**只有全部可驗證工作完成，或有必須使用者介入的實際阻礙時才通知。**
+下一輪：優先尋找剩餘 90 首的官方完整 MV／卡拉 OK／歌詞影片，音源僅作備案；優先補齊〈當歸〉的精確曲長及所有候選的字幕查核。正式網站的內嵌播放必須由瀏覽器 YouTube IFrame API 實測；即使網頁可在 YouTube 觀看，也不等於可嵌入 KTV。Firestore 寫入需要使用者 Google 管理者身分；若無管理者工作階段，不得聲稱已同步或覆蓋雲端。**只有全部可驗證工作完成，或有必須使用者介入的實際阻礙時才通知。**
 
 ---
 
