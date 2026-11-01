@@ -64,6 +64,7 @@
       "咖啡季節",
       "不愛了也是一種愛",
       "幸福的可能",
+      "髮",
       "冰塊",
       "我不是你的唯一",
       "雜質",
@@ -240,13 +241,41 @@
       "騙人，不！",
       "只是少了你",
       "彎彎的月光",
+      "千千萬萬個你",
       "哪兒",
       "還好嗎？"
     ],
     "note": "五首EP曲目；千千萬萬個你為同期單曲，未列入此EP的五首曲目。"
+  },
+  {
+    "title": "25（精選雙彩膠）",
+    "year": 2024,
+    "source": "https://www.eslite.com/product/10032122222682568945009",
+    "tracks": [
+      "不想讓你知道",
+      "約定",
+      "風鈴",
+      "好想好好愛你",
+      "事到如今",
+      "話題",
+      "相遇太早",
+      "體溫",
+      "寂寞城市",
+      "愛情無關是非",
+      "最愛",
+      "守約",
+      "不愛了也是一種愛",
+      "我看見的世界",
+      "美好生活",
+      "當歸",
+      "為自己而自己",
+      "彎彎的月光",
+      "千千萬萬個你",
+      "釀月光"
+    ]
   }
 ];
- const entries=[
+  const entries=[
   {
     "title": "不想讓你知道",
     "expectedDurationSeconds": 266,
@@ -265,7 +294,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=kXFMYK9jgFg",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "約定",
@@ -285,7 +315,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=Vd-mTkhiThI",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "風鈴",
@@ -305,7 +336,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=Ra3Fuc77hgU",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "我喜歡",
@@ -325,7 +357,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=uAgQn9-W2Os",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "空白",
@@ -343,7 +376,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "FOREVER",
@@ -361,7 +395,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "預言",
@@ -381,7 +416,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=u1BSQSPPPG8",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "討厭自己",
@@ -399,7 +435,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "思念的翅膀",
@@ -417,7 +454,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "我看",
@@ -435,7 +473,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "了了",
@@ -453,7 +492,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL"
   },
   {
     "title": "好想好好愛你",
@@ -473,7 +513,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=TUqKBTQizwA",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "ANGEL FACE",
@@ -491,7 +532,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "替身",
@@ -511,7 +553,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=WUKnbOlicps",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "太茫",
@@ -529,7 +572,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "事到如今",
@@ -547,7 +591,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "話題",
@@ -567,7 +612,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=XtX4aawnWI4",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "愛過不傷心",
@@ -577,15 +623,19 @@
     "album": "周蕙精選2－好想好好愛你",
     "year": 2000,
     "trackNumber": 7,
-    "videoId": "",
+    "videoId": "A5EGkhg2WMM",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=A5EGkhg2WMM",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W",
+    "channel": "福茂唱片",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_mv"
   },
   {
     "title": "不哭",
@@ -595,15 +645,19 @@
     "album": "周蕙精選2－好想好好愛你",
     "year": 2000,
     "trackNumber": 8,
-    "videoId": "",
+    "videoId": "Aq0I12Pc4Uk",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=Aq0I12Pc4Uk",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W",
+    "channel": "福茂唱片",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_mv"
   },
   {
     "title": "換季",
@@ -621,7 +675,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "沒有你",
@@ -639,7 +694,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "相遇太早",
@@ -649,15 +705,19 @@
     "album": "周蕙精選2－好想好好愛你",
     "year": 2000,
     "trackNumber": 11,
-    "videoId": "",
+    "videoId": "QF-NOl_apCY",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=QF-NOl_apCY",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W",
+    "channel": "周蕙 Where Chou",
+    "sourceEvidence": "official_audio",
+    "videoType": "official_audio"
   },
   {
     "title": "溫度",
@@ -675,7 +735,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W"
   },
   {
     "title": "體溫",
@@ -695,7 +756,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=PGpcKF3hfO4",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "寂寞城市",
@@ -715,7 +777,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=UBR_PKREysc",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "只能做朋友",
@@ -735,7 +798,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=no_FGCes5mY",
-    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。"
+    "evidence": "已查到官方 MV 的影片標題或頻道；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "我很快樂",
@@ -753,7 +817,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "Hold Me Tight",
@@ -771,7 +836,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "別對我太好",
@@ -789,7 +855,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "瞬間",
@@ -807,7 +874,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "不管",
@@ -825,7 +893,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "隱形",
@@ -843,7 +912,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "終點",
@@ -861,7 +931,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到並驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr"
   },
   {
     "title": "我看見的世界",
@@ -881,7 +952,8 @@
     "source": "https://www.youtube.com/watch?v=uSF8M1jZ-Zk",
     "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
     "trackNumber": 1,
-    "expectedDurationSeconds": 298
+    "expectedDurationSeconds": 298,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "被遺忘的時光",
@@ -901,7 +973,8 @@
     "source": "https://www.youtube.com/watch?v=g_VjS-iOcAU",
     "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
     "trackNumber": 10,
-    "expectedDurationSeconds": 253
+    "expectedDurationSeconds": 253,
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "感性生物",
@@ -921,7 +994,8 @@
     "source": "https://www.youtube.com/watch?v=ypzsoJeZDzg",
     "evidence": "已找到官方 MV；尚未在正式 KTV 網頁實測嵌入播放與完整長度。",
     "trackNumber": 6,
-    "expectedDurationSeconds": 233
+    "expectedDurationSeconds": 233,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "咖啡季節",
@@ -938,7 +1012,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 186,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
     "title": "不愛了也是一種愛",
@@ -955,7 +1031,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 248,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
     "title": "幸福的可能",
@@ -972,27 +1050,12 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 317,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
     "title": "冰塊",
-    "artist": "周蕙",
-    "lang": "國語",
-    "album": "自己的房間",
-    "year": 2011,
-    "trackNumber": 4,
-    "videoId": "",
-    "vocalId": "",
-    "embedding": "pending",
-    "contentVerified": false,
-    "subtitles": "待查",
-    "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
-  },
-  {
-    "title": "我不是你的唯一",
     "artist": "周蕙",
     "lang": "國語",
     "album": "自己的房間",
@@ -1006,10 +1069,12 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 212,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
-    "title": "雜質",
+    "title": "我不是你的唯一",
     "artist": "周蕙",
     "lang": "國語",
     "album": "自己的房間",
@@ -1023,10 +1088,12 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 318,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
-    "title": "故事的某段",
+    "title": "雜質",
     "artist": "周蕙",
     "lang": "國語",
     "album": "自己的房間",
@@ -1040,10 +1107,12 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 215,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
-    "title": "最難得到的禮物",
+    "title": "故事的某段",
     "artist": "周蕙",
     "lang": "國語",
     "album": "自己的房間",
@@ -1057,10 +1126,12 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 278,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
-    "title": "不老的月亮",
+    "title": "最難得到的禮物",
     "artist": "周蕙",
     "lang": "國語",
     "album": "自己的房間",
@@ -1074,7 +1145,28 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 228,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
+  },
+  {
+    "title": "不老的月亮",
+    "artist": "周蕙",
+    "lang": "國語",
+    "album": "自己的房間",
+    "year": 2011,
+    "trackNumber": 10,
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-10-31",
+    "source": "",
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 278,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
   },
   {
     "title": "美好生活",
@@ -1091,7 +1183,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 285,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "我們還會相遇",
@@ -1108,7 +1202,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 255,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "冬季到台北來看雨",
@@ -1125,7 +1221,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 225,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "食物戀",
@@ -1142,7 +1240,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 239,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "誰稀罕愛上你",
@@ -1159,7 +1259,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 225,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "謝謝你騙我",
@@ -1176,7 +1278,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 202,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "多餘的寂寞",
@@ -1193,7 +1297,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 208,
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "偶然",
@@ -1210,7 +1316,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 251,
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "夢不到你",
@@ -1227,7 +1335,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 284,
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "再看我一眼",
@@ -1244,7 +1354,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 182,
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "愛你在心口難開",
@@ -1261,7 +1373,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 194,
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "心痛的感覺",
@@ -1278,7 +1392,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 293,
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "天天想你",
@@ -1295,7 +1411,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 306,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "拒絕再玩",
@@ -1312,7 +1430,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 274,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "一路上有你",
@@ -1329,7 +1449,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 273,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "不讓我的眼淚陪我過夜",
@@ -1346,7 +1468,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 298,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "喜歡你",
@@ -1363,7 +1487,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 239,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "失戀陣線聯盟",
@@ -1380,7 +1506,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 232,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "心理遊戲",
@@ -1397,7 +1525,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 232,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "明天我要嫁給你",
@@ -1414,7 +1544,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 242,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "Don't break my heart",
@@ -1431,7 +1563,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 257,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "釀月光",
@@ -1440,15 +1574,20 @@
     "album": "不被遺忘的時光2",
     "year": 2022,
     "trackNumber": 11,
-    "videoId": "",
+    "videoId": "iR206jo8-Ac",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=iR206jo8-Ac",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "expectedDurationSeconds": 271,
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh",
+    "channel": "華研國際",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_mv"
   },
   {
     "title": "我一個人唱歌",
@@ -1465,7 +1604,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 167,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "誤解歌",
@@ -1482,7 +1623,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 196,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "走",
@@ -1499,7 +1642,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 188,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "對戲",
@@ -1516,7 +1661,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 211,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "無約",
@@ -1533,7 +1680,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 232,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "過節",
@@ -1550,7 +1699,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 212,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "度菇",
@@ -1567,7 +1718,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 188,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "過客",
@@ -1584,7 +1737,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 275,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "掌心的指紋",
@@ -1601,7 +1756,9 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。"
+    "evidence": "已核對音樂平台專輯曲目；尚未找到可嵌入完整影片。",
+    "expectedDurationSeconds": 238,
+    "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH"
   },
   {
     "title": "今宵多珍重",
@@ -1622,7 +1779,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=Poe_poxjuAQ",
-    "evidence": "已核對公開的官方頻道影片資料；尚未於正式KTV頁面驗證播放及完整長度。"
+    "evidence": "已核對公開的官方頻道影片資料；尚未於正式KTV頁面驗證播放及完整長度。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "偷偷摸摸",
@@ -1640,7 +1798,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "魂縈舊夢",
@@ -1658,7 +1817,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "夢中人",
@@ -1676,7 +1836,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "打噴嚏",
@@ -1694,7 +1855,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "你真美麗",
@@ -1712,7 +1874,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "等著你回來",
@@ -1730,7 +1893,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "給我一個吻",
@@ -1748,7 +1912,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "情人的眼淚",
@@ -1766,7 +1931,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI"
   },
   {
     "title": "相思河畔",
@@ -1776,15 +1942,19 @@
     "year": 2001,
     "trackNumber": 1,
     "expectedDurationSeconds": 233,
-    "videoId": "",
+    "videoId": "D1rlRjQ8W0w",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=D1rlRjQ8W0w",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4",
+    "channel": "福茂唱片",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_mv"
   },
   {
     "title": "我要你的愛",
@@ -1805,7 +1975,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=wksJDRxPYcg",
-    "evidence": "已核對公開的官方頻道影片資料；尚未於正式KTV頁面驗證播放及完整長度。"
+    "evidence": "已核對公開的官方頻道影片資料；尚未於正式KTV頁面驗證播放及完整長度。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "秋夜",
@@ -1823,7 +1994,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "心戀",
@@ -1841,7 +2013,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "叉燒包",
@@ -1859,7 +2032,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "如果沒有你",
@@ -1877,7 +2051,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "不了情",
@@ -1895,7 +2070,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "說不出的快活",
@@ -1913,7 +2089,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "今宵多珍重(下集)",
@@ -1931,7 +2108,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4"
   },
   {
     "title": "流域",
@@ -1995,15 +2173,19 @@
     "year": 2007,
     "trackNumber": 1,
     "expectedDurationSeconds": 264,
-    "videoId": "",
+    "videoId": "GynOhuau7_A",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=GynOhuau7_A",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ",
+    "channel": "金曲年代GOLDEN ERA",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_karaoke"
   },
   {
     "title": "向日葵",
@@ -2013,15 +2195,19 @@
     "year": 2007,
     "trackNumber": 2,
     "expectedDurationSeconds": 277,
-    "videoId": "",
+    "videoId": "KDj-0eYXK8A",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=KDj-0eYXK8A",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ",
+    "channel": "金曲年代GOLDEN ERA",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_karaoke"
   },
   {
     "title": "學會",
@@ -2039,7 +2225,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "擁抱的瞬間",
@@ -2057,7 +2244,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "分岔路口",
@@ -2078,7 +2266,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "https://www.youtube.com/watch?v=YYosiZDUmC0",
-    "evidence": "已核對公開的官方頻道影片資料；尚未於正式KTV頁面驗證播放及完整長度。"
+    "evidence": "已核對公開的官方頻道影片資料；尚未於正式KTV頁面驗證播放及完整長度。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "Darling",
@@ -2096,7 +2285,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "該忘了你對不對",
@@ -2106,15 +2296,19 @@
     "year": 2007,
     "trackNumber": 7,
     "expectedDurationSeconds": 246,
-    "videoId": "",
+    "videoId": "Dt-mbyKjO-I",
     "vocalId": "",
     "embedding": "pending",
     "contentVerified": false,
     "subtitles": "待查",
     "durationSeconds": null,
-    "checkedAt": "2026-10-31",
-    "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "checkedAt": "2026-11-01",
+    "source": "https://www.youtube.com/watch?v=Dt-mbyKjO-I",
+    "evidence": "2026-11-01 查得 YouTube 上傳頻道與歌曲標題；已比對串流曲長，正式 KTV IFrame 播放、完整長度及字幕仍待驗證。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ",
+    "channel": "金曲年代GOLDEN ERA",
+    "sourceEvidence": "official_channel",
+    "videoType": "official_karaoke"
   },
   {
     "title": "發現",
@@ -2132,7 +2326,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "赤裸",
@@ -2150,7 +2345,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "等待花季",
@@ -2168,7 +2364,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ"
   },
   {
     "title": "自己的電影",
@@ -2186,7 +2383,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "周蕙",
@@ -2204,7 +2402,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "守約",
@@ -2222,7 +2421,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "Complicated",
@@ -2240,7 +2440,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "也許你",
@@ -2258,7 +2459,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "守護者",
@@ -2276,7 +2478,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "老地方",
@@ -2294,7 +2497,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "夜動",
@@ -2312,7 +2516,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "難題",
@@ -2330,7 +2535,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "他是誰",
@@ -2348,7 +2554,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-id/track/4dGKG67UQ8f7CkpOQ871r2"
   },
   {
     "title": "騙人，不！",
@@ -2357,7 +2564,7 @@
     "album": "豁然律",
     "year": 2020,
     "trackNumber": 1,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 222,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2366,7 +2573,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/5aS6NOSqWcO7B21rpNGwfa"
   },
   {
     "title": "只是少了你",
@@ -2375,7 +2583,7 @@
     "album": "豁然律",
     "year": 2020,
     "trackNumber": 2,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 261,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2384,7 +2592,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/5aS6NOSqWcO7B21rpNGwfa"
   },
   {
     "title": "彎彎的月光",
@@ -2393,7 +2602,7 @@
     "album": "豁然律",
     "year": 2020,
     "trackNumber": 3,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 206,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2402,7 +2611,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/5aS6NOSqWcO7B21rpNGwfa"
   },
   {
     "title": "哪兒",
@@ -2410,8 +2620,8 @@
     "lang": "國語",
     "album": "豁然律",
     "year": 2020,
-    "trackNumber": 4,
-    "expectedDurationSeconds": null,
+    "trackNumber": 5,
+    "expectedDurationSeconds": 255,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2420,7 +2630,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/5aS6NOSqWcO7B21rpNGwfa"
   },
   {
     "title": "還好嗎？",
@@ -2428,8 +2639,8 @@
     "lang": "國語",
     "album": "豁然律",
     "year": 2020,
-    "trackNumber": 5,
-    "expectedDurationSeconds": null,
+    "trackNumber": 6,
+    "expectedDurationSeconds": 281,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2438,7 +2649,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/5aS6NOSqWcO7B21rpNGwfa"
   },
   {
     "title": "愛的路上我和你",
@@ -2447,7 +2659,7 @@
     "album": "不被遺忘的時光",
     "year": 2018,
     "trackNumber": 4,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 181,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2456,7 +2668,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "海誓山盟",
@@ -2465,7 +2678,7 @@
     "album": "不被遺忘的時光",
     "year": 2018,
     "trackNumber": 5,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 203,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2474,7 +2687,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "千言萬語",
@@ -2483,7 +2697,7 @@
     "album": "不被遺忘的時光",
     "year": 2018,
     "trackNumber": 6,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 280,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2492,7 +2706,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "今天不回家",
@@ -2501,7 +2716,7 @@
     "album": "不被遺忘的時光",
     "year": 2018,
     "trackNumber": 7,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 201,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2510,7 +2725,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU"
   },
   {
     "title": "你快回來",
@@ -2519,7 +2735,7 @@
     "album": "不被遺忘的時光2",
     "year": 2022,
     "trackNumber": 10,
-    "expectedDurationSeconds": null,
+    "expectedDurationSeconds": 275,
     "videoId": "",
     "vocalId": "",
     "embedding": "pending",
@@ -2528,7 +2744,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對專輯完整曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/album/6PF3wmjh6qbY0L6HhxUTWh"
   },
   {
     "title": "人間",
@@ -2546,7 +2763,8 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對串流平台專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對串流平台專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
   },
   {
     "title": "給從前",
@@ -2564,10 +2782,85 @@
     "durationSeconds": null,
     "checkedAt": "2026-10-31",
     "source": "",
-    "evidence": "已核對串流平台專輯曲目；尚未找到且驗證可嵌入的完整影片。"
+    "evidence": "已核對串流平台專輯曲目；尚未找到且驗證可嵌入的完整影片。",
+    "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW"
+  },
+  {
+    "title": "髮",
+    "artist": "周蕙",
+    "lang": "國語",
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-11-01",
+    "source": "",
+    "evidence": "已核對唱片／音樂平台曲目；尚未驗證可嵌入的完整官方影片。",
+    "album": "自己的房間",
+    "year": 2011,
+    "trackNumber": 4,
+    "expectedDurationSeconds": 235,
+    "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93"
+  },
+  {
+    "title": "千千萬萬個你",
+    "artist": "周蕙",
+    "lang": "國語",
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-11-01",
+    "source": "",
+    "evidence": "已核對唱片／音樂平台曲目；尚未驗證可嵌入的完整官方影片。",
+    "album": "豁然律",
+    "year": 2020,
+    "trackNumber": 4,
+    "expectedDurationSeconds": 273,
+    "durationReference": "https://open.spotify.com/album/5aS6NOSqWcO7B21rpNGwfa"
+  },
+  {
+    "title": "當歸",
+    "artist": "周蕙",
+    "lang": "國語",
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-11-01",
+    "source": "",
+    "evidence": "已核對唱片／音樂平台曲目；尚未驗證可嵌入的完整官方影片。",
+    "album": "25（精選雙彩膠）",
+    "year": 2024,
+    "trackNumber": 16,
+    "expectedDurationSeconds": null
+  },
+  {
+    "title": "為自己而自己",
+    "artist": "周蕙",
+    "lang": "國語",
+    "videoId": "",
+    "vocalId": "",
+    "embedding": "pending",
+    "contentVerified": false,
+    "subtitles": "待查",
+    "durationSeconds": null,
+    "checkedAt": "2026-11-01",
+    "source": "",
+    "evidence": "已核對唱片／音樂平台曲目；尚未驗證可嵌入的完整官方影片。",
+    "album": "25（精選雙彩膠）",
+    "year": 2024,
+    "trackNumber": 17,
+    "expectedDurationSeconds": null
   }
 ];
- const verified=()=>entries.filter(e=>e.embedding==='passed'&&e.contentVerified===true&&e.videoId&&e.durationSeconds>0);
+  const verified=()=>entries.filter(e=>e.embedding==='passed'&&e.contentVerified===true&&e.videoId&&e.durationSeconds>0);
  const importable=()=>verified().map(({title,artist,lang,videoId,vocalId})=>({title,artist,lang,videoId,vocalId}));
  const missing=songs=>importable().filter(e=>!songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(s.title===e.title&&s.artist===e.artist)));
  root.KTV_CHOU_HUI={albums,entries,verified,importable,missing};
