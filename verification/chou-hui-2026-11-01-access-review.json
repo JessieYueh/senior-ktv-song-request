@@ -2,7 +2,7 @@
   "checkedOn": "2026-11-01",
   "timezone": "Asia/Taipei",
   "sourceFile": "chou-hui-song-pack.js",
-  "sourceBlobSha": "4b0adf915f5dfee9272aac57eae5389f726b52f1",
+  "sourceBlobSha": "f4c2f323edb8d67a707a74b32e69aaf35f287324",
   "summary": {
     "albums": 15,
     "uniqueSongs": 133,
@@ -10,21 +10,32 @@
     "withDurationReference": 42,
     "verifiedInSource": 0,
     "newlyVerified": 0,
-    "newlyImportable": 0
+    "newlyImportable": 0,
+    "metadataUploaderObserved": 33,
+    "batchAttempted": 35,
+    "existingSkipped": 7,
+    "missingDurationDeferred": 1
   },
   "iframe": {
-    "attempted": false,
-    "status": "blocked_by_manager_access",
+    "attempted": true,
+    "status": "completed_no_pass",
     "origin": "https://jessieyueh.github.io",
-    "visibleMessage": "請使用原先授權的管理帳號",
-    "note": "The official-site verification button was not reachable; no video is classified as failed or passed from this access blocker."
+    "batchCandidates": 35,
+    "skippedExisting": 7,
+    "deferredMissingDuration": 1,
+    "criteria": "Matching ID, matching official uploader and title, PLAYING state, playback position >=2.5 seconds, duration within existing verifier tolerance (expected -20 to +50 seconds; minimum 120 seconds).",
+    "note": "Initial manager access screen resolved after authentication/role loading. Batch automatically excludes existing cloud songs. Timeouts are inconclusive, not proof of publisher embedding prohibition. All 35 returned 播放逾時或被瀏覽器阻擋. Do not classify them as unavailable videos or disabled embedding.",
+    "passed": 0,
+    "inconclusiveTimeouts": 35,
+    "visibleSummary": "完成檢查：0 首通過、35 首未通過；沒有需要新增的歌曲。"
   },
   "firestore": {
-    "readConfirmed": false,
-    "totalSongs": null,
-    "chouHuiSongs": null,
+    "readConfirmed": true,
+    "totalSongs": 115,
+    "chouHuiSongs": 7,
     "writeAttempted": false,
-    "importedThisRun": 0
+    "importedThisRun": 0,
+    "confirmation": "Official-site UI: 雲端歌本已同步 · 115 首; 周蕙 status 雲端已有 7 首. cloud.js only accepts server snapshots without pending writes."
   },
   "criteria": "Require matching video ID, confirmed official channel, matching song title, actual IFrame playback progression and duration comparison on the official site before marking passed/contentVerified or importing. Page title/search result alone is insufficient.",
   "candidates": [
@@ -34,11 +45,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 266,
       "source": "https://www.youtube.com/watch?v=kXFMYK9jgFg",
-      "metadataStatus": "page_title_only_channel_and_duration_unconfirmed",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 不想讓你知道 (官方版MV)"
     },
     {
       "title": "約定",
@@ -46,11 +59,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 260,
       "source": "https://www.youtube.com/watch?v=Vd-mTkhiThI",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 約定 (官方版MV)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "風鈴",
@@ -58,11 +74,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 275,
       "source": "https://www.youtube.com/watch?v=Ra3Fuc77hgU",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 風鈴 (官方版MV)"
     },
     {
       "title": "我喜歡",
@@ -70,11 +88,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 275,
       "source": "https://www.youtube.com/watch?v=uAgQn9-W2Os",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 我喜歡 (官方版MV)"
     },
     {
       "title": "預言",
@@ -82,11 +102,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 319,
       "source": "https://www.youtube.com/watch?v=u1BSQSPPPG8",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null
     },
     {
       "title": "好想好好愛你",
@@ -94,11 +116,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 259,
       "source": "https://www.youtube.com/watch?v=TUqKBTQizwA",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 好想好好愛你 (官方版MV)"
     },
     {
       "title": "替身",
@@ -106,11 +130,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 346,
       "source": "https://www.youtube.com/watch?v=WUKnbOlicps",
-      "metadataStatus": "page_title_only_channel_and_duration_unconfirmed",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "話題",
@@ -118,11 +145,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 290,
       "source": "https://www.youtube.com/watch?v=XtX4aawnWI4",
-      "metadataStatus": "page_title_only_channel_and_duration_unconfirmed",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null
     },
     {
       "title": "愛過不傷心",
@@ -130,11 +159,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 265,
       "source": "https://www.youtube.com/watch?v=A5EGkhg2WMM",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 愛過不傷心 (官方版MV)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "不哭",
@@ -142,11 +174,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 281,
       "source": "https://www.youtube.com/watch?v=Aq0I12Pc4Uk",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "相遇太早",
@@ -154,11 +189,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 283,
       "source": "https://www.youtube.com/watch?v=QF-NOl_apCY",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14100 followers, Official Artist Channel)",
+      "observedTitle": "相遇太早",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "體溫",
@@ -166,11 +204,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 280,
       "source": "https://www.youtube.com/watch?v=PGpcKF3hfO4",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "寂寞城市",
@@ -178,11 +219,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 296,
       "source": "https://www.youtube.com/watch?v=UBR_PKREysc",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "只能做朋友",
@@ -190,11 +234,13 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 265,
       "source": "https://www.youtube.com/watch?v=no_FGCes5mY",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "skipped_existing_by_site_verifier",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 只能做朋友 (官方版MV)"
     },
     {
       "title": "我看見的世界",
@@ -202,11 +248,14 @@
       "expectedChannel": "華研國際",
       "expectedDurationSeconds": 298,
       "source": "https://www.youtube.com/watch?v=uSF8M1jZ-Zk",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "華研國際 (1570000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou [我看見的世界 Beautiful World] Official MV HD",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "被遺忘的時光",
@@ -214,23 +263,29 @@
       "expectedChannel": "華研國際",
       "expectedDurationSeconds": 253,
       "source": "https://www.youtube.com/watch?v=g_VjS-iOcAU",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "華研國際 (1570000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou [ 被遺忘的時光 A Beautiful Lost Time ] Official Music Video",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "感性生物",
       "videoId": "ypzsoJeZDzg",
-      "expectedChannel": "群石國際",
+      "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 233,
       "source": "https://www.youtube.com/watch?v=ypzsoJeZDzg",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14300 followers, Official Artist Channel)",
+      "observedTitle": "周蕙 Where Chou - 感性生物 (Official Music Video)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "不愛了也是一種愛",
@@ -238,11 +293,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 248,
       "source": "https://www.youtube.com/watch?v=RW7o-TX1wnk",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (12600 followers, Official Artist Channel)",
+      "observedTitle": "不愛了也是一種愛",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "我們還會相遇",
@@ -250,11 +308,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 255,
       "source": "https://www.youtube.com/watch?v=yM-GIKvdwB0",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14200 followers, Official Artist Channel)",
+      "observedTitle": "我們還會相遇 (We'll Meet Again)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "冬季到台北來看雨",
@@ -262,11 +323,14 @@
       "expectedChannel": "華研國際",
       "expectedDurationSeconds": 225,
       "source": "https://www.youtube.com/watch?v=-AJH6bDAamc",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "華研國際 (1570000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou feat.James [冬季到台北來看雨 Winter Rain in Taipei] Official MV HD",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "天天想你",
@@ -274,11 +338,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 306,
       "source": "https://www.youtube.com/watch?v=gIEjW2in5r4",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14200 followers, Official Artist Channel)",
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "拒絕再玩",
@@ -286,11 +353,17 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 274,
       "source": "https://www.youtube.com/watch?v=l95xuA66nVU",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (13900 followers, Official Artist Channel)",
+      "observedTitle": "周蕙 Where Chou [ 拒絕再玩No more games ] Official Music Video",
+      "observedPlayerDurationSeconds": 274,
+      "durationComparison": "matches_reference",
+      "playerEvidence": "Official-site IFrame showed duration 4:34, position 0, Play video control; no confirmed progression.",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "一路上有你",
@@ -298,11 +371,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 273,
       "source": "https://www.youtube.com/watch?v=jnnHeh_EBfE",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (11600 followers, Official Artist Channel)",
+      "observedTitle": "一路上有你",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "不讓我的眼淚陪我過夜",
@@ -310,11 +386,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 298,
       "source": "https://www.youtube.com/watch?v=nTB5cGo78MY",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (13800 followers, Official Artist Channel)",
+      "observedTitle": "不讓我的眼淚陪我過夜",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "明天我要嫁給你",
@@ -322,11 +401,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 242,
       "source": "https://www.youtube.com/watch?v=tyP8KCuXXDY",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14100 followers, Official Artist Channel)",
+      "observedTitle": "明天我要嫁給你",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "Don't break my heart",
@@ -334,11 +416,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 257,
       "source": "https://www.youtube.com/watch?v=TGOnxdBQiLo",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14000 followers, Official Artist Channel)",
+      "observedTitle": "Don't break my heart",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "釀月光",
@@ -346,11 +431,14 @@
       "expectedChannel": "華研國際",
       "expectedDurationSeconds": 271,
       "source": "https://www.youtube.com/watch?v=iR206jo8-Ac",
-      "metadataStatus": "page_title_only_channel_and_duration_unconfirmed",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "華研國際 (1570000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou [ 釀月光Under the Moonlight ] Official Music Video",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "誤解歌",
@@ -358,11 +446,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 196,
       "source": "https://www.youtube.com/watch?v=Eg6Tr4Wz3IQ",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14200 followers, Official Artist Channel)",
+      "observedTitle": "誤解歌",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "走",
@@ -370,11 +461,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 188,
       "source": "https://www.youtube.com/watch?v=Kz2GB-8Vz3k",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14300 followers, Official Artist Channel)",
+      "observedTitle": "周蕙 Where Chou - 走 (Official Music Video)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "對戲",
@@ -382,11 +476,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 211,
       "source": "https://www.youtube.com/watch?v=MU9y9E44KhU",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "過節",
@@ -394,11 +491,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 212,
       "source": "https://www.youtube.com/watch?v=q1tfSYhFo2Q",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "過客",
@@ -406,11 +506,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 275,
       "source": "https://www.youtube.com/watch?v=SULMcR-wKeo",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14300 followers, Official Artist Channel)",
+      "observedTitle": "周蕙 Where Chou - 過客 (Official Music Video)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "今宵多珍重",
@@ -418,11 +521,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 290,
       "source": "https://www.youtube.com/watch?v=Poe_poxjuAQ",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 今宵多珍重 (官方版MV)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "相思河畔",
@@ -430,11 +536,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 233,
       "source": "https://www.youtube.com/watch?v=D1rlRjQ8W0w",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 相思河畔 (官方版MV)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "我要你的愛",
@@ -442,11 +551,14 @@
       "expectedChannel": "福茂唱片",
       "expectedDurationSeconds": 232,
       "source": "https://www.youtube.com/watch?v=wksJDRxPYcg",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "福茂唱片 (1790000 followers, Verified)",
+      "observedTitle": "周蕙 Where Chou - 我要你的愛 (官方版MV)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "愛情無關是非",
@@ -454,11 +566,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 262,
       "source": "https://www.youtube.com/watch?v=z0drtnZTTp0",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (11900 followers, Official Artist Channel)",
+      "observedTitle": "愛情無關是非",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "最愛",
@@ -466,11 +581,14 @@
       "expectedChannel": "金曲年代GOLDEN ERA",
       "expectedDurationSeconds": 264,
       "source": "https://www.youtube.com/watch?v=GynOhuau7_A",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "金曲年代GOLDEN ERA (151000 followers)",
+      "observedTitle": "周蕙 最愛 (Official Video Karaoke)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "向日葵",
@@ -478,11 +596,14 @@
       "expectedChannel": "金曲年代GOLDEN ERA",
       "expectedDurationSeconds": 277,
       "source": "https://www.youtube.com/watch?v=KDj-0eYXK8A",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "分岔路口",
@@ -490,11 +611,14 @@
       "expectedChannel": "金曲年代GOLDEN ERA",
       "expectedDurationSeconds": 275,
       "source": "https://www.youtube.com/watch?v=YYosiZDUmC0",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null,
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "該忘了你對不對",
@@ -502,11 +626,14 @@
       "expectedChannel": "金曲年代GOLDEN ERA",
       "expectedDurationSeconds": 246,
       "source": "https://www.youtube.com/watch?v=Dt-mbyKjO-I",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "金曲年代GOLDEN ERA (166000 followers)",
+      "observedTitle": "周蕙 Where Chou《該忘了你對不對》(Official Video Karaoke)",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "你快回來",
@@ -514,11 +641,14 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 275,
       "source": "https://www.youtube.com/watch?v=qJzFLsr-0EU",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (14000 followers, Official Artist Channel)",
+      "observedTitle": "你快回來",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
     },
     {
       "title": "當歸",
@@ -526,11 +656,13 @@
       "expectedChannel": "華研國際",
       "expectedDurationSeconds": null,
       "source": "https://www.youtube.com/watch?v=tj3KvUvX3Jk",
-      "metadataStatus": "deferred_missing_duration_reference",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "incomplete",
+      "iframeStatus": "deferred_missing_duration_reference",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": null,
+      "observedTitle": null
     },
     {
       "title": "為自己而自己",
@@ -538,11 +670,34 @@
       "expectedChannel": "周蕙 Where Chou",
       "expectedDurationSeconds": 216,
       "source": "https://www.youtube.com/watch?v=91R1MeF8DgQ",
-      "metadataStatus": "fetch_failed_or_throttled",
-      "iframeStatus": "not_attempted_access_blocked",
+      "metadataStatus": "uploader_metadata_observed",
+      "iframeStatus": "inconclusive_timeout",
       "embedding": "pending",
       "contentVerified": false,
-      "importable": false
+      "importable": false,
+      "observedUploader": "周蕙 Where Chou (12600 followers, Official Artist Channel)",
+      "observedTitle": "為自己而自己",
+      "failureReason": "播放逾時或被瀏覽器阻擋"
+    }
+  ],
+  "existingCloudTitles": [
+    "不想讓你知道",
+    "只能做朋友",
+    "好想好好愛你",
+    "我喜歡",
+    "風鈴",
+    "話題",
+    "預言"
+  ],
+  "corrections": [
+    {
+      "title": "感性生物",
+      "field": "channel",
+      "before": "群石國際",
+      "after": "周蕙 Where Chou",
+      "source": "https://www.youtube.com/watch?v=ypzsoJeZDzg",
+      "reason": "YouTube search metadata identifies Official Artist Channel; record label differs from uploader.",
+      "commit": "60202b94be1d73a7ad1711d944b0521b756ee347"
     }
   ]
 }
