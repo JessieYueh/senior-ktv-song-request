@@ -2,6 +2,8 @@
 (function(root){
  'use strict';
  let apiPromise;
+ function normalize(value){return String(value||'').normalize('NFKC').toLowerCase().replace(/[\\s\\-_.,!?()[\\]{}「」『』【】《》〈〉：:]/g,'');}
+ function sourceMatches(actual,expected){const a=normalize(actual),b=normalize(expected);return a.length>=4&&b.length>=4&&(a.includes(b)||(a.length>=5&&b.includes(a)));}
  function loadAPI(){
   if(root.YT?.Player)return Promise.resolve(root.YT);
   if(apiPromise)return apiPromise;
@@ -39,14 +41,22 @@
       try{
        const videoData=player.getVideoData?.()||{};
        const id=videoData.video_id;
-       if(id&&id!==entry.videoId)return;
+       // A prior video or advertisement must never be accepted as the requested song.
+       if(id!==entry.videoId)return;
+       if(player.getPlayerState()!==yt.PlayerState.PLAYING)return;
+       const expected=Number(entry.expectedDurationSeconds||0);
+       if(!expected)return done(false,'缺少可靠的歌曲長度基準，不能標記已驗證');
+       const author=String(videoData.author||'');
+       const title=String(videoData.title||'');
+       if(!author||!title)return; // YouTube metadata can arrive after PLAYING.
+       if(!sourceMatches(author,entry.channel))return done(false,'影片上傳頻道與核對來源不符：'+author);
+       if(!normalize(title).includes(normalize(entry.title)))return done(false,'影片標題不包含指定歌名：'+title);
        seconds=Number(player.getDuration?.()||0);
-       if(player.getPlayerState()===yt.PlayerState.PLAYING){
-        const expected=Number(entry.expectedDurationSeconds||0);
-        if(!expected)done(false,'缺少可靠的歌曲長度基準，不能標記已驗證');
-        else if(seconds>=120&&seconds>=expected-45&&seconds<=expected+90)done(true,'已在本網站播放，影片長度 '+seconds+' 秒');
-        else if(seconds>0)done(false,'影片長度 '+seconds+' 秒與專輯曲目不符');
-       }
+       if(seconds<=0)return;
+       if(seconds<120||seconds<expected-20||seconds>expected+50)return done(false,'影片長度 '+seconds+' 秒與專輯曲目 '+expected+' 秒不符');
+       // PLAYING alone is insufficient: require playback position to advance.
+       const position=Number(player.getCurrentTime?.()||0);
+       if(position>=2.5)done(true,'來源 '+author+'，標題吻合；已在本網站播放 '+position.toFixed(1)+' 秒，影片全長 '+seconds+' 秒');
       }catch(error){done(false,String(error.message||error));}
      },500);
      try{player.loadVideoById(entry.videoId);player.mute();player.playVideo();}catch(error){done(false,String(error.message||error));}
