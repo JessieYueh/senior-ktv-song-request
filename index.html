@@ -93,7 +93,7 @@
 </main>
 <dialog id="queueDialog" aria-labelledby="queueDialogTitle"><header class="bookHeader"><h2 id="queueDialogTitle">🎵 已點歌曲</h2><button class="btn primary" id="closeQueue">返回</button></header></dialog>
 <dialog id="roomJoinDialog"><h2>加入家庭包廂</h2><p>輸入電視顯示的 8 碼包廂代碼。</p><label>包廂代碼<input id="roomInput" maxlength="8" autocomplete="off" autocapitalize="none" placeholder="例如：a1b2c3d4"></label><p>手機請選「手機點歌」。只有電視裝置才選「接手電視播放」；已有電視連線時不會搶走播放權。</p><menu><button class="btn" id="roomJoinCancel">取消</button><button class="btn green" id="roomJoinPhone">手機點歌</button><button class="btn" id="roomJoinTV">接手電視播放</button></menu></dialog>
-<dialog id="singerDialog" aria-labelledby="singerTitle"><header class="bookHeader"><h2 id="singerTitle">🎤 選歌手</h2><button class="btn primary" id="closeSinger">返回歌本</button></header><div class="content"><div class="search"><input id="singerSearch" type="search" placeholder="輸入歌手姓名" aria-label="搜尋歌手"><button class="btn" id="clearSingerSearch">清除</button></div><button class="btn" id="allSingers">全部歌手</button><div id="singerList" aria-label="歌手清單"></div></div></dialog>
+<dialog id="singerDialog" aria-labelledby="singerTitle"><header class="bookHeader"><h2 id="singerTitle">🎤 選歌手（姓氏筆畫排序）</h2><button class="btn primary" id="closeSinger">返回歌本</button></header><div class="content"><div class="search"><input id="singerSearch" type="search" placeholder="輸入歌手姓名" aria-label="搜尋歌手"><button class="btn" id="clearSingerSearch">清除</button></div><button class="btn" id="allSingers">全部歌手</button><div id="singerList" aria-label="歌手清單"></div></div></dialog>
 <dialog id="catalogDialog" aria-labelledby="bookTitle"><header class="bookHeader"><h2 id="bookTitle">📖 點歌本</h2><button class="btn primary" id="closeBook">完成點歌・關閉</button></header></dialog>
 <dialog id="songDialog"><form method="dialog" id="songForm"><h2 id="songDialogTitle">新增歌曲</h2><p>貼上可播放的 YouTube 影片網址；也可以先留空，之後再補。</p><label>歌名<input id="titleInput" required maxlength="100"></label><label>歌手<input id="artistInput" required maxlength="100"></label><label>語言<select id="langInput"><option>國語</option><option>台語</option><option>其他</option></select></label><label>主要影片網址（原唱 MV／歌詞影片／伴奏）<input id="videoInput" type="text" placeholder="YouTube 網址或 11 碼 ID"></label><label>其他版本網址（原唱／備用，選填）<input id="vocalInput" type="text" placeholder="YouTube 網址或 11 碼 ID"></label><menu><button type="button" class="btn" id="cancelSong">取消</button><button type="submit" class="btn primary">儲存</button></menu></form></dialog>
 <dialog id="quickDialog"><form id="quickForm"><h2>🔎 到 YouTube 找歌</h2><p class="quickSteps">① 按「開啟 YouTube 搜尋」選一部想唱的影片<br>② 在 YouTube 按「分享」→「複製連結」<br>③ 回這裡貼上連結，按「加入歌本並點歌」</p><div class="quickActions"><button type="button" class="btn primary" id="openSearchBtn">↗ 開啟 YouTube 搜尋</button><button type="button" class="btn" id="pasteVideoBtn">📋 貼上複製的連結</button></div><label>歌名<input id="quickTitle" required maxlength="100" autocomplete="off"></label><label>歌手（可留空）<input id="quickArtist" maxlength="100" placeholder="不知道可留空"></label><label>YouTube 影片連結<input id="quickVideo" type="url" required placeholder="在此貼上 YouTube 分享連結" inputmode="url"></label><p class="helper">以管理帳號登入後，新增歌曲會同步到其他裝置。</p><menu><button type="button" class="btn" id="cancelQuick">取消</button><button type="submit" class="btn green">＋ 加入歌本並點歌</button></menu></form></dialog>
@@ -188,9 +188,17 @@
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
   function singerNames(song){return String(song.artist||'').split(/\s*(?:[／/、&＆]| feat\.? | featuring )\s*/i).map(n=>n.trim()).filter(Boolean);}
   function matchesCategory(song,name){return KTVOST2026.matches(song,name)&&(!selectedSinger||singerNames(song).includes(selectedSinger));}
+  const singerCollator=new Intl.Collator('zh-Hant-u-co-stroke',{usage:'sort',numeric:true});
+  function compareSingers(a,b){
+    const surnameA=Array.from(a.trim())[0]||'',surnameB=Array.from(b.trim())[0]||'';
+    const strokesA=KTVStrokeCount(surnameA),strokesB=KTVStrokeCount(surnameB);
+    if(strokesA&&strokesB&&strokesA!==strokesB)return strokesA-strokesB;
+    if(Boolean(strokesA)!==Boolean(strokesB))return strokesA?-1:1;
+    return singerCollator.compare(surnameA,surnameB)||singerCollator.compare(a,b);
+  }
   function renderSingerChoices(){
     const q=$('singerSearch').value.trim().toLocaleLowerCase(),el=$('singerList');el.replaceChildren();
-    const names=[...new Set(catalog.flatMap(singerNames))].sort((a,b)=>a.localeCompare(b,'zh-Hant',{usage:'sort'})).filter(n=>n.toLocaleLowerCase().includes(q));
+    const names=[...new Set(catalog.flatMap(singerNames))].sort(compareSingers).filter(n=>n.toLocaleLowerCase().includes(q));
     for(const name of names){const b=button(name,'',()=>{selectedSinger=name;$('singerDialog').close();renderFilters();renderCatalog();});b.classList.toggle('primary',name===selectedSinger);b.setAttribute('aria-pressed',String(name===selectedSinger));el.append(b);}
     if(!names.length){const p=document.createElement('p');p.className='notice';p.textContent='找不到這位歌手，請換個名字搜尋。';el.append(p);}
   }
