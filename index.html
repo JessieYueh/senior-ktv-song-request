@@ -21,13 +21,13 @@
 
     .layout{grid-template-columns:minmax(0,2fr) minmax(280px,1fr)}
     .playerPanel{order:0}.catalogPanel{align-self:start}.catalogPanel .list{min-height:100px;max-height:58vh}
-    #catalogDialog{width:min(1100px,calc(100% - 24px));padding:0;max-height:92dvh}
+    #catalogDialog{width:min(1100px,calc(100% - 24px));padding:0}
     .bookHeader{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;background:white;position:sticky;top:0;z-index:2;border-bottom:1px solid #e5eaf1}
-    .bookHeader h2{margin:0}#catalogDialog .list{max-height:48dvh;min-height:160px;overflow:auto}
+    .bookHeader h2{margin:0}
     .strokeHeading{margin:0;padding:12px;background:#e8f1ff;color:#164ca1;font-size:22px;position:relative;border-radius:10px}
     #strokeJump{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}#strokeJump .chip{padding:8px 14px}
     #confirmNext:focus{outline:4px solid #1768db;outline-offset:4px}
-    @media(max-width:950px){.layout{grid-template-columns:1fr}.playerPanel{order:0}.catalogPanel{order:1}.catalogPanel .list{max-height:35vh}#catalogDialog .list{max-height:42dvh}}
+    @media(max-width:950px){.layout{grid-template-columns:1fr}.playerPanel{order:0}.catalogPanel{order:1}.catalogPanel .list{max-height:35vh}}
     .accessCard{max-width:650px;margin:8vh auto;padding:28px}.accessCard input{display:block;width:100%;font-size:22px;padding:14px;border:2px solid #cbd5e1;border-radius:12px;margin:8px 0 16px}.accessCard p{font-size:18px;line-height:1.6}.deviceCode{font-size:26px!important;font-weight:800;background:#e8f1ff;padding:14px;border-radius:12px}.top{flex-wrap:wrap}#deviceList .song p{margin:6px 0;font-size:16px}
     .roomPanel{padding:14px 20px;margin-bottom:20px}.roomPanel p{line-height:1.6}.roomPanel .quickActions{margin-top:0}.roomPanel .quickActions .btn{flex:initial}#roomShare{display:flex;align-items:center;gap:14px;flex-wrap:wrap}#roomCode{font-size:25px}#roomQR svg{width:170px;height:170px;display:block}#roomLink{overflow-wrap:anywhere;font-size:14px}.remoteMode .video,.remoteMode #videoHelp{display:none}.remoteMode .playerPanel{background:#eef5ff}#roomError{color:#ae3028;font-weight:700}
     .playerPanel:fullscreen{border-radius:0;padding:18px;background:white;display:flex;flex-direction:column}.playerPanel:fullscreen .video{flex:1;min-height:0;aspect-ratio:auto}.playerPanel:fullscreen .controls{grid-template-columns:repeat(4,1fr)}
@@ -77,6 +77,40 @@
     #favoriteSongs{max-height:46vh;max-height:46dvh;overflow:auto;overscroll-behavior:contain}
     #favoriteSongs .songActions{flex-wrap:wrap}#songList .songActions{flex-wrap:wrap}
     @media(max-width:600px){#songList .songActions{width:100%}#favoriteSongs .songActions .btn{min-height:46px}}
+
+    /* One native scroll surface per book view; keep the page behind it still. */
+    html.dialogOpen{overflow:hidden;overscroll-behavior:none}
+    body.dialogOpen{position:fixed;top:var(--dialog-page-top);left:0;right:0;width:100%;overflow:hidden}
+    dialog{overscroll-behavior:contain}
+    #catalogDialog,#singerDialog,#favoritesDialog{height:94vh;height:94dvh;max-height:94vh;max-height:94dvh;overflow:hidden}
+    #catalogDialog[open],#singerDialog[open],#favoritesDialog[open]{display:flex;flex-direction:column}
+    #catalogDialog .bookHeader,#singerDialog .bookHeader,#favoritesDialog .bookHeader{position:static;flex-shrink:0;padding:12px 16px}
+    #catalogDialog .bookHeader h2{font-size:24px}
+    #catalogDialog .bookHeader .btn{min-height:48px;font-size:18px;padding:10px 12px}
+    #catalogPane{display:flex;flex:1;flex-direction:column;min-height:0}
+    #catalogPane>.content,#singerDialog>.content,#favoritesDialog>.content{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable;scroll-padding-top:88px}
+    #catalogDialog #songList,#singerDialog #singerList,#favoritesDialog #favoriteSongs{max-height:none;min-height:0;overflow:visible}
+    #catalogPane>.content{padding-top:0}
+    #catalogPane .search{position:sticky;top:0;z-index:3;background:white;padding:12px 0;box-shadow:0 4px 6px #ffffff}
+    #catalogPane .foot{flex-shrink:0;padding:8px 14px;gap:8px}
+    #catalogPane .foot .btn{min-height:44px;font-size:17px;padding:8px 12px}
+    #catalogPane #filters{padding-top:4px;padding-bottom:10px}
+    #catalogPane .singerToolbar,#catalogPane .bookTools{margin-bottom:10px}
+    #catalogPane #strokeJump{margin-bottom:10px}
+    @media(max-width:600px){
+      #catalogDialog,#singerDialog,#favoritesDialog{width:100%;max-width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;margin:0;border-radius:0}
+      #catalogPane>.content{padding-left:12px;padding-right:12px}
+      #catalogPane .search input{font-size:20px;padding:10px 12px}
+      #catalogPane .search .btn{min-height:48px;padding:10px 12px;font-size:18px}
+      #catalogPane #filters{gap:6px}#catalogPane .chip{padding:8px 13px;min-height:44px}
+      #catalogPane .singerToolbar{gap:6px}#catalogPane .singerToolbar .btn{font-size:18px;min-height:46px;padding:8px 12px}
+      #catalogPane .bookTools{grid-template-columns:minmax(0,1fr);gap:8px}
+      #catalogPane .sortBar{gap:8px}#catalogPane .sortBar label{font-size:15px;gap:3px}
+      #catalogPane .sortBar select{font-size:18px;min-height:46px;padding:8px}
+      #catalogPane .sortHint{display:none}#catalogPane .categoryActions{padding:0;background:none}
+      #catalogPane .song{gap:8px;padding:12px 0}
+      #catalogPane .foot{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+    }
   </style>
 </head>
 <body>
@@ -128,11 +162,40 @@
 <script src="chou-hui-song-pack.js?v=20261102c"></script>
 <script>
   const $ = id => document.getElementById(id);
+
+  // Lock once for the entire modal stack, including singer/favorite subdialogs.
+  let dialogPagePosition=null;
+  function lockDialogPage(){
+    if(dialogPagePosition)return;
+    dialogPagePosition={x:window.scrollX,y:window.scrollY};
+    document.body.style.setProperty('--dialog-page-top',-dialogPagePosition.y+'px');
+    document.documentElement.classList.add('dialogOpen');
+    document.body.classList.add('dialogOpen');
+  }
+  function syncDialogPage(){
+    if(document.querySelector('dialog[open]')||!dialogPagePosition)return;
+    const position=dialogPagePosition;dialogPagePosition=null;
+    document.documentElement.classList.remove('dialogOpen');
+    document.body.classList.remove('dialogOpen');
+    document.body.style.removeProperty('--dialog-page-top');
+    window.scrollTo(position.x,position.y);
+  }
+  function openDialog(dialog){
+    lockDialogPage();
+    try{dialog.showModal();}catch(error){syncDialogPage();throw error;}
+  }
+  const dialogObserver=new MutationObserver(syncDialogPage);
+  document.querySelectorAll('dialog').forEach(dialog=>{
+    dialogObserver.observe(dialog,{attributes:true,attributeFilter:['open']});
+    dialog.addEventListener('close',syncDialogPage);
+  });
   $('catalogDialog').append($('catalogPane'));
+  $('catalogPane').querySelector('.content').tabIndex=0;
+  $('catalogPane').querySelector('.content').setAttribute('aria-label','點歌本，可上下捲動');
   $('queuePane').hidden=false;
   $('closeBook').onclick=()=>$('catalogDialog').close();
   const queueHome=$('queuePane').parentElement;
-  $('expandQueue').onclick=()=>{$('queueDialog').append($('queuePane'));$('queueDialog').showModal();};
+  $('expandQueue').onclick=()=>{$('queueDialog').append($('queuePane'));openDialog($('queueDialog'));};
   $('closeQueue').onclick=()=>$('queueDialog').close();
   $('queueDialog').addEventListener('close',()=>queueHome.append($('queuePane')));
   $('queueList').tabIndex=0;$('queueList').setAttribute('aria-label','待唱清單，可上下捲動');
@@ -161,7 +224,7 @@
   function toast(message){const dialogs=[...document.querySelectorAll('dialog[open]')];const active=dialogs.at(-1);if(active){let feedback=active.querySelector('.dialogFeedback');if(!feedback){feedback=document.createElement('p');feedback.className='dialogFeedback';feedback.setAttribute('role','status');active.append(feedback);}feedback.textContent=message;}$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').hidden=true,3000);}
   let cloudState={user:null,admin:false,access:false,authReady:false,readReady:false,busy:false,error:'',authError:'',count:0}, remoteSongs=null;
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
-  function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){$('cloudDialog').showModal();throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
+  function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){openDialog($('cloudDialog'));throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
   function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];if($('singerDialog').open)renderSingerChoices();renderCatalog();refreshFavorites();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
   let previousAccess=false;
@@ -198,7 +261,7 @@
   }
   window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();scheduleLinImport();scheduleAqiImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
-  function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)$('catalogDialog').showModal();$('search').focus();}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
+  function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)openDialog($('catalogDialog'));$('closeBook').focus({preventScroll:true});}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
   function singerNames(song){return String(song.artist||'').split(/\s*(?:[／/、&＆]| feat\.? | featuring )\s*/i).map(n=>n.trim()).filter(Boolean);}
   function matchesCategory(song,name){return KTVOST2026.matches(song,name)&&(!selectedSinger||singerNames(song).includes(selectedSinger));}
   const singerCollator=new Intl.Collator('zh-Hant-u-co-stroke',{usage:'sort',numeric:true});
@@ -216,7 +279,7 @@
     if(!names.length){const p=document.createElement('p');p.className='notice';p.textContent='找不到這位歌手，請換個名字搜尋。';el.append(p);}
   }
   function renderFilters(){const el=$('filters');el.replaceChildren();['全部','國語','台語','其他'].forEach(name=>{const b=button(name,'chip'+(category===name?' active':''),()=>{category=name;renderFilters();renderCatalog();});b.setAttribute('aria-pressed',String(category===name));el.append(b);});$('singerSelection').hidden=!selectedSinger;$('singerSelection').textContent='歌手：'+selectedSinger+' ×';$('singerSelection').setAttribute('aria-label','清除歌手篩選：'+selectedSinger);$('ostCategory').classList.toggle('active',category===KTVOST2026.category);}
-  $('chooseSinger').onclick=()=>{$('singerSearch').value='';renderSingerChoices();$('singerDialog').showModal();};
+  $('chooseSinger').onclick=()=>{$('singerSearch').value='';renderSingerChoices();openDialog($('singerDialog'));};
   $('closeSinger').onclick=()=>$('singerDialog').close();
   $('singerSearch').oninput=renderSingerChoices;
   $('clearSingerSearch').onclick=()=>{$('singerSearch').value='';renderSingerChoices();$('singerSearch').focus();};
@@ -353,12 +416,12 @@
   function prepareCategory(songs){const seen=new Set([...(current?[current]:[]),...queue].map(queueKey));const additions=[];let duplicate=0,unavailable=0;for(const song of songs){if(!validId(song.videoId)){unavailable++;continue;}const key=queueKey(song);if(seen.has(key)){duplicate++;continue;}seen.add(key);additions.push(song);}return {additions,duplicate,unavailable};}
   function renderCategoryAdd(){renderOST();const songs=categorySongs();const plan=prepareCategory(songs);$('addCategoryBtn').textContent='＋ '+(selectedSinger?selectedSinger+(category==='全部'?'歌曲':'・'+category+'歌曲'):category==='全部'?'全部歌曲':category+'歌曲')+'一起點（'+plan.additions.length+' 首）';$('addCategoryBtn').disabled=!plan.additions.length;$('categoryAddHint').textContent=!songs.length?'這個分類目前沒有歌曲。':!plan.additions.length?'此分類已點完，或尚未設定可播放的影片。':($('search').value.trim()?'加入範圍不受搜尋文字限制。':'');$('categoryAddHint').hidden=!$('categoryAddHint').textContent;}
   let pendingCategory=[];
-  $('addCategoryBtn').onclick=()=>{const plan=prepareCategory(categorySongs());if(!plan.additions.length)return;pendingCategory=plan.additions;$('categoryDialogTitle').textContent='點唱'+(selectedSinger?selectedSinger+'・':'')+(category==='全部'?'全部':category)+'歌曲？';$('categoryMessage').textContent='將點唱 '+pendingCategory.length+' 首，依目前的「'+($('sortField').value==='artist'?'歌手':'歌名')+'・'+($('sortDirection').value==='desc'?'遞減':'遞增')+'」順序加入。'+(current?'目前的歌曲會繼續播放。':'第一首會開始播放，其餘加入待唱。');$('categorySkipped').textContent=(plan.duplicate?'已點過的 '+plan.duplicate+' 首會略過。':'')+(plan.unavailable?'未設定影片的 '+plan.unavailable+' 首會略過。':'');$('categoryDialog').showModal();};
+  $('addCategoryBtn').onclick=()=>{const plan=prepareCategory(categorySongs());if(!plan.additions.length)return;pendingCategory=plan.additions;$('categoryDialogTitle').textContent='點唱'+(selectedSinger?selectedSinger+'・':'')+(category==='全部'?'全部':category)+'歌曲？';$('categoryMessage').textContent='將點唱 '+pendingCategory.length+' 首，依目前的「'+($('sortField').value==='artist'?'歌手':'歌名')+'・'+($('sortDirection').value==='desc'?'遞減':'遞增')+'」順序加入。'+(current?'目前的歌曲會繼續播放。':'第一首會開始播放，其餘加入待唱。');$('categorySkipped').textContent=(plan.duplicate?'已點過的 '+plan.duplicate+' 首會略過。':'')+(plan.unavailable?'未設定影片的 '+plan.unavailable+' 首會略過。':'');openDialog($('categoryDialog'));};
   $('cancelCategory').onclick=()=>{$('categoryDialog').close();pendingCategory=[];};
   $('confirmCategory').onclick=async()=>{const additions=prepareCategory(pendingCategory).additions;pendingCategory=[];$('categoryDialog').close();if(!additions.length){renderCategoryAdd();return toast('這些歌曲已在待唱中');}const count=additions.length;if(sharedMode()){try{const added=await roomClient.enqueue(additions);toast('已加入包廂待唱 '+added+' 首');}catch(error){toast(cloudError(error));}return;}if(!current)start(additions.shift());queue.push(...additions);renderQueue();renderCategoryAdd();toast('已點唱 '+count+' 首歌曲');};
   function renderCatalog(){renderCategoryAdd();const q=$('search').value.trim().toLocaleLowerCase();const songs=KTVSortSongs(catalog.filter(s=>(matchesCategory(s,category))&&(!q||(s.title+' '+s.artist).toLocaleLowerCase().includes(q))),$('sortField').value,$('sortDirection').value);$('songList').replaceChildren();if(!songs.length){const n=document.createElement('div');n.className='notice';const elsewhere=q&&(category!=='全部'||selectedSinger)&&catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q));n.textContent=elsewhere?'其他分類或歌手有找到歌曲。可清除篩選查看。':q?'歌本裡沒有這首歌。可以到 YouTube 找。':'這個分類還沒有歌曲。';$('songList').append(n);if(elsewhere)n.append(document.createElement('br'),button('查看全部歌曲','primary',()=>{category='全部';selectedSinger='';renderFilters();renderCatalog();}));}const grouped=$('sortField').value==='strokes';$('strokeJump').hidden=!grouped;$('strokeJump').replaceChildren();let last=null;
-    songs.forEach(song=>{const n=KTVStrokeCount(song.title);if(grouped&&n!==last){last=n;const h=document.createElement('h3');h.className='strokeHeading';h.id='stroke-'+n;h.textContent=n?n+' 畫':'英文、數字及其他';$('songList').append(h);$('strokeJump').append(button(n?n+' 畫':'其他','chip',()=>{ $('songList').scrollTop+=h.getBoundingClientRect().top-$('songList').getBoundingClientRect().top; }));}$('songList').append(row(song,[['＋ 點歌','green',()=>addSong(song)],['♡ 收藏','',()=>openFavoritePicker(song)],['⋯','adminOnly',()=>openEditor(song)]]));});if(q&&!songs.length&&!catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q))){const box=document.createElement('div');box.className='findOnline';box.append(button('🔎 到 YouTube 找「'+$('search').value.trim()+'」','primary',openQuickAdd));$('songList').append(box);}}
-  function openQuickAdd(){const query=$('search').value.trim();$('quickTitle').value=query;$('quickArtist').value='';$('quickVideo').value='';$('quickDialog').showModal();}
+    songs.forEach(song=>{const n=KTVStrokeCount(song.title);if(grouped&&n!==last){last=n;const h=document.createElement('h3');h.className='strokeHeading';h.id='stroke-'+n;h.textContent=n?n+' 畫':'英文、數字及其他';$('songList').append(h);$('strokeJump').append(button(n?n+' 畫':'其他','chip',()=>{ const scroller=$('catalogPane').querySelector('.content');scroller.scrollTop+=h.getBoundingClientRect().top-scroller.getBoundingClientRect().top-scroller.querySelector('.search').offsetHeight-8; }));}$('songList').append(row(song,[['＋ 點歌','green',()=>addSong(song)],['♡ 收藏','',()=>openFavoritePicker(song)],['⋯','adminOnly',()=>openEditor(song)]]));});if(q&&!songs.length&&!catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q))){const box=document.createElement('div');box.className='findOnline';box.append(button('🔎 到 YouTube 找「'+$('search').value.trim()+'」','primary',openQuickAdd));$('songList').append(box);}}
+  function openQuickAdd(){const query=$('search').value.trim();$('quickTitle').value=query;$('quickArtist').value='';$('quickVideo').value='';openDialog($('quickDialog'));}
   function openYouTubeSearch(){const term=($('quickTitle').value.trim()||$('search').value.trim())+' 官方 MV 歌詞';window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(term),'_blank','noopener');}
   function renderQueue(){refreshFavorites();renderCategoryAdd(); $('queueCount').textContent=queue.length;$('queueBadge').textContent='待唱 '+queue.length+' 首';$('queueList').replaceChildren();if(!queue.length){const n=document.createElement('div');n.className='notice';n.textContent='還沒有待唱歌曲。回到點歌本，按「＋ 點歌」。';$('queueList').append(n);}queue.forEach((song,i)=>$('queueList').append(row({...song,title:(i+1)+'. '+song.title},[['優先','',()=>{if(sharedMode())return roomAction(()=>roomClient.editEntry(song._roomEntry,'priority'));queue.splice(i,1);queue.unshift(song);renderQueue();toast('已排到下一首');}],['移除','red',()=>{if(sharedMode())return roomAction(()=>roomClient.editEntry(song._roomEntry,'remove'));queue.splice(i,1);renderQueue();toast('已移除歌曲');}]])));}
   function searchVideo(song){window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(song.title+' '+song.artist+' 官方 MV 歌詞'),'_blank','noopener');}
@@ -366,15 +429,15 @@
   function start(song){current=song;vocal=false;$('currentTitle').textContent=song.title;$('currentArtist').textContent=song.artist;$('modeBtn').textContent='🎬 切換版本';showVideo();toast('現在播放：'+song.title);}
   async function addSong(song){if(sharedMode()){try{await roomClient.enqueue([song]);toast('已加入包廂待唱：'+song.title);}catch(error){toast(cloudError(error));}return;}if(!cloudState.access)return toast('請先取得裝置授權');if(!current)start(song);else{queue.push(song);toast('已加入待唱：'+song.title);}renderQueue();}
   function next(){if(sharedMode()){if(roomState.mode==='tv'&&roomState.host&&roomState.armed)roomAction(()=>roomClient.advance(roomAppliedVersion));return;}if($('nextDialog').open)$('nextDialog').close();if(queue.length)start(queue.shift());else{playback.stop();current=null;$('currentTitle').textContent='尚未點歌';$('currentArtist').textContent='待唱歌曲已唱完';$('openYouTubeBtn').hidden=true;playerNotice('');$('video').innerHTML='<div class="emptyVideo"><strong>唱完囉！</strong>再點一首喜歡的歌</div>';toast('待唱歌曲已唱完');}renderQueue();scheduleHouImport();}
-  function openEditor(song=null){editor=song;$('songDialogTitle').textContent=song?'編輯歌曲':'新增歌曲';$('titleInput').value=song?.title||'';$('artistInput').value=song?.artist||'';$('langInput').value=song?.lang||'國語';$('videoInput').value=song?.videoId||'';$('vocalInput').value=song?.vocalId||'';$('songDialog').showModal();}
+  function openEditor(song=null){editor=song;$('songDialogTitle').textContent=song?'編輯歌曲':'新增歌曲';$('titleInput').value=song?.title||'';$('artistInput').value=song?.artist||'';$('langInput').value=song?.lang||'國語';$('videoInput').value=song?.videoId||'';$('vocalInput').value=song?.vocalId||'';openDialog($('songDialog'));}
   $('songForm').addEventListener('submit',async e=>{e.preventDefault();const video=$('videoInput').value.trim(),voice=$('vocalInput').value.trim();if((video&&!validId(video))||(voice&&!validId(voice))){toast('請確認 YouTube 網址或影片 ID');return;}const item={title:$('titleInput').value.trim(),artist:$('artistInput').value.trim(),lang:$('langInput').value,videoId:validId(video),vocalId:validId(voice),...(editor?{_cloudId:editor._cloudId}:{})};if(!item.title||!item.artist)return;try{await saveCloud(item);if(editor)Object.assign(editor,item);renderQueue();if(current===editor)showVideo();$('songDialog').close();toast('歌曲已儲存到雲端歌本');}catch(error){toast(cloudError(error));}});
   $('quickForm').addEventListener('submit',async e=>{e.preventDefault();const title=$('quickTitle').value.trim(),artist=$('quickArtist').value.trim()||'未知歌手',videoId=validId($('quickVideo').value);if(!videoId){$('quickVideo').setCustomValidity('請貼上 YouTube 影片連結');$('quickVideo').reportValidity();return;}$('quickVideo').setCustomValidity('');const existing=catalog.find(s=>s.videoId===videoId&&!KTVGetSegment(s));if(existing&&!existing._localOnly){$('quickDialog').close();addSong(existing);toast('這首歌已在歌本，已為您點歌');return;}const item={title,artist,lang:'國語',videoId,vocalId:''};try{await saveCloud(item);$('quickDialog').close();$('search').value='';category='全部';renderFilters();renderCatalog();addSong(catalog.find(s=>s.videoId===videoId)||item);toast('已加入雲端歌本並點歌：'+title);}catch(error){toast(cloudError(error));}});
   $('quickVideo').addEventListener('input',()=> $('quickVideo').setCustomValidity(''));
   $('openSearchBtn').onclick=openYouTubeSearch;$('pasteVideoBtn').onclick=async()=>{try{const link=await navigator.clipboard.readText();if(!validId(link))return toast('複製的不是 YouTube 影片連結，請重新複製或直接貼上');$('quickVideo').value=link;$('quickVideo').setCustomValidity('');toast('影片連結已貼上');}catch{$('quickVideo').focus();toast('請長按連結欄位，選擇「貼上」');}};$('cancelQuick').onclick=()=>$('quickDialog').close();
   $('saveBatch').addEventListener('click',async()=>{const items=[];let invalid=0;$('batchText').value.split(/\r?\n/).forEach(line=>{if(!line.trim())return;const [title,artist,lang,video,vocal]=line.split('\t').map(v=>v?.trim()||'');if(!title||!artist||(video&&!validId(video))||(vocal&&!validId(vocal))){invalid++;return;}items.push({title,artist,lang:lang||'國語',videoId:validId(video),vocalId:validId(vocal)});});if(invalid)return toast(invalid+' 行格式有誤，請修正後再加入');if(!items.length)return toast('請先貼上歌曲資料');try{const count=await requireCloud().saveBatch(items);$('batchDialog').close();$('batchText').value='';toast('已儲存 '+count+' 首到雲端歌本');}catch(error){toast(cloudError(error));}});
-  $('catalogTab').onclick=()=>switchTab('catalog');$('queueTab').onclick=()=>switchTab('queue');$('search').oninput=renderCatalog;$('clearBtn').onclick=()=>{$('search').value='';renderCatalog();$('search').focus();};$('manageBtn').onclick=()=>{const open=document.body.classList.toggle('manageOpen');$('manageBtn').setAttribute('aria-expanded',open);};$('addBtn').onclick=()=>openEditor();$('batchBtn').onclick=()=>$('batchDialog').showModal();$('cancelSong').onclick=()=>$('songDialog').close();$('cancelBatch').onclick=()=>$('batchDialog').close();$('openYouTubeBtn').onclick=()=>{const id=validId(vocal?(current?.vocalId||current?.videoId):current?.videoId);if(id){const range=KTVGetSegment(current,id);window.open('https://www.youtube.com/watch?v='+id+(range?'&t='+range.startSeconds+'s':''),'_blank','noopener');}};
-  $('playBtn').onclick=()=>{if(sharedMode()){const resume=roomState.room?.paused||(roomState.mode==='tv'&&!playbackStarted);if(roomState.mode==='tv'&&roomState.host&&roomState.armed&&current){if(resume)playback.resume();else playback.setPaused(true);}return roomAction(()=>roomClient.command(resume?'resume':'pause'));}if(!current){toast('請先點歌');return;}if(!playback.toggle())showVideo();};$('replayBtn').onclick=()=>{if(sharedMode())return roomAction(()=>roomClient.command('replay'));if(!current)return toast('請先點歌');showVideo();toast('重新播放 '+current.title);};$('modeBtn').onclick=()=>{if(!current)return toast('請先點歌');if(!current.vocalId)return toast('這首歌尚未設定其他版本');if(sharedMode())return roomAction(()=>roomClient.command('vocal'));vocal=!vocal;$('modeBtn').textContent=vocal?'🎵 切回主要版本':'🎬 切換版本';showVideo();};$('nextBtn').onclick=()=>{if(!current&&!queue.length)return toast('請先點歌');$('nextMessage').textContent=queue.length?'下一首：'+queue[0].title:'目前沒有下一首，切歌後會停止播放。';$('nextDialog').showModal();$('confirmNext').focus();};$('cancelNext').onclick=()=>$('nextDialog').close();$('confirmNext').onclick=()=>{$('nextDialog').close();if(sharedMode())return roomAction(()=>roomClient.command('next'));next();};
-  $('accountBtn').onclick=()=>$('cloudDialog').showModal();$('cloudBtn').onclick=()=>$('cloudDialog').showModal();$('closeCloudBtn').onclick=()=>$('cloudDialog').close();
+  $('catalogTab').onclick=()=>switchTab('catalog');$('queueTab').onclick=()=>switchTab('queue');$('search').oninput=renderCatalog;$('clearBtn').onclick=()=>{$('search').value='';renderCatalog();$('search').focus();};$('manageBtn').onclick=()=>{const open=document.body.classList.toggle('manageOpen');$('manageBtn').setAttribute('aria-expanded',open);};$('addBtn').onclick=()=>openEditor();$('batchBtn').onclick=()=>openDialog($('batchDialog'));$('cancelSong').onclick=()=>$('songDialog').close();$('cancelBatch').onclick=()=>$('batchDialog').close();$('openYouTubeBtn').onclick=()=>{const id=validId(vocal?(current?.vocalId||current?.videoId):current?.videoId);if(id){const range=KTVGetSegment(current,id);window.open('https://www.youtube.com/watch?v='+id+(range?'&t='+range.startSeconds+'s':''),'_blank','noopener');}};
+  $('playBtn').onclick=()=>{if(sharedMode()){const resume=roomState.room?.paused||(roomState.mode==='tv'&&!playbackStarted);if(roomState.mode==='tv'&&roomState.host&&roomState.armed&&current){if(resume)playback.resume();else playback.setPaused(true);}return roomAction(()=>roomClient.command(resume?'resume':'pause'));}if(!current){toast('請先點歌');return;}if(!playback.toggle())showVideo();};$('replayBtn').onclick=()=>{if(sharedMode())return roomAction(()=>roomClient.command('replay'));if(!current)return toast('請先點歌');showVideo();toast('重新播放 '+current.title);};$('modeBtn').onclick=()=>{if(!current)return toast('請先點歌');if(!current.vocalId)return toast('這首歌尚未設定其他版本');if(sharedMode())return roomAction(()=>roomClient.command('vocal'));vocal=!vocal;$('modeBtn').textContent=vocal?'🎵 切回主要版本':'🎬 切換版本';showVideo();};$('nextBtn').onclick=()=>{if(!current&&!queue.length)return toast('請先點歌');$('nextMessage').textContent=queue.length?'下一首：'+queue[0].title:'目前沒有下一首，切歌後會停止播放。';openDialog($('nextDialog'));$('confirmNext').focus();};$('cancelNext').onclick=()=>$('nextDialog').close();$('confirmNext').onclick=()=>{$('nextDialog').close();if(sharedMode())return roomAction(()=>roomClient.command('next'));next();};
+  $('accountBtn').onclick=()=>openDialog($('cloudDialog'));$('cloudBtn').onclick=()=>openDialog($('cloudDialog'));$('closeCloudBtn').onclick=()=>$('cloudDialog').close();
   $('cloudLoginBtn').onclick=async()=>{try{if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請重新整理。');await window.KTV_CLOUD.login();}catch(error){toast(cloudError(error));}};
   $('cloudLogoutBtn').onclick=async()=>{try{await window.KTV_CLOUD?.logout();}catch(error){toast(cloudError(error));}};
   $('retryCloudBtn').onclick=()=>{window.KTV_CLOUD?.retry();};
@@ -414,7 +477,7 @@
   function confirmModeSwitch(){return !(current||queue.length)||confirm('切換模式會清除此裝置目前顯示的待唱歌曲；雲端包廂歌單會保留。是否繼續？');}
   $('roomLocalBtn').onclick=()=>{if(!sharedMode())return;if(confirmModeSwitch())roomAction(()=>roomClient.leave());};
   $('roomCreateBtn').onclick=()=>{if(confirmModeSwitch())roomAction(async()=>{$('roomError').textContent='';await roomClient.create();});};
-  $('roomJoinBtn').onclick=()=>{$('roomInput').value=roomState.id||'';$('roomJoinDialog').showModal();$('roomInput').focus();};
+  $('roomJoinBtn').onclick=()=>{$('roomInput').value=roomState.id||'';openDialog($('roomJoinDialog'));$('roomInput').focus();};
   $('roomJoinCancel').onclick=()=>$('roomJoinDialog').close();
   async function joinRoom(mode){if(!confirmModeSwitch())return;const code=$('roomInput').value;await roomAction(async()=>{$('roomError').textContent='';await roomClient.join(code,mode);$('roomJoinDialog').close();});}
   $('roomJoinPhone').onclick=()=>joinRoom('remote');$('roomJoinTV').onclick=()=>joinRoom('tv');
@@ -447,10 +510,10 @@
     if(!entries.length)$('favoriteSongs').textContent='清單還沒有歌曲，按「從歌本收藏」開始選歌。';
     entries.forEach(({ref,song},i)=>{const r=row(song||{...ref,title:ref.title+'（歌本已無此歌）'},[['＋ 點歌','green',()=>addSong(song)],['↑ 上移','',()=>favoriteAction(async()=>{await store.move(list.id,ref.key,-1);})],['↓ 下移','',()=>favoriteAction(async()=>{await store.move(list.id,ref.key,1);})],['移除','red',()=>favoriteAction(async()=>{await store.removeSong(list.id,ref.key);})]]);const buttons=r.querySelectorAll('button');buttons[0].disabled=!song||!validId(song.videoId)||!cloudState.readReady;buttons[1].disabled=i===0;buttons[2].disabled=i===entries.length-1;$('favoriteSongs').append(r);});
   }
-  function openFavoritePicker(song){favoriteAction(()=>{favoritesReady();favoritePending=song;renderFavoriteTargets();$('favoritePicker').showModal();});}
+  function openFavoritePicker(song){favoriteAction(()=>{favoritesReady();favoritePending=song;renderFavoriteTargets();openDialog($('favoritePicker'));});}
   function renderFavoriteTargets(){const store=favoritesReady();$('newFavoriteTarget').disabled=!store.ready;$('favoriteSongLabel').textContent=favoritePending.title+' · '+favoritePending.artist;$('favoriteTargets').replaceChildren();const key=KTVFavorites.keyOf(favoritePending);for(const list of store.read()){const saved=list.songs.some(s=>s.key===key);const b=button(list.name+(saved?' ✓ 已收藏':''),saved?'':'green',()=>favoriteAction(async()=>{await store.add(list.id,favoritePending);favoriteSelected=list.id;$('favoritePicker').close();toast('已收藏到「'+list.name+'」');refreshFavorites();}));b.disabled=saved||!store.ready;$('favoriteTargets').append(b);}if(!$('favoriteTargets').children.length)$('favoriteTargets').textContent='先建立一份喜歡的清單。';}
-  function favoriteName(mode){favoriteAction(()=>{favoritesReady();favoriteNameMode=mode;$('favoriteNameTitle').textContent=mode==='rename'?'清單改名':'新建清單';$('favoriteNameInput').value=mode==='rename'?activeFavorite().name:'';$('favoriteNameDialog').showModal();$('favoriteNameInput').focus();});}
-  $('openFavorites').onclick=()=>favoriteAction(()=>{renderFavorites();$('favoritesDialog').showModal();});
+  function favoriteName(mode){favoriteAction(()=>{favoritesReady();favoriteNameMode=mode;$('favoriteNameTitle').textContent=mode==='rename'?'清單改名':'新建清單';$('favoriteNameInput').value=mode==='rename'?activeFavorite().name:'';openDialog($('favoriteNameDialog'));$('favoriteNameInput').focus();});}
+  $('openFavorites').onclick=()=>favoriteAction(()=>{renderFavorites();openDialog($('favoritesDialog'));});
   $('closeFavorites').onclick=()=>$('favoritesDialog').close();$('closeFavoritePicker').onclick=()=>$('favoritePicker').close();
   $('newFavorite').onclick=()=>favoriteName('create');$('newFavoriteTarget').onclick=()=>favoriteName('collect');$('renameFavorite').onclick=()=>favoriteName('rename');
   $('cancelFavoriteName').onclick=()=>$('favoriteNameDialog').close();
@@ -468,11 +531,12 @@
   window.addEventListener('storage',e=>{if(e.key===favoriteStore?.key||e.key===null)refreshFavorites();});
 
   renderFilters();renderCatalog();renderQueue();updateCloudUI();
-  if(new URLSearchParams(location.search).get('setup')==='1')$('cloudDialog').showModal();
+  if(new URLSearchParams(location.search).get('setup')==='1')openDialog($('cloudDialog'));
 </script>
 <script type="module">import('./cloud.js?v=20261030rooms1').then(()=>import('./room-sync.js?v=1')).then(()=>{window.KTV_ROOM_READY();import('./favorites-cloud.js?v=1').catch(error=>{console.error('Favorites module failed',error);$('favoriteCloudStatus').textContent='雲端最愛程式未能載入，請重新整理。';});}).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
 </body>
 </html>
+
 
 
 
