@@ -1,6 +1,31 @@
 # 周蕙歷年專輯 KTV 收錄進度
 
-最後更新：2026-11-01（Asia/Taipei）。此處統計 **GitHub 歌曲資料及候選影片**，不代表 Firestore 已匯入，也不代表 YouTube 影片已通過 KTV 內嵌播放。
+最後更新：2026-11-02（Asia/Taipei）。此處統計 **GitHub 歌曲資料及候選影片**，不代表 Firestore 已匯入，也不代表 YouTube 影片已通過 KTV 內嵌播放。
+
+## 2026-11-02 上午：官方 MV／歌詞影片增補與〈當歸〉曲長查證
+
+- 已讀取 GitHub 最新 `index.html`、`chou-hui-song-pack.js`、`cloud.js`、`chou-hui-verify.js` 及既有進度。沒有管理者 Google 登入工作階段，**本輪未寫入 Firestore，也不能獨立查證雲端周蕙歌曲數量**。
+- 以 YouTube 直接顯示的頻道與標題核對 **4 首新候選**：福茂唱片官方 MV〈瞬間〉、〈我很快樂〉；華研國際官方歌詞版 MV〈偶然〉；周蕙官方藝人頻道的〈我不是你的唯一〉（唱片公司自動生成音源，**非 MV**，僅作備案）。各候選都有獨立影片 ID，沒有採用串燒或翻唱版本。
+- **未採用**華研官方〈再看我一眼 X 愛的路上我和你 X 今天不回家〉三曲合輯 MV（https://www.youtube.com/watch?v=Xgu8HXOh364）：它包含三首，不能當成任一首的獨立完整歌曲影片，避免切歌後誤播。
+- 〈當歸〉於日本正式串流平台 AWA 的單曲頁列出 **4:10（250 秒）**，與 Apple Music 約 4 分鐘相容；先前次級來源另有 4:13 的差異。現暫以 AWA 的 250 秒作**候選曲長比對基準**，正式 IFrame 仍須核對影片實長、上傳者、歌名與實際播放進度，**未通過不得標記 verified**。
+- 更新 `chou-hui-song-pack.js` 與 `index.html` 快取版本，讓重新整理後的網站取得新候選；沒有變更其他歌手、OST、Firestore 規則或已存在歌曲。
+- 資料結構檢查：**15 張專輯／EP／精選、133 首不重複歌曲、52 個互不重複的官方影片候選、52 首有曲長基準、81 首尚無獨立官方 YouTube 候選**。全部候選仍是 `embedding: pending`、`contentVerified: false`，**本輪新增 verified：0、匯入 Firestore：0**。
+
+### 2026-11-02 新增的 4 部官方 YouTube 候選（尚未正式 IFrame 實播）
+
+- 〈瞬間〉— **福茂唱片官方 MV**（2012-02-15），https://www.youtube.com/watch?v=PmgDhpNfYwY；歌曲基準 4:20，字幕軌待查。
+- 〈我很快樂〉— **福茂唱片官方 MV**（2012-02-15），https://www.youtube.com/watch?v=LD7s0FnKyqM；歌曲基準 3:38，字幕軌待查。
+- 〈偶然〉— **華研國際官方歌詞版 MV**（2018-06-27），https://www.youtube.com/watch?v=K0xrd_YD0C0；畫面有歌詞版標示，不等於已確認 YouTube 字幕軌，歌曲基準 4:11。
+- 〈我不是你的唯一〉— **周蕙官方藝人頻道自動生成音源**（2021-04-12 上架，原曲 2011-10-21），https://www.youtube.com/watch?v=LSWWAe52CBA；歌曲基準 5:18，暫作無 MV 備案。
+
+### 2026-11-02 曲長補證
+
+- 〈當歸〉— AWA 單曲頁 4:10：https://s.awa.fm/track/8f7a3d12acfff86ce572
+- 〈當歸〉— Apple Music 2015-10-26 單曲頁（僅顯示約 4 分鐘）：https://music.apple.com/us/album/%E7%95%B6%E6%AD%B8-single/1058293493
+
+**後續優先順序**：繼續找 81 首沒有獨立官方候選的曲目，優先官方 MV／歌詞影片，再考慮官方音源；逐首確認字幕與正式網站 IFrame 影片時長及播放進度。若要把通過驗證的歌曲寫入雲端，須由已授權的 Google 管理者登入網站操作；即使 GitHub 資料已更新，也不代表 Firestore 已同步。
+
+---
 
 ## 2026-11-01 晚間增補（4 部官方 MV、1 部官方歌詞影片）
 
