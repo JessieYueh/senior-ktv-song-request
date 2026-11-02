@@ -10,6 +10,25 @@
 
 最後更新：2026-11-02（Asia/Taipei）。此處統計 **GitHub 歌曲資料及候選影片**，不代表 Firestore 已匯入，也不代表 YouTube 影片已通過 KTV 內嵌播放。
 
+## 2026-11-02 下午：四部官方影片候選及字幕來源核對
+
+- 已重新讀取最新 `index.html`、`chou-hui-song-pack.js`、`cloud.js`、`chou-hui-verify.js` 與既有紀錄。遵守使用者 2026-11-02 指示：**點歌本不再顯示周蕙驗證區塊、候選連結、進度與匯入按鈕**，本次僅調整歌曲資料、快取版本及此管理進度檔，未恢復任何驗證 UI。
+- 官方 YouTube 影片頁核對 4 部新增候選：福茂唱片〈收藏〉、〈流域〉官方 MV，福茂唱片〈空白〉官方上傳影片（頁面未足以判定 MV 類型，故僅標 `official_video`），以及周蕙 Official Artist Channel〈守護者〉自動生成官方音源（**非 MV，僅備案**）。
+- 官方華研國際〈我看見的世界〉MV 影片說明明確列出**繁體中文、簡體中文及英文 CC** 選項；已註記官方說明提供字幕，但**沒有實際於 KTV IFrame 檢查字幕可用性**，不得將此視為實播驗證。
+- 所有新增候選已附官方來源、影片 ID、歌曲曲長參考及待辦；**尚未實測實際 YouTube 影片時長、可嵌入性、播放進度或字幕顯示**，故全部維持 `embedding: pending`、`contentVerified: false`、`durationSeconds: null`。不能僅憑 YouTube 可開啟或串流平台歌曲長度就宣稱已通過。
+- 資料一致性檢查：**15 張專輯／EP／精選、133 首不重複曲目、56 個互不重複影片 ID、56 部候選有歌曲曲長參考、77 首尚無獨立官方候選**；本輪新增 verified **0**、Firestore 匯入 **0**。無管理者登入工作階段，無法核對 Firestore 實際歌曲數量；沒有覆蓋既有歌曲、分類或 Firestore 資料。
+- 下一輪優先：繼續查找 77 首缺少官方獨立影片的曲目（MV／歌詞版優先）；有音源備案的仍優先尋找字幕 MV；正式管理端需實際 IFrame 試播、時長與播放進度檢查後，才能標記 verified 並由已授權管理者執行**僅新增缺少歌曲**的雲端匯入。
+
+### 本輪新增 4 部官方候選（未通過 IFrame 實播）
+
+- 〈空白〉— 福茂唱片官方上傳影片（2012-02-15），https://www.youtube.com/watch?v=VD7ZGCV4TsE；影片說明列出詞曲與周蕙演唱，是否 MV／字幕待查，歌曲曲長參考 3:30。
+- 〈收藏〉— 福茂唱片官方版 MV（2012-02-15），https://www.youtube.com/watch?v=kYszcUoAdso；曲長參考 4:08，字幕待查。
+- 〈流域〉— 福茂唱片官方版 MV（2012-02-15），https://www.youtube.com/watch?v=DJhtdeXMuiI；曲長參考 4:27，字幕待查。
+- 〈守護者〉— 周蕙 Official Artist Channel 自動生成官方音源（2021-04-13 上架，原曲 2009-06-19），https://www.youtube.com/watch?v=5-thqSG2z8w；曲長參考 4:28，非 MV，字幕待查。
+- 〈我看見的世界〉**既有候選字幕來源補證**— 華研國際官方 MV（2013-10-06），https://www.youtube.com/watch?v=uSF8M1jZ-Zk；影片說明提供繁體中文／簡體中文／英文 CC，未實測 KTV 顯示。
+
+---
+
 ## 2026-11-02 上午：官方 MV／歌詞影片增補與〈當歸〉曲長查證
 
 - 已讀取 GitHub 最新 `index.html`、`chou-hui-song-pack.js`、`cloud.js`、`chou-hui-verify.js` 及既有進度。沒有管理者 Google 登入工作階段，**本輪未寫入 Firestore，也不能獨立查證雲端周蕙歌曲數量**。
