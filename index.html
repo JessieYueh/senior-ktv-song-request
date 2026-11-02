@@ -70,6 +70,13 @@
     #singerDialog .content{padding:16px}#allSingers{margin:14px 0;min-height:52px}
     #singerList{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;max-height:52vh;max-height:52dvh;overflow-y:auto;overscroll-behavior:contain;padding:4px}
     #singerList .btn{min-height:62px;font-size:23px;overflow-wrap:anywhere}
+  
+    #favoritesDialog,#favoritePicker{width:min(1000px,calc(100% - 20px));padding:0}
+    .favoriteTools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.favoriteTools .btn{font-size:18px;min-height:48px}
+    #favoriteLists,#favoriteTargets{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}#favoriteLists .btn,#favoriteTargets .btn{min-height:56px}
+    #favoriteSongs{max-height:46vh;max-height:46dvh;overflow:auto;overscroll-behavior:contain}
+    #favoriteSongs .songActions{flex-wrap:wrap}#songList .songActions{flex-wrap:wrap}
+    @media(max-width:600px){#songList .songActions{width:100%}#favoriteSongs .songActions .btn{min-height:46px}}
   </style>
 </head>
 <body>
@@ -86,7 +93,7 @@
     </section>
     <section class="panel catalogPanel" aria-label="點歌區">
       <nav class="tabs" aria-label="歌單頁籤"><button class="tab active" id="catalogTab" aria-selected="true">📖 點歌本</button><button class="tab" id="queueTab" aria-selected="false">🎵 已點歌曲 <span id="queueCount">0</span></button></nav>
-      <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="語言分類"></div><div class="singerToolbar"><button class="btn primary" id="chooseSinger">🎤 選歌手</button><button class="chip" id="ostCategory">2026 陸劇 OST</button><button class="chip active" id="singerSelection" hidden></button></div><div class="bookTools"><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint" hidden></p></div></div><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
+      <div id="catalogPane"><div class="content"><div class="search"><input id="search" type="search" placeholder="搜尋歌名或歌手" aria-label="搜尋歌名或歌手"><button class="btn" id="clearBtn">清除</button></div><div class="filters" id="filters" aria-label="語言分類"></div><div class="singerToolbar"><button class="btn" id="openFavorites">♡ 我的最愛</button><button class="btn primary" id="chooseSinger">🎤 選歌手</button><button class="chip" id="ostCategory">2026 陸劇 OST</button><button class="chip active" id="singerSelection" hidden></button></div><div class="bookTools"><div class="sortBar" aria-label="歌本排序"><label>排序欄位<select id="sortField"><option value="title">歌名</option><option value="artist">歌手</option><option value="strokes">歌名首字筆畫</option></select></label><label>排序方式<select id="sortDirection"><option value="asc">↑ 遞增</option><option value="desc">↓ 遞減</option></select></label><span class="sortHint">中文依筆畫排序</span></div><div class="categoryActions"><button class="btn green" id="addCategoryBtn">＋ 全部點歌</button><p id="categoryAddHint" hidden></p></div></div><section id="ostImport" class="cloudAdmin" hidden><strong>2026 陸劇 OST</strong><p id="ostStatus" role="status"></p><button class="btn green" id="importOST" hidden>＋ 將已驗證歌曲加入雲端</button></section><nav id="strokeJump" aria-label="筆畫快速選擇" hidden></nav><div class="list" id="songList"></div></div><div class="foot"><button class="btn" id="cloudBtn">☁ 雲端歌本</button><button class="btn" id="manageBtn" aria-expanded="false">⚙ 管理歌本</button><button class="btn adminOnly" id="addBtn">＋ 新增歌曲</button><button class="btn adminOnly" id="batchBtn">📋 批次加入歌單</button></div></div>
       <div class="cloudLine"><div id="cloudStatus" role="status" aria-live="polite">☁ 正在連接雲端歌本；目前顯示預設歌曲</div></div><div class="queueTools"><span>上下滑動查看待唱</span><button class="btn" id="expandQueue">⛶ 放大清單</button></div><div id="queuePane" hidden><div class="content"><div class="list" id="queueList"></div></div></div>
     </section>
   </div>
@@ -102,6 +109,11 @@
 <dialog id="nextDialog"><h2>要播放下一首嗎？</h2><p id="nextMessage"></p><menu><button class="btn" id="cancelNext">繼續唱</button><button class="btn orange" id="confirmNext" autofocus>確定切歌</button></menu></dialog>
 <dialog id="cloudDialog"><h2>☁ 帳號與裝置</h2><p id="cloudDetail"></p><p id="cloudUser"></p><div class="quickActions"><button class="btn primary" id="cloudLoginBtn">Google 管理登入</button><button class="btn" id="cloudLogoutBtn" hidden>登出</button><button class="btn" id="retryCloudBtn">重新連線</button></div><p id="adminHint"></p><section id="deviceManager" hidden><h3>家人裝置授權</h3><p>先與家人核對裝置代碼再核准；請使用「客廳平板」等暱稱，不填姓名或 Email。</p><p id="deviceManagerError" role="status"></p><div id="deviceList"></div><p><a href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank" rel="noopener">開啟 Google 帳號兩步驟驗證設定 ↗</a></p><p class="helper">須由你本人完成設定；本網站不能替你開啟或確認 Google 帳號是否已啟用兩步驟驗證。</p></section><menu><button class="btn" id="closeCloudBtn">關閉</button></menu></dialog>
 <div id="toast" role="status" hidden></div>
+
+<dialog id="favoritesDialog" aria-labelledby="favoritesTitle"><div class="bookHeader"><h2 id="favoritesTitle">♡ 我的最愛</h2><button class="btn" id="closeFavorites">關閉</button></div><div class="content"><p class="helper">清單保存在這台裝置的瀏覽器，暫不跨裝置同步。可替不同家人建立清單；清除網站資料會刪除清單。</p><button class="btn primary" id="newFavorite">＋ 新建清單</button><div id="favoriteLists" aria-label="選擇最愛清單"></div><h3 id="favoriteHeading"></h3><div class="favoriteTools" id="favoriteTools"><button class="btn green" id="playFavorite">＋ 全部點歌</button><button class="btn" id="renameFavorite">改名</button><button class="btn red" id="deleteFavorite">刪除清單</button><button class="btn" id="addFavoriteSongs">＋ 從歌本收藏</button></div><p id="favoritePlan" role="status"></p><div id="favoriteSongs"></div></div></dialog>
+<dialog id="favoritePicker" aria-labelledby="favoritePickerTitle"><div class="bookHeader"><h2 id="favoritePickerTitle">收藏到清單</h2><button class="btn" id="closeFavoritePicker">取消</button></div><div class="content"><p id="favoriteSongLabel"></p><div id="favoriteTargets"></div><button class="btn primary" id="newFavoriteTarget">＋ 新建清單並收藏</button></div></dialog>
+<dialog id="favoriteNameDialog" aria-labelledby="favoriteNameTitle"><form id="favoriteNameForm"><h2 id="favoriteNameTitle">新建清單</h2><label for="favoriteNameInput">清單名稱</label><input id="favoriteNameInput" maxlength="40" required placeholder="例如：爸爸愛唱、媽媽台語歌"><menu><button type="button" class="btn" id="cancelFavoriteName">取消</button><button type="submit" class="btn green">儲存</button></menu></form></dialog>
+<script src="favorites.js?v=1"></script>
 <script src="catalog-sort.js?v=1"></script>
 <script src="stroke-sort.js?v=1"></script>
 <script src="playback.js?v=4"></script>
@@ -151,7 +163,7 @@
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){$('cloudDialog').showModal();throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
-  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];if($('singerDialog').open)renderSingerChoices();renderCatalog();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
+  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];if($('singerDialog').open)renderSingerChoices();renderCatalog();refreshFavorites();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
   let previousAccess=false;
   function updateCloudUI(){
     const c=cloudState,allowed=c.access===true;
@@ -160,6 +172,7 @@
     $('ktvMain').hidden=!allowed;$('accessGate').hidden=allowed;
     if(previousAccess&&!allowed){queue=[];current=null;playback.stop();playerNotice('');$('openYouTubeBtn').hidden=true;$('currentTitle').textContent='尚未點歌';$('currentArtist').textContent='請先授權此裝置';document.querySelectorAll('dialog[open]').forEach(d=>d.close());renderQueue();}
     previousAccess=allowed;
+    refreshFavorites();
     const status=!allowed?'尚未取得歌本使用權限':c.error?'☁ 雲端尚未同步：'+c.error:c.readReady?'☁ 雲端歌本已同步 · '+c.count+' 首':'☁ 正在載入雲端歌本…';
     $('cloudStatus').textContent=status;$('cloudDetail').textContent=status;
     $('cloudUser').textContent=c.admin?'已登入管理帳號':c.user?.anonymous?'此裝置已使用匿名身分登入':c.user?'此 Google 帳號未取得管理權限':'尚未登入';
@@ -344,10 +357,10 @@
   $('cancelCategory').onclick=()=>{$('categoryDialog').close();pendingCategory=[];};
   $('confirmCategory').onclick=async()=>{const additions=prepareCategory(pendingCategory).additions;pendingCategory=[];$('categoryDialog').close();if(!additions.length){renderCategoryAdd();return toast('這些歌曲已在待唱中');}const count=additions.length;if(sharedMode()){try{const added=await roomClient.enqueue(additions);toast('已加入包廂待唱 '+added+' 首');}catch(error){toast(cloudError(error));}return;}if(!current)start(additions.shift());queue.push(...additions);renderQueue();renderCategoryAdd();toast('已點唱 '+count+' 首歌曲');};
   function renderCatalog(){renderCategoryAdd();const q=$('search').value.trim().toLocaleLowerCase();const songs=KTVSortSongs(catalog.filter(s=>(matchesCategory(s,category))&&(!q||(s.title+' '+s.artist).toLocaleLowerCase().includes(q))),$('sortField').value,$('sortDirection').value);$('songList').replaceChildren();if(!songs.length){const n=document.createElement('div');n.className='notice';const elsewhere=q&&(category!=='全部'||selectedSinger)&&catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q));n.textContent=elsewhere?'其他分類或歌手有找到歌曲。可清除篩選查看。':q?'歌本裡沒有這首歌。可以到 YouTube 找。':'這個分類還沒有歌曲。';$('songList').append(n);if(elsewhere)n.append(document.createElement('br'),button('查看全部歌曲','primary',()=>{category='全部';selectedSinger='';renderFilters();renderCatalog();}));}const grouped=$('sortField').value==='strokes';$('strokeJump').hidden=!grouped;$('strokeJump').replaceChildren();let last=null;
-    songs.forEach(song=>{const n=KTVStrokeCount(song.title);if(grouped&&n!==last){last=n;const h=document.createElement('h3');h.className='strokeHeading';h.id='stroke-'+n;h.textContent=n?n+' 畫':'英文、數字及其他';$('songList').append(h);$('strokeJump').append(button(n?n+' 畫':'其他','chip',()=>{ $('songList').scrollTop+=h.getBoundingClientRect().top-$('songList').getBoundingClientRect().top; }));}$('songList').append(row(song,[['＋ 點歌','green',()=>addSong(song)],['⋯','adminOnly',()=>openEditor(song)]]));});if(q&&!songs.length&&!catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q))){const box=document.createElement('div');box.className='findOnline';box.append(button('🔎 到 YouTube 找「'+$('search').value.trim()+'」','primary',openQuickAdd));$('songList').append(box);}}
+    songs.forEach(song=>{const n=KTVStrokeCount(song.title);if(grouped&&n!==last){last=n;const h=document.createElement('h3');h.className='strokeHeading';h.id='stroke-'+n;h.textContent=n?n+' 畫':'英文、數字及其他';$('songList').append(h);$('strokeJump').append(button(n?n+' 畫':'其他','chip',()=>{ $('songList').scrollTop+=h.getBoundingClientRect().top-$('songList').getBoundingClientRect().top; }));}$('songList').append(row(song,[['＋ 點歌','green',()=>addSong(song)],['♡ 收藏','',()=>openFavoritePicker(song)],['⋯','adminOnly',()=>openEditor(song)]]));});if(q&&!songs.length&&!catalog.some(s=>(s.title+' '+s.artist).toLocaleLowerCase().includes(q))){const box=document.createElement('div');box.className='findOnline';box.append(button('🔎 到 YouTube 找「'+$('search').value.trim()+'」','primary',openQuickAdd));$('songList').append(box);}}
   function openQuickAdd(){const query=$('search').value.trim();$('quickTitle').value=query;$('quickArtist').value='';$('quickVideo').value='';$('quickDialog').showModal();}
   function openYouTubeSearch(){const term=($('quickTitle').value.trim()||$('search').value.trim())+' 官方 MV 歌詞';window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(term),'_blank','noopener');}
-  function renderQueue(){renderCategoryAdd(); $('queueCount').textContent=queue.length;$('queueBadge').textContent='待唱 '+queue.length+' 首';$('queueList').replaceChildren();if(!queue.length){const n=document.createElement('div');n.className='notice';n.textContent='還沒有待唱歌曲。回到點歌本，按「＋ 點歌」。';$('queueList').append(n);}queue.forEach((song,i)=>$('queueList').append(row({...song,title:(i+1)+'. '+song.title},[['優先','',()=>{if(sharedMode())return roomAction(()=>roomClient.editEntry(song._roomEntry,'priority'));queue.splice(i,1);queue.unshift(song);renderQueue();toast('已排到下一首');}],['移除','red',()=>{if(sharedMode())return roomAction(()=>roomClient.editEntry(song._roomEntry,'remove'));queue.splice(i,1);renderQueue();toast('已移除歌曲');}]])));}
+  function renderQueue(){refreshFavorites();renderCategoryAdd(); $('queueCount').textContent=queue.length;$('queueBadge').textContent='待唱 '+queue.length+' 首';$('queueList').replaceChildren();if(!queue.length){const n=document.createElement('div');n.className='notice';n.textContent='還沒有待唱歌曲。回到點歌本，按「＋ 點歌」。';$('queueList').append(n);}queue.forEach((song,i)=>$('queueList').append(row({...song,title:(i+1)+'. '+song.title},[['優先','',()=>{if(sharedMode())return roomAction(()=>roomClient.editEntry(song._roomEntry,'priority'));queue.splice(i,1);queue.unshift(song);renderQueue();toast('已排到下一首');}],['移除','red',()=>{if(sharedMode())return roomAction(()=>roomClient.editEntry(song._roomEntry,'remove'));queue.splice(i,1);renderQueue();toast('已移除歌曲');}]])));}
   function searchVideo(song){window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(song.title+' '+song.artist+' 官方 MV 歌詞'),'_blank','noopener');}
   function showVideo(){playbackStarted=false;if(sharedMode()&&(roomState.mode!=='tv'||!roomState.host||!roomState.armed)){playback.stop();return;}const id=validId(vocal?(current?.vocalId||current?.videoId):current?.videoId);$('openYouTubeBtn').hidden=!id;$('retryVideoBtn').hidden=!id;playerNotice('');if(!current){playback.stop();return;}if(!id){playback.stop();const box=document.createElement('div');box.className='emptyVideo';box.innerHTML='<strong>這首歌還沒有設定影片</strong><span>可以搜尋 MV／歌詞，找到後貼回歌本</span><br><br>';box.append(button('🔎 搜尋 MV／歌詞','primary',()=>searchVideo(current)),' ',button('貼上影片網址','',()=>openEditor(current)));$('video').replaceChildren(box);return;}playerNotice('影片準備中，請稍候…',true);playback.play(id,current.title,KTVGetSegment(current,id));}
   function start(song){current=song;vocal=false;$('currentTitle').textContent=song.title;$('currentArtist').textContent=song.artist;$('modeBtn').textContent='🎬 切換版本';showVideo();toast('現在播放：'+song.title);}
@@ -411,11 +424,51 @@
   window.KTV_ROOM_READY=()=>{roomClient=new KTVRoomClient(window.KTV_CLOUD.roomContext(),{onState(state){const old=roomState.mode;roomState=state;if(state.mode==='local'&&old!=='local')resetLocalPlayer();if(state.mode!=='local'&&old==='local')resetLocalPlayer();updateRoomUI();applyRoomState();scheduleHouImport();},onError(error){$('roomError').textContent='包廂同步未完成：'+cloudError(error)+' 若尚未啟用包廂，請管理者發布新版 Firestore 規則。';},onHostLost(){playback.stop();playerNotice('');$('roomError').textContent='電視播放權已失效，已停止此裝置播放。請重新接手電視播放。';}});updateRoomUI();maybeJoinRoomLink();scheduleHouImport();};
   window.KTV_ROOM_FAILED=()=>{$('roomError').textContent='包廂程式未能載入，請重新整理。原本單機點歌仍可使用。';};
 
+
+  let favoriteStore=null,favoriteUid='',favoriteSelected='',favoritePending=null,favoriteNameMode='create',favoriteBusy=false;
+  function favoritesReady(){
+    if(!cloudState.access||!cloudState.user?.uid)throw Error('請先取得裝置授權。');
+    if(favoriteUid!==cloudState.user.uid){favoriteUid=cloudState.user.uid;favoriteSelected='';favoriteStore=new KTVFavorites.Store(localStorage,favoriteUid);}
+    return favoriteStore;
+  }
+  function favoriteAction(fn){try{return fn();}catch(error){toast(error.message||'無法更新最愛清單');return null;}}
+  function activeFavorite(){const lists=favoritesReady().read();return lists.find(l=>l.id===favoriteSelected)||lists[0];}
+  function refreshFavorites(){if(!cloudState.access){favoriteStore=null;favoriteUid='';favoriteSelected='';favoritePending=null;return;}if($('favoritesDialog').open)favoriteAction(renderFavorites);if($('favoritePicker').open&&favoritePending)favoriteAction(renderFavoriteTargets);}
+  function renderFavorites(){
+    const store=favoritesReady(),lists=store.read();const list=lists.find(l=>l.id===favoriteSelected)||lists[0];favoriteSelected=list?.id||'';
+    $('favoriteLists').replaceChildren();for(const l of lists){const b=button(l.name+'（'+l.songs.length+'）',l.id===favoriteSelected?'primary':'',()=>{favoriteSelected=l.id;favoriteAction(renderFavorites);});b.setAttribute('aria-pressed',String(l.id===favoriteSelected));$('favoriteLists').append(b);}
+    $('favoriteHeading').textContent=list?list.name+' · '+list.songs.length+' 首':'還沒有最愛清單';$('favoriteTools').hidden=!list;$('favoriteSongs').replaceChildren();$('favoritePlan').textContent='';
+    if(!list){$('favoriteSongs').textContent='按「新建清單」，或從歌本按「♡ 收藏」開始。';return;}
+    const entries=KTVFavorites.resolve(list,catalog),available=entries.filter(e=>e.song).map(e=>e.song),plan=prepareCategory(available),missing=entries.filter(e=>!e.song).length;
+    $('playFavorite').disabled=favoriteBusy||!cloudState.readReady||!plan.additions.length;
+    $('playFavorite').textContent='＋ 全部點歌（'+plan.additions.length+' 首）';
+    $('favoritePlan').textContent=(!cloudState.readReady?'正在同步歌本，請稍候。':('依清單順序加入'+(sharedMode()?'包廂待唱':'待唱')+'。'+(plan.duplicate?'已點歌曲 '+plan.duplicate+' 首略過。':'')+(missing+plan.unavailable?'暫無法點唱 '+(missing+plan.unavailable)+' 首。':'')));
+    if(!entries.length)$('favoriteSongs').textContent='清單還沒有歌曲，按「從歌本收藏」開始選歌。';
+    entries.forEach(({ref,song},i)=>{const r=row(song||{...ref,title:ref.title+'（歌本已無此歌）'},[['＋ 點歌','green',()=>addSong(song)],['↑ 上移','',()=>favoriteAction(()=>{store.move(list.id,ref.key,-1);renderFavorites();})],['↓ 下移','',()=>favoriteAction(()=>{store.move(list.id,ref.key,1);renderFavorites();})],['移除','red',()=>favoriteAction(()=>{store.removeSong(list.id,ref.key);renderFavorites();})]]);const buttons=r.querySelectorAll('button');buttons[0].disabled=!song||!validId(song.videoId)||!cloudState.readReady;buttons[1].disabled=i===0;buttons[2].disabled=i===entries.length-1;$('favoriteSongs').append(r);});
+  }
+  function openFavoritePicker(song){favoriteAction(()=>{favoritesReady();favoritePending=song;renderFavoriteTargets();$('favoritePicker').showModal();});}
+  function renderFavoriteTargets(){const store=favoritesReady();$('favoriteSongLabel').textContent=favoritePending.title+' · '+favoritePending.artist;$('favoriteTargets').replaceChildren();const key=KTVFavorites.keyOf(favoritePending);for(const list of store.read()){const saved=list.songs.some(s=>s.key===key);const b=button(list.name+(saved?' ✓ 已收藏':''),saved?'':'green',()=>favoriteAction(()=>{store.add(list.id,favoritePending);favoriteSelected=list.id;$('favoritePicker').close();toast('已收藏到「'+list.name+'」');refreshFavorites();}));b.disabled=saved;$('favoriteTargets').append(b);}if(!$('favoriteTargets').children.length)$('favoriteTargets').textContent='先建立一份喜歡的清單。';}
+  function favoriteName(mode){favoriteAction(()=>{favoritesReady();favoriteNameMode=mode;$('favoriteNameTitle').textContent=mode==='rename'?'清單改名':'新建清單';$('favoriteNameInput').value=mode==='rename'?activeFavorite().name:'';$('favoriteNameDialog').showModal();$('favoriteNameInput').focus();});}
+  $('openFavorites').onclick=()=>favoriteAction(()=>{renderFavorites();$('favoritesDialog').showModal();});
+  $('closeFavorites').onclick=()=>$('favoritesDialog').close();$('closeFavoritePicker').onclick=()=>$('favoritePicker').close();
+  $('newFavorite').onclick=()=>favoriteName('create');$('newFavoriteTarget').onclick=()=>favoriteName('collect');$('renameFavorite').onclick=()=>favoriteName('rename');
+  $('cancelFavoriteName').onclick=()=>$('favoriteNameDialog').close();
+  $('favoriteNameForm').onsubmit=e=>{e.preventDefault();favoriteAction(()=>{const store=favoritesReady(),name=$('favoriteNameInput').value;if(favoriteNameMode==='rename')store.rename(favoriteSelected,name);else favoriteSelected=store.create(name,favoriteNameMode==='collect'?favoritePending:null);$('favoriteNameDialog').close();if(favoriteNameMode==='collect')$('favoritePicker').close();refreshFavorites();toast(favoriteNameMode==='collect'?'清單已建立並收藏歌曲':'清單已儲存');});};
+  $('deleteFavorite').onclick=()=>favoriteAction(()=>{const l=activeFavorite();if(!confirm('刪除「'+l.name+'」及其中 '+l.songs.length+' 首收藏？歌本與已點歌曲會保留。'))return;favoritesReady().remove(l.id);favoriteSelected='';renderFavorites();toast('已刪除清單');});
+  $('addFavoriteSongs').onclick=()=>{$('favoritesDialog').close();switchTab('catalog');};
+  $('playFavorite').onclick=async()=>{
+    if(favoriteBusy)return;let list,plan;try{if(!cloudState.readReady)throw Error('請等候雲端歌本載入完成。');list=activeFavorite();plan=prepareCategory(KTVFavorites.resolve(list,catalog).filter(e=>e.song).map(e=>e.song));}catch(e){toast(e.message);return;}
+    if(!plan.additions.length)return toast('沒有可加入的歌曲');favoriteBusy=true;$('playFavorite').disabled=true;
+    try{if(sharedMode()){const count=await roomClient.enqueue(plan.additions);toast('「'+list.name+'」已加入包廂待唱 '+count+' 首');}else{if(!cloudState.access)throw Error('請先取得裝置授權');const count=plan.additions.length;if(!current)start(plan.additions.shift());queue.push(...plan.additions);renderQueue();toast('「'+list.name+'」已點唱 '+count+' 首');}}catch(error){toast(cloudError(error));}finally{favoriteBusy=false;favoriteAction(renderFavorites);}
+  };
+  window.addEventListener('storage',e=>{if(e.key===favoriteStore?.key||e.key===null)refreshFavorites();});
+
   renderFilters();renderCatalog();renderQueue();updateCloudUI();
   if(new URLSearchParams(location.search).get('setup')==='1')$('cloudDialog').showModal();
 </script>
 <script type="module">import('./cloud.js?v=20261030rooms1').then(()=>import('./room-sync.js?v=1')).then(()=>window.KTV_ROOM_READY()).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
 </body>
 </html>
+
 
 

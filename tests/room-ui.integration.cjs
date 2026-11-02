@@ -3,7 +3,7 @@ const {JSDOM}=require('jsdom'),fs=require('fs'),path=require('path'),assert=requ
 const base=path.join(__dirname,'..'),html=fs.readFileSync(path.join(base,'index.html'),'utf8');const dom=new JSDOM(html,{url:'https://jessieyueh.github.io/senior-ktv-song-request/',runScripts:'outside-only'}),w=dom.window,d=w.document,played=[],commands=[],added=[],resumes=[];
 w.confirm=()=>true;w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};
 w.KTVPlayback=class{constructor(){this.ready=true;}play(id){played.push(id);}stop(){}resume(){resumes.push(true);}setPaused(){}toggle(){return true;}};
-for(const name of ['catalog-sort.js','stroke-sort.js','ost-2026.js','mandarin-song-pack.js','qrcode.js'])w.eval(fs.readFileSync(path.join(base,name),'utf8'));
+for(const name of ['favorites.js','catalog-sort.js','stroke-sort.js','ost-2026.js','mandarin-song-pack.js','qrcode.js'])w.eval(fs.readFileSync(path.join(base,name),'utf8'));
 w.eval(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
 const songs=[{_cloudId:'s1',title:'一剪梅',artist:'費玉清',lang:'國語',videoId:'obiNJajbHdw',vocalId:'e9U249EPq_M'},{_cloudId:'s2',title:'家後',artist:'江蕙',lang:'台語',videoId:'W35whQb6wE4',vocalId:'SnEko_SIf3U'}];
 w.KTV_CLOUD={roomContext:()=>({}),explain:e=>e.message};w.KTV_APP.setCloudSongs(songs);w.KTV_APP.setCloudState({access:true,readReady:true,authReady:true,admin:false,user:{uid:'device',anonymous:true},count:2});
@@ -19,3 +19,4 @@ const beforeHeartbeat=played.length;w.testRoom.emit();assert.equal(played.length
 w.KTV_APP.setCloudState({access:false,readReady:false,authReady:true,admin:false,user:{uid:'device',anonymous:true},count:0});await flush();assert.ok(d.getElementById('ktvMain').hidden);assert.equal(d.getElementById('queueCount').textContent,'0');assert.ok(!d.body.classList.contains('tvMode'));
 assert.ok(d.getElementById('filters').textContent.includes('國語'));console.log('PASS local/phone/TV UI flows, no phone playback, QR, mode switching, no heartbeat replay, access revocation');dom.window.close();
 })().catch(e=>{console.error(e);process.exitCode=1;});
+
