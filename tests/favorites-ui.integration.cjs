@@ -4,6 +4,11 @@ const base=path.join(__dirname,'..'),html=fs.readFileSync(path.join(base,'index.
 w.confirm=()=>true;w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};
 w.KTVPlayback=class{constructor(){this.ready=true;}play(id){played.push(id);}stop(){}resume(){resumes.push(true);}setPaused(){}toggle(){return true;}};
 for(const name of ['favorites.js','catalog-sort.js','stroke-sort.js','ost-2026.js','mandarin-song-pack.js','qrcode.js'])w.eval(fs.readFileSync(path.join(base,name),'utf8'));
+w.KTVFavoritesCloud=class extends w.KTVFavorites.Store {
+ constructor(ctx,change){super(w.localStorage,'cloud-test');this.ready=true;this.changeUI=change;}
+ require(){return 'device';}close(){}
+};
+for(const method of ['create','rename','add','move','removeSong','remove']){w.KTVFavoritesCloud.prototype[method]=async function(...args){const result=w.KTVFavorites.Store.prototype[method].apply(this,args);setImmediate(()=>this.changeUI());return result;};}
 w.eval(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
 const songs=[{_cloudId:'s1',title:'一剪梅',artist:'費玉清',lang:'國語',videoId:'obiNJajbHdw',vocalId:'e9U249EPq_M'},{_cloudId:'s2',title:'家後',artist:'江蕙',lang:'台語',videoId:'W35whQb6wE4',vocalId:'SnEko_SIf3U'}];
 w.KTV_CLOUD={roomContext:()=>({}),explain:e=>e.message};w.KTV_APP.setCloudSongs(songs);w.KTV_APP.setCloudState({access:true,readReady:true,authReady:true,admin:false,user:{uid:'device',anonymous:true},count:2});
@@ -13,17 +18,17 @@ w.KTVRoomClient=FakeRoom;w.KTV_ROOM_READY();
 
 const saveName=(name)=>{d.getElementById('favoriteNameInput').value=name;d.getElementById('favoriteNameForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));};
 const collect=title=>[...d.querySelectorAll('#songList .song')].find(el=>el.querySelector('.songTitle').textContent===title).querySelectorAll('button')[1].click();
-collect('一剪梅');click('newFavoriteTarget');saveName('爸爸愛唱');
+collect('一剪梅');click('newFavoriteTarget');saveName('爸爸愛唱');await flush();
 click('openFavorites');assert.match(d.getElementById('favoriteHeading').textContent,/爸爸愛唱.*1/);
-click('renameFavorite');saveName('爸爸金曲');click('closeFavorites');collect('家後');d.querySelector('#favoriteTargets button').click();click('openFavorites');
+click('renameFavorite');saveName('爸爸金曲');await flush();click('closeFavorites');collect('家後');d.querySelector('#favoriteTargets button').click();await flush();click('openFavorites');
 assert.equal(d.querySelectorAll('#favoriteSongs .song').length,2);
-d.querySelectorAll('#favoriteSongs .song')[1].querySelectorAll('button')[1].click();assert.match(d.querySelector('#favoriteSongs .songTitle').textContent,/家後/);
+d.querySelectorAll('#favoriteSongs .song')[1].querySelectorAll('button')[1].click();await flush();assert.match(d.querySelector('#favoriteSongs .songTitle').textContent,/家後/);
 click('playFavorite');await flush();assert.equal(d.getElementById('currentTitle').textContent,'家後');assert.equal(d.getElementById('queueCount').textContent,'1');assert.equal(d.getElementById('playFavorite').disabled,true);
 click('closeFavorites');click('roomJoinBtn');d.getElementById('roomInput').value='12345678';click('roomJoinPhone');await flush();const before=played.length;
 click('openFavorites');click('playFavorite');await flush();assert.deepEqual(added.map(s=>s.title),['家後']);assert.equal(played.length,before,'favorite batch on phone must not play locally');
-d.querySelector('#favoriteSongs .song').querySelectorAll('button')[3].click();assert.equal(d.querySelectorAll('#favoriteSongs .song').length,1);
-const persisted=w.localStorage.getItem('happy_ktv_favorites_v1:device');assert.match(persisted,/爸爸金曲/);
-click('deleteFavorite');assert.equal(d.querySelectorAll('#favoriteSongs .song').length,0);assert.equal(JSON.parse(w.localStorage.getItem('happy_ktv_favorites_v1:device')).length,0);
+d.querySelector('#favoriteSongs .song').querySelectorAll('button')[3].click();await flush();assert.equal(d.querySelectorAll('#favoriteSongs .song').length,1);
+const persisted=w.localStorage.getItem('happy_ktv_favorites_v1:cloud-test');assert.match(persisted,/爸爸金曲/);
+click('deleteFavorite');await flush();assert.equal(d.querySelectorAll('#favoriteSongs .song').length,0);assert.equal(JSON.parse(w.localStorage.getItem('happy_ktv_favorites_v1:cloud-test')).length,0);
 assert.equal(songs.length,2,'deleting favorites preserves shared catalog');
 console.log('PASS favorites UI collect/create/rename/reorder/remove/delete, local batch, duplicate skip and remote batch without local playback');w.close();
 })().catch(e=>{console.error(e);process.exitCode=1;});

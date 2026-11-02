@@ -134,6 +134,32 @@ service cloud.firestore {
         allow delete: if false;
       }
     }
+    // favoriteLists/{id}: named family-shared lists, no email/profile data.
+    // songIds: 0..100 document IDs, newline-delimited, each 1..512 chars, no slash.
+    // createdBy/createdAt immutable; all enabled family devices may edit.
+    match /favoriteLists/{listId} {
+      function validFavorite() {
+        let f=request.resource.data;
+        return f.keys().hasAll(['name','songIds','deleted','createdBy','createdAt','updatedBy','updatedAt'])
+          && f.keys().hasOnly(['name','songIds','deleted','createdBy','createdAt','updatedBy','updatedAt'])
+          && f.name is string && f.name.size()>0 && f.name.size()<=40
+          && f.songIds is string && f.songIds.size()<=51300
+          && f.songIds.matches('^([^/\\n]{1,512}\\n){0,100}$')
+          && f.deleted is bool
+          && f.createdBy is string && f.createdBy.size()>0 && f.createdBy.size()<=128
+          && f.createdAt is timestamp
+          && f.updatedBy == request.auth.uid && f.updatedAt == request.time;
+      }
+      allow read: if canReadSongs();
+      allow create: if canReadSongs() && validFavorite()
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.createdAt == request.time && request.resource.data.deleted == false;
+      allow update: if canReadSongs() && validFavorite()
+        && request.resource.data.createdBy == resource.data.createdBy
+        && request.resource.data.createdAt == resource.data.createdAt
+        && resource.data.deleted == false;
+      allow delete: if false;
+    }
     function validSong() {
       let s = request.resource.data;
       return s.keys().hasAll(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
@@ -163,3 +189,4 @@ service cloud.firestore {
     }
   }
 }
+
