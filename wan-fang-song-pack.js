@@ -14,9 +14,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 266,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -32,9 +33,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 224,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -50,9 +52,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 263,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -68,9 +71,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 304,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -86,9 +90,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 253,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -104,9 +109,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 243,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -122,9 +128,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 310,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -140,9 +147,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 264,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -158,9 +166,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 304,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -176,9 +185,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 196,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   },
   {
@@ -194,9 +204,10 @@ const entries=[
     "metadataVerified": true,
     "embedAllowed": true,
     "durationSeconds": 231,
-    "embedding": "unconfirmed",
-    "contentVerified": false,
-    "subtitles": "官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證",
+    "embedding": "passed",
+    "contentVerified": true,
+    "subtitles": "官方完整版 MV；未逐句核對畫面字幕",
+    "contentCheck": "官方頻道、曲名與完整片長核對；嵌入實播至少2秒，未逐首播放至結尾",
     "checkedAt": "2026-11-03"
   }
 ];

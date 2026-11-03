@@ -160,6 +160,7 @@
 <script src="xiao-a-qi-song-pack.js?v=20261101a"></script>
 <script src="hou-hsiang-ting-song-pack.js?v=20261101b"></script>
 <script src="chou-hui-song-pack.js?v=20261103a"></script>
+<script src="wan-fang-song-pack.js?v=20261103a"></script>
 <script>
   const $ = id => document.getElementById(id);
 
@@ -226,7 +227,7 @@
   function cloudError(error){return window.KTV_CLOUD?.explain(error)||error.message||'無法連線，請重試。';}
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){openDialog($('cloudDialog'));throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
-  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];if($('singerDialog').open)renderSingerChoices();renderCatalog();refreshFavorites();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();}
+  function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];if($('singerDialog').open)renderSingerChoices();renderCatalog();refreshFavorites();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();scheduleWanImport();}
   let previousAccess=false;
   function updateCloudUI(){
     const c=cloudState,allowed=c.access===true;
@@ -259,7 +260,7 @@
     renderOST();
     document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
   }
-  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();scheduleLinImport();scheduleAqiImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
+  window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();scheduleLinImport();scheduleAqiImport();scheduleWanImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
   function switchTab(which){if(which==='catalog'){if(!$('catalogDialog').open)openDialog($('catalogDialog'));$('closeBook').focus({preventScroll:true});}else{$('catalogDialog').close();$('queuePane').scrollIntoView({behavior:'smooth',block:'nearest'});}}
   function singerNames(song){return String(song.artist||'').split(/\s*(?:[／/、&＆]| feat\.? | featuring )\s*/i).map(n=>n.trim()).filter(Boolean);}
@@ -348,6 +349,27 @@
       await requireCloud().importSongs(items);
     }catch(error){console.error('小阿七歌本匯入未完成',error);}
     finally{aqiImportRunning=false;scheduleAqiImport();}
+  }
+
+  // Wan Fang uses the existing transactional cloud importer. Reports stay out of the songbook UI.
+  let wanImportTimer=null,wanImportRunning=false,wanImportAttempts=0;
+  function scheduleWanImport(){
+    clearTimeout(wanImportTimer);
+    if(!cloudState.admin||!cloudState.access||!cloudState.readReady||wanImportRunning||wanImportAttempts>=3)return;
+    wanImportTimer=setTimeout(maybeImportWan,1800);
+  }
+  async function maybeImportWan(){
+    const pack=window.KTV_WAN_FANG;
+    if(!pack||!window.KTV_CLOUD||wanImportRunning||!cloudState.admin||!cloudState.access||!cloudState.readReady)return;
+    if(cloudState.busy){scheduleWanImport();return;}
+    const items=pack.missing(remoteSongs);
+    // remoteSongs comes only from a confirmed server snapshot in cloud.js.
+    if(!items.length){pack.lastReport={confirmed:true,missing:0};return;}
+    wanImportRunning=true;wanImportAttempts++;
+    pack.lastReport={confirmed:false,missing:items.length};
+    try{await requireCloud().importSongs(items);}
+    catch(error){pack.lastReport={confirmed:false,error:cloudError(error)};console.error('萬芳歌本匯入未完成',error);}
+    finally{wanImportRunning=false;scheduleWanImport();}
   }
 
   function scheduleHouImport(){
