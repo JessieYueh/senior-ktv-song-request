@@ -33,7 +33,7 @@
    for(let i=0;i<entries.length;i++){
     const entry=entries[i];progress('正在檢查 '+(i+1)+'／'+entries.length+'：'+entry.title);
     const result=await new Promise(resolve=>{
-     let finished=false,seconds=0;
+     let finished=false,seconds=0,firstPosition=null,firstObservedAt=null;
      const done=(ok,reason)=>{if(finished)return;finished=true;clearInterval(poll);clearTimeout(timeout);onError=null;resolve({title:entry.title,ok,reason,seconds});};
      onError=code=>done(false,'YouTube 錯誤 '+code);
      const timeout=setTimeout(()=>done(false,'播放逾時或被瀏覽器阻擋'),18000);
@@ -56,7 +56,9 @@
        if(seconds<120||seconds<expected-20||seconds>expected+50)return done(false,'影片長度 '+seconds+' 秒與專輯曲目 '+expected+' 秒不符');
        // PLAYING alone is insufficient: require playback position to advance.
        const position=Number(player.getCurrentTime?.()||0);
-       if(position>=2.5)done(true,'來源 '+author+'，標題吻合；已在本網站播放 '+position.toFixed(1)+' 秒，影片全長 '+seconds+' 秒');
+       if(firstPosition===null){firstPosition=position;firstObservedAt=performance.now();return;}
+       if(position<firstPosition){firstPosition=position;firstObservedAt=performance.now();return;}
+       if(position-firstPosition>=2.5&&performance.now()-firstObservedAt>=2500)done(true,'來源 '+author+'，標題吻合；實際播放前進 '+(position-firstPosition).toFixed(1)+' 秒，影片全長 '+seconds+' 秒');
       }catch(error){done(false,String(error.message||error));}
      },500);
      try{player.loadVideoById(entry.videoId);player.mute();player.playVideo();}catch(error){done(false,String(error.message||error));}
