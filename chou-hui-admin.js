@@ -1,8 +1,9 @@
 // Standalone manager: no background imports or vocal/source-pack updates.
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
 import {getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
+import {getFirestore,doc,runTransaction,serverTimestamp} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
 const app=initializeApp({apiKey:'AIzaSyDJ-GH4lePxV_RL-dZ0Dm7HaXwOMq8XHx0',authDomain:'ktvdata-da16f.firebaseapp.com',projectId:'ktvdata-da16f',appId:'1:305621061136:web:ca0ace5ad6f12c9c0d0495'});
-const auth=getAuth(app), $=id=>document.getElementById(id);
+const auth=getAuth(app),db=getFirestore(app), $=id=>document.getElementById(id);
 const base='https://firestore.googleapis.com/v1/projects/ktvdata-da16f/databases/(default)', prefix='projects/ktvdata-da16f/databases/(default)/documents/';
 let admin=false,busy=false,remote=[],results=(KTV_CHOU_HUI.verified?.()||[]).map(e=>({title:e.title,videoId:e.videoId,ok:true,seconds:e.durationSeconds,reason:e.evidence,checkedAt:e.checkedAt,verificationReference:e.verificationReference}));
 let report={startedAt:new Date().toISOString(),origin:location.origin,results:[],committed:0,confirmed:0};
@@ -40,25 +41,28 @@ $('import').onclick=()=>guarded(async()=>{
  if(!admin)throw Error('請先登入已授權管理帳號');
  const eligible=KTV_CHOU_HUI.entries.filter(e=>results.some(r=>r.ok&&r.videoId===e.videoId&&r.title===e.title&&r.seconds>0));
  if(!eligible.length)throw Error('沒有完成實播驗證的歌曲');
- let transaction,committed=false;
+ let committed=false;
  try{
-  // Start the transaction with the authorized collection query. Standalone
-  // beginTransaction has no document resource for Firebase Rules evaluation.
-  const rows=await api('/documents:runQuery',{structuredQuery:{from:[{collectionId:'songs'}]},newTransaction:{readWrite:{}}});
-  transaction=rows.find(r=>r.transaction)?.transaction;
-  if(!transaction)throw Error('伺服器未建立安全匯入交易');
-  const all=rows.filter(r=>r.document).map(r=>decode(r.document)),missing=[];
-  for(const e of eligible){if(!duplicate(e,[...all,...missing]))missing.push(e);}
-  if(missing.length>100)throw Error('每次最多新增 100 首');
-  if(!missing.length){log('已驗證歌曲皆已存在，新增 0 首。');await api('/documents:rollback',{transaction});transaction=null;return;}
+  const all=await readSongs();
+  const candidates=eligible.filter(e=>!duplicate(e,all));
+  if(candidates.length>100)throw Error('每次最多新增 100 首');
+  if(!candidates.length){log('已驗證歌曲皆已存在，新增 0 首。');return;}
   const uid=auth.currentUser.uid;
-  const writes=missing.map((e,i)=>{const name=prefix+'songs/yt_'+e.videoId;return {update:{name,fields:{title:{stringValue:e.title},artist:{stringValue:e.artist},lang:{stringValue:e.lang},videoId:{stringValue:e.videoId},vocalId:{stringValue:e.vocalId||''},order:{integerValue:String(Date.now()+i)},createdBy:{stringValue:uid},updatedBy:{stringValue:uid}}},currentDocument:{exists:false},updateTransforms:[{fieldPath:'createdAt',setToServerValue:'REQUEST_TIME'},{fieldPath:'updatedAt',setToServerValue:'REQUEST_TIME'}]};});
-  // No updates: every write has exists:false. Conflicts abort the whole batch.
-  await api('/documents:commit',{transaction,writes});committed=true;transaction=null;report.committed+=writes.length;
+  // Re-read every observed existing document plus every target atomically.
+  // This handles changes to legacy IDs, edits, collisions and retries. Every
+  // target must be absent in the transaction; existing songs are never written.
+  const ids=[...new Set([...all.map(s=>s._cloudId),...candidates.map(e=>'yt_'+e.videoId)])];
+  const missing=await runTransaction(db,async tx=>{
+   const refs=ids.map(id=>doc(db,'songs',id)),snapshots=await Promise.all(refs.map(ref=>tx.get(ref)));
+   const current=snapshots.flatMap((snapshot,i)=>snapshot.exists()?[{...snapshot.data(),_cloudId:ids[i]}]:[]),selected=[];
+   for(const e of candidates){if(!current.some(s=>s._cloudId==='yt_'+e.videoId)&&!duplicate(e,[...current,...selected]))selected.push(e);}
+   selected.forEach((e,i)=>tx.set(doc(db,'songs','yt_'+e.videoId),{title:e.title,artist:e.artist,lang:e.lang,videoId:e.videoId,vocalId:e.vocalId||'',order:Date.now()+i,createdAt:serverTimestamp(),createdBy:uid,updatedAt:serverTimestamp(),updatedBy:uid}));
+   return selected;
+  });
+  committed=true;report.committed+=missing.length;
   const after=await readSongs();const confirmed=missing.filter(e=>after.some(s=>s._cloudId==='yt_'+e.videoId&&s.title===e.title&&s.artist===e.artist&&s.videoId===e.videoId)).length;
   report.confirmed+=confirmed;report.skippedExisting=eligible.length-missing.length;report.completedAt=new Date().toISOString();remote=after;
-  $('status').textContent='本次交易成功新增 '+writes.length+' 首；伺服器回讀確認 '+confirmed+' 首；略過既有 '+(eligible.length-missing.length)+' 首。';log($('status').textContent);
+  $('status').textContent='本次交易成功新增 '+missing.length+' 首；伺服器回讀確認 '+confirmed+' 首；略過既有 '+(eligible.length-missing.length)+' 首。';log($('status').textContent);
  }catch(e){if(committed)log('交易已提交，伺服器回讀未完成；請先重新讀取歌單，勿將此情況視為零寫入。');throw e;}
- finally{if(transaction)try{await api('/documents:rollback',{transaction});}catch{}}
 });
 $('report').onclick=()=>{const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='chou-hui-verification-2026-11-03.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
