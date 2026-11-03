@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>周蕙歌曲管理</title>
+<style>body{font:18px system-ui;max-width:1000px;margin:24px auto;padding:20px;background:#f5f7fb;color:#18243b}button,select{font:inherit;padding:12px;margin:6px}#player{width:640px;max-width:100%;aspect-ratio:16/9;background:#152036}#player iframe{width:100%;height:100%}pre{white-space:pre-wrap;background:white;padding:16px}button:disabled{opacity:.4}</style>
+<h1>周蕙歌曲管理</h1><p>先驗證官方來源、影片長度與實際播放，再只新增雲端缺少的歌曲。原有歌曲不變更。</p>
+<button id="login">Google 管理登入</button><button id="refresh">讀取雲端歌單</button>
+<p id="status" role="status">正在準備…</p>
+<label>驗證範圍 <select id="scope"><option value="all">全部候選</option><option value="one">第一首候選（測試播放環境）</option></select></label>
+<button id="verify" disabled>驗證影片</button><button id="import" disabled>僅新增已驗證歌曲</button><button id="report">下載檢查報告</button>
+<div id="player"></div><pre id="log" aria-live="polite"></pre>
+<script src="chou-hui-song-pack.js?v=20261103b"></script><script src="chou-hui-verify.js?v=20261103b"></script><script type="module" src="chou-hui-admin.js?v=20261103b"></script>
+</html>
