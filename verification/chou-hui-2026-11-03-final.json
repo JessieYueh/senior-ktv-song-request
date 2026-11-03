@@ -1,0 +1,1222 @@
+{
+  "startedAt": "2026-11-03T07:05:58.714Z",
+  "origin": "https://jessieyueh.github.io",
+  "results": [
+    {
+      "title": "不想讓你知道",
+      "videoId": "kXFMYK9jgFg",
+      "ok": true,
+      "seconds": 260.721,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.9 秒，影片全長 260.721 秒",
+      "checkedAt": "2026-11-03T06:18:46.161Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "約定",
+      "videoId": "Vd-mTkhiThI",
+      "ok": true,
+      "seconds": 256.101,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 256.101 秒",
+      "checkedAt": "2026-11-03T06:18:49.879Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "風鈴",
+      "videoId": "Ra3Fuc77hgU",
+      "ok": true,
+      "seconds": 270.861,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 270.861 秒",
+      "checkedAt": "2026-11-03T06:18:53.586Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我喜歡",
+      "videoId": "uAgQn9-W2Os",
+      "ok": true,
+      "seconds": 271.381,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 271.381 秒",
+      "checkedAt": "2026-11-03T06:18:57.295Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "空白",
+      "videoId": "VD7ZGCV4TsE",
+      "ok": true,
+      "seconds": 202.661,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 202.661 秒",
+      "checkedAt": "2026-11-03T06:19:01.522Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "FOREVER",
+      "videoId": "-o52blXgWmk",
+      "ok": true,
+      "seconds": 280.301,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 280.301 秒",
+      "checkedAt": "2026-11-03T06:49:04.223Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "預言",
+      "videoId": "u1BSQSPPPG8",
+      "ok": true,
+      "seconds": 318.981,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 318.981 秒",
+      "checkedAt": "2026-11-03T06:19:05.760Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "討厭自己",
+      "videoId": "5THyN_qhWaA",
+      "ok": true,
+      "seconds": 283.541,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 283.541 秒",
+      "checkedAt": "2026-11-03T06:49:07.989Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "思念的翅膀",
+      "videoId": "Vs_-RD1FB8s",
+      "ok": true,
+      "seconds": 316.081,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 316.081 秒",
+      "checkedAt": "2026-11-03T06:49:11.781Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我看",
+      "videoId": "d7CxIjANPIU",
+      "ok": true,
+      "seconds": 298.181,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 298.181 秒",
+      "checkedAt": "2026-11-03T06:49:16.015Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "了了",
+      "videoId": "6I3m9SU9kuE",
+      "ok": true,
+      "seconds": 328.381,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 328.381 秒",
+      "checkedAt": "2026-11-03T06:49:19.245Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "好想好好愛你",
+      "videoId": "TUqKBTQizwA",
+      "ok": true,
+      "seconds": 264.521,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 264.521 秒",
+      "checkedAt": "2026-11-03T06:19:09.472Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "ANGEL FACE",
+      "videoId": "AW02SHlDfpI",
+      "ok": true,
+      "seconds": 255.321,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 255.321 秒",
+      "checkedAt": "2026-11-03T06:49:23.020Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "替身",
+      "videoId": "WUKnbOlicps",
+      "ok": true,
+      "seconds": 341.361,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 341.361 秒",
+      "checkedAt": "2026-11-03T06:19:13.197Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "太茫",
+      "videoId": "wePXuwl5C_4",
+      "ok": true,
+      "seconds": 202.941,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 202.941 秒",
+      "checkedAt": "2026-11-03T06:49:26.803Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "事到如今",
+      "videoId": "uQQ_TUjvABw",
+      "ok": true,
+      "seconds": 266.061,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 266.061 秒",
+      "checkedAt": "2026-11-03T06:49:30.064Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "話題",
+      "videoId": "XtX4aawnWI4",
+      "ok": true,
+      "seconds": 282.561,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 282.561 秒",
+      "checkedAt": "2026-11-03T06:19:16.402Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "愛過不傷心",
+      "videoId": "A5EGkhg2WMM",
+      "ok": true,
+      "seconds": 261.561,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 261.561 秒",
+      "checkedAt": "2026-11-03T06:19:22.641Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "不哭",
+      "videoId": "Aq0I12Pc4Uk",
+      "ok": true,
+      "seconds": 278.481,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 278.481 秒",
+      "checkedAt": "2026-11-03T06:19:26.373Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "換季",
+      "videoId": "MLDkF3I3o34",
+      "ok": true,
+      "seconds": 212.081,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 212.081 秒",
+      "checkedAt": "2026-11-03T06:49:34.293Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "沒有你",
+      "videoId": "SUvIYlEYTu0",
+      "ok": true,
+      "seconds": 276.381,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 276.381 秒",
+      "checkedAt": "2026-11-03T06:49:38.519Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "相遇太早",
+      "videoId": "QF-NOl_apCY",
+      "ok": true,
+      "seconds": 283.061,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 283.061 秒",
+      "checkedAt": "2026-11-03T06:49:42.784Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "溫度",
+      "videoId": "g8Sruj4l048",
+      "ok": true,
+      "seconds": 297.841,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 297.841 秒",
+      "checkedAt": "2026-11-03T06:49:46.549Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "體溫",
+      "videoId": "PGpcKF3hfO4",
+      "ok": true,
+      "seconds": 276.901,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 276.901 秒",
+      "checkedAt": "2026-11-03T06:19:31.337Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "寂寞城市",
+      "videoId": "UBR_PKREysc",
+      "ok": true,
+      "seconds": 292.021,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 292.021 秒",
+      "checkedAt": "2026-11-03T06:19:35.062Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "只能做朋友",
+      "videoId": "no_FGCes5mY",
+      "ok": true,
+      "seconds": 265.301,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 265.301 秒",
+      "checkedAt": "2026-11-03T06:19:39.338Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我很快樂",
+      "videoId": "LD7s0FnKyqM",
+      "ok": true,
+      "seconds": 220.241,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 220.241 秒",
+      "checkedAt": "2026-11-03T06:19:43.622Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "Hold Me Tight",
+      "videoId": "On2WoqQZVCg",
+      "ok": true,
+      "seconds": 280.341,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 280.341 秒",
+      "checkedAt": "2026-11-03T06:49:50.342Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "別對我太好",
+      "videoId": "q4vw7gPaY1Q",
+      "ok": true,
+      "seconds": 264.961,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 264.961 秒",
+      "checkedAt": "2026-11-03T06:49:54.082Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "瞬間",
+      "videoId": "PmgDhpNfYwY",
+      "ok": true,
+      "seconds": 258.121,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 258.121 秒",
+      "checkedAt": "2026-11-03T06:19:47.830Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "不管",
+      "videoId": "tQxjEWzENmo",
+      "ok": true,
+      "seconds": 193.881,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 193.881 秒",
+      "checkedAt": "2026-11-03T06:49:57.327Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "隱形",
+      "videoId": "5Cz_YqFqYwk",
+      "ok": true,
+      "seconds": 266.421,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 266.421 秒",
+      "checkedAt": "2026-11-03T06:50:00.553Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "終點",
+      "videoId": "sDhvjJCRptc",
+      "ok": true,
+      "seconds": 258.141,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 258.141 秒",
+      "checkedAt": "2026-11-03T06:50:04.323Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我看見的世界",
+      "videoId": "uSF8M1jZ-Zk",
+      "ok": true,
+      "seconds": 309.381,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 2.5 秒，影片全長 309.381 秒",
+      "checkedAt": "2026-11-03T06:19:51.041Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "被遺忘的時光",
+      "videoId": "g_VjS-iOcAU",
+      "ok": true,
+      "seconds": 252.781,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 252.781 秒",
+      "checkedAt": "2026-11-03T06:19:55.256Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "感性生物",
+      "videoId": "ypzsoJeZDzg",
+      "ok": true,
+      "seconds": 244.061,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 2.5 秒，影片全長 244.061 秒",
+      "checkedAt": "2026-11-03T06:19:58.977Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "咖啡季節",
+      "videoId": "rx6NlWQWEeg",
+      "ok": true,
+      "seconds": 199.181,
+      "reason": "來源 群石國際，標題吻合；實際播放前進 3.0 秒，影片全長 199.181 秒",
+      "checkedAt": "2026-11-03T06:20:03.226Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "幸福的可能",
+      "videoId": "FRRnqjst4dI",
+      "ok": true,
+      "seconds": 317.841,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 317.841 秒",
+      "checkedAt": "2026-11-03T06:50:08.407Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "冰塊",
+      "videoId": "5p-GARlNEqw",
+      "ok": true,
+      "seconds": 212.401,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 212.401 秒",
+      "checkedAt": "2026-11-03T06:50:12.664Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我不是你的唯一",
+      "videoId": "LSWWAe52CBA",
+      "ok": true,
+      "seconds": 318.221,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 318.221 秒",
+      "checkedAt": "2026-11-03T06:50:16.917Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "雜質",
+      "videoId": "ssuM7PV0G3M",
+      "ok": true,
+      "seconds": 215.401,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 215.401 秒",
+      "checkedAt": "2026-11-03T06:50:21.196Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "故事的某段",
+      "videoId": "gzic7cRqaPY",
+      "ok": true,
+      "seconds": 278.201,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 278.201 秒",
+      "checkedAt": "2026-11-03T06:50:25.475Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "最難得到的禮物",
+      "videoId": "P70-JwUzCsE",
+      "ok": true,
+      "seconds": 228.461,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 228.461 秒",
+      "checkedAt": "2026-11-03T06:50:29.241Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "不老的月亮",
+      "videoId": "-ncCvb7uB6k",
+      "ok": true,
+      "seconds": 278.601,
+      "reason": "來源 群石國際，標題吻合；實際播放前進 3.0 秒，影片全長 278.601 秒",
+      "checkedAt": "2026-11-03T06:20:11.122Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "美好生活",
+      "videoId": "bLmMeJYDSlU",
+      "ok": true,
+      "seconds": 267.381,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 2.5 秒，影片全長 267.381 秒",
+      "checkedAt": "2026-11-03T06:20:14.898Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我們還會相遇",
+      "videoId": "XUTH_d3hOzE",
+      "ok": true,
+      "seconds": 256.081,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 256.081 秒",
+      "checkedAt": "2026-11-03T06:50:33.023Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "食物戀",
+      "videoId": "Kg9m36crQhY",
+      "ok": true,
+      "seconds": 239.761,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 239.761 秒",
+      "checkedAt": "2026-11-03T06:50:38.016Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "誰稀罕愛上你",
+      "videoId": "YcSEpXYfkU0",
+      "ok": true,
+      "seconds": 225.901,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.9 秒，影片全長 225.901 秒",
+      "checkedAt": "2026-11-03T06:50:41.726Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "謝謝你騙我",
+      "videoId": "oB1wPuaaRYk",
+      "ok": true,
+      "seconds": 202.481,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 202.481 秒",
+      "checkedAt": "2026-11-03T06:50:45.470Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "多餘的寂寞",
+      "videoId": "YB7TYWuVjOk",
+      "ok": true,
+      "seconds": 207.641,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 207.641 秒",
+      "checkedAt": "2026-11-03T06:50:50.244Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "偶然",
+      "videoId": "K0xrd_YD0C0",
+      "ok": true,
+      "seconds": 253.781,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 253.781 秒",
+      "checkedAt": "2026-11-03T06:20:21.316Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "夢不到你",
+      "videoId": "3DWd7jef5wo",
+      "ok": true,
+      "seconds": 287.981,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 287.981 秒",
+      "checkedAt": "2026-11-03T06:50:54.506Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "再看我一眼",
+      "videoId": "cmzyx5Sz6jU",
+      "ok": true,
+      "seconds": 182.281,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 182.281 秒",
+      "checkedAt": "2026-11-03T06:50:58.260Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "愛你在心口難開",
+      "videoId": "ZbKFcttlKWY",
+      "ok": true,
+      "seconds": 194.661,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 194.661 秒",
+      "checkedAt": "2026-11-03T06:51:02.003Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "心痛的感覺",
+      "videoId": "MRSIleai9j4",
+      "ok": true,
+      "seconds": 293.221,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 293.221 秒",
+      "checkedAt": "2026-11-03T06:51:05.751Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "天天想你",
+      "videoId": "gIEjW2in5r4",
+      "ok": true,
+      "seconds": 322.061,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 3.0 秒，影片全長 322.061 秒",
+      "checkedAt": "2026-11-03T06:20:25.582Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "拒絕再玩",
+      "videoId": "l95xuA66nVU",
+      "ok": true,
+      "seconds": 274.181,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 2.9 秒，影片全長 274.181 秒",
+      "checkedAt": "2026-11-03T06:20:29.351Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "一路上有你",
+      "videoId": "jnnHeh_EBfE",
+      "ok": true,
+      "seconds": 273.821,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 273.821 秒",
+      "checkedAt": "2026-11-03T06:51:09.509Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "不讓我的眼淚陪我過夜",
+      "videoId": "nTB5cGo78MY",
+      "ok": true,
+      "seconds": 298.781,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 298.781 秒",
+      "checkedAt": "2026-11-03T06:51:13.784Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "喜歡你",
+      "videoId": "Y8AQmcANFM4",
+      "ok": true,
+      "seconds": 239.981,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 239.981 秒",
+      "checkedAt": "2026-11-03T06:51:18.058Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "失戀陣線聯盟",
+      "videoId": "qcycFTRnEZw",
+      "ok": true,
+      "seconds": 232.701,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 232.701 秒",
+      "checkedAt": "2026-11-03T06:51:22.309Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "心理遊戲",
+      "videoId": "--weGcufCDU",
+      "ok": true,
+      "seconds": 232.721,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.9 秒，影片全長 232.721 秒",
+      "checkedAt": "2026-11-03T06:51:26.033Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "明天我要嫁給你",
+      "videoId": "tyP8KCuXXDY",
+      "ok": true,
+      "seconds": 242.341,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 242.341 秒",
+      "checkedAt": "2026-11-03T06:51:30.276Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "Don't break my heart",
+      "videoId": "TGOnxdBQiLo",
+      "ok": true,
+      "seconds": 257.501,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 257.501 秒",
+      "checkedAt": "2026-11-03T06:51:34.040Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "釀月光",
+      "videoId": "iR206jo8-Ac",
+      "ok": true,
+      "seconds": 273.601,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 273.601 秒",
+      "checkedAt": "2026-11-03T06:20:38.069Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我一個人唱歌",
+      "videoId": "SxZ8Sx6G-R0",
+      "ok": true,
+      "seconds": 166.961,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 166.961 秒",
+      "checkedAt": "2026-11-03T06:51:38.231Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "誤解歌",
+      "videoId": "Eg6Tr4Wz3IQ",
+      "ok": true,
+      "seconds": 196.161,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 196.161 秒",
+      "checkedAt": "2026-11-03T06:51:42.503Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "走",
+      "videoId": "Kz2GB-8Vz3k",
+      "ok": true,
+      "seconds": 187.081,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 3.0 秒，影片全長 187.081 秒",
+      "checkedAt": "2026-11-03T06:20:43.073Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "對戲",
+      "videoId": "MU9y9E44KhU",
+      "ok": true,
+      "seconds": 211.321,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 211.321 秒",
+      "checkedAt": "2026-11-03T06:51:46.747Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "無約",
+      "videoId": "kGHmtiART2w",
+      "ok": true,
+      "seconds": 232.081,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 3.0 秒，影片全長 232.081 秒",
+      "checkedAt": "2026-11-03T06:51:50.988Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "過節",
+      "videoId": "q1tfSYhFo2Q",
+      "ok": true,
+      "seconds": 211.481,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 211.481 秒",
+      "checkedAt": "2026-11-03T06:51:54.755Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "度菇",
+      "videoId": "KKXC32T5_08",
+      "ok": true,
+      "seconds": 187.861,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 187.861 秒",
+      "checkedAt": "2026-11-03T06:51:58.497Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "過客",
+      "videoId": "SULMcR-wKeo",
+      "ok": true,
+      "seconds": 268.841,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 2.5 秒，影片全長 268.841 秒",
+      "checkedAt": "2026-11-03T06:20:48.807Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "掌心的指紋",
+      "videoId": "GQDjE6swxj8",
+      "ok": true,
+      "seconds": 241.421,
+      "reason": "來源 周蕙 Where Chou，標題吻合；實際播放前進 2.5 秒，影片全長 241.421 秒",
+      "checkedAt": "2026-11-03T06:52:02.251Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "今宵多珍重",
+      "videoId": "Poe_poxjuAQ",
+      "ok": true,
+      "seconds": 298.861,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 298.861 秒",
+      "checkedAt": "2026-11-03T06:20:53.723Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "偷偷摸摸",
+      "videoId": "oNOSkUdgLfM",
+      "ok": true,
+      "seconds": 170.801,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 170.801 秒",
+      "checkedAt": "2026-11-03T06:52:06.493Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "魂縈舊夢",
+      "videoId": "xx9dGGpX28E",
+      "ok": true,
+      "seconds": 249.921,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 249.921 秒",
+      "checkedAt": "2026-11-03T06:52:10.221Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "夢中人",
+      "videoId": "1HSPwUnSExU",
+      "ok": true,
+      "seconds": 245.241,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 245.241 秒",
+      "checkedAt": "2026-11-03T06:52:14.011Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "打噴嚏",
+      "videoId": "ObN84aw_Ark",
+      "ok": true,
+      "seconds": 175.781,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 175.781 秒",
+      "checkedAt": "2026-11-03T06:52:17.752Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "你真美麗",
+      "videoId": "Q6cYzQuKc1E",
+      "ok": true,
+      "seconds": 177.261,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 177.261 秒",
+      "checkedAt": "2026-11-03T06:52:21.527Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "等著你回來",
+      "videoId": "CgKY1xbPIDU",
+      "ok": true,
+      "seconds": 190.881,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 190.881 秒",
+      "checkedAt": "2026-11-03T06:52:25.258Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "給我一個吻",
+      "videoId": "jpMRVDYoPVQ",
+      "ok": true,
+      "seconds": 270.641,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 270.641 秒",
+      "checkedAt": "2026-11-03T06:52:29.001Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "情人的眼淚",
+      "videoId": "BHuHiqkNPsc",
+      "ok": true,
+      "seconds": 282.221,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 282.221 秒",
+      "checkedAt": "2026-11-03T06:52:33.259Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "相思河畔",
+      "videoId": "D1rlRjQ8W0w",
+      "ok": true,
+      "seconds": 231.521,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 231.521 秒",
+      "checkedAt": "2026-11-03T06:20:57.451Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "我要你的愛",
+      "videoId": "wksJDRxPYcg",
+      "ok": true,
+      "seconds": 237.661,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 237.661 秒",
+      "checkedAt": "2026-11-03T06:21:01.211Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "秋夜",
+      "videoId": "4jPX6YuFhxk",
+      "ok": true,
+      "seconds": 253.781,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 253.781 秒",
+      "checkedAt": "2026-11-03T06:52:37.555Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "心戀",
+      "videoId": "sMPYo0aWXso",
+      "ok": true,
+      "seconds": 171.281,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 171.281 秒",
+      "checkedAt": "2026-11-03T06:52:41.297Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "叉燒包",
+      "videoId": "3nwXzjvX_hg",
+      "ok": true,
+      "seconds": 223.581,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 223.581 秒",
+      "checkedAt": "2026-11-03T06:52:45.025Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "如果沒有你",
+      "videoId": "mtzLffbbJko",
+      "ok": true,
+      "seconds": 179.741,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 179.741 秒",
+      "checkedAt": "2026-11-03T06:52:50.255Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "不了情",
+      "videoId": "GV-4YVQ6AN4",
+      "ok": true,
+      "seconds": 254.221,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 254.221 秒",
+      "checkedAt": "2026-11-03T06:52:54.524Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "說不出的快活",
+      "videoId": "vU24RY28P08",
+      "ok": true,
+      "seconds": 235.321,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 235.321 秒",
+      "checkedAt": "2026-11-03T06:52:58.782Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "今宵多珍重(下集)",
+      "videoId": "Lfk0xSx9pUU",
+      "ok": true,
+      "seconds": 259.901,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 259.901 秒",
+      "checkedAt": "2026-11-03T06:53:03.016Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "流域",
+      "videoId": "DJhtdeXMuiI",
+      "ok": true,
+      "seconds": 263.081,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 263.081 秒",
+      "checkedAt": "2026-11-03T06:21:05.451Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "愛情無關是非",
+      "videoId": "lmSDeSrTO_E",
+      "ok": true,
+      "seconds": 254.941,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 254.941 秒",
+      "checkedAt": "2026-11-03T06:53:06.757Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "收藏",
+      "videoId": "kYszcUoAdso",
+      "ok": true,
+      "seconds": 247.061,
+      "reason": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 247.061 秒",
+      "checkedAt": "2026-11-03T06:21:09.919Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "最愛",
+      "videoId": "GynOhuau7_A",
+      "ok": true,
+      "seconds": 263.641,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 3.0 秒，影片全長 263.641 秒",
+      "checkedAt": "2026-11-03T06:53:11.007Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "向日葵",
+      "videoId": "KDj-0eYXK8A",
+      "ok": true,
+      "seconds": 275.821,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 3.0 秒，影片全長 275.821 秒",
+      "checkedAt": "2026-11-03T06:53:15.228Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "學會",
+      "videoId": "dV18bAYZRcs",
+      "ok": true,
+      "seconds": 274.44083333333333,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 2.5 秒，影片全長 274.44083333333333 秒",
+      "checkedAt": "2026-11-03T06:53:18.994Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "擁抱的瞬間",
+      "videoId": "2yA5Y9jXw1s",
+      "ok": true,
+      "seconds": 269.841,
+      "reason": "來源 Release - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 269.841 秒",
+      "checkedAt": "2026-11-03T06:53:23.233Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "分岔路口",
+      "videoId": "YYosiZDUmC0",
+      "ok": true,
+      "seconds": 273.5065666666667,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 2.5 秒，影片全長 273.5065666666667 秒",
+      "checkedAt": "2026-11-03T06:53:27.004Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "Darling",
+      "videoId": "EjA7l44GaQc",
+      "ok": true,
+      "seconds": 202.3021,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 3.0 秒，影片全長 202.3021 秒",
+      "checkedAt": "2026-11-03T06:53:30.768Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "該忘了你對不對",
+      "videoId": "Dt-mbyKjO-I",
+      "ok": true,
+      "seconds": 246.701,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 2.5 秒，影片全長 246.701 秒",
+      "checkedAt": "2026-11-03T06:53:34.537Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "赤裸",
+      "videoId": "zFfaSEsLfG8",
+      "ok": true,
+      "seconds": 198.8987,
+      "reason": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 3.0 秒，影片全長 198.8987 秒",
+      "checkedAt": "2026-11-03T06:53:38.796Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "自己的電影",
+      "videoId": "xnLdGjJHj-0",
+      "ok": true,
+      "seconds": 225.841,
+      "reason": "來源 Release - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 225.841 秒",
+      "checkedAt": "2026-11-03T06:53:43.030Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "周蕙",
+      "videoId": "e4IHBh15p8g",
+      "ok": true,
+      "seconds": 277.021,
+      "reason": "來源 群石國際，標題吻合；實際播放前進 3.0 秒，影片全長 277.021 秒",
+      "checkedAt": "2026-11-03T06:53:47.284Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "守約",
+      "videoId": "sgmSPgakwK8",
+      "ok": true,
+      "seconds": 213.901,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 213.901 秒",
+      "checkedAt": "2026-11-03T06:53:50.535Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "Complicated",
+      "videoId": "Uy5JfoLj85M",
+      "ok": true,
+      "seconds": 285.101,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 285.101 秒",
+      "checkedAt": "2026-11-03T06:53:54.743Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "也許你",
+      "videoId": "KgM9j-34UU4",
+      "ok": true,
+      "seconds": 240.381,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 240.381 秒",
+      "checkedAt": "2026-11-03T06:53:58.493Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "守護者",
+      "videoId": "jejeF5LDZt0",
+      "ok": true,
+      "seconds": 273.861,
+      "reason": "來源 群石國際，標題吻合；實際播放前進 2.5 秒，影片全長 273.861 秒",
+      "checkedAt": "2026-11-03T06:54:02.267Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "老地方",
+      "videoId": "MLjFw0BbHHA",
+      "ok": true,
+      "seconds": 255.601,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 255.601 秒",
+      "checkedAt": "2026-11-03T06:54:05.521Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "夜動",
+      "videoId": "nTcq5KwcOfE",
+      "ok": true,
+      "seconds": 306.061,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 306.061 秒",
+      "checkedAt": "2026-11-03T06:54:09.752Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "難題",
+      "videoId": "drbbQ17OH8A",
+      "ok": true,
+      "seconds": 234.161,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 234.161 秒",
+      "checkedAt": "2026-11-03T06:54:14.003Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "他是誰",
+      "videoId": "VYBkMGHXL9E",
+      "ok": true,
+      "seconds": 228.661,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 228.661 秒",
+      "checkedAt": "2026-11-03T06:54:18.260Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "騙人，不！",
+      "videoId": "w5nFqRK5ySE",
+      "ok": true,
+      "seconds": 222.921,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 222.921 秒",
+      "checkedAt": "2026-11-03T06:54:22.009Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "只是少了你",
+      "videoId": "amZL6g0XTl0",
+      "ok": true,
+      "seconds": 261.501,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 261.501 秒",
+      "checkedAt": "2026-11-03T06:54:25.753Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "彎彎的月光",
+      "videoId": "YjMaq_Ms7FE",
+      "ok": true,
+      "seconds": 221.461,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 221.461 秒",
+      "checkedAt": "2026-11-03T06:21:22.133Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "哪兒",
+      "videoId": "JBNUJjfr4yw",
+      "ok": true,
+      "seconds": 255.521,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 2.9 秒，影片全長 255.521 秒",
+      "checkedAt": "2026-11-03T06:21:25.859Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "還好嗎？",
+      "videoId": "8QOna2Sl8oc",
+      "ok": true,
+      "seconds": 281.761,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 281.761 秒",
+      "checkedAt": "2026-11-03T06:54:29.497Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "愛的路上我和你",
+      "videoId": "fERnbaJGCH8",
+      "ok": true,
+      "seconds": 181.041,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 181.041 秒",
+      "checkedAt": "2026-11-03T06:54:33.254Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "海誓山盟",
+      "videoId": "KFyqfdstwWU",
+      "ok": true,
+      "seconds": 203.981,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 203.981 秒",
+      "checkedAt": "2026-11-03T06:54:37.473Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "千言萬語",
+      "videoId": "ZKx7YjBVlXk",
+      "ok": true,
+      "seconds": 280.341,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 280.341 秒",
+      "checkedAt": "2026-11-03T06:54:41.234Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "今天不回家",
+      "videoId": "W7KZ36IGUCg",
+      "ok": true,
+      "seconds": 201.561,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 2.5 秒，影片全長 201.561 秒",
+      "checkedAt": "2026-11-03T06:54:45.004Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "你快回來",
+      "videoId": "qJzFLsr-0EU",
+      "ok": true,
+      "seconds": 275.501,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 275.501 秒",
+      "checkedAt": "2026-11-03T06:54:49.243Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "人間",
+      "videoId": "uhhZMAMmSlU",
+      "ok": true,
+      "seconds": 284.101,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 284.101 秒",
+      "checkedAt": "2026-11-03T06:54:52.975Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "給從前",
+      "videoId": "gPra-wZpWi0",
+      "ok": true,
+      "seconds": 254.141,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 254.141 秒",
+      "checkedAt": "2026-11-03T06:54:57.238Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "髮",
+      "videoId": "GkIemfoX86I",
+      "ok": true,
+      "seconds": 235.141,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 235.141 秒",
+      "checkedAt": "2026-11-03T06:55:00.965Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "千千萬萬個你",
+      "videoId": "cajofxl-YfA",
+      "ok": true,
+      "seconds": 270.041,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 2.5 秒，影片全長 270.041 秒",
+      "checkedAt": "2026-11-03T06:21:30.894Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "當歸",
+      "videoId": "tj3KvUvX3Jk",
+      "ok": true,
+      "seconds": 254.601,
+      "reason": "來源 華研國際，標題吻合；實際播放前進 3.0 秒，影片全長 254.601 秒",
+      "checkedAt": "2026-11-03T06:21:35.132Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "為自己而自己",
+      "videoId": "91R1MeF8DgQ",
+      "ok": true,
+      "seconds": 216.601,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 216.601 秒",
+      "checkedAt": "2026-11-03T06:55:05.240Z",
+      "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    },
+    {
+      "title": "不愛了也是一種愛",
+      "ok": true,
+      "reason": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 248.081 秒",
+      "seconds": 248.081,
+      "videoId": "RW7o-TX1wnk",
+      "source": "https://www.youtube.com/watch?v=RW7o-TX1wnk",
+      "channel": "周蕙 Where Chou",
+      "expectedDurationSeconds": 248,
+      "checkedAt": "2026-11-03T07:07:30.964Z"
+    },
+    {
+      "title": "冬季到台北來看雨",
+      "ok": false,
+      "reason": "影片長度 303.661 秒與專輯曲目 225 秒不符",
+      "seconds": 303.661,
+      "videoId": "-AJH6bDAamc",
+      "source": "https://www.youtube.com/watch?v=-AJH6bDAamc",
+      "channel": "華研國際",
+      "expectedDurationSeconds": 225,
+      "checkedAt": "2026-11-03T07:07:31.689Z"
+    }
+  ],
+  "committed": 93,
+  "confirmed": 93,
+  "deferredToNextBatch": 0,
+  "skippedExisting": 37,
+  "completedAt": "2026-11-03T07:08:04.719Z",
+  "summary": {
+    "uniqueSongs": 133,
+    "officialCandidates": 131,
+    "verified": 130,
+    "confirmedAdditionsThisTask": 101,
+    "confirmedBatches": [
+      8,
+      93
+    ],
+    "preexistingChouHui": 29,
+    "serverConfirmedTotalSongs": 259,
+    "serverConfirmedChouHuiSongs": 130,
+    "unimported": [
+      {
+        "title": "發現",
+        "reason": "未找到已確認的獨立官方影片"
+      },
+      {
+        "title": "等待花季",
+        "reason": "未找到已確認的獨立官方影片"
+      },
+      {
+        "title": "冬季到台北來看雨",
+        "reason": "官方 MV 實測303.661秒，與官方唱片公司專輯225秒基準不符，保持pending"
+      }
+    ],
+    "schedule": "User confirmed existing ChatGPT schedule paused; no new automation created."
+  }
+}
