@@ -11,7 +11,7 @@ const app = initializeApp({
   appId: '1:305621061136:web:ca0ace5ad6f12c9c0d0495'
 });
 const auth = getAuth(app), db = getFirestore(app);
-const state = { user: null, admin: false, readReady: false, error: '', authError: '', count: 0, busy: false, vocalCount: 0, vocalMissing: 0, vocalSync: '', packCount: 0, packSync: '', access: false, device: null, devices: [], deviceError: '', authReady: false };
+const state = { user: null, admin: false, readReady: false, error: '', authError: '', count: 0, busy: false, vocalCount: 0, vocalMissing: 0, vocalSync: '', packCount: 0, packSync: '', access: false, device: null, devices: [], devicesReady: false, deviceBusy: false, deviceError: '', authReady: false };
 let stopAdmin = null, stopSongs = null, stopDevice = null, stopDeviceList = null, authEpoch = 0, songsEpoch = 0, latestSongs = [], vocalBackfillAttempted = false, sourceImportAttempted = false;
 const emit = () => {window.KTV_APP.setCloudState({ ...state });if(window.KTVGetVocal)Promise.resolve().then(maybeFillVocals);if(window.KTV_SOURCE_SONGS)Promise.resolve().then(maybeImportSourcePack);};
 export function explain(error) {
@@ -37,17 +37,17 @@ function reconcileAccess(){
 function watchIdentity(user){
   stopAdmin?.();stopDevice?.();stopDeviceList?.();stopAdmin=stopDevice=stopDeviceList=null;
   const epoch=++authEpoch;
-  state.admin=false;state.device=null;state.devices=[];state.access=false;state.deviceError='';clearSongs();
+  state.admin=false;state.device=null;state.devices=[];state.devicesReady=false;state.access=false;state.deviceError='';clearSongs();
   if(!user){emit();return;}
   if(!user.isAnonymous)stopAdmin=onSnapshot(doc(db,'admins',user.uid),snapshot=>{
     if(epoch!==authEpoch)return;
     state.admin=snapshot.exists()&&snapshot.data().enabled===true;
     state.authError='';
-    stopDeviceList?.();stopDeviceList=null;state.devices=[];
+    stopDeviceList?.();stopDeviceList=null;state.devices=[];state.devicesReady=false;
     if(state.admin)stopDeviceList=onSnapshot(collection(db,'devices'),{includeMetadataChanges:true},snapshot=>{
       if(epoch!==authEpoch||!state.admin||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
-      state.devices=snapshot.docs.map(d=>({_id:d.id,label:d.data().label,enabled:d.data().enabled}));state.deviceError='';emit();
-    },error=>{if(epoch!==authEpoch)return;state.devices=[];state.deviceError='裝置名單尚未啟用：'+explain(error);emit();});
+      state.devices=snapshot.docs.map(d=>({_id:d.id,label:d.data().label,enabled:d.data().enabled,approvedAt:d.data().approvedAt}));state.devicesReady=true;state.deviceError='';emit();
+    },error=>{if(epoch!==authEpoch)return;state.devices=[];state.devicesReady=false;state.deviceError='裝置名單尚未啟用：'+explain(error);emit();});
     reconcileAccess();
   },error=>{if(epoch!==authEpoch)return;state.admin=false;state.authError=explain(error);reconcileAccess();});
   if(user.isAnonymous)stopDevice=onSnapshot(doc(db,'devices',user.uid),{includeMetadataChanges:true},snapshot=>{
@@ -89,9 +89,37 @@ async function requestDevice(label){
   }catch(error){if(error.code?.includes('operation-not-allowed'))throw new Error('裝置授權尚未啟用，請管理者先在 Firebase 啟用匿名登入。');throw error;}
 }
 async function setDeviceEnabled(uid,enabled){
+  validDeviceUid(uid);
+  if(typeof enabled!=='boolean')throw new Error('裝置資料不正確。');
+  return changeDevice(()=>runTransaction(db,async tx=>{const ref=doc(db,'devices',uid);const snap=await tx.get(ref);if(!snap.exists())throw new Error('此裝置不存在，請重新確認名單。');tx.update(ref,{enabled,approvedAt:enabled?serverTimestamp():snap.data().approvedAt});}));
+}
+function validDeviceUid(uid){
+  if(typeof uid!=='string'||!uid||uid.length>128||uid.includes('/'))throw new Error('裝置資料不正確。');
+}
+async function changeDevice(operation){
   requireAdmin();
-  if(typeof uid!=='string'||typeof enabled!=='boolean')throw new Error('裝置資料不正確。');
-  await runTransaction(db,async tx=>{const ref=doc(db,'devices',uid);const snap=await tx.get(ref);if(!snap.exists())throw new Error('此裝置不存在。');tx.update(ref,{enabled,approvedAt:enabled?serverTimestamp():snap.data().approvedAt});});
+  if(!state.devicesReady)throw new Error('裝置名單尚未同步，請重新連線後再試。');
+  if(state.deviceBusy)throw new Error('正在更新裝置，請稍候。');
+  state.deviceBusy=true;emit();
+  try{return await operation();}finally{state.deviceBusy=false;emit();}
+}
+async function deleteDevice(uid){
+  validDeviceUid(uid);
+  return changeDevice(()=>runTransaction(db,async tx=>{const ref=doc(db,'devices',uid);const snap=await tx.get(ref);if(snap.exists())tx.delete(ref);}));
+}
+async function replaceDevice(oldUid,newUid){
+  validDeviceUid(oldUid);validDeviceUid(newUid);
+  if(oldUid===newUid)throw new Error('同一代碼請直接重新核准，不需要取代。');
+  return changeDevice(()=>runTransaction(db,async tx=>{
+    const oldRef=doc(db,'devices',oldUid),newRef=doc(db,'devices',newUid);
+    const oldSnap=await tx.get(oldRef),newSnap=await tx.get(newRef);
+    if(!oldSnap.exists()||!newSnap.exists())throw new Error('裝置紀錄已變動，請重新確認名單。');
+    const oldDevice=oldSnap.data(),newDevice=newSnap.data();
+    if(!oldDevice.enabled&&oldDevice.approvedAt==null)throw new Error('舊紀錄尚未核准，請直接刪除不需要的申請。');
+    if(newDevice.enabled||newDevice.approvedAt!=null)throw new Error('新申請已被處理，請重新確認名單。');
+    tx.update(newRef,{label:oldDevice.label,enabled:true,approvedAt:serverTimestamp()});
+    tx.delete(oldRef);
+  }));
 }
 function requireAdmin() {
   if (!auth.currentUser || !state.admin) throw new Error('請先登入已授權的管理帳號。');
@@ -207,6 +235,8 @@ window.KTV_CLOUD = {
   retry: () => { watchIdentity(auth.currentUser); },
   requestDevice,
   setDeviceEnabled,
+  deleteDevice,
+  replaceDevice,
   upsert: song => upsertMany([song]),
   importSongs: songs => upsertMany(songs, true),
   saveBatch: songs => upsertMany(songs),

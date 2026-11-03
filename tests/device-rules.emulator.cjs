@@ -1,6 +1,6 @@
 const fs=require('fs');
 const {initializeTestEnvironment,assertFails,assertSucceeds}=require('@firebase/rules-unit-testing');
-const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,serverTimestamp,Timestamp,deleteField}=require('firebase/firestore');
+const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,serverTimestamp,Timestamp,deleteField,runTransaction}=require('firebase/firestore');
 (async()=>{
  const env=await initializeTestEnvironment({projectId:'demo-family-ktv',firestore:{host:'127.0.0.1',port:8088,rules:fs.readFileSync(require('path').join(__dirname,'../firestore.rules'),'utf8')}});
  let checks=0;const allow=async p=>{await assertSucceeds(p);checks++;};const deny=async p=>{await assertFails(p);checks++;};
@@ -31,6 +31,18 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,serverTimestamp,
  await allow(updateDoc(doc(owner,'devices','deviceA'),{enabled:false}));await deny(getDocs(collection(a,'songs')));
  await deny(deleteDoc(doc(a,'devices','deviceA')));await deny(setDoc(doc(a,'devices','deviceA'),data()));
  await deny(getDoc(doc(stranger,'admins','owner')));await deny(getDocs(collection(owner,'admins')));await deny(getDoc(doc(out,'unexpected','path')));
+ // Only Google admins can delete; replacing identities is an atomic revoke + approval.
+ await deny(deleteDoc(doc(out,'devices','deviceA')));await deny(deleteDoc(doc(stranger,'devices','deviceA')));
+ await allow(setDoc(doc(b,'devices','deviceB'),data()));
+ await allow(runTransaction(owner,async tx=>{const old=doc(owner,'devices','deviceA'),next=doc(owner,'devices','deviceB');await tx.get(old);await tx.get(next);tx.update(next,{enabled:true,approvedAt:serverTimestamp()});tx.delete(old);}));
+ await deny(getDocs(collection(a,'songs')));await allow(getDocs(collection(b,'songs')));
+ // A denied update must also roll back the paired deletion.
+ await allow(setDoc(doc(a,'devices','deviceA'),data()));
+ await deny(runTransaction(owner,async tx=>{tx.update(doc(owner,'devices','deviceA'),{enabled:true});tx.delete(doc(owner,'devices','deviceB'));}));
+ await allow(getDocs(collection(b,'songs')));await allow(getDoc(doc(owner,'devices','deviceB')));
+ await deny(deleteDoc(doc(b,'devices','deviceB')));
+ await allow(deleteDoc(doc(owner,'devices','deviceB')));await deny(getDocs(collection(b,'songs')));
+ await allow(setDoc(doc(b,'devices','deviceB'),data()));await deny(getDocs(collection(b,'songs')));
  console.log('PASS '+checks+' adversarial rules checks');
  }finally{await env.cleanup();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

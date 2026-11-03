@@ -40,7 +40,8 @@ service cloud.firestore {
         && (request.resource.data.enabled == true
           ? request.resource.data.approvedAt == request.time
           : request.resource.data.approvedAt == resource.data.approvedAt);
-      allow delete: if false;
+      // Only an existing Google administrator may revoke and remove a device.
+      allow delete: if isAdmin();
     }
     // Family room schema: root owns the TV lease and current entry/version.
     // Queue/commands store catalog references and anonymous/admin UIDs, no profiles.
