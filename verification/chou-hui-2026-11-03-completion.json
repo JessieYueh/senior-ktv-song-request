@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Taipei",
+  "songs": 133,
+  "officialCandidates": 131,
+  "verified": 130,
+  "firestore": {
+    "confirmedBatches": [
+      8,
+      93
+    ],
+    "confirmedAdditions": 101,
+    "preexistingChouHui": 29,
+    "totalBefore": 158,
+    "totalAfter": 259,
+    "chouHuiAfter": 130,
+    "repeatedImportAdded": 0,
+    "existingSongsOverwritten": 0,
+    "existingSongsDeleted": 0
+  },
+  "pending": [
+    {
+      "title": "發現",
+      "reason": "No independently confirmed official single-song video found."
+    },
+    {
+      "title": "等待花季",
+      "reason": "No independently confirmed official single-song video found."
+    },
+    {
+      "title": "冬季到台北來看雨",
+      "videoId": "-AJH6bDAamc",
+      "reason": "Actual iframe duration 303.661 seconds does not match official album reference 225 seconds; remains pending."
+    }
+  ],
+  "deployment": {
+    "indexHttpStatus": 200,
+    "indexPackVersion": "20261103g",
+    "songPackHttpStatus": 200,
+    "songPackMatchesValidatedWorkspace": true,
+    "managerHttpStatus": 200,
+    "managerMatchesWorkspace": true
+  },
+  "validation": {
+    "importTestsPassed": 7,
+    "uniqueTitles": 133,
+    "uniqueVideoIds": 131
+  },
+  "schedule": {
+    "existingChatGPTSchedule": "User confirmed paused in this conversation",
+    "newAutomationCreated": false
+  },
+  "evidence": [
+    "verification/chou-hui-2026-11-03-batch1.json",
+    "verification/chou-hui-2026-11-03-batch2.json",
+    "verification/chou-hui-2026-11-03-import1.json",
+    "verification/chou-hui-2026-11-03-final.json"
+  ]
+}
