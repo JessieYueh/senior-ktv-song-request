@@ -4,7 +4,7 @@ import {getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged} from 'htt
 const app=initializeApp({apiKey:'AIzaSyDJ-GH4lePxV_RL-dZ0Dm7HaXwOMq8XHx0',authDomain:'ktvdata-da16f.firebaseapp.com',projectId:'ktvdata-da16f',appId:'1:305621061136:web:ca0ace5ad6f12c9c0d0495'});
 const auth=getAuth(app), $=id=>document.getElementById(id);
 const base='https://firestore.googleapis.com/v1/projects/ktvdata-da16f/databases/(default)', prefix='projects/ktvdata-da16f/databases/(default)/documents/';
-let admin=false,busy=false,remote=[],results=[];
+let admin=false,busy=false,remote=[],results=(KTV_CHOU_HUI.verified?.()||[]).map(e=>({title:e.title,videoId:e.videoId,ok:true,seconds:e.durationSeconds,reason:e.evidence,checkedAt:e.checkedAt,verificationReference:e.verificationReference}));
 let report={startedAt:new Date().toISOString(),origin:location.origin,results:[],committed:0,confirmed:0};
 const norm=v=>String(v||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]/gu,'');
 const log=t=>{$('log').textContent+=t+'\n';};
@@ -25,13 +25,14 @@ $('refresh').onclick=()=>guarded(refresh);
 onAuthStateChanged(auth,async user=>{admin=false;controls();if(!user||user.isAnonymous){$('status').textContent='請使用已授權的 Google 管理帳號登入。';return;}try{const d=await api('/documents/admins/'+user.uid,null,'GET');admin=d.fields?.enabled?.booleanValue===true;if(!admin)throw Error('此帳號尚未獲管理授權');await refresh();}catch(e){$('status').textContent=e.message;}controls();});
 $('verify').onclick=()=>guarded(async()=>{
  const candidates=KTV_CHOU_HUI.entries.filter(e=>e.videoId&&e.channel&&['official_channel','official_title','official_audio'].includes(e.sourceEvidence)&&e.expectedDurationSeconds>0);
- const selected=$('scope').value==='one'?candidates.slice(0,1):candidates;
- results=[];report.results=[];
+ const selected=$('scope').value==='one'?candidates.slice(0,1):$('scope').value==='pending'?candidates.filter(e=>!results.some(r=>r.ok&&r.videoId===e.videoId)):candidates;
+ report.results=results;
  log('開始驗證 '+selected.length+' 首；目前不寫入 Firestore。');
- for(const entry of selected){
-  $('status').textContent='正在驗證 '+(results.length+1)+'／'+selected.length+'：'+entry.title;
+ for(let i=0;i<selected.length;i++){
+  const entry=selected[i];
+  $('status').textContent='正在驗證 '+(i+1)+'／'+selected.length+'：'+entry.title;
   const [r]=await KTV_VERIFY_CHOU_HUI.run([entry],$('player'),log);
-  results.push({...r,source:entry.source,channel:entry.channel,expectedDurationSeconds:entry.expectedDurationSeconds,checkedAt:new Date().toISOString()});report.results=results;
+  results=results.filter(previous=>previous.videoId!==entry.videoId);results.push({...r,source:entry.source,channel:entry.channel,expectedDurationSeconds:entry.expectedDurationSeconds,checkedAt:new Date().toISOString()});report.results=results;
  }
  $('status').textContent='檢查完成：'+results.filter(r=>r.ok).length+' 首通過；'+results.filter(r=>!r.ok).length+' 首未通過。尚未匯入。';
 });
@@ -41,9 +42,12 @@ $('import').onclick=()=>guarded(async()=>{
  if(!eligible.length)throw Error('沒有完成實播驗證的歌曲');
  let transaction,committed=false;
  try{
-  ({transaction}=await api('/documents:beginTransaction',{options:{readWrite:{}}}));
-  // Read the entire collection INSIDE the transaction, including legacy IDs.
-  const all=await readSongs(transaction),missing=[];
+  // Start the transaction with the authorized collection query. Standalone
+  // beginTransaction has no document resource for Firebase Rules evaluation.
+  const rows=await api('/documents:runQuery',{structuredQuery:{from:[{collectionId:'songs'}]},newTransaction:{readWrite:{}}});
+  transaction=rows.find(r=>r.transaction)?.transaction;
+  if(!transaction)throw Error('伺服器未建立安全匯入交易');
+  const all=rows.filter(r=>r.document).map(r=>decode(r.document)),missing=[];
   for(const e of eligible){if(!duplicate(e,[...all,...missing]))missing.push(e);}
   if(missing.length>100)throw Error('每次最多新增 100 首');
   if(!missing.length){log('已驗證歌曲皆已存在，新增 0 首。');await api('/documents:rollback',{transaction});transaction=null;return;}
