@@ -296,7 +296,7 @@
     "source": "https://www.youtube.com/watch?v=kXFMYK9jgFg",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 2.9 秒，影片全長 260.721 秒",
     "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "約定",
@@ -318,7 +318,7 @@
     "source": "https://www.youtube.com/watch?v=Vd-mTkhiThI",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 256.101 秒",
     "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "風鈴",
@@ -340,7 +340,7 @@
     "source": "https://www.youtube.com/watch?v=Ra3Fuc77hgU",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 270.861 秒",
     "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我喜歡",
@@ -362,7 +362,7 @@
     "source": "https://www.youtube.com/watch?v=uAgQn9-W2Os",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 271.381 秒",
     "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "空白",
@@ -385,7 +385,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_video",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "FOREVER",
@@ -409,7 +409,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "預言",
@@ -431,7 +431,7 @@
     "source": "https://www.youtube.com/watch?v=u1BSQSPPPG8",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 318.981 秒",
     "durationReference": "https://open.spotify.com/album/7ey6Ns631kDkmO5tz9zGFL",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "討厭自己",
@@ -455,7 +455,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "思念的翅膀",
@@ -479,7 +479,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我看",
@@ -503,7 +503,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "了了",
@@ -527,7 +527,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "好想好好愛你",
@@ -549,7 +549,7 @@
     "source": "https://www.youtube.com/watch?v=TUqKBTQizwA",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 264.521 秒",
     "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "ANGEL FACE",
@@ -573,7 +573,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "替身",
@@ -595,7 +595,7 @@
     "source": "https://www.youtube.com/watch?v=WUKnbOlicps",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 341.361 秒",
     "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "太茫",
@@ -619,7 +619,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "事到如今",
@@ -643,7 +643,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "話題",
@@ -665,7 +665,7 @@
     "source": "https://www.youtube.com/watch?v=XtX4aawnWI4",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 282.561 秒",
     "durationReference": "https://music.amazon.com.au/albums/B0BJ9H141W",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "愛過不傷心",
@@ -688,7 +688,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "不哭",
@@ -711,7 +711,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "換季",
@@ -735,7 +735,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "沒有你",
@@ -759,7 +759,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "相遇太早",
@@ -782,7 +782,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "溫度",
@@ -806,7 +806,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "體溫",
@@ -828,7 +828,7 @@
     "source": "https://www.youtube.com/watch?v=PGpcKF3hfO4",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 276.901 秒",
     "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "寂寞城市",
@@ -850,7 +850,7 @@
     "source": "https://www.youtube.com/watch?v=UBR_PKREysc",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 2.5 秒，影片全長 292.021 秒",
     "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "只能做朋友",
@@ -872,7 +872,7 @@
     "source": "https://www.youtube.com/watch?v=no_FGCes5mY",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 265.301 秒",
     "durationReference": "https://open.spotify.com/track/0LzXE7CbUMlw60nR3PuCmr",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我很快樂",
@@ -895,7 +895,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "Hold Me Tight",
@@ -919,7 +919,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "別對我太好",
@@ -943,7 +943,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "瞬間",
@@ -966,7 +966,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "不管",
@@ -990,7 +990,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "隱形",
@@ -1014,7 +1014,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "終點",
@@ -1038,7 +1038,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我看見的世界",
@@ -1060,7 +1060,7 @@
     "trackNumber": 1,
     "expectedDurationSeconds": 298,
     "durationReference": "https://open.spotify.com/track/6dIKGCUabXK98GQWyMMcHW",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "被遺忘的時光",
@@ -1082,7 +1082,7 @@
     "trackNumber": 10,
     "expectedDurationSeconds": 253,
     "durationReference": "https://open.spotify.com/intl-it/track/4x2qiUHdhNvfLJelbGuvlU",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "感性生物",
@@ -1104,7 +1104,7 @@
     "trackNumber": 6,
     "expectedDurationSeconds": 233,
     "durationReference": "https://music.amazon.in/albums/B0G6Z8VBNH",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "咖啡季節",
@@ -1127,7 +1127,7 @@
     "channel": "群石國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "不愛了也是一種愛",
@@ -1138,20 +1138,20 @@
     "trackNumber": 2,
     "videoId": "RW7o-TX1wnk",
     "vocalId": "",
-    "embedding": "pending",
-    "contentVerified": false,
+    "embedding": "passed",
+    "contentVerified": true,
     "subtitles": "待查",
-    "durationSeconds": null,
-    "checkedAt": "2026-11-03",
+    "durationSeconds": 248.081,
+    "checkedAt": "2026-11-03T07:07:30.964Z",
     "source": "https://www.youtube.com/watch?v=RW7o-TX1wnk",
-    "evidence": "原官方 MV 實測 YouTube 錯誤150，不匯入；改用先前已核對的群石國際提供、周蕙官方藝人頻道完整音源，待以實際 Topic 名稱重新驗證。",
+    "evidence": "來源 周蕙 - Topic，標題吻合；實際播放前進 3.0 秒，影片全長 248.081 秒",
     "expectedDurationSeconds": 248,
     "durationReference": "https://www.theaudiodb.com/album/2316035-%E5%91%A8%E8%95%99-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%88%BF%E9%96%93",
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "lastVerificationFailure": "YouTube 錯誤 150"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "幸福的可能",
@@ -1175,7 +1175,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "冰塊",
@@ -1198,7 +1198,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我不是你的唯一",
@@ -1221,7 +1221,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "雜質",
@@ -1245,7 +1245,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "故事的某段",
@@ -1269,7 +1269,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "最難得到的禮物",
@@ -1293,7 +1293,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "不老的月亮",
@@ -1316,7 +1316,7 @@
     "channel": "群石國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "美好生活",
@@ -1339,7 +1339,7 @@
     "channel": "華研國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我們還會相遇",
@@ -1363,7 +1363,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "冬季到台北來看雨",
@@ -1410,7 +1410,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "誰稀罕愛上你",
@@ -1434,7 +1434,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "謝謝你騙我",
@@ -1458,7 +1458,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "多餘的寂寞",
@@ -1482,7 +1482,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "偶然",
@@ -1505,7 +1505,7 @@
     "channel": "華研國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_lyric",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "夢不到你",
@@ -1529,7 +1529,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "再看我一眼",
@@ -1553,7 +1553,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "愛你在心口難開",
@@ -1577,7 +1577,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "心痛的感覺",
@@ -1601,7 +1601,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "天天想你",
@@ -1624,7 +1624,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "拒絕再玩",
@@ -1647,7 +1647,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "一路上有你",
@@ -1670,7 +1670,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "不讓我的眼淚陪我過夜",
@@ -1693,7 +1693,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "喜歡你",
@@ -1717,7 +1717,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "失戀陣線聯盟",
@@ -1741,7 +1741,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "心理遊戲",
@@ -1765,7 +1765,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "明天我要嫁給你",
@@ -1788,7 +1788,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "Don't break my heart",
@@ -1811,7 +1811,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "釀月光",
@@ -1834,7 +1834,7 @@
     "channel": "華研國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我一個人唱歌",
@@ -1858,7 +1858,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "誤解歌",
@@ -1881,7 +1881,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "走",
@@ -1904,7 +1904,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "對戲",
@@ -1927,7 +1927,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "無約",
@@ -1951,7 +1951,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "過節",
@@ -1974,7 +1974,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "度菇",
@@ -1998,7 +1998,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "過客",
@@ -2021,7 +2021,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "掌心的指紋",
@@ -2045,7 +2045,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "今宵多珍重",
@@ -2068,7 +2068,7 @@
     "source": "https://www.youtube.com/watch?v=Poe_poxjuAQ",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 298.861 秒",
     "durationReference": "https://open.spotify.com/track/1A7aqiRd98fCFHu1fD0WHI",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "偷偷摸摸",
@@ -2092,7 +2092,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "魂縈舊夢",
@@ -2116,7 +2116,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "夢中人",
@@ -2140,7 +2140,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "打噴嚏",
@@ -2164,7 +2164,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "你真美麗",
@@ -2188,7 +2188,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "等著你回來",
@@ -2212,7 +2212,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "給我一個吻",
@@ -2236,7 +2236,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "情人的眼淚",
@@ -2260,7 +2260,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "相思河畔",
@@ -2283,7 +2283,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "我要你的愛",
@@ -2306,7 +2306,7 @@
     "source": "https://www.youtube.com/watch?v=wksJDRxPYcg",
     "evidence": "來源 福茂唱片，標題吻合；實際播放前進 3.0 秒，影片全長 237.661 秒",
     "durationReference": "https://open.spotify.com/track/6cGVsFxCVSIZTFW2hWpEw4",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "秋夜",
@@ -2330,7 +2330,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "心戀",
@@ -2354,7 +2354,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "叉燒包",
@@ -2378,7 +2378,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "如果沒有你",
@@ -2402,7 +2402,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "不了情",
@@ -2426,7 +2426,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "說不出的快活",
@@ -2450,7 +2450,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "今宵多珍重(下集)",
@@ -2477,7 +2477,7 @@
     "titleAliases": [
       "今宵多珍重 (2)"
     ],
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "流域",
@@ -2500,7 +2500,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "愛情無關是非",
@@ -2524,7 +2524,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "收藏",
@@ -2547,7 +2547,7 @@
     "channel": "福茂唱片",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "最愛",
@@ -2570,7 +2570,7 @@
     "channel": "Golden Era 金曲年代",
     "sourceEvidence": "official_channel",
     "videoType": "official_karaoke",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "向日葵",
@@ -2593,7 +2593,7 @@
     "channel": "Golden Era 金曲年代",
     "sourceEvidence": "official_channel",
     "videoType": "official_karaoke",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "學會",
@@ -2617,7 +2617,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_karaoke",
     "discoveryReference": "https://www.youtube.com/@goldenera_cpop/search?query=%E5%91%A8%E8%95%99",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "擁抱的瞬間",
@@ -2641,7 +2641,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/playlist?list=OLAK5uy_lUPENaB85RIAUauFC_uocTr-aTZcL8Frc",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "分岔路口",
@@ -2664,7 +2664,7 @@
     "source": "https://www.youtube.com/watch?v=YYosiZDUmC0",
     "evidence": "來源 Golden Era 金曲年代，標題吻合；實際播放前進 2.5 秒，影片全長 273.5065666666667 秒",
     "durationReference": "https://open.spotify.com/album/6rTFjeyhQ9odABh6253KsQ",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "Darling",
@@ -2688,7 +2688,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_karaoke",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "該忘了你對不對",
@@ -2711,7 +2711,7 @@
     "channel": "Golden Era 金曲年代",
     "sourceEvidence": "official_channel",
     "videoType": "official_karaoke",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "發現",
@@ -2754,7 +2754,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_karaoke",
     "discoveryReference": "https://www.youtube.com/@goldenera_cpop/search?query=%E5%91%A8%E8%95%99",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "等待花季",
@@ -2797,7 +2797,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "周蕙",
@@ -2821,7 +2821,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "守約",
@@ -2845,7 +2845,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "Complicated",
@@ -2869,7 +2869,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "也許你",
@@ -2893,7 +2893,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "守護者",
@@ -2917,7 +2917,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "老地方",
@@ -2941,7 +2941,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "夜動",
@@ -2965,7 +2965,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "難題",
@@ -2989,7 +2989,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "他是誰",
@@ -3013,7 +3013,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "騙人，不！",
@@ -3037,7 +3037,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "只是少了你",
@@ -3060,7 +3060,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "彎彎的月光",
@@ -3083,7 +3083,7 @@
     "channel": "華研國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "哪兒",
@@ -3106,7 +3106,7 @@
     "channel": "華研國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_lyric_video",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "還好嗎？",
@@ -3130,7 +3130,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "愛的路上我和你",
@@ -3154,7 +3154,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "海誓山盟",
@@ -3178,7 +3178,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "千言萬語",
@@ -3202,7 +3202,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "今天不回家",
@@ -3226,7 +3226,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "你快回來",
@@ -3249,7 +3249,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "人間",
@@ -3273,7 +3273,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "給從前",
@@ -3297,7 +3297,7 @@
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
     "discoveryReference": "https://www.youtube.com/@Where_Chou/releases",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "髮",
@@ -3324,7 +3324,7 @@
     "titleAliases": [
       "發"
     ],
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "千千萬萬個你",
@@ -3347,7 +3347,7 @@
     "channel": "華研國際",
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "當歸",
@@ -3370,7 +3370,7 @@
     "sourceEvidence": "official_channel",
     "videoType": "official_mv",
     "durationReference": "https://s.awa.fm/track/8f7a3d12acfff86ce572",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   },
   {
     "title": "為自己而自己",
@@ -3393,7 +3393,7 @@
     "channel": "周蕙 Where Chou",
     "sourceEvidence": "official_audio",
     "videoType": "official_audio",
-    "verificationReference": "verification/chou-hui-2026-11-03-batch2.json"
+    "verificationReference": "verification/chou-hui-2026-11-03-final.json"
   }
 ];
   const verified=()=>entries.filter(e=>e.embedding==='passed'&&e.contentVerified===true&&e.videoId&&e.durationSeconds>0);
