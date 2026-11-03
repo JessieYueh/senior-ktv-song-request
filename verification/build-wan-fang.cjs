@@ -1,0 +1,20 @@
+const fs=require('node:fs');
+const meta=require('./wan-fang-metadata.json');
+const charts={a:'https://jackli51.pixnet.net/blog/posts/8232207384',b:'https://jackli51.pixnet.net/blog/posts/8232641844',c:'https://jackli51.pixnet.net/blog/posts/8229349189',d:'https://jackli51.pixnet.net/blog/posts/8230158689'};
+const rows=[['新不了情',1993,'國語','萬芳','b','錢櫃雜誌63期，1999年8月國語點播榜21名'],['愛情限時批',1995,'台語','伍佰、萬芳','b','錢櫃雜誌63期，1999年8月台語點播榜1名'],['放逐',1997,'國語','萬芳','a','錢櫃雜誌42期，1997年11月國語點播榜32名'],['分手',1997,'國語','萬芳','a','錢櫃雜誌42期，1997年11月國語新歌榜35名'],['寂寞',1997,'國語','萬芳','a','錢櫃雜誌42期，1997年11月國語新歌榜37名'],['學你',1997,'國語','萬芳','a','錢櫃雜誌42期，1997年11月國語新歌榜45名'],['從前',1999,'國語','萬芳','b','錢櫃雜誌63期，1999年8月國語點播榜16名'],['不換',1999,'國語','萬芳','c','錢櫃1999年7月第1週國語點播榜14名（時報周刊1116期）'],['如你所願',1999,'國語','萬芳','b','錢櫃雜誌63期，1999年8月國語新歌榜41名'],['分手旅行',1999,'國語','萬芳','b','錢櫃雜誌63期，1999年8月國語新歌榜50名'],['麻糬',2000,'台語','黃品源、萬芳','d','錢櫃2001年2月第1週台語點播榜3名（時報周刊1199期、TVBS周刊173期）']];
+const entries=rows.map(([title,year,lang,artist,chart,evidence],i)=>({title,artist,lang,year,videoId:meta[i].id,vocalId:'',source:'https://www.youtube.com/watch?v='+meta[i].id,chartSource:charts[chart],chartEvidence:evidence,metadataVerified:meta[i].oembed===200&&meta[i].author==='滾石唱片 ROCK RECORDS',embedAllowed:meta[i].embedAllowed,durationSeconds:Number(meta[i].details.lengthSeconds),embedding:'unconfirmed',contentVerified:false,subtitles:'官方 MV；畫面字幕尚待確認，非以說明欄歌詞代替字幕驗證',checkedAt:'2026-11-03'}));
+fs.writeFileSync('wan-fang-song-pack.js',`/* Evidence and playback checks are separate. Never import an unverified candidate. */
+(function(root){'use strict';
+const entries=${JSON.stringify(entries,null,2)};
+const key=v=>String(v||'').normalize('NFKC').replace(/[\\s、,，&＆+＋]/g,'');
+const matches=(a,b)=>a.videoId===b.videoId||a.vocalId===b.videoId||(key(a.title)===key(b.title)&&/萬芳|万芳/.test(a.artist||''));
+const verified=()=>entries.filter(e=>e.metadataVerified&&e.embedding==='passed'&&e.contentVerified===true);
+const importable=()=>verified().map(({title,artist,lang,videoId,vocalId})=>({title,artist,lang,videoId,vocalId}));
+const missing=songs=>importable().filter(e=>!(songs||[]).some(s=>matches(s,e)));
+root.KTV_WAN_FANG={entries,verified,importable,missing};
+if(typeof module!=='undefined')module.exports=root.KTV_WAN_FANG;
+})(typeof window!=='undefined'?window:globalThis);
+`);
+let page=fs.readFileSync('verify-valen.html','utf8').replaceAll('許茹芸','萬芳');
+page=page.replace(/const entries=\[.*?\];/,`const entries=${JSON.stringify(entries.map(e=>({...e,expectedDurationSeconds:e.durationSeconds})))};`);
+fs.writeFileSync('verify-wan-fang.html',page);
