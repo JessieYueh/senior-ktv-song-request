@@ -69,3 +69,19 @@ firebase.json 的模擬器設定不會變更正式 Firebase 登入方式。使�
 - https://firebase.google.com/docs/auth/web/anonymous-auth
 - https://firebase.google.com/docs/firestore/security/rules-conditions
 - https://support.google.com/accounts/answer/185839
+
+
+## 2026-11-03：清理舊裝置與重新授權
+
+- 裝置代碼是 Firebase 匿名登入 UID 的尾端 8 碼，只供人工核對，不能憑舊代碼恢復登入。瀏覽器資料清除、無痕模式、切換瀏覽器或登入身分可能使原匿名身分無法沿用；無法僅從這份程式判定特定裝置遺失身分的原因。
+- 請固定使用同一瀏覽器、避免無痕模式及清除網站資料。暫時無法使用時先按「重新確認」，不要急著建立新申請。
+- **代碼相同**：管理者直接按該紀錄的「重新核准」，沿用原 UID，不新增紀錄。
+- **代碼不同**：家人先用新瀏覽器身分申請；管理者在新申請按「取代舊裝置」，核對新舊代碼並選擇舊紀錄。單筆 Firestore 交易沿用舊暱稱、核准新 UID、刪除舊 UID 文件；失敗時兩邊均不變更。已處理或不存在的新申請不接受取代。
+- **刪除紀錄**：管理者核對暱稱及代碼、確認後，只刪除該筆 `devices/{uid}` 授權紀錄；沒有刪除 Firebase Authentication 使用者、歌曲、雲端最愛或包廂文件。重新申請仍是未核准狀態，不能自行恢復授權。
+- 刪除／取代會讓仍使用舊 UID 的連線裝置失去授權；離線期間的即時撤銷限制同前。管理者不應因同名就取代，必須核對實際裝置的新代碼。
+- 安全規則只將 `/devices/{uid}` 的 delete 從拒絕改為 `isAdmin()`：須同時符合 Google 登入與既有 `admins/{uid}.enabled == true`。沒有開放匿名使用者刪除、更新或自我核准，也未修改其他集合規則。
+- 先發布新版 `firestore.rules`，再發布 `cloud.js` 與 `index.html`。GitHub Pages 發布不會自動發布 Firestore 規則。
+
+驗證：裝置授權與雲端寫入共 20 項 Node 測試通過；裝置管理 UI 測試及原捲動視窗測試通過；Firestore 模擬器編譯並通過 51 項 allow/deny 檢查，包含匿名／未授權帳號刪除拒絕、管理者原子取代、失敗交易回滾、刪除後新申請仍無權讀取歌本。這些是模擬驗證，不代表正式環境已發布。
+
+I've set up prototype Security Rules to keep the data in Firestore safe. They are designed to be secure for administrator-only device deletion and atomic replacement, while blocking anonymous self-approval and preserving other collection rules. However, you should review and verify them before broadly sharing your app. If you'd like, I can help you harden these rules.

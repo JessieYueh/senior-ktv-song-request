@@ -114,7 +114,7 @@
   </style>
 </head>
 <body>
-<section class="shell" id="accessGate"><div class="panel accessCard"><h1>🎤 快樂點歌</h1><h2 id="accessTitle">正在確認使用權限…</h2><p id="accessMessage">請稍候。</p><p id="deviceCode" class="deviceCode" hidden></p><div id="deviceRequest"><label for="deviceLabel">裝置暱稱（請勿填真實姓名）</label><input id="deviceLabel" maxlength="40" placeholder="例如：客廳平板"><button class="btn green" id="requestDeviceBtn" disabled>申請此裝置使用</button></div><p id="accessError" role="status"></p><div class="quickActions"><button class="btn primary" id="gateLogin" disabled>Google 管理登入</button><button class="btn" id="gateRetry" disabled>重新確認</button><button class="btn" id="gateLogout" hidden>登出此帳號</button></div><p class="helper">家人不用 Google 帳號。首次申請後，請管理者核對裝置代碼並核准。清除瀏覽器資料或使用無痕模式可能需要重新申請。</p></div></section>
+<section class="shell" id="accessGate"><div class="panel accessCard"><h1>🎤 快樂點歌</h1><h2 id="accessTitle">正在確認使用權限…</h2><p id="accessMessage">請稍候。</p><p id="deviceCode" class="deviceCode" hidden></p><div id="deviceRequest"><label for="deviceLabel">裝置暱稱（請勿填真實姓名）</label><input id="deviceLabel" maxlength="40" placeholder="例如：客廳平板"><button class="btn green" id="requestDeviceBtn" disabled>申請此裝置使用</button></div><p id="accessError" role="status"></p><div class="quickActions"><button class="btn primary" id="gateLogin" disabled>Google 管理登入</button><button class="btn" id="gateRetry" disabled>重新確認</button><button class="btn" id="gateLogout" hidden>登出此帳號</button></div><p class="helper">家人不用 Google 帳號。首次申請後，請管理者核對裝置代碼並核准。請固定使用同一瀏覽器，避免無痕模式及清除網站資料。若暫時無法使用，請先按「重新確認」；代碼相同可重新核准，代碼改變則由管理者選「取代舊裝置」。</p></div></section>
 <main class="shell" id="ktvMain" hidden>
   <header class="top"><div class="brand">🎤 快樂點歌<small>找歌、點歌、開唱，三步就好</small></div><button class="btn" id="accountBtn">☁ 帳號與裝置</button><div class="pill" id="queueBadge">待唱 0 首</div></header>
   <section class="panel roomPanel" aria-label="播放模式"><div class="quickActions"><button class="btn primary" id="roomLocalBtn">📱 這台點歌・這台播放</button><button class="btn" id="roomCreateBtn" disabled>📺 建立電視包廂</button><button class="btn" id="roomJoinBtn" disabled>🔗 加入包廂</button></div><p id="roomStatus" role="status">目前為單機模式：保留原本的瀏覽器點歌功能。</p><p id="roomError" role="status"></p><div id="roomShare" hidden><strong id="roomCode"></strong><p><a id="roomLink" target="_blank" rel="noopener"></a></p><div id="roomQR" aria-label="手機加入包廂 QR Code"></div><button class="btn green" id="roomArm" hidden>▶ 開始電視播放</button><button class="btn" id="roomPairingToggle" hidden>顯示配對 QR Code</button><button class="btn" id="roomFullScreen" hidden>⛶ 電視全螢幕</button><p class="helper">手機及電視都須先取得裝置授權。手機鎖屏不影響電視；電視請保持網頁開啟。若有聲播放被阻擋，請在電視按「繼續播放」。</p></div></section>
@@ -141,9 +141,10 @@
 <dialog id="batchDialog"><h2>批次加入歌曲</h2><p>每行一首，依序填「歌名、歌手、語言、主要影片網址、其他版本網址」，用 Tab 分隔。後兩欄可以留空。</p><textarea id="batchText" placeholder="月亮代表我的心&#9;鄧麗君&#9;國語&#9;https://youtu.be/影片ID"></textarea><menu><button class="btn" id="cancelBatch">取消</button><button class="btn primary" id="saveBatch">加入歌本</button></menu></dialog>
 <dialog id="categoryDialog"><h2 id="categoryDialogTitle">全部點歌</h2><p id="categoryMessage"></p><p id="categorySkipped" class="helper"></p><menu><button class="btn" id="cancelCategory">取消</button><button class="btn green" id="confirmCategory">確定加入</button></menu></dialog>
 <dialog id="nextDialog"><h2>要播放下一首嗎？</h2><p id="nextMessage"></p><menu><button class="btn" id="cancelNext">繼續唱</button><button class="btn orange" id="confirmNext" autofocus>確定切歌</button></menu></dialog>
-<dialog id="cloudDialog"><h2>☁ 帳號與裝置</h2><p id="cloudDetail"></p><p id="cloudUser"></p><div class="quickActions"><button class="btn primary" id="cloudLoginBtn">Google 管理登入</button><button class="btn" id="cloudLogoutBtn" hidden>登出</button><button class="btn" id="retryCloudBtn">重新連線</button></div><p id="adminHint"></p><section id="deviceManager" hidden><h3>家人裝置授權</h3><p>先與家人核對裝置代碼再核准；請使用「客廳平板」等暱稱，不填姓名或 Email。</p><p id="deviceManagerError" role="status"></p><div id="deviceList"></div><p><a href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank" rel="noopener">開啟 Google 帳號兩步驟驗證設定 ↗</a></p><p class="helper">須由你本人完成設定；本網站不能替你開啟或確認 Google 帳號是否已啟用兩步驟驗證。</p></section><menu><button class="btn" id="closeCloudBtn">關閉</button></menu></dialog>
+<dialog id="cloudDialog"><h2>☁ 帳號與裝置</h2><p id="cloudDetail"></p><p id="cloudUser"></p><div class="quickActions"><button class="btn primary" id="cloudLoginBtn">Google 管理登入</button><button class="btn" id="cloudLogoutBtn" hidden>登出</button><button class="btn" id="retryCloudBtn">重新連線</button></div><p id="adminHint"></p><section id="deviceManager" hidden><h3>家人裝置授權</h3><p>先與家人核對裝置代碼再核准。代碼相同可重新核准；代碼改變時，在新申請按「取代舊裝置」，沿用舊暱稱並移除舊授權。刪除紀錄也會撤銷該裝置授權；重新申請須再次核准。</p><p id="deviceManagerError" role="status"></p><div id="deviceList"></div><p><a href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank" rel="noopener">開啟 Google 帳號兩步驟驗證設定 ↗</a></p><p class="helper">須由你本人完成設定；本網站不能替你開啟或確認 Google 帳號是否已啟用兩步驟驗證。</p></section><menu><button class="btn" id="closeCloudBtn">關閉</button></menu></dialog>
 <div id="toast" role="status" hidden></div>
 
+<dialog id="replaceDeviceDialog" aria-labelledby="replaceDeviceTitle"><h2 id="replaceDeviceTitle">取代舊裝置</h2><p id="replaceDeviceNew"></p><label for="replaceDeviceOld">選擇同一台裝置的舊紀錄</label><select id="replaceDeviceOld"></select><p class="helper">請先核對新代碼。確認後會沿用舊暱稱、核准新代碼並移除舊授權。若選錯，舊裝置將失去權限。</p><p id="replaceDeviceError" role="status"></p><menu><button class="btn" id="cancelReplaceDevice">取消</button><button class="btn green" id="confirmReplaceDevice">確認取代</button></menu></dialog>
 <dialog id="favoritesDialog" aria-labelledby="favoritesTitle"><div class="bookHeader"><h2 id="favoritesTitle">♡ 我的最愛</h2><button class="btn" id="closeFavorites">關閉</button></div><div class="content"><p class="helper">清單儲存在家庭雲端，已授權裝置皆可選用及編輯。可用暱稱建立自己的清單。</p><p id="favoriteCloudStatus" role="status"></p><button class="btn" id="importLocalFavorites" hidden>匯入這台裝置的舊清單</button><button class="btn primary" id="newFavorite">＋ 新建清單</button><div id="favoriteLists" aria-label="選擇最愛清單"></div><h3 id="favoriteHeading"></h3><div class="favoriteTools" id="favoriteTools"><button class="btn green" id="playFavorite">＋ 全部點歌</button><button class="btn" id="renameFavorite">改名</button><button class="btn red" id="deleteFavorite">刪除清單</button><button class="btn" id="addFavoriteSongs">＋ 從歌本收藏</button></div><p id="favoritePlan" role="status"></p><div id="favoriteSongs"></div></div></dialog>
 <dialog id="favoritePicker" aria-labelledby="favoritePickerTitle"><div class="bookHeader"><h2 id="favoritePickerTitle">收藏到清單</h2><button class="btn" id="closeFavoritePicker">取消</button></div><div class="content"><p id="favoriteSongLabel"></p><div id="favoriteTargets"></div><button class="btn primary" id="newFavoriteTarget">＋ 新建清單並收藏</button></div></dialog>
 <dialog id="favoriteNameDialog" aria-labelledby="favoriteNameTitle"><form id="favoriteNameForm"><h2 id="favoriteNameTitle">新建清單</h2><label for="favoriteNameInput">清單名稱</label><input id="favoriteNameInput" maxlength="40" required placeholder="例如：爸爸愛唱、媽媽台語歌"><menu><button type="button" class="btn" id="cancelFavoriteName">取消</button><button type="submit" class="btn green">儲存</button></menu></form></dialog>
@@ -228,7 +229,7 @@
   function requireCloud(){if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入，請稍後或重新整理。');if(!cloudState.admin){openDialog($('cloudDialog'));throw new Error('請先登入並取得管理權限，才能加入共用歌本。');}return window.KTV_CLOUD;}
   async function saveCloud(song){return requireCloud().upsert(song);}
   function rebuildCatalog(songs){remoteSongs=songs;catalog=[...songs];if($('singerDialog').open)renderSingerChoices();renderCatalog();refreshFavorites();if(window.KTV_HOU_HSIANG_TING?.lastReport)window.KTV_HOU_HSIANG_TING.lastReport.synced=window.KTV_HOU_HSIANG_TING.pending(songs).length===0;if(sharedMode())applyRoomState();scheduleHouImport();scheduleFanImport();scheduleWanImport();}
-  let previousAccess=false;
+  let previousAccess=false, replacementDeviceUid='';
   function updateCloudUI(){
     const c=cloudState,allowed=c.access===true;
     if(!allowed&&roomClient?.id)roomClient.leave(false);
@@ -252,13 +253,41 @@
     $('gateLogout').hidden=!c.user||c.user.anonymous;
     $('accessError').textContent=c.deviceError||c.authError||c.error||'';
     $('deviceManager').hidden=!c.admin;$('deviceManagerError').textContent=c.deviceError||'';
-    $('deviceList').replaceChildren();
-    if(c.admin){
-      if(!c.devices?.length){const p=document.createElement('p');p.textContent='尚無裝置申請。';$('deviceList').append(p);}
-      for(const d of c.devices||[]){const el=document.createElement('div');el.className='song';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=d.label;const detail=document.createElement('p');detail.textContent='代碼 '+d._id.slice(-8)+' · '+(d.enabled?'已授權':'待核准／已停用');info.append(name,detail);el.append(info,button(d.enabled?'停用此裝置':'核准此裝置',d.enabled?'red':'green',async()=>{if(!confirm((d.enabled?'停用':'核准')+'「'+d.label+'」？請確認代碼 '+d._id.slice(-8)))return;try{await window.KTV_CLOUD.setDeviceEnabled(d._id,!d.enabled);toast('裝置授權已更新');}catch(error){toast(cloudError(error));}}));$('deviceList').append(el);}
-    }
+    renderDevices(c);
+    if(!c.admin&&$('replaceDeviceDialog').open)$('replaceDeviceDialog').close();
     renderOST();
     document.querySelectorAll('#songForm button[type=submit],#quickForm button[type=submit],#saveBatch').forEach(b=>b.disabled=c.busy||!c.admin);
+  }
+  function renderDevices(c){
+    $('deviceList').replaceChildren();
+    if(!c.admin)return;
+    if(!c.devicesReady||!c.devices?.length){const p=document.createElement('p');p.textContent=c.devicesReady?'尚無裝置申請。':'正在同步裝置名單…';$('deviceList').append(p);}
+    for(const d of c.devices||[]){
+      const el=document.createElement('div');el.className='song';
+      const info=document.createElement('div'),name=document.createElement('strong'),detail=document.createElement('p');
+      name.textContent=d.label;detail.textContent='代碼 '+d._id.slice(-8)+' · '+(d.enabled?'已授權':d.approvedAt?'已停用':'待核准');info.append(name,detail);
+      const actions=document.createElement('div');actions.className='songActions';
+      actions.append(button(d.enabled?'停用此裝置':d.approvedAt?'重新核准':'核准此裝置',d.enabled?'red':'green',async()=>{
+        if(!confirm((d.enabled?'停用':'核准')+'「'+d.label+'」？請確認代碼 '+d._id.slice(-8)))return;
+        try{await window.KTV_CLOUD.setDeviceEnabled(d._id,!d.enabled);toast('裝置授權已更新');}catch(error){toast(cloudError(error));}
+      }));
+      if(!d.enabled&&!d.approvedAt&&(c.devices||[]).some(old=>old._id!==d._id&&(old.enabled||old.approvedAt)))actions.append(button('取代舊裝置','',()=>openReplaceDevice(d)));
+      actions.append(button('刪除紀錄','red',async()=>{
+        if(!confirm('刪除「'+d.label+'」（代碼 '+d._id.slice(-8)+'）的紀錄並撤銷授權？之後重新申請仍須管理者核准。'))return;
+        try{await window.KTV_CLOUD.deleteDevice(d._id);toast('裝置紀錄已刪除，授權已撤銷');}catch(error){toast(deviceChangeError(error));}
+      }));
+      actions.querySelectorAll('button').forEach(b=>b.disabled=c.deviceBusy||!c.devicesReady||!navigator.onLine);
+      el.append(info,actions);$('deviceList').append(el);
+    }
+    $('confirmReplaceDevice').disabled=!!c.deviceBusy||!c.devicesReady;
+  }
+  function deviceChangeError(error){return error.code?.includes('permission-denied')?'裝置變更未完成，請確認管理者權限及新版 Firestore 裝置刪除規則已發布。':cloudError(error);}
+  function openReplaceDevice(device){
+    replacementDeviceUid=device._id;
+    $('replaceDeviceNew').textContent='新申請：'+device.label+' · 代碼 '+device._id.slice(-8);
+    $('replaceDeviceOld').replaceChildren();
+    for(const old of cloudState.devices||[]){if(old._id===device._id||(!old.enabled&&!old.approvedAt))continue;const option=document.createElement('option');option.value=old._id;option.textContent=old.label+' · '+old._id.slice(-8)+' · '+(old.enabled?'已授權':'已停用');$('replaceDeviceOld').append(option);}
+    $('replaceDeviceError').textContent='';openDialog($('replaceDeviceDialog'));
   }
   window.KTV_APP={setCloudState(state){cloudState=state;updateCloudUI();maybeImportValen();scheduleHouImport();scheduleFanImport();scheduleLinImport();scheduleAqiImport();scheduleWanImport();},setCloudSongs:rebuildCatalog,failed(){cloudState.authReady=true;cloudState.error='雲端程式載入失敗，請確認網路後重新整理。';updateCloudUI();}};
   function button(text,cls,action){const b=document.createElement('button');b.className='btn '+cls;b.textContent=text;b.addEventListener('click',action);return b;}
@@ -466,6 +495,18 @@
   $('gateLogin').onclick=()=>$('cloudLoginBtn').click();
   $('gateLogout').onclick=()=>$('cloudLogoutBtn').click();
   $('gateRetry').onclick=()=>$('retryCloudBtn').click();
+  $('cancelReplaceDevice').onclick=()=>$('replaceDeviceDialog').close();
+  $('confirmReplaceDevice').onclick=async()=>{
+    const oldUid=$('replaceDeviceOld').value,newUid=replacementDeviceUid;
+    if(!oldUid||!newUid)return;
+    const old=(cloudState.devices||[]).find(d=>d._id===oldUid);
+    if(!old)return $('replaceDeviceError').textContent='舊紀錄已變動，請關閉後重新選擇。';
+    if(!confirm('將「'+old.label+'」由 '+oldUid.slice(-8)+' 改為 '+newUid.slice(-8)+'？舊授權將移除。'))return;
+    $('confirmReplaceDevice').disabled=true;
+    try{await window.KTV_CLOUD.replaceDevice(oldUid,newUid);$('replaceDeviceDialog').close();toast('已核准新代碼、沿用舊暱稱並移除舊授權');}
+    catch(error){$('replaceDeviceError').textContent=deviceChangeError(error);}
+    finally{$('confirmReplaceDevice').disabled=!!cloudState.deviceBusy;}
+  };
   $('requestDeviceBtn').onclick=async()=>{const b=$('requestDeviceBtn');b.disabled=true;try{if(!window.KTV_CLOUD)throw new Error('雲端功能尚未載入。');await window.KTV_CLOUD.requestDevice($('deviceLabel').value);$('accessError').textContent='申請已送出，請管理者核准。';}catch(error){$('accessError').textContent=cloudError(error);}finally{b.disabled=false;}};
 
   function updateRoomUI(){
@@ -555,7 +596,7 @@
   renderFilters();renderCatalog();renderQueue();updateCloudUI();
   if(new URLSearchParams(location.search).get('setup')==='1')openDialog($('cloudDialog'));
 </script>
-<script type="module">import('./cloud.js?v=20261030rooms1').then(()=>import('./room-sync.js?v=1')).then(()=>{window.KTV_ROOM_READY();import('./favorites-cloud.js?v=1').catch(error=>{console.error('Favorites module failed',error);$('favoriteCloudStatus').textContent='雲端最愛程式未能載入，請重新整理。';});}).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
+<script type="module">import('./cloud.js?v=20261103devices1').then(()=>import('./room-sync.js?v=1')).then(()=>{window.KTV_ROOM_READY();import('./favorites-cloud.js?v=1').catch(error=>{console.error('Favorites module failed',error);$('favoriteCloudStatus').textContent='雲端最愛程式未能載入，請重新整理。';});}).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
 </body>
 </html>
 

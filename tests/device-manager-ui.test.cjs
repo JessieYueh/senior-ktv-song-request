@@ -1,0 +1,32 @@
+const {JSDOM}=require('jsdom');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{
+  const base=path.join(__dirname,'..'),html=fs.readFileSync(path.join(base,'index.html'),'utf8');
+  const dom=new JSDOM(html,{url:'https://jessieyueh.github.io/senior-ktv-song-request/',runScripts:'outside-only'}),w=dom.window,d=w.document;
+  w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};
+  w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};
+  w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');this.dispatchEvent(new w.Event('close'));};
+  w.KTVPlayback=class{stop(){}setPaused(){}};
+  for(const name of ['favorites.js','catalog-sort.js','stroke-sort.js','ost-2026.js','mandarin-song-pack.js','qrcode.js'])w.eval(fs.readFileSync(path.join(base,name),'utf8'));
+  w.eval(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
+  const calls=[],dialogs=[];let confirmed=true,fail=false;
+  w.confirm=message=>{dialogs.push(message);return confirmed;};
+  w.KTV_CLOUD={setDeviceEnabled:async(...a)=>calls.push(['enable',...a]),deleteDevice:async(...a)=>calls.push(['delete',...a]),replaceDevice:async(...a)=>{if(fail)throw Object.assign(Error('denied'),{code:'permission-denied'});calls.push(['replace',...a]);}};
+  const state={admin:true,user:{uid:'manager'},access:true,authReady:true,readReady:true,devicesReady:true,deviceBusy:false,count:0,devices:[{_id:'old-12345678',label:'客廳電視',enabled:true,approvedAt:1},{_id:'new-abcdefgh',label:'電視新申請',enabled:false,approvedAt:null},{_id:'off-87654321',label:'平板',enabled:false,approvedAt:1}]};
+  const render=patch=>w.KTV_APP.setCloudState({...state,...patch});
+  const buttons=text=>[...d.querySelectorAll('#deviceList button')].filter(b=>b.textContent===text),flush=()=>new Promise(setImmediate);
+  render();d.getElementById('accountBtn').click();
+  assert.equal(buttons('刪除紀錄').length,3);assert.equal(buttons('取代舊裝置').length,1);assert.equal(buttons('重新核准').length,1);
+  confirmed=false;buttons('刪除紀錄')[0].click();await flush();assert.equal(calls.length,0);
+  confirmed=true;buttons('重新核准')[0].click();await flush();assert.deepEqual(calls.pop(),['enable','off-87654321',true]);
+  buttons('取代舊裝置')[0].click();assert.ok(d.getElementById('replaceDeviceDialog').open);
+  assert.equal(d.getElementById('replaceDeviceOld').options.length,2);assert.match(d.getElementById('replaceDeviceNew').textContent,/abcdefgh/);
+  // Failure stays visible and does not close the dialog or announce success.
+  fail=true;d.getElementById('confirmReplaceDevice').click();await flush();assert.ok(d.getElementById('replaceDeviceDialog').open);assert.match(d.getElementById('replaceDeviceError').textContent,/未完成/);assert.equal(calls.length,0);
+  fail=false;d.getElementById('confirmReplaceDevice').click();await flush();assert.deepEqual(calls.pop(),['replace','old-12345678','new-abcdefgh']);assert.equal(d.getElementById('replaceDeviceDialog').open,false);
+  buttons('刪除紀錄')[0].click();await flush();assert.deepEqual(calls.pop(),['delete','old-12345678']);assert.match(dialogs.at(-1),/12345678/);
+  render({deviceBusy:true});assert.ok([...d.querySelectorAll('#deviceList button')].every(b=>b.disabled));
+  render();buttons('取代舊裝置')[0].click();render({admin:false});assert.equal(d.getElementById('deviceManager').hidden,true);assert.equal(d.getElementById('replaceDeviceDialog').open,false);assert.equal(d.getElementById('deviceList').children.length,0);
+  console.log('PASS device manager approval, deletion confirmation, replacement selection, failure/retry, busy state and admin removal');
+  dom.window.close();
+})().catch(e=>{console.error(e);process.exitCode=1;});
