@@ -44,8 +44,8 @@ $('import').onclick=()=>guarded(async()=>{
  let committed=false;
  try{
   const all=await readSongs();
-  const candidates=eligible.filter(e=>!duplicate(e,all));
-  if(candidates.length>100)throw Error('每次最多新增 100 首');
+  const absent=eligible.filter(e=>!duplicate(e,all)),candidates=absent.slice(0,100);
+  report.deferredToNextBatch=Math.max(0,absent.length-candidates.length);
   if(!candidates.length){log('已驗證歌曲皆已存在，新增 0 首。');return;}
   const uid=auth.currentUser.uid;
   // Re-read every observed existing document plus every target atomically.
