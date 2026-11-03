@@ -27,6 +27,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
   buttons('刪除紀錄')[0].click();await flush();assert.deepEqual(calls.pop(),['delete','old-12345678']);assert.match(dialogs.at(-1),/12345678/);
   render({deviceBusy:true});assert.ok([...d.querySelectorAll('#deviceList button')].every(b=>b.disabled));
   render();buttons('取代舊裝置')[0].click();render({admin:false});assert.equal(d.getElementById('deviceManager').hidden,true);assert.equal(d.getElementById('replaceDeviceDialog').open,false);assert.equal(d.getElementById('deviceList').children.length,0);
+  render({admin:false,user:{uid:'same-browser',anonymous:true},access:false,device:{enabled:true,label:'電視'}});assert.match(d.getElementById('accessTitle').textContent,/授權仍在/);assert.match(d.getElementById('accessMessage').textContent,/不必重新申請/);
   console.log('PASS device manager approval, deletion confirmation, replacement selection, failure/retry, busy state and admin removal');
   dom.window.close();
 })().catch(e=>{console.error(e);process.exitCode=1;});

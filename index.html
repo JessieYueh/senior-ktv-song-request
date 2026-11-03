@@ -244,8 +244,8 @@
     $('cloudLoginBtn').hidden=!!c.user&&!c.user.anonymous;$('cloudLogoutBtn').hidden=!c.user||c.user.anonymous;
     $('adminHint').textContent=c.admin?'你可以管理雲端歌本，並核准或停用家人裝置。':'此裝置僅能讀取歌本及點歌，不能修改共用歌本。';
     $('manageBtn').hidden=!c.admin;if(!c.admin)document.body.classList.remove('manageOpen');
-    $('accessTitle').textContent=!c.authReady?'正在確認使用權限…':c.user?.anonymous?(c.device?'等待管理者核准':'申請家人裝置授權'):c.user?'請使用原先授權的管理帳號':'首次使用，請先授權此裝置';
-    $('accessMessage').textContent=c.device?'請將下方代碼告知管理者，核准後將自動開啟歌本。若曾被停用，需由管理者重新啟用。':'家人只需申請一次，不用 Google 帳號；管理者請使用 Google 管理登入。';
+    $('accessTitle').textContent=!c.authReady?'正在確認使用權限…':c.admin?'管理登入仍有效，請重新連線':c.user?.anonymous?(c.device?.enabled?'裝置授權仍在，請重新連線':c.device?'等待管理者核准':'申請家人裝置授權'):c.user?'請使用原先授權的管理帳號':'首次使用，請先授權此裝置';
+    $('accessMessage').textContent=c.device?.enabled?'原裝置授權仍有效，請先確認網路並按「重新確認」，不必重新申請。':c.device?'請將下方代碼告知管理者，核准後將自動開啟歌本。若曾被停用，需由管理者重新啟用。':'家人只需申請一次，不用 Google 帳號；管理者請使用 Google 管理登入。';
     $('deviceCode').hidden=!c.user?.anonymous;$('deviceCode').textContent=c.user?.anonymous?'裝置代碼：'+c.user.uid.slice(-8):'';
     $('deviceRequest').hidden=!!c.device||!!(c.user&&!c.user.anonymous);
     $('requestDeviceBtn').disabled=!c.authReady||!window.KTV_CLOUD||!navigator.onLine;
@@ -596,7 +596,7 @@
   renderFilters();renderCatalog();renderQueue();updateCloudUI();
   if(new URLSearchParams(location.search).get('setup')==='1')openDialog($('cloudDialog'));
 </script>
-<script type="module">import('./cloud.js?v=20261103devices1').then(()=>import('./room-sync.js?v=1')).then(()=>{window.KTV_ROOM_READY();import('./favorites-cloud.js?v=1').catch(error=>{console.error('Favorites module failed',error);$('favoriteCloudStatus').textContent='雲端最愛程式未能載入，請重新整理。';});}).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
+<script type="module">import('./cloud.js?v=20261103devices2').then(()=>import('./room-sync.js?v=1')).then(()=>{window.KTV_ROOM_READY();import('./favorites-cloud.js?v=1').catch(error=>{console.error('Favorites module failed',error);$('favoriteCloudStatus').textContent='雲端最愛程式未能載入，請重新整理。';});}).catch(error=>{console.error('Cloud/room module failed',error);if(window.KTV_CLOUD)window.KTV_ROOM_FAILED();else window.KTV_APP.failed();});</script>
 </body>
 </html>
 

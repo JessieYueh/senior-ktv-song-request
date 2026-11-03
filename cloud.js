@@ -245,7 +245,8 @@ window.KTV_CLOUD = {
   explain
 };
 emit();
-window.addEventListener('online', () => { watchSongs(); });
+// Re-check the existing identity after a connection failure; never create a new UID.
+window.addEventListener('online', () => { watchIdentity(auth.currentUser); });
 window.addEventListener('offline', emit);
 
 setTimeout(() => { if (state.access && !state.readReady && !state.error) { state.error = '雲端尚未回應，請確認已建立 Firestore 資料庫及發布安全規則，再按重新連線。'; emit(); } }, 15000);

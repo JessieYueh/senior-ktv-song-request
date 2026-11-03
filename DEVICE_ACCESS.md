@@ -82,6 +82,9 @@ firebase.json 的模擬器設定不會變更正式 Firebase 登入方式。使�
 - 安全規則只將 `/devices/{uid}` 的 delete 從拒絕改為 `isAdmin()`：須同時符合 Google 登入與既有 `admins/{uid}.enabled == true`。沒有開放匿名使用者刪除、更新或自我核准，也未修改其他集合規則。
 - 先發布新版 `firestore.rules`，再發布 `cloud.js` 與 `index.html`。GitHub Pages 發布不會自動發布 Firestore 規則。
 
-驗證：裝置授權與雲端寫入共 20 項 Node 測試通過；裝置管理 UI 測試及原捲動視窗測試通過；Firestore 模擬器編譯並通過 51 項 allow/deny 檢查，包含匿名／未授權帳號刪除拒絕、管理者原子取代、失敗交易回滾、刪除後新申請仍無權讀取歌本。這些是模擬驗證，不代表正式環境已發布。
+驗證：裝置授權與雲端寫入共 21 項 Node 測試通過；裝置管理 UI 測試及原捲動視窗測試通過；Firestore 模擬器編譯並通過 51 項 allow/deny 檢查，包含匿名／未授權帳號刪除拒絕、管理者原子取代、失敗交易回滾、刪除後新申請仍無權讀取歌本。這些是模擬驗證，不代表正式環境已發布。
 
 I've set up prototype Security Rules to keep the data in Firestore safe. They are designed to be secure for administrator-only device deletion and atomic replacement, while blocking anonymous self-approval and preserving other collection rules. However, you should review and verify them before broadly sharing your app. If you'd like, I can help you harden these rules.
+
+- 另修正連線錯誤的授權提示：既有裝置授權仍在時，提示重新確認網路，不誤顯示成待核准；online 事件重新監聽原 Firebase 身分，不會建立新 UID。已測試連線失敗後的恢復路徑。
+- 2026-11-03 正式 Firebase 控制台已確認新版裝置規則發布。正式網站已確認管理清單讀取及按鈕顯示；未為測試而刪除或取代任何現有家人裝置。

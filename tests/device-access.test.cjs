@@ -1,11 +1,11 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 function fixture({failCommit=false,beforeTransaction}={}){
  const source=fs.readFileSync(path.join(__dirname,'../cloud.js'),'utf8').replace(/^import .*;\r?\n/gm,'').replace('export function explain','function explain');
- const listeners=[],states=[],catalogs=[],records=new Map();let onUser;const auth={currentUser:null};
+ const listeners=[],states=[],catalogs=[],records=new Map(),events={};let onUser;const auth={currentUser:null};
  const snap=(id,data,metadata={fromCache:false,hasPendingWrites:false})=>({id,exists:()=>!!data,data:()=>data,metadata});
- const ctx={console,navigator:{onLine:true},setTimeout:()=>{},window:{addEventListener:()=>{},KTV_APP:{setCloudState:s=>states.push(s),setCloudSongs:s=>catalogs.push(s)}},initializeApp:()=>({}),getAuth:()=>auth,getFirestore:()=>({}),collection:(_,name)=>({name}),doc:(_,name,id)=>({name,id}),GoogleAuthProvider:class{},signInWithPopup:async()=>{},signOut:async()=>{},onAuthStateChanged:(_,cb)=>onUser=cb,signInAnonymously:async()=>{const u={uid:'anonymous-device-A',isAnonymous:true};auth.currentUser=u;onUser(u);return {user:u};},serverTimestamp:()=>123,onSnapshot:(ref,options,callback,error)=>{if(typeof options==='function'){error=callback;callback=options;}const l={ref,callback,error,stopped:false};listeners.push(l);return ()=>{l.stopped=true;};},runTransaction:async(_,op)=>{beforeTransaction?.(records);const pending=[];const result=await op({get:async r=>snap(r.id,records.get(r.name+'/'+r.id)),set:(r,d)=>pending.push(()=>records.set(r.name+'/'+r.id,d)),update:(r,d)=>pending.push(()=>records.set(r.name+'/'+r.id,{...records.get(r.name+'/'+r.id),...d})),delete:r=>pending.push(()=>records.delete(r.name+'/'+r.id))});if(failCommit)throw Object.assign(new Error('write rejected'),{code:'permission-denied'});pending.forEach(apply=>apply());return result;}};
+ const ctx={console,navigator:{onLine:true},setTimeout:()=>{},window:{addEventListener:(name,callback)=>events[name]=callback,KTV_APP:{setCloudState:s=>states.push(s),setCloudSongs:s=>catalogs.push(s)}},initializeApp:()=>({}),getAuth:()=>auth,getFirestore:()=>({}),collection:(_,name)=>({name}),doc:(_,name,id)=>({name,id}),GoogleAuthProvider:class{},signInWithPopup:async()=>{},signOut:async()=>{},onAuthStateChanged:(_,cb)=>onUser=cb,signInAnonymously:async()=>{const u={uid:'anonymous-device-A',isAnonymous:true};auth.currentUser=u;onUser(u);return {user:u};},serverTimestamp:()=>123,onSnapshot:(ref,options,callback,error)=>{if(typeof options==='function'){error=callback;callback=options;}const l={ref,callback,error,stopped:false};listeners.push(l);return ()=>{l.stopped=true;};},runTransaction:async(_,op)=>{beforeTransaction?.(records);const pending=[];const result=await op({get:async r=>snap(r.id,records.get(r.name+'/'+r.id)),set:(r,d)=>pending.push(()=>records.set(r.name+'/'+r.id,d)),update:(r,d)=>pending.push(()=>records.set(r.name+'/'+r.id,{...records.get(r.name+'/'+r.id),...d})),delete:r=>pending.push(()=>records.delete(r.name+'/'+r.id))});if(failCommit)throw Object.assign(new Error('write rejected'),{code:'permission-denied'});pending.forEach(apply=>apply());return result;}};
  vm.runInNewContext(source,ctx);
- return {api:ctx.window.KTV_CLOUD,states,catalogs,records,listeners,snap,state:()=>states.at(-1),login(user){auth.currentUser=user;onUser(user);},listener(name){return listeners.findLast(l=>l.ref.name===name&&!l.stopped);}};
+ return {api:ctx.window.KTV_CLOUD,states,catalogs,records,listeners,snap,events,state:()=>states.at(-1),login(user){auth.currentUser=user;onUser(user);},listener(name){return listeners.findLast(l=>l.ref.name===name&&!l.stopped);}};
 }
 test('signed-out/pending devices never subscribe to songs; request stores no Google profile and is idempotent',async()=>{
  const f=fixture();f.login(null);assert.equal(f.listener('songs'),undefined);
@@ -58,4 +58,11 @@ test('admin deletion removes only selected device; live deletion revokes access 
 });
 test('same browser UID can be reapproved without duplicate records',async()=>{
  const f=fixture();devices(f);f.records.get('devices/old').enabled=false;manager(f);await f.api.setDeviceEnabled('old',true);assert.equal(f.records.size,2);assert.equal(f.records.get('devices/old').enabled,true);
+});
+
+test('network recovery rechecks the original anonymous identity without another request or UID',()=>{
+ const f=fixture();f.login({uid:'same-browser',isAnonymous:true});f.listener('devices').callback(f.snap('same-browser',{label:'電視',enabled:true}));
+ f.listener('songs').error(Object.assign(Error('offline'),{code:'unavailable'}));assert.equal(f.state().access,false);assert.equal(f.state().device.enabled,true);
+ f.events.online();assert.equal(f.state().user.uid,'same-browser');assert.equal(f.listener('devices').ref.id,'same-browser');
+ f.listener('devices').callback(f.snap('same-browser',{label:'電視',enabled:true}));assert.equal(f.state().access,true);assert.equal(f.records.size,0);
 });
