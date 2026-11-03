@@ -3,7 +3,7 @@
  'use strict';
  let apiPromise;
  function normalize(value){return String(value||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]/gu,'');}
- function sourceMatches(actual,expected){const a=normalize(actual),b=normalize(expected);return a.length>=4&&b.length>=4&&(a.includes(b)||(a.length>=5&&b.includes(a)));}
+ function sourceMatches(actual,expected,entry){const a=normalize(actual),b=normalize(expected);const topicAlias=entry?.sourceEvidence==='official_audio'&&b===normalize('周蕙 Where Chou')&&a===normalize('周蕙 - Topic');return topicAlias||(a.length>=4&&b.length>=4&&(a.includes(b)||(a.length>=5&&b.includes(a))));}
  function loadAPI(){
   if(root.YT?.Player)return Promise.resolve(root.YT);
   if(apiPromise)return apiPromise;
@@ -49,8 +49,8 @@
        const author=String(videoData.author||'');
        const title=String(videoData.title||'');
        if(!author||!title)return; // YouTube metadata can arrive after PLAYING.
-       if(!sourceMatches(author,entry.channel))return done(false,'影片上傳頻道與核對來源不符：'+author);
-       if(!normalize(title).includes(normalize(entry.title)))return done(false,'影片標題不包含指定歌名：'+title);
+       if(!sourceMatches(author,entry.channel,entry))return done(false,'影片上傳頻道與核對來源不符：'+author);
+       if(![entry.title,...(entry.titleAliases||[])].some(name=>normalize(title).includes(normalize(name))))return done(false,'影片標題不包含指定歌名：'+title);
        seconds=Number(player.getDuration?.()||0);
        if(seconds<=0)return;
        if(seconds<120||seconds<expected-20||seconds>expected+50)return done(false,'影片長度 '+seconds+' 秒與專輯曲目 '+expected+' 秒不符');
