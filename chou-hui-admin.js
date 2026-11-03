@@ -13,7 +13,7 @@ async function api(path,body,method='POST'){
  if(!auth.currentUser)throw Error('請登入管理帳號');
  const token=await auth.currentUser.getIdToken();
  const response=await fetch(base+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});
- const data=await response.json();if(!response.ok)throw Error(data.error?.message||'雲端操作失敗');return data;
+ const data=await response.json();if(!response.ok)throw Error(path+': '+(data.error?.message||'雲端操作失敗'));return data;
 }
 function decode(d){const f=d.fields||{};return {_cloudId:d.name.slice(prefix.length+'songs/'.length),title:f.title?.stringValue||'',artist:f.artist?.stringValue||'',videoId:f.videoId?.stringValue||'',vocalId:f.vocalId?.stringValue||''};}
 async function readSongs(transaction){const rows=await api('/documents:runQuery',{structuredQuery:{from:[{collectionId:'songs'}]},...(transaction?{transaction}:{})});return rows.filter(r=>r.document).map(r=>decode(r.document));}
