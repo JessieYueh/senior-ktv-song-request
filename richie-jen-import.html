@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>歌曲匯入檢查｜快樂點歌</title>
+<style>body{font:18px system-ui,sans-serif;max-width:1000px;margin:auto;padding:24px;color:#18243b;background:#f5f7fb}button{font:inherit;padding:14px;margin:8px;border:0;border-radius:12px;background:#1768db;color:white}button:disabled{opacity:.45}#player{width:100%;height:420px;background:#152036;color:white}table{width:100%;border-collapse:collapse;background:white}td,th{text-align:left;padding:10px;border-bottom:1px solid #ddd}textarea{width:100%;height:160px}a{color:#1768db}</style>
+<h1>任賢齊歌曲匯入檢查</h1><p><a href="./">返回點歌網站</a></p>
+<p id="cloud" role="status">正在確認管理權限…</p>
+<button id="run" disabled>驗證官方影片並匯入雲端</button><button id="stop" disabled>停止</button>
+<div id="lyricCheck" hidden><p>請核對播放器畫面：必須看得到中文歌詞，且與目前歌曲相符。</p><button id="lyricsYes">確認畫面有中文歌詞</button><button id="lyricsNo">沒有歌詞／不符，略過</button></div><p id="status" role="status">影片必須確認官方來源、曲名、完整片長及嵌入實播，才會加入歌本。</p>
+<div id="player" aria-label="影片驗證播放區"></div><table><thead><tr><th>歌曲</th><th>影片秒數</th><th>驗證／雲端結果</th></tr></thead><tbody id="rows"></tbody></table>
+<label for="report">驗證紀錄</label><textarea id="report" readonly></textarea>
+<script src="playback.js?v=4"></script><script src="richie-jen-song-pack.js?v=20261105a"></script>
+<script>
+'use strict';
+const entries=KTV_RICHIE_JEN.entries;
+let cloudState={},songs=[],running=false,cancelled=false,report=[],lyricsDecision=null;
+const $=id=>document.getElementById(id);
+const norm=v=>String(v||'').normalize('NFKC').replace(/[\s、,，&＆+＋]/g,'');
+const exists=e=>songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(norm(s.title)===norm(e.title)&&/任賢齊|任贤齐/.test(s.artist)));
+const passed=e=>e.metadataVerified&&e.embedding==='passed'&&e.contentVerified===true&&e.lyricsVerified===true;
+function render(){
+ $('cloud').textContent=cloudState.admin?'已登入管理帳號 · 雲端歌本 '+songs.length+' 首 · 任賢齊 '+songs.filter(s=>/任賢齊|任贤齐/.test(s.artist)).length+' 首':cloudState.authError||cloudState.error||'請先在點歌網站完成 Google 管理登入，再重新整理本頁。';
+ $('run').disabled=running||!cloudState.admin||!cloudState.readReady||cloudState.busy;
+ $('stop').disabled=!running;
+ $('rows').replaceChildren(...entries.map(e=>{const tr=document.createElement('tr');[e.title,String(e.durationSeconds||e.expectedDurationSeconds||''),exists(e)?'雲端已確認':(e.reason||e.embedding||'待驗證')].forEach(s=>{const td=document.createElement('td');td.textContent=s;tr.append(td)});return tr}));
+ $('report').value=JSON.stringify({checkedAt:new Date().toISOString(),cloudCount:songs.length,richieCount:songs.filter(s=>/任賢齊|任贤齐/.test(s.artist)).length,results:report,entries},null,2);
+}
+window.KTV_APP={setCloudState:s=>{cloudState=s;render()},setCloudSongs:s=>{songs=s;render()}};
+async function verify(e){
+ return new Promise(resolve=>{
+  let adapter,timer,poll,done=false,firstTime=null,seconds=0;
+  async function finish(ok,reason){if(done)return;done=true;clearTimeout(timer);clearInterval(poll);if(ok){adapter.player.seekTo(Math.min(45,seconds/3),true);await new Promise(r=>setTimeout(r,1800));adapter.player.pauseVideo();$('lyricCheck').hidden=false;$('status').textContent='核對歌詞畫面：'+e.title;const accepted=await new Promise(r=>lyricsDecision=r);lyricsDecision=null;$('lyricCheck').hidden=true;e.lyricsVerified=accepted;e.subtitles=accepted?'已檢視官方 MV 中段畫面，確認顯示中文歌詞；未逐句核對全曲':'未確認畫面歌詞，不匯入';ok=accepted;reason=accepted?'官方 MV、完整片長、嵌入實播與畫面中文歌詞已確認':'未確認畫面中文歌詞，不匯入';}adapter?.stop();e.embedding=ok?'passed':'failed';e.contentVerified=ok;e.reason=reason;e.checkedAt=new Date().toISOString();if(ok)e.durationSeconds=seconds;resolve({title:e.title,videoId:e.videoId,ok,reason,seconds});}
+  adapter=new KTVPlayback($('player'),{onReady:()=>adapter.player?.mute(),onError:r=>finish(false,r)});
+  timer=setTimeout(()=>finish(false,'嵌入播放逾時'),35000);
+  poll=setInterval(()=>{
+   if(cancelled||!cloudState.admin||!cloudState.readReady)return finish(false,'已停止或管理權限中斷');
+   try{
+    const p=adapter.player;if(!adapter.ready||!p)return;p.mute();
+    const d=p.getVideoData();if(d.video_id!==e.videoId||p.getPlayerState()!==1)return;
+    seconds=Number(p.getDuration());
+    if(!Number.isFinite(seconds)||seconds<120||Math.abs(seconds-e.expectedDurationSeconds)>3)return finish(false,'與已核對完整 MV 片長不符');
+    const t=Number(p.getCurrentTime());if(!Number.isFinite(t))return;
+    if(firstTime===null)firstTime=t;else if(t-firstTime>=2)finish(true,'官方 MV、曲名、完整片長與嵌入播放進度已確認；未逐句核對字幕');
+   }catch(error){finish(false,error.message||String(error))}
+  },500);
+  Promise.resolve(adapter.play(e.videoId,e.title)).catch(error=>finish(false,error.message||String(error)));
+ });
+}
+$('lyricsYes').onclick=()=>lyricsDecision?.(true);$('lyricsNo').onclick=()=>lyricsDecision?.(false);
+$('stop').onclick=()=>{cancelled=true;lyricsDecision?.(false);$('status').textContent='正在停止；不再匯入。'};
+$('run').onclick=async()=>{
+ if(running||!cloudState.admin||!cloudState.readReady)return;
+ running=true;cancelled=false;report=[];render();
+ try{
+  const todo=entries.filter(e=>!exists(e)&&e.metadataVerified);
+  for(let i=0;i<todo.length;i++){
+   if(cancelled)break;const e=todo[i];$('status').textContent='正在驗證 '+(i+1)+' / '+todo.length+'：'+e.title;
+   report.push(await verify(e));render();
+  }
+  const ready=entries.filter(e=>passed(e)&&!exists(e));
+  if(ready.length&&!cancelled){
+   $('status').textContent='正在將 '+ready.length+' 首寫入雲端…';
+   const count=await KTV_CLOUD.importSongs(ready.map(({title,artist,lang,videoId})=>({title,artist,lang,videoId,vocalId:videoId})));
+   $('status').textContent='伺服器已接受 '+count+' 首；等待雲端歌本確認。';
+  }
+  if(!cancelled){
+   const limit=Date.now()+15000;
+   while(entries.some(e=>passed(e)&&!exists(e))&&Date.now()<limit)await new Promise(r=>setTimeout(r,200));
+   const missing=entries.filter(e=>!exists(e));
+   $('status').textContent='雲端已確認 '+entries.filter(exists).length+' / '+entries.length+' 首；尚未完成 '+missing.length+' 首。';
+  }
+ }catch(error){$('status').textContent='匯入未完成：'+(KTV_CLOUD?.explain(error)||error.message)}
+ finally{running=false;render()}
+};
+render();
+</script><script type="module">import('./cloud.js?v=20261103devices2').catch(e=>{document.getElementById('cloud').textContent='雲端連線失敗：'+e.message;});</script></html>
