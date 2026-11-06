@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-06T10:21:35.439Z",
+  "deployment": {
+    "runId": 41879873163,
+    "conclusion": "success"
+  },
+  "helperFixCommit": "7028c5c43896400a47de034a0a031e8643858a94",
+  "confirmedCloudSongs": 263,
+  "confirmedRichieSongs": 0,
+  "imported": 0,
+  "results": [
+    {
+      "title": "心太軟",
+      "videoId": "ZSWeurc1yMw",
+      "embedding": "unconfirmed",
+      "lyricsVerified": false,
+      "reason": "嵌入播放逾時，播放時間未推進"
+    },
+    {
+      "title": "很受傷",
+      "videoId": "NyZihvtZ2u4",
+      "embedding": "unconfirmed",
+      "lyricsVerified": false,
+      "reason": "嵌入播放逾時，播放時間未推進"
+    },
+    {
+      "title": "愛怎麼會是這樣",
+      "videoId": "Ybbo9xTRHio",
+      "embedding": "unconfirmed",
+      "lyricsVerified": false,
+      "reason": "嵌入播放逾時，播放時間未推進"
+    }
+  ],
+  "otherCandidates": "未測試；為避免把此瀏覽器播放失敗誤判為影片問題，停止後續批次。",
+  "controlCheck": {
+    "url": "https://www.youtube.com/watch?v=ZSWeurc1yMw",
+    "currentTime": 0,
+    "readyState": 0,
+    "paused": false,
+    "error": null
+  },
+  "interpretation": "遠端瀏覽器在內嵌與YouTube原頁皆未能實播；原因尚未確定，不代表影片遭刪除、不開放嵌入或使用者裝置也無法播放。"
+}
