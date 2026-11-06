@@ -5,7 +5,7 @@
 <p id="cloud" role="status">正在確認管理權限…</p>
 <label for="testSong">驗證範圍</label><select id="testSong"><option value="">全部候選歌曲</option></select>
 <button id="run" disabled>驗證官方影片並匯入雲端</button><button id="stop" disabled>停止</button>
-<div id="lyricCheck" hidden><p>請核對播放器畫面：必須看得到中文歌詞，且與目前歌曲相符。</p><button id="lyricsYes">確認畫面有中文歌詞</button><button id="lyricsNo">沒有歌詞／不符，略過</button></div><p id="status" role="status">影片必須確認官方來源、曲名、完整片長及嵌入實播，才會加入歌本。</p>
+<p>自動逐首檢查播放；歌詞由助理核對，不需逐首按確認。尚未核對歌詞者保留待審，不會自動匯入。</p><p id="status" role="status">影片必須確認官方來源、曲名、完整片長及嵌入實播，才會加入歌本。</p>
 <div id="player" aria-label="影片驗證播放區"></div><table><thead><tr><th>歌曲</th><th>影片秒數</th><th>驗證／雲端結果</th></tr></thead><tbody id="rows"></tbody></table>
 <label for="report">驗證紀錄</label><textarea id="report" readonly></textarea>
 <script src="playback.js?v=4"></script><script src="richie-jen-song-pack.js?v=20261105a"></script>
@@ -13,7 +13,7 @@
 'use strict';
 const entries=KTV_RICHIE_JEN.entries;
 for(const e of entries.filter(e=>e.metadataVerified)){const option=document.createElement('option');option.value=e.videoId;option.textContent=e.title;document.getElementById('testSong').append(option);}
-let cloudState={},songs=[],running=false,cancelled=false,report=[],lyricsDecision=null;
+let cloudState={},songs=[],running=false,cancelled=false,report=[];
 const $=id=>document.getElementById(id);
 const norm=v=>String(v||'').normalize('NFKC').replace(/[\s、,，&＆+＋]/g,'');
 const exists=e=>songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(norm(s.title)===norm(e.title)&&/任賢齊|任贤齐/.test(s.artist)));
@@ -29,7 +29,7 @@ window.KTV_APP={setCloudState:s=>{cloudState=s;render()},setCloudSongs:s=>{songs
 async function verify(e){
  return new Promise(resolve=>{
   let adapter,timer,poll,done=false,firstTime=null,seconds=0;
-  async function finish(ok,reason){if(done)return;done=true;clearTimeout(timer);clearInterval(poll);if(ok){adapter.player.seekTo(Math.min(45,seconds/3),true);await new Promise(r=>setTimeout(r,1800));adapter.player.pauseVideo();$('lyricCheck').hidden=false;$('status').textContent='核對歌詞畫面：'+e.title;const accepted=await new Promise(r=>lyricsDecision=r);lyricsDecision=null;$('lyricCheck').hidden=true;e.lyricsVerified=accepted;e.subtitles=accepted?'已檢視官方 MV 中段畫面，確認顯示中文歌詞；未逐句核對全曲':'未確認畫面歌詞，不匯入';ok=accepted;reason=accepted?'官方 MV、完整片長、嵌入實播與畫面中文歌詞已確認':'未確認畫面中文歌詞，不匯入';}adapter?.stop();e.embedding=ok?'passed':'failed';e.contentVerified=ok;e.reason=reason;e.checkedAt=new Date().toISOString();if(ok)e.durationSeconds=seconds;resolve({title:e.title,videoId:e.videoId,ok,reason,seconds});}
+  function finish(ok,reason){if(done)return;done=true;clearTimeout(timer);clearInterval(poll);adapter?.stop();e.embedding=ok?'passed':'failed';if(ok){e.durationSeconds=seconds;if(e.lyricsVerified!==true){e.contentVerified=false;reason='嵌入實播與片長通過；中文歌詞待助理審核，暫不匯入';}else{e.contentVerified=true;}}else{e.contentVerified=false;}e.reason=reason;e.checkedAt=new Date().toISOString();resolve({title:e.title,videoId:e.videoId,ok,lyricsVerified:e.lyricsVerified===true,reason,seconds});}
   adapter=new KTVPlayback($('player'),{onReady:()=>adapter.player?.mute(),onError:r=>finish(false,r)});
   timer=setTimeout(()=>finish(false,'嵌入播放逾時'),35000);
   poll=setInterval(()=>{
@@ -46,8 +46,7 @@ async function verify(e){
   Promise.resolve(adapter.play(e.videoId,e.title)).catch(error=>finish(false,error.message||String(error)));
  });
 }
-$('lyricsYes').onclick=()=>lyricsDecision?.(true);$('lyricsNo').onclick=()=>lyricsDecision?.(false);
-$('stop').onclick=()=>{cancelled=true;lyricsDecision?.(false);$('status').textContent='正在停止；不再匯入。'};
+$('stop').onclick=()=>{cancelled=true;$('status').textContent='正在停止；不再匯入。'};
 $('run').onclick=async()=>{
  if(running||!cloudState.admin||!cloudState.readReady)return;
  running=true;cancelled=false;report=[];render();
