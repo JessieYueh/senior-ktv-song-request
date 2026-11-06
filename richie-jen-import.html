@@ -3,6 +3,7 @@
 <style>body{font:18px system-ui,sans-serif;max-width:1000px;margin:auto;padding:24px;color:#18243b;background:#f5f7fb}button{font:inherit;padding:14px;margin:8px;border:0;border-radius:12px;background:#1768db;color:white}button:disabled{opacity:.45}#player{width:100%;height:420px;background:#152036;color:white}table{width:100%;border-collapse:collapse;background:white}td,th{text-align:left;padding:10px;border-bottom:1px solid #ddd}textarea{width:100%;height:160px}a{color:#1768db}</style>
 <h1>任賢齊歌曲匯入檢查</h1><p><a href="./">返回點歌網站</a></p>
 <p id="cloud" role="status">正在確認管理權限…</p>
+<label for="testSong">驗證範圍</label><select id="testSong"><option value="">全部候選歌曲</option></select>
 <button id="run" disabled>驗證官方影片並匯入雲端</button><button id="stop" disabled>停止</button>
 <div id="lyricCheck" hidden><p>請核對播放器畫面：必須看得到中文歌詞，且與目前歌曲相符。</p><button id="lyricsYes">確認畫面有中文歌詞</button><button id="lyricsNo">沒有歌詞／不符，略過</button></div><p id="status" role="status">影片必須確認官方來源、曲名、完整片長及嵌入實播，才會加入歌本。</p>
 <div id="player" aria-label="影片驗證播放區"></div><table><thead><tr><th>歌曲</th><th>影片秒數</th><th>驗證／雲端結果</th></tr></thead><tbody id="rows"></tbody></table>
@@ -11,6 +12,7 @@
 <script>
 'use strict';
 const entries=KTV_RICHIE_JEN.entries;
+for(const e of entries.filter(e=>e.metadataVerified)){const option=document.createElement('option');option.value=e.videoId;option.textContent=e.title;document.getElementById('testSong').append(option);}
 let cloudState={},songs=[],running=false,cancelled=false,report=[],lyricsDecision=null;
 const $=id=>document.getElementById(id);
 const norm=v=>String(v||'').normalize('NFKC').replace(/[\s、,，&＆+＋]/g,'');
@@ -19,7 +21,7 @@ const passed=e=>e.metadataVerified&&e.embedding==='passed'&&e.contentVerified===
 function render(){
  $('cloud').textContent=cloudState.admin?'已登入管理帳號 · 雲端歌本 '+songs.length+' 首 · 任賢齊 '+songs.filter(s=>/任賢齊|任贤齐/.test(s.artist)).length+' 首':cloudState.authError||cloudState.error||'請先在點歌網站完成 Google 管理登入，再重新整理本頁。';
  $('run').disabled=running||!cloudState.admin||!cloudState.readReady||cloudState.busy;
- $('stop').disabled=!running;
+ $('stop').disabled=!running;$('testSong').disabled=running;
  $('rows').replaceChildren(...entries.map(e=>{const tr=document.createElement('tr');[e.title,String(e.durationSeconds||e.expectedDurationSeconds||''),exists(e)?'雲端已確認':(e.reason||e.embedding||'待驗證')].forEach(s=>{const td=document.createElement('td');td.textContent=s;tr.append(td)});return tr}));
  $('report').value=JSON.stringify({checkedAt:new Date().toISOString(),cloudCount:songs.length,richieCount:songs.filter(s=>/任賢齊|任贤齐/.test(s.artist)).length,results:report,entries},null,2);
 }
@@ -50,7 +52,7 @@ $('run').onclick=async()=>{
  if(running||!cloudState.admin||!cloudState.readReady)return;
  running=true;cancelled=false;report=[];render();
  try{
-  const todo=entries.filter(e=>!exists(e)&&e.metadataVerified);
+  const selected=$('testSong').value;const todo=entries.filter(e=>!exists(e)&&e.metadataVerified&&(!selected||e.videoId===selected));
   for(let i=0;i<todo.length;i++){
    if(cancelled)break;const e=todo[i];$('status').textContent='正在驗證 '+(i+1)+' / '+todo.length+'：'+e.title;
    report.push(await verify(e));render();
@@ -68,7 +70,7 @@ $('run').onclick=async()=>{
    $('status').textContent='雲端已確認 '+entries.filter(exists).length+' / '+entries.length+' 首；尚未完成 '+missing.length+' 首。';
   }
  }catch(error){$('status').textContent='匯入未完成：'+(KTV_CLOUD?.explain(error)||error.message)}
- finally{running=false;render()}
+ finally{running=false;if(cancelled)$('status').textContent='已停止；本次未再寫入雲端。';render()}
 };
 render();
 </script><script type="module">import('./cloud.js?v=20261103devices2').catch(e=>{document.getElementById('cloud').textContent='雲端連線失敗：'+e.message;});</script></html>
