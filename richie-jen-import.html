@@ -34,7 +34,7 @@ async function verify(e){
    if(cancelled||!cloudState.admin||!cloudState.readReady)return finish(false,'已停止或管理權限中斷');
    try{
     const p=adapter.player;if(!adapter.ready||!p)return;p.mute();
-    const d=p.getVideoData();if(d.video_id!==e.videoId||p.getPlayerState()!==1)return;
+    const d=p.getVideoData?.();if(!d||d.video_id!==e.videoId||p.getPlayerState()!==1)return;
     seconds=Number(p.getDuration());
     if(!Number.isFinite(seconds)||seconds<120||Math.abs(seconds-e.expectedDurationSeconds)>3)return finish(false,'與已核對完整 MV 片長不符');
     const t=Number(p.getCurrentTime());if(!Number.isFinite(t))return;
