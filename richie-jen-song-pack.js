@@ -696,34 +696,34 @@
     "title": "乾啦 乾啦",
     "artist": "八三夭、任賢齊、阿信",
     "lang": "國語",
-    "videoId": "e0k-EM6zJ10",
-    "videoTitle": "八三夭 831 feat. 任賢齊 Richie Jen & 五月天 阿信 Mayday AShin 【乾啦 乾啦 Cheers！】Official Music Video",
+    "videoId": "aRSBDs_lDYY",
+    "videoTitle": "八三夭 831 feat. 任賢齊 Richie Jen & 五月天 阿信 Mayday AShin 【乾啦 乾啦 Cheers！】Official Lyric Video",
     "channel": "滾石唱片 ROCK RECORDS",
     "channelId": "UCPcF3KTqhD67ADkukx_OeDg",
     "channelUrl": "https://www.youtube.com/@RockRecordsTaipei",
-    "duration": "4:10",
-    "source": "https://www.youtube.com/watch?v=e0k-EM6zJ10",
+    "duration": "3:07",
+    "source": "https://www.youtube.com/watch?v=aRSBDs_lDYY",
     "chartSource": "https://tw-pop-chart.blogspot.com/2017/04/?m=0",
     "chartEvidence": "2017年4月錢櫃國語新歌榜第3名；妞新聞同期KTV新歌Top10亦列入",
-    "expectedDurationSeconds": 250,
+    "expectedDurationSeconds": 187,
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "待查",
-    "checkedAt": "2026-11-06",
+    "lyricsVerified": true,
+    "subtitles": "官方歌詞影片，取樣畫面顯示中文歌詞",
+    "checkedAt": "2026-11-07",
     "reviewMethod": "official-video-sample-images",
     "lyricsEvidence": {
-      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "method": "visually inspected official video sample thumbnails",
       "urls": [
-        "https://i.ytimg.com/vi/e0k-EM6zJ10/1.jpg",
-        "https://i.ytimg.com/vi/e0k-EM6zJ10/2.jpg",
-        "https://i.ytimg.com/vi/e0k-EM6zJ10/3.jpg"
+        "https://i.ytimg.com/vi/aRSBDs_lDYY/1.jpg",
+        "https://i.ytimg.com/vi/aRSBDs_lDYY/2.jpg",
+        "https://i.ytimg.com/vi/aRSBDs_lDYY/3.jpg"
       ],
-      "result": "No conclusive Chinese lyric lines in sampled frames, or source unconfirmed"
+      "result": "Chinese lyric lines visible in samples 2 and 3; not a full-song synchronization check"
     },
-    "importEligible": false,
-    "reason": "取樣畫面不足以確認中文歌詞／來源待查，暫不匯入"
+    "importEligible": true,
+    "reason": "改選滾石官方歌詞影片，187秒；中文歌詞取樣通過，內嵌實播待驗證"
   }
 ];
 root.KTV_RICHIE_JEN={entries};if(typeof module!=='undefined')module.exports=root.KTV_RICHIE_JEN;
