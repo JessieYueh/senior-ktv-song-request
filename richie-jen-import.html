@@ -4,11 +4,11 @@
 <h1>任賢齊歌曲匯入檢查</h1><p><a href="./">返回點歌網站</a></p>
 <p id="cloud" role="status">正在確認管理權限…</p>
 <label for="testSong">驗證範圍</label><select id="testSong"><option value="">全部候選歌曲</option></select>
-<button id="run" disabled>驗證官方影片並匯入雲端</button><button id="stop" disabled>停止</button>
-<p>自動逐首檢查播放；歌詞由助理核對，不需逐首按確認。尚未核對歌詞者保留待審，不會自動匯入。</p><p id="status" role="status">影片必須確認官方來源、曲名、完整片長及嵌入實播，才會加入歌本。</p>
+<button id="run" disabled>依已核對資料匯入雲端</button><button id="stop" disabled>停止</button>
+<p>由助理核對官方來源、完整片長資料及影片取樣畫面中的中文歌詞。依管理者同意先匯入符合者，內嵌實播仍待驗證；不需逐首確認。</p><p id="status" role="status">資料審核模式：只匯入已有中文歌詞取樣證據者；未完成內嵌實播驗證。</p>
 <div id="player" aria-label="影片驗證播放區"></div><table><thead><tr><th>歌曲</th><th>影片秒數</th><th>驗證／雲端結果</th></tr></thead><tbody id="rows"></tbody></table>
 <label for="report">驗證紀錄</label><textarea id="report" readonly></textarea>
-<script src="playback.js?v=4"></script><script src="richie-jen-song-pack.js?v=20261105a"></script>
+<script src="playback.js?v=4"></script><script src="richie-jen-song-pack.js?v=20261106e"></script>
 <script>
 'use strict';
 const entries=KTV_RICHIE_JEN.entries;
@@ -17,7 +17,7 @@ let cloudState={},songs=[],running=false,cancelled=false,report=[];
 const $=id=>document.getElementById(id);
 const norm=v=>String(v||'').normalize('NFKC').replace(/[\s、,，&＆+＋]/g,'');
 const exists=e=>songs.some(s=>s.videoId===e.videoId||s.vocalId===e.videoId||(norm(s.title)===norm(e.title)&&/任賢齊|任贤齐/.test(s.artist)));
-const passed=e=>e.metadataVerified&&e.embedding==='passed'&&e.contentVerified===true&&e.lyricsVerified===true;
+const passed=e=>e.metadataVerified&&e.importEligible===true&&e.lyricsVerified===true&&e.reviewMethod==='official-video-sample-images'&&Array.isArray(e.lyricsEvidence?.urls)&&e.lyricsEvidence.urls.length>0;
 function render(){
  $('cloud').textContent=cloudState.admin?'已登入管理帳號 · 雲端歌本 '+songs.length+' 首 · 任賢齊 '+songs.filter(s=>/任賢齊|任贤齐/.test(s.artist)).length+' 首':cloudState.authError||cloudState.error||'請先在點歌網站完成 Google 管理登入，再重新整理本頁。';
  $('run').disabled=running||!cloudState.admin||!cloudState.readReady||cloudState.busy;
@@ -51,12 +51,7 @@ $('run').onclick=async()=>{
  if(running||!cloudState.admin||!cloudState.readReady)return;
  running=true;cancelled=false;report=[];render();
  try{
-  const selected=$('testSong').value;const todo=entries.filter(e=>!exists(e)&&e.metadataVerified&&(!selected||e.videoId===selected));
-  for(let i=0;i<todo.length;i++){
-   if(cancelled)break;const e=todo[i];$('status').textContent='正在驗證 '+(i+1)+' / '+todo.length+'：'+e.title;
-   report.push(await verify(e));render();
-  }
-  const ready=entries.filter(e=>passed(e)&&!exists(e));
+  const selected=$('testSong').value;const ready=entries.filter(e=>passed(e)&&!exists(e)&&(!selected||e.videoId===selected));
   if(ready.length&&!cancelled){
    $('status').textContent='正在將 '+ready.length+' 首寫入雲端…';
    const count=await KTV_CLOUD.importSongs(ready.map(({title,artist,lang,videoId})=>({title,artist,lang,videoId,vocalId:videoId})));
