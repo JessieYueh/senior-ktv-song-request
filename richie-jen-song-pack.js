@@ -17,9 +17,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/ZSWeurc1yMw/1.jpg",
+        "https://i.ytimg.com/vi/ZSWeurc1yMw/2.jpg",
+        "https://i.ytimg.com/vi/ZSWeurc1yMw/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "很受傷",
@@ -38,9 +50,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/NyZihvtZ2u4/1.jpg",
+        "https://i.ytimg.com/vi/NyZihvtZ2u4/2.jpg",
+        "https://i.ytimg.com/vi/NyZihvtZ2u4/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "愛怎麼會是這樣",
@@ -59,9 +83,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/Ybbo9xTRHio/1.jpg",
+        "https://i.ytimg.com/vi/Ybbo9xTRHio/2.jpg",
+        "https://i.ytimg.com/vi/Ybbo9xTRHio/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "傷心太平洋",
@@ -80,9 +116,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/b1SRjGmgA54/1.jpg",
+        "https://i.ytimg.com/vi/b1SRjGmgA54/2.jpg",
+        "https://i.ytimg.com/vi/b1SRjGmgA54/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "對面的女孩看過來",
@@ -101,9 +149,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/6aosRlnxg9I/1.jpg",
+        "https://i.ytimg.com/vi/6aosRlnxg9I/2.jpg",
+        "https://i.ytimg.com/vi/6aosRlnxg9I/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "任逍遙",
@@ -122,9 +182,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/FbEjRgAoj3I/1.jpg",
+        "https://i.ytimg.com/vi/FbEjRgAoj3I/2.jpg",
+        "https://i.ytimg.com/vi/FbEjRgAoj3I/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "不要變",
@@ -143,9 +215,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/rfQbW4QVOLY/1.jpg",
+        "https://i.ytimg.com/vi/rfQbW4QVOLY/2.jpg",
+        "https://i.ytimg.com/vi/rfQbW4QVOLY/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "愛我愛我",
@@ -164,9 +248,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/FtG1aBuUwr8/1.jpg",
+        "https://i.ytimg.com/vi/FtG1aBuUwr8/2.jpg",
+        "https://i.ytimg.com/vi/FtG1aBuUwr8/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "我是一隻魚",
@@ -186,8 +282,20 @@
     "embedding": "pending",
     "contentVerified": false,
     "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "subtitles": "待查",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/hQMRGsteyRc/1.jpg",
+        "https://i.ytimg.com/vi/hQMRGsteyRc/2.jpg",
+        "https://i.ytimg.com/vi/hQMRGsteyRc/3.jpg"
+      ],
+      "result": "No conclusive Chinese lyric lines in sampled frames, or source unconfirmed"
+    },
+    "importEligible": false,
+    "reason": "取樣畫面不足以確認中文歌詞／來源待查，暫不匯入"
   },
   {
     "title": "心情車站",
@@ -206,9 +314,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/zlMfsqTImys/1.jpg",
+        "https://i.ytimg.com/vi/zlMfsqTImys/2.jpg",
+        "https://i.ytimg.com/vi/zlMfsqTImys/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "天涯",
@@ -227,9 +347,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/FDeRzYjRGvY/1.jpg",
+        "https://i.ytimg.com/vi/FDeRzYjRGvY/2.jpg",
+        "https://i.ytimg.com/vi/FDeRzYjRGvY/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "死不了",
@@ -249,8 +381,20 @@
     "embedding": "pending",
     "contentVerified": false,
     "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "subtitles": "待查",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/wAbiWdBs8LM/1.jpg",
+        "https://i.ytimg.com/vi/wAbiWdBs8LM/2.jpg",
+        "https://i.ytimg.com/vi/wAbiWdBs8LM/3.jpg"
+      ],
+      "result": "No conclusive Chinese lyric lines in sampled frames, or source unconfirmed"
+    },
+    "importEligible": false,
+    "reason": "取樣畫面不足以確認中文歌詞／來源待查，暫不匯入"
   },
   {
     "title": "春天花會開",
@@ -269,9 +413,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/tzYsKUZcby8/1.jpg",
+        "https://i.ytimg.com/vi/tzYsKUZcby8/2.jpg",
+        "https://i.ytimg.com/vi/tzYsKUZcby8/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "今晚我要唱歌",
@@ -290,9 +446,20 @@
     "embedding": "pending",
     "contentVerified": false,
     "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05",
-    "reason": "待查：尚未確認官方來源且有歌詞的MV"
+    "subtitles": "待查",
+    "checkedAt": "2026-11-06",
+    "reason": "取樣畫面不足以確認中文歌詞／來源待查，暫不匯入",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/n09ugfdCWgg/1.jpg",
+        "https://i.ytimg.com/vi/n09ugfdCWgg/2.jpg",
+        "https://i.ytimg.com/vi/n09ugfdCWgg/3.jpg"
+      ],
+      "result": "No conclusive Chinese lyric lines in sampled frames, or source unconfirmed"
+    },
+    "importEligible": false
   },
   {
     "title": "浪花一朵朵",
@@ -311,9 +478,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/beWjTKhY_l8/1.jpg",
+        "https://i.ytimg.com/vi/beWjTKhY_l8/2.jpg",
+        "https://i.ytimg.com/vi/beWjTKhY_l8/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "兄弟",
@@ -333,8 +512,20 @@
     "embedding": "pending",
     "contentVerified": false,
     "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "subtitles": "待查",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/xTjrJmcSjzM/1.jpg",
+        "https://i.ytimg.com/vi/xTjrJmcSjzM/2.jpg",
+        "https://i.ytimg.com/vi/xTjrJmcSjzM/3.jpg"
+      ],
+      "result": "No conclusive Chinese lyric lines in sampled frames, or source unconfirmed"
+    },
+    "importEligible": false,
+    "reason": "取樣畫面不足以確認中文歌詞／來源待查，暫不匯入"
   },
   {
     "title": "再出發",
@@ -353,9 +544,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/iRuWMQZB7wA/1.jpg",
+        "https://i.ytimg.com/vi/iRuWMQZB7wA/2.jpg",
+        "https://i.ytimg.com/vi/iRuWMQZB7wA/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "對摺",
@@ -374,9 +577,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/VZik4B5LhrM/1.jpg",
+        "https://i.ytimg.com/vi/VZik4B5LhrM/2.jpg",
+        "https://i.ytimg.com/vi/VZik4B5LhrM/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "三更半暝",
@@ -395,9 +610,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/ipjclaHYp5w/1.jpg",
+        "https://i.ytimg.com/vi/ipjclaHYp5w/2.jpg",
+        "https://i.ytimg.com/vi/ipjclaHYp5w/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "彩色西門町",
@@ -416,9 +643,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/3ZSV3FEc8ww/1.jpg",
+        "https://i.ytimg.com/vi/3ZSV3FEc8ww/2.jpg",
+        "https://i.ytimg.com/vi/3ZSV3FEc8ww/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "橘子香水",
@@ -437,9 +676,21 @@
     "metadataVerified": true,
     "embedding": "pending",
     "contentVerified": false,
-    "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "lyricsVerified": true,
+    "subtitles": "取樣畫面有中文歌詞，未逐句核對全曲",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/j9mqxrYX9aQ/1.jpg",
+        "https://i.ytimg.com/vi/j9mqxrYX9aQ/2.jpg",
+        "https://i.ytimg.com/vi/j9mqxrYX9aQ/3.jpg"
+      ],
+      "result": "Chinese lyric lines visible in one or more sampled frames; full-song synchronization not checked"
+    },
+    "importEligible": true,
+    "reason": "官方來源與片長資料已核對，取樣畫面顯示中文歌詞；內嵌實播待驗證"
   },
   {
     "title": "乾啦 乾啦",
@@ -459,8 +710,20 @@
     "embedding": "pending",
     "contentVerified": false,
     "lyricsVerified": false,
-    "subtitles": "尚未檢查畫面歌詞",
-    "checkedAt": "2026-11-05"
+    "subtitles": "待查",
+    "checkedAt": "2026-11-06",
+    "reviewMethod": "official-video-sample-images",
+    "lyricsEvidence": {
+      "method": "YouTube video sample thumbnails 1/2/3.jpg; visually inspected",
+      "urls": [
+        "https://i.ytimg.com/vi/e0k-EM6zJ10/1.jpg",
+        "https://i.ytimg.com/vi/e0k-EM6zJ10/2.jpg",
+        "https://i.ytimg.com/vi/e0k-EM6zJ10/3.jpg"
+      ],
+      "result": "No conclusive Chinese lyric lines in sampled frames, or source unconfirmed"
+    },
+    "importEligible": false,
+    "reason": "取樣畫面不足以確認中文歌詞／來源待查，暫不匯入"
   }
 ];
 root.KTV_RICHIE_JEN={entries};if(typeof module!=='undefined')module.exports=root.KTV_RICHIE_JEN;
