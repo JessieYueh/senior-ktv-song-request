@@ -65,12 +65,13 @@ function watchSongs() {
   stopSongs = onSnapshot(collection(db, 'songs'), { includeMetadataChanges: true }, snapshot => {
     // Only show confirmed server data; pending writes are not reported as a completed sync.
     if (epoch!==songsEpoch||!state.access||snapshot.metadata.fromCache || snapshot.metadata.hasPendingWrites) return;
-    const songs = snapshot.docs.map(d => ({ ...d.data(), _cloudId: d.id }))
+    const records = snapshot.docs.map(d => ({ ...d.data(), _cloudId: d.id }))
       .filter(s => typeof s.title === 'string' && typeof s.artist === 'string')
       .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title, 'zh-Hant'));
+    const songs = records.filter(song => song.removed !== true);
     latestSongs=songs;state.packCount=(window.KTV_SOURCE_SONGS||[]).filter(p=>songs.some(s=>s._cloudId===p._cloudId&&s.videoId!=='21f7PU0eQgk')).length;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
     state.readReady = true; state.count = songs.length; state.error = '';
-    window.KTV_APP.setCloudSongs(songs); emit();
+    window.KTV_APP.setCloudSongs(songs, records); emit();
   }, error => { if(epoch!==songsEpoch)return;state.access=false;clearSongs();state.error=explain(error);emit(); });
 }
 onAuthStateChanged(auth,user=>{
@@ -138,7 +139,7 @@ async function upsertMany(items, onlyMissing = false) {
   if (state.busy) throw new Error('正在儲存歌曲，請稍候。');
   // One atomic transaction per operation: read all documents before writing.
   // Keep imports bounded and report a useful error rather than partially importing a large list.
-  const entries = [...new Map(items.map(item => { const data = clean(item); return [idFor({ ...item, ...data }), data]; })).entries()];
+  const entries = [...new Map(items.map(item => { const data = clean(item); return [idFor({ ...item, ...data }), {data, editing: !!item._cloudId}]; })).entries()];
   if (!entries.length) return 0;
   if (entries.length > 100) throw new Error('每次最多匯入 100 首，請分批加入。');
   state.busy = true; emit();
@@ -148,8 +149,9 @@ async function upsertMany(items, onlyMissing = false) {
       const refs = entries.map(([id]) => doc(db, 'songs', id));
       const snapshots = await Promise.all(refs.map(ref => tx.get(ref)));
       let count = 0;
-      entries.forEach(([, data], i) => {
+      entries.forEach(([, {data, editing}], i) => {
         if (onlyMissing && snapshots[i].exists()) return;
+        if (editing && snapshots[i].data()?.removed === true) throw new Error('這筆歌曲已刪除，請重新確認歌本。');
         tx.set(refs[i], {
           ...data,
           order: snapshots[i].exists() ? (snapshots[i].data().order ?? Date.now()) : Date.now() + i,
@@ -163,6 +165,28 @@ async function upsertMany(items, onlyMissing = false) {
     });
   } finally { state.busy = false; emit(); }
 }
+async function removeSong(song) {
+  requireAdmin();
+  if (state.busy) throw new Error('正在更新歌本，請稍候。');
+  if (typeof song?._cloudId !== 'string' || !song._cloudId || song._cloudId.includes('/') || song._localOnly) {
+    throw new Error('找不到這筆雲端歌曲。');
+  }
+  state.busy = true; emit();
+  try {
+    const uid = auth.currentUser.uid;
+    const ref = doc(db, 'songs', song._cloudId);
+    await runTransaction(db, async tx => {
+      const snapshot = await tx.get(ref);
+      if (!snapshot.exists() || snapshot.data().removed === true) return;
+      const current = snapshot.data();
+      if (['title', 'artist', 'videoId', 'vocalId'].some(field => current[field] !== song[field])) {
+        throw new Error('這筆歌曲已變更，請關閉視窗後重新選取。');
+      }
+      tx.update(ref, { removed: true, updatedAt: serverTimestamp(), updatedBy: uid });
+    });
+  } finally { state.busy = false; emit(); }
+}
+
 async function fillVocals() {
   requireAdmin();
   if(state.busy)throw new Error('正在儲存歌曲，請稍候。');
@@ -178,7 +202,7 @@ async function fillVocals() {
       snapshots.forEach((snapshot,i)=>{
         if(!snapshot.exists())return;
         const song=snapshot.data();
-        if(song.vocalId)return;
+        if(song.removed===true||song.vocalId)return;
         const vocalId=window.KTVGetVocal?.(song);
         if(!/^[\w-]{11}$/.test(vocalId||''))return;
         tx.update(refs[i],{vocalId,updatedAt:serverTimestamp(),updatedBy:uid});count++;
@@ -212,6 +236,7 @@ async function importSourcePack(){
           tx.set(refs[i],{...clean(pack[i]),order:Date.now()+i,createdAt:serverTimestamp(),createdBy:uid,updatedAt:serverTimestamp(),updatedBy:uid});count++;return;
         }
         const song={...snapshot.data(),_cloudId:pack[i]._cloudId};
+        if(song.removed===true)return;
         const next=window.KTVSourceReplacement?.(song);
         if(!next)return;
         const patch={videoId:next.videoId,updatedAt:serverTimestamp(),updatedBy:uid};
@@ -237,6 +262,7 @@ window.KTV_CLOUD = {
   setDeviceEnabled,
   deleteDevice,
   replaceDevice,
+  removeSong,
   upsert: song => upsertMany([song]),
   importSongs: songs => upsertMany(songs, true),
   saveBatch: songs => upsertMany(songs),

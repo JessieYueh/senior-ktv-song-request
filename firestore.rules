@@ -164,7 +164,8 @@ service cloud.firestore {
     function validSong() {
       let s = request.resource.data;
       return s.keys().hasAll(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
-        && s.keys().hasOnly(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
+        && s.keys().hasOnly(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy', 'removed'])
+        && (!('removed' in s) || s.removed == true)
         && s.title is string && s.title.size() > 0 && s.title.size() <= 100
         && s.artist is string && s.artist.size() > 0 && s.artist.size() <= 100
         && s.lang in ['台語', '國語', '其他']
@@ -176,7 +177,7 @@ service cloud.firestore {
     }
     match /songs/{songId} {
       allow read: if canReadSongs();
-      allow create: if isAdmin() && validSong()
+      allow create: if isAdmin() && validSong() && !('removed' in request.resource.data)
         && request.resource.data.createdAt == request.time
         && request.resource.data.createdBy == request.auth.uid;
       allow update: if isAdmin() && validSong()

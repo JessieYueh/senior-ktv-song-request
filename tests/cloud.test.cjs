@@ -91,3 +91,24 @@ test('legacy compilation migrates in place; preserves names, originals, ownershi
 test('signed-out viewers cannot migrate legacy compilation records',async()=>{
   const old={...sourcePack[0],videoId:'21f7PU0eQgk'};const f=fixture({signedIn:false,pack:sourcePack,replacement:sourceReplacement,initialSongs:[old]});await new Promise(setImmediate);assert.equal(f.data.size,1);assert.equal(f.data.get(old._cloudId).videoId,old.videoId);await assert.rejects(f.api.importSourcePack(),/管理帳號/);
 });
+
+test('removing one YouTube version preserves the other and prevents automatic reimport', async () => {
+  const [first] = songs();
+  const kept = {...first, videoId:'keep0000001', _cloudId:'yt_keep0000001'};
+  const removed = {...first, _cloudId:'yt_'+first.videoId};
+  const f=fixture({initialSongs:[kept,removed]});
+  await f.api.removeSong(removed);
+  assert.equal(f.data.get(removed._cloudId).removed,true);
+  assert.equal(f.data.get(kept._cloudId).removed,undefined);
+  assert.equal(await f.api.importSongs([first]),0);
+  await assert.rejects(f.api.upsert(removed),/已刪除/);
+  await f.api.upsert(first);
+  assert.equal(f.data.get(removed._cloudId).removed,undefined);
+});
+test('removal rejects a changed version and leaves it intact', async () => {
+  const [first]=songs();
+  const selected={...first,_cloudId:'yt_'+first.videoId};
+  const f=fixture({initialSongs:[selected],beforeTransaction:data=>{data.get(selected._cloudId).videoId='keep0000001';}});
+  await assert.rejects(f.api.removeSong(selected),/已變更/);
+  assert.equal(f.data.get(selected._cloudId).removed,undefined);
+});
