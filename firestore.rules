@@ -161,11 +161,25 @@ service cloud.firestore {
         && resource.data.deleted == false;
       allow delete: if false;
     }
+    function validVerification(v) {
+      return v is map
+        && v.keys().hasAll(['lyrics','content','embedding','referenceDuration','videoDuration','durationSource','notes','checkedAt'])
+        && v.keys().hasOnly(['lyrics','content','embedding','referenceDuration','videoDuration','durationSource','notes','checkedAt'])
+        && v.lyrics in ['待驗證','已核對','不符']
+        && v.content in ['待驗證','已核對','不符']
+        && v.embedding in ['待驗證','已通過','無法內嵌']
+        && (v.referenceDuration == null || (v.referenceDuration is int && v.referenceDuration >= 0 && v.referenceDuration <= 14400))
+        && (v.videoDuration == null || (v.videoDuration is int && v.videoDuration >= 0 && v.videoDuration <= 14400))
+        && v.durationSource is string && v.durationSource.size() <= 180
+        && v.notes is string && v.notes.size() <= 300
+        && (v.checkedAt == null || v.checkedAt is timestamp);
+    }
     function validSong() {
       let s = request.resource.data;
       return s.keys().hasAll(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'])
-        && s.keys().hasOnly(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy', 'removed'])
-        && (!('removed' in s) || s.removed == true)
+        && s.keys().hasOnly(['title', 'artist', 'lang', 'videoId', 'vocalId', 'order', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy', 'removed', 'verification'])
+        && (!('removed' in s) || s.removed is bool)
+        && (!('verification' in s) || validVerification(s.verification))
         && s.title is string && s.title.size() > 0 && s.title.size() <= 100
         && s.artist is string && s.artist.size() > 0 && s.artist.size() <= 100
         && s.lang in ['台語', '國語', '其他']
@@ -182,7 +196,10 @@ service cloud.firestore {
         && request.resource.data.createdBy == request.auth.uid;
       allow update: if isAdmin() && validSong()
         && request.resource.data.createdAt == resource.data.createdAt
-        && request.resource.data.createdBy == resource.data.createdBy;
+        && request.resource.data.createdBy == resource.data.createdBy
+        && (resource.data.removed != true || request.resource.data.removed == true
+          || (request.resource.data.removed == false
+              && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['removed','updatedAt','updatedBy'])));
       allow delete: if isAdmin();
     }
     match /admins/{userId} {
