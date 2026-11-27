@@ -26,7 +26,7 @@ export function explain(error) {
   return error?.message || '雲端操作失敗，請稍後重試。';
 }
 function clearSongs(){
-  ++songsEpoch;stopSongs?.();stopSongs=null;latestSongs=[];state.count=0;state.readReady=false;
+  ++songsEpoch;stopSongs?.();stopSongs=null;latestSongs=[];state.deletedSongs=[];state.count=0;state.readReady=false;
   window.KTV_APP.setCloudSongs([]);
 }
 function reconcileAccess(){
@@ -69,6 +69,7 @@ function watchSongs() {
       .filter(s => typeof s.title === 'string' && typeof s.artist === 'string')
       .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title, 'zh-Hant'));
     const songs = records.filter(song => song.removed !== true);
+    state.deletedSongs = state.admin ? records.filter(song => song.removed === true) : [];
     latestSongs=songs;state.packCount=(window.KTV_SOURCE_SONGS||[]).filter(p=>songs.some(s=>s._cloudId===p._cloudId&&s.videoId!=='21f7PU0eQgk')).length;state.vocalCount=songs.filter(s=>/^[\w-]{11}$/.test(s.vocalId||'')).length;state.vocalMissing=songs.filter(s=>!s.vocalId&&window.KTVGetVocal?.(s)).length;
     state.readReady = true; state.count = songs.length; state.error = '';
     window.KTV_APP.setCloudSongs(songs, records); emit();
@@ -129,6 +130,21 @@ function requireAdmin() {
 function clean(song) {
   const result = { title: String(song.title || '').trim(), artist: String(song.artist || '未知歌手').trim(), lang: ['台語', '國語', '其他'].includes(song.lang) ? song.lang : '其他', videoId: song.videoId || '', vocalId: song.vocalId || '' };
   if (!result.title || result.title.length > 100 || !result.artist || result.artist.length > 100 || !/^(?:[\w-]{11})?$/.test(result.videoId) || !/^(?:[\w-]{11})?$/.test(result.vocalId)) throw new Error('歌曲資料格式有誤。');
+  const v = song.verification || {};
+  const duration = n => n === '' || n == null ? null : Number(n);
+  const referenceDuration = duration(v.referenceDuration), videoDuration = duration(v.videoDuration);
+  for(const n of [referenceDuration, videoDuration])if(n !== null && (!Number.isInteger(n) || n < 0 || n > 14400))throw new Error('曲長須為 0 至 14400 秒的整數。');
+  const allowed = ['待驗證','已核對','不符'];
+  const embedding = ['待驗證','已通過','無法內嵌'];
+  result.verification = {
+    lyrics: allowed.includes(v.lyrics) ? v.lyrics : '待驗證',
+    content: allowed.includes(v.content) ? v.content : '待驗證',
+    embedding: embedding.includes(v.embedding) ? v.embedding : '待驗證',
+    referenceDuration, videoDuration,
+    durationSource: String(v.durationSource || '').trim().slice(0,180),
+    notes: String(v.notes || '').trim().slice(0,300),
+    checkedAt: v.checkedAt || null
+  };
   return result;
 }
 function idFor(song) {
@@ -139,7 +155,7 @@ async function upsertMany(items, onlyMissing = false) {
   if (state.busy) throw new Error('正在儲存歌曲，請稍候。');
   // One atomic transaction per operation: read all documents before writing.
   // Keep imports bounded and report a useful error rather than partially importing a large list.
-  const entries = [...new Map(items.map(item => { const data = clean(item); return [idFor({ ...item, ...data }), {data, editing: !!item._cloudId}]; })).entries()];
+  const entries = [...new Map(items.map(item => { const data = clean(item); return [idFor({ ...item, ...data }), {data, editing: !!item._cloudId, suppliedVerification: Object.prototype.hasOwnProperty.call(item,'verification')}]; })).entries()];
   if (!entries.length) return 0;
   if (entries.length > 100) throw new Error('每次最多匯入 100 首，請分批加入。');
   state.busy = true; emit();
@@ -149,11 +165,18 @@ async function upsertMany(items, onlyMissing = false) {
       const refs = entries.map(([id]) => doc(db, 'songs', id));
       const snapshots = await Promise.all(refs.map(ref => tx.get(ref)));
       let count = 0;
-      entries.forEach(([, {data, editing}], i) => {
+      entries.forEach(([, {data, editing, suppliedVerification}], i) => {
         if (onlyMissing && snapshots[i].exists()) return;
-        if (editing && snapshots[i].data()?.removed === true) throw new Error('這筆歌曲已刪除，請重新確認歌本。');
+        if (snapshots[i].data()?.removed === true) throw new Error('這筆歌曲已刪除，請先使用管理員還原功能，不能直接覆寫。');
+        const prev = snapshots[i].exists() ? snapshots[i].data() : null;
+        const {verification, ...baseData} = data;
+        const videoChanged = !!prev && (prev.videoId !== data.videoId);
+        const storedVerification = videoChanged
+          ? {...verification,lyrics:'待驗證',content:'待驗證',embedding:'待驗證',videoDuration:null,notes:'影片已更換，需重新核對。',checkedAt:serverTimestamp()}
+          : suppliedVerification ? {...verification,checkedAt:serverTimestamp()} : (prev?.verification || verification);
+        // Preserve audit evidence when legacy imports/edits do not provide it.
         tx.set(refs[i], {
-          ...data,
+          ...baseData, verification: storedVerification,
           order: snapshots[i].exists() ? (snapshots[i].data().order ?? Date.now()) : Date.now() + i,
           createdAt: snapshots[i].exists() ? snapshots[i].data().createdAt : serverTimestamp(),
           createdBy: snapshots[i].exists() ? snapshots[i].data().createdBy : uid,
@@ -187,6 +210,24 @@ async function removeSong(song) {
   } finally { state.busy = false; emit(); }
 }
 
+async function restoreSong(song) {
+  requireAdmin();
+  if(state.busy)throw new Error('正在更新歌本，請稍候。');
+  if(!song?._cloudId || song._cloudId.includes('/'))throw new Error('歌曲 ID 不正確。');
+  state.busy=true;emit();
+  try {
+    const uid=auth.currentUser.uid;
+    const ref=doc(db,'songs',song._cloudId);
+    await runTransaction(db,async tx=>{
+      const snap=await tx.get(ref);
+      if(!snap.exists()||snap.data().removed!==true)throw new Error('已刪除資料不存在或已還原。');
+      const current=snap.data();
+      if(current.videoId!==song.videoId || current.title!==song.title)throw new Error('歌曲資料已變更，請重新整理。');
+      // The document identity is retained. Same-video active duplicates must be checked in the UI.
+      tx.update(ref,{removed:false,updatedAt:serverTimestamp(),updatedBy:uid});
+    });
+  }finally{state.busy=false;emit();}
+}
 async function fillVocals() {
   requireAdmin();
   if(state.busy)throw new Error('正在儲存歌曲，請稍候。');
@@ -263,6 +304,7 @@ window.KTV_CLOUD = {
   deleteDevice,
   replaceDevice,
   removeSong,
+  restoreSong,
   upsert: song => upsertMany([song]),
   importSongs: songs => upsertMany(songs, true),
   saveBatch: songs => upsertMany(songs),
