@@ -167,10 +167,13 @@ async function upsertMany(items, onlyMissing = false) {
       let count = 0;
       entries.forEach(([, {data, editing, suppliedVerification}], i) => {
         if (onlyMissing && snapshots[i].exists()) return;
-        if (editing && snapshots[i].data()?.removed === true) throw new Error('這筆歌曲已刪除，請重新確認歌本。');
+        if (snapshots[i].data()?.removed === true) throw new Error('這筆歌曲已刪除，請先使用管理員還原功能，不能直接覆寫。');
         const prev = snapshots[i].exists() ? snapshots[i].data() : null;
         const {verification, ...baseData} = data;
-        const storedVerification = suppliedVerification ? {...verification, checkedAt: serverTimestamp()} : (prev?.verification || verification);
+        const videoChanged = !!prev && (prev.videoId !== data.videoId);
+        const storedVerification = videoChanged
+          ? {...verification,lyrics:'待驗證',content:'待驗證',embedding:'待驗證',videoDuration:null,notes:'影片已更換，需重新核對。',checkedAt:serverTimestamp()}
+          : suppliedVerification ? {...verification,checkedAt:serverTimestamp()} : (prev?.verification || verification);
         // Preserve audit evidence when legacy imports/edits do not provide it.
         tx.set(refs[i], {
           ...baseData, verification: storedVerification,
