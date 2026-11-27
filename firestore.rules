@@ -197,7 +197,7 @@ service cloud.firestore {
       allow update: if isAdmin() && validSong()
         && request.resource.data.createdAt == resource.data.createdAt
         && request.resource.data.createdBy == resource.data.createdBy
-        && (resource.data.removed != true || request.resource.data.removed == true
+        && (!('removed' in resource.data) || resource.data.removed != true || request.resource.data.removed == true
           || (request.resource.data.removed == false
               && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['removed','updatedAt','updatedBy'])));
       allow delete: if isAdmin();
